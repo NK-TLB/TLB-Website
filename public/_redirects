@@ -1,0 +1,12 @@
+# Backup of redirects, also defined in netlify.toml
+/home/index.php/pages/frequently-asked-questions    /faq          301!
+/home/index.php/pages/commercial-laundry-for-institutions-and-businesses    /commercial    301!
+/home/index.php/pages/laundry-and-dry-cleaning-for-residents-and-students   /services      301!
+/home/index.php/pages/*    /    301!
+/home/index.php            /    301!
+/home/*                    /    301!
+/appdownload               /app  301!
+/appdownload/*             /app  301!
+
+# SPA fallback
+/*    /index.html    200

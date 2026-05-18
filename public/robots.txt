@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Be polite to general crawlers (1 req / sec)
+Crawl-delay: 1
+
+Sitemap: https://www.thelaundrybag.co.in/sitemap.xml
