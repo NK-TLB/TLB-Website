@@ -159,13 +159,10 @@ export default function Home() {
 
       {/* === "What we do for your business" (legacy carousel) ================= */}
       <section
-        className="relative section text-white"
+        className="parallax relative section text-white"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0,30,40,0.78),rgba(0,30,40,0.78)), url(/images/parallax-img-03.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="container-page">
@@ -210,12 +207,10 @@ export default function Home() {
 
       {/* === "What we do for your home" ======================================= */}
       <section
-        className="relative section text-white"
+        className="parallax relative section text-white"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0,60,90,0.82),rgba(0,60,90,0.82)), url(/images/parallax-img-04.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
         }}
       >
         <div className="container-page">
@@ -279,13 +274,10 @@ export default function Home() {
 
       {/* === "Commercial Laundry for Small to Large Businesses" =============== */}
       <section
-        className="relative section text-white"
+        className="parallax relative section text-white"
         style={{
           backgroundImage:
             "linear-gradient(rgba(10,40,60,0.8),rgba(10,40,60,0.8)), url(/images/parallax-img-02.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="container-page">
@@ -324,12 +316,10 @@ export default function Home() {
 
       {/* === Testimonials (legacy carousel) =================================== */}
       <section
-        className="relative section"
+        className="parallax relative section"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.94),rgba(255,255,255,0.94)), url(/images/parallax-img-01.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
         }}
       >
         <div className="container-page">
@@ -379,13 +369,10 @@ export default function Home() {
 
       {/* === Counters (legacy product-total row) ============================== */}
       <section
-        className="relative py-16 text-white sm:py-20"
+        className="parallax relative py-16 text-white sm:py-20"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0,156,220,0.88),rgba(51,214,91,0.88)), url(/images/parallax-img-02.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="container-page">

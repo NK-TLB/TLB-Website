@@ -32,6 +32,7 @@ const defaultLocalBusinessSchema = {
   email: site.email,
   priceRange: "₹₹",
   foundingDate: `${site.founded}-01-01`,
+  founder: { "@type": "Person", name: "Shourya Jain" },
   description: site.description,
   slogan: site.motto,
   address: {

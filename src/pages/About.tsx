@@ -46,13 +46,10 @@ export default function About() {
 
       {/* === Counters ======================================================== */}
       <section
-        className="relative py-16 text-white sm:py-20"
+        className="parallax relative py-16 text-white sm:py-20"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0,156,220,0.88),rgba(51,214,91,0.88)), url(/images/parallax-img-02.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="container-page">

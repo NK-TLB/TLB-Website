@@ -9,11 +9,35 @@
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100%;
+}
+
+html,
+body {
+  /* Prevent any rogue overflow from off-screen decorations creating
+     horizontal scroll on phones. */
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
   @apply bg-white text-ink-800 font-sans antialiased;
+}
+
+/* Parallax sections: keep the cinematic fixed-attachment look on desktop
+   but fall back to normal scroll attachment on iOS / Android where
+   `background-attachment: fixed` is broken or causes jank. */
+.parallax {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
+@media (min-width: 1024px) {
+  .parallax {
+    background-attachment: fixed;
+  }
 }
 
 @layer components {

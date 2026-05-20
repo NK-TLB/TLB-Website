@@ -60,13 +60,10 @@ export default function Commercial() {
 
       {/* === Commercial Laundry for Small to Large Businesses + 3 sub blocks */}
       <section
-        className="relative section text-white"
+        className="parallax relative section text-white"
         style={{
           backgroundImage:
             "linear-gradient(rgba(10,40,60,0.82),rgba(10,40,60,0.82)), url(/images/parallax-img-02.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="container-page">
