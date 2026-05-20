@@ -4,26 +4,40 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Tuned to The LaundryBag's sky-blue logo (~#29abe2)
+        // Old TLB site brand: green #33d65b for "For your Business" / accents,
+        // sky-blue #009cdc for "For your Home" / logo / institutional.
         brand: {
-          50: "#ecf8fe",
-          100: "#d6f0fd",
-          200: "#afe1fb",
-          300: "#7dcdf6",
-          400: "#29abe2",
-          500: "#1496cc",
-          600: "#0f86bb",
-          700: "#0b6e9c",
-          800: "#0c5b80",
-          900: "#0e4d6b",
-          950: "#082f44",
+          50: "#e8f9ee",
+          100: "#caf2d7",
+          200: "#9ce6b3",
+          300: "#69d889",
+          400: "#33d65b",
+          500: "#1cbf45",
+          600: "#16a23a",
+          700: "#138033",
+          800: "#11652b",
+          900: "#0d4f24",
+          950: "#062f15",
+        },
+        sky2: {
+          50: "#e6f6fc",
+          100: "#c2e9f7",
+          200: "#8fd5ee",
+          300: "#4dbce3",
+          400: "#23a9d8",
+          500: "#009cdc",
+          600: "#0084bc",
+          700: "#066b97",
+          800: "#0a557a",
+          900: "#0c4661",
+          950: "#062c40",
         },
         accent: {
-          50: "#ecfdf5",
-          100: "#d1fae5",
-          500: "#10b981",
-          600: "#059669",
-          700: "#047857",
+          50: "#e8fbf9",
+          100: "#c9f3ee",
+          400: "#46d8cc",
+          500: "#2cc1b4",
+          600: "#1ca197",
         },
         ink: {
           50: "#f7f8fb",
@@ -33,14 +47,14 @@ export default {
           400: "#8b94aa",
           500: "#697389",
           600: "#525a6e",
-          700: "#414858",
+          700: "#454545",
           800: "#2a2f3b",
           900: "#171a22",
         },
       },
       fontFamily: {
         sans: [
-          "Inter",
+          "Lato",
           "ui-sans-serif",
           "system-ui",
           "-apple-system",
@@ -49,8 +63,8 @@ export default {
           "sans-serif",
         ],
         display: [
-          "Plus Jakarta Sans",
-          "Inter",
+          "Rubik",
+          "Lato",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
@@ -58,13 +72,13 @@ export default {
       },
       boxShadow: {
         soft: "0 10px 30px -12px rgba(13, 95, 140, 0.22)",
-        glow: "0 0 0 6px rgba(41, 171, 226, 0.12)",
+        glow: "0 0 0 6px rgba(51, 214, 91, 0.18)",
       },
       backgroundImage: {
         "hero-gradient":
-          "linear-gradient(135deg, #ecf8fe 0%, #d6f0fd 40%, #afe1fb 100%)",
+          "linear-gradient(135deg, #e8f9ee 0%, #caf2d7 35%, #c2e9f7 100%)",
         "hero-radial":
-          "radial-gradient(60% 60% at 80% 0%, rgba(41,171,226,0.18) 0%, rgba(41,171,226,0) 60%), linear-gradient(135deg, #f7fcff 0%, #e3f3fc 60%, #cfeafa 100%)",
+          "radial-gradient(60% 60% at 80% 0%, rgba(0,156,220,0.18) 0%, rgba(0,156,220,0) 60%), linear-gradient(135deg, #f7fcff 0%, #e8f6fb 50%, #e8f9ee 100%)",
       },
     },
   },

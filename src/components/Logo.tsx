@@ -5,8 +5,8 @@ type Props = {
 export default function Logo({ className = "h-10 w-auto" }: Props) {
   return (
     <img
-      src="/logo.jpg"
-      alt="The LaundryBag — On-demand laundry, dry cleaning, wash dry iron in Raipur, India"
+      src="/images/logo.png"
+      alt="The Laundry Bag — Commercial and Residential Laundry and Dry Cleaning"
       className={`${className} select-none`}
       draggable={false}
       width={480}

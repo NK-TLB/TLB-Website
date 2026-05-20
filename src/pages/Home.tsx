@@ -2,69 +2,57 @@ import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
 import SEO from "../components/SEO";
 import {
-  featuredClients,
-  locationDetails,
-  locations,
-  services,
+  businessServices,
+  counters,
+  homeServices,
+  homeWeDo,
+  howItWorks,
+  operationalModels,
   site,
-  stats,
+  testimonials,
+  whoWeServe,
+  whyChooseUs,
 } from "../data/site";
 
-const promises = [
-  {
-    icon: "shield",
-    title: "Hygienic & separated",
-    description:
-      "Every order is tagged and washed separately in a clean, monitored facility. No mixing — ever.",
-  },
-  {
-    icon: "leaf",
-    title: "PERC-free dry cleaning",
-    description:
-      "Lagoon Advance Care technology — gentle on fabrics, kinder to skin and the planet.",
-  },
-  {
-    icon: "clock",
-    title: "On-time pickup & delivery",
-    description:
-      "Choose your slot. We collect and deliver to your doorstep, free of cost.",
-  },
-  {
-    icon: "check",
-    title: "Quality, guaranteed",
-    description:
-      "Not happy? We'll re-wash, re-press or refund — no questions asked.",
-  },
-];
+const howItWorksIcons = ["bag", "truck", "washer", "check"];
 
 export default function Home() {
   return (
     <>
       <SEO
         path="/"
-        title="On-Demand Laundry &amp; Dry Cleaning · Wash · Dry · Iron"
-        description="The LaundryBag — India's on-demand laundry and dry cleaning service. Free pickup &amp; delivery, hygienic processing, no mixing of clothes. Operating in Raipur, Pune and Goa since 2013."
+        title="Commercial and Residential Laundry and Dry Cleaning"
+        description="The Laundry Bag provides professional laundry and dry-cleaning services to hotels, hospitals, restaurants, colleges, schools and companies of all sizes — and on-demand pickup and delivery for homes and students."
       />
 
-      {/* === PRIMARY (original homepage positioning) ============================ */}
+      {/* === HERO — "For your Business" / "For your Home" (legacy slider) ====== */}
       <section className="relative overflow-hidden bg-hero-radial">
-        <div className="container-page relative grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:py-28">
+        <div className="container-page relative grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:py-24">
           <div>
-            <span className="eyebrow">Trusted since {site.founded}</span>
+            <span className="eyebrow">Since {site.founded}</span>
             <h2 className="h1 mt-4">
-              Less laundry.<br />
-              <span className="text-brand-500">More life.</span>
+              The most convenient way
+              <br />
+              <span className="text-brand-500">to do laundry</span>{" "}
+              <span className="text-ink-800">and</span>{" "}
+              <span className="text-sky2-500">dry cleaning</span>.
             </h2>
             <p className="lead mt-6 max-w-xl">
-              On-demand wash, dry &amp; iron, plus dry-cleaning — picked up
-              from your doorstep and back in 48 hours. Hygienic, separated,
-              and never mixed with anyone else&apos;s clothes.
+              We provide on-demand pick-up and delivery services for homes
+              and students, and professional laundry programs for hotels,
+              hospitals, restaurants, colleges, schools and companies of all
+              sizes.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/contact" className="btn-primary">
-                Schedule a pickup
+              <a
+                href={site.android}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-primary"
+              >
                 <Icon name="truck" className="h-4 w-4" />
-              </Link>
+                Get the App
+              </a>
               <a href={site.phoneHref} className="btn-secondary">
                 <Icon name="phone" className="h-4 w-4" />
                 {site.phoneDisplay}
@@ -72,265 +60,388 @@ export default function Home() {
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-600">
               <span className="inline-flex items-center gap-2">
-                <Icon name="check" className="h-4 w-4 text-accent-600" />
+                <Icon name="check" className="h-4 w-4 text-brand-500" />
                 Free pickup &amp; delivery
               </span>
               <span className="inline-flex items-center gap-2">
-                <Icon name="check" className="h-4 w-4 text-accent-600" />
+                <Icon name="check" className="h-4 w-4 text-brand-500" />
                 48-hour turnaround
               </span>
               <span className="inline-flex items-center gap-2">
-                <Icon name="check" className="h-4 w-4 text-accent-600" />
-                PERC-free dry clean
+                <Icon name="check" className="h-4 w-4 text-brand-500" />
+                We do not mix clothes
               </span>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="card relative z-10 mx-auto max-w-md">
-              <div className="flex items-center justify-between">
-                <span className="eyebrow">Today&apos;s pickup</span>
-                <span className="text-xs font-semibold text-accent-600">
-                  Scheduled
-                </span>
-              </div>
-              <h3 className="h3 mt-3">Wash, dry &amp; iron · 4.2 kg</h3>
-              <p className="mt-1 text-sm text-ink-600">
-                Pickup window 5:30 PM – 6:30 PM · Free
+          {/* "For your Business" / "For your Home" split CTA — matches the
+              legacy slide-1 split layout. */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Link
+              to="/commercial"
+              className="group block overflow-hidden rounded-3xl bg-brand-400 p-6 text-white shadow-soft transition hover:-translate-y-1 hover:bg-brand-500"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/80">
+                For your Business
               </p>
-              <ul className="mt-5 space-y-3 text-sm text-ink-700">
-                {[
-                  "PERC-free dry cleaning available",
-                  "Stain treatment included",
-                  "Returned in 48 hours",
-                  "No mixing with other customers",
-                ].map((line) => (
-                  <li key={line} className="flex items-start gap-3">
-                    <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-50 text-brand-600">
-                      <Icon name="check" className="h-3.5 w-3.5" />
-                    </span>
-                    {line}
-                  </li>
-                ))}
+              <ul className="mt-4 space-y-1 font-display text-lg font-semibold leading-tight">
+                <li>Hotel Laundry</li>
+                <li>Hospital Laundry</li>
+                <li>On Campus Laundromats</li>
+                <li>Small Local Businesses</li>
               </ul>
-              <div className="mt-6 flex items-center justify-between rounded-xl bg-ink-50 px-4 py-3">
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-ink-500">
-                    Estimated
-                  </p>
-                  <p className="font-display text-xl font-bold text-ink-900">
-                    ₹ 252
-                  </p>
-                </div>
-                <Link to="/contact" className="btn-primary">
-                  Confirm
-                </Link>
-              </div>
-            </div>
-            <div
-              aria-hidden="true"
-              className="absolute -bottom-6 -right-6 h-44 w-44 rounded-3xl bg-brand-300/40"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute -left-6 -top-6 h-32 w-32 rounded-3xl bg-accent-100"
-            />
+              <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white">
+                Know more
+                <Icon name="check" className="h-4 w-4" />
+              </span>
+            </Link>
+            <Link
+              to="/services"
+              className="group block overflow-hidden rounded-3xl bg-sky2-500 p-6 text-white shadow-soft transition hover:-translate-y-1 hover:bg-sky2-600"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/80">
+                For your Home
+              </p>
+              <ul className="mt-4 space-y-1 font-display text-lg font-semibold leading-tight">
+                <li>Laundry</li>
+                <li>Dry Clean</li>
+                <li>On Site Cleaning</li>
+              </ul>
+              <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white">
+                Know more
+                <Icon name="check" className="h-4 w-4" />
+              </span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* === PRIMARY — services overview (from original residential page) ====== */}
+      {/* === Three top services (legacy services-box row) ====================== */}
       <section className="section">
         <div className="container-page">
-          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-            <div>
-              <span className="eyebrow">What we do</span>
-              <h2 className="h2 mt-4 max-w-2xl">
-                Everything you&apos;d want from a laundry — and nothing you
-                wouldn&apos;t.
-              </h2>
-            </div>
-            <Link to="/services" className="btn-secondary self-start">
-              See all services
-            </Link>
-          </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <article key={s.title} className="card">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <Icon name={s.icon} />
+          <div className="grid gap-6 md:grid-cols-3">
+            {homeServices.map((s) => (
+              <Link
+                key={s.title}
+                to={s.href}
+                className={`group relative block overflow-hidden rounded-3xl p-8 shadow-soft transition hover:-translate-y-1 ${
+                  s.accent === "blue"
+                    ? "bg-sky2-500 text-white"
+                    : s.accent === "green"
+                    ? "bg-brand-400 text-white"
+                    : "bg-ink-50 text-ink-900"
+                }`}
+              >
+                <span
+                  className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl ${
+                    s.accent === "grey"
+                      ? "bg-white/70 text-brand-500"
+                      : "bg-white/15 text-white"
+                  }`}
+                >
+                  <Icon name={s.icon} className="h-7 w-7" />
                 </span>
-                <h3 className="h3 mt-5">{s.title}</h3>
-                <p className="mt-2 text-sm text-ink-600">{s.description}</p>
+                <h3 className="mt-6 font-display text-2xl font-bold uppercase tracking-wide">
+                  {s.title}
+                </h3>
+                <p
+                  className={`mt-3 text-sm ${
+                    s.accent === "grey" ? "text-ink-700" : "text-white/90"
+                  }`}
+                >
+                  {s.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* === "What we do for your business" (legacy carousel) ================= */}
+      <section
+        className="relative section text-white"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0,30,40,0.78),rgba(0,30,40,0.78)), url(/images/parallax-img-03.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div className="container-page">
+          <h2 className="title-underline text-white">
+            What we do for your business?
+          </h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {businessServices.map((b) => (
+              <article
+                key={b.title}
+                className="rounded-3xl bg-white/95 p-6 text-ink-800 shadow-soft sm:p-8"
+              >
+                <h3 className="font-display text-xl font-bold text-ink-900">
+                  {b.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-700">
+                  {b.description}
+                </p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === PRIMARY — why TLB / "A few words about us" ======================== */}
-      <section className="bg-ink-50/60 section">
-        <div className="container-page grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <span className="eyebrow">Why The LaundryBag</span>
-            <h2 className="h2 mt-4">
-              A laundry that takes care like you would.
-            </h2>
-            <p className="lead mt-5">
-              Since {site.founded}, we&apos;ve been on a mission to bring
-              India&apos;s unorganised laundry sector into the 21st century —
-              with hygienic processes, trained teams, and technology that puts
-              the customer first.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/about" className="btn-primary">
-                Our story
-              </Link>
-              <Link to="/locations" className="btn-secondary">
-                Where we operate
-              </Link>
-            </div>
+      {/* === "Who we serve?" (legacy permission-box row) ====================== */}
+      <section className="section">
+        <div className="container-page">
+          <h2 className="title-underline">Who we serve?</h2>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {whoWeServe.map((w) => (
+              <article key={w.title} className="card">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
+                  <Icon name="check" />
+                </span>
+                <h3 className="h3 mt-5">{w.title}</h3>
+                <p className="mt-2 text-sm text-ink-600">{w.description}</p>
+              </article>
+            ))}
           </div>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {promises.map((p) => (
-              <div key={p.title} className="card">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-100 text-accent-700">
-                  <Icon name={p.icon} />
+        </div>
+      </section>
+
+      {/* === "What we do for your home" ======================================= */}
+      <section
+        className="relative section text-white"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0,60,90,0.82),rgba(0,60,90,0.82)), url(/images/parallax-img-04.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container-page">
+          <h2 className="title-underline text-white">
+            What we do for your home?
+          </h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {homeWeDo.map((b) => (
+              <article
+                key={b.title}
+                className="rounded-3xl bg-white/95 p-6 text-ink-800 shadow-soft sm:p-8"
+              >
+                <h3 className="font-display text-xl font-bold text-ink-900">
+                  {b.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-700">
+                  {b.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* === "How It Works: in 4 Easy Steps" (legacy box-step row) ============ */}
+      <section className="bg-ink-50/60 section">
+        <div className="container-page">
+          <h2 className="title-underline">How It Works: in 4 Easy Steps</h2>
+          <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {howItWorks.map((s, i) => (
+              <li key={s.step} className="card text-center">
+                <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-sky2-100 text-sky2-700">
+                  <Icon name={howItWorksIcons[i]} className="h-7 w-7" />
+                </span>
+                <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-brand-700">
+                  {s.step}
+                </p>
+                <p className="mt-2 font-display text-lg font-bold text-ink-900">
+                  {s.title}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* === "How we do it?" (process diagram) ================================ */}
+      <section className="section">
+        <div className="container-page">
+          <h2 className="title-underline">How we do it?</h2>
+          <div className="mt-10 flex justify-center">
+            <img
+              src="/images/process.png"
+              alt="The Laundry Bag — How we do it: pickup, sort, treat, wash, dry, iron, fold, deliver"
+              className="h-auto w-full max-w-3xl"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* === "Commercial Laundry for Small to Large Businesses" =============== */}
+      <section
+        className="relative section text-white"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(10,40,60,0.8),rgba(10,40,60,0.8)), url(/images/parallax-img-02.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div className="container-page">
+          <h2 className="title-underline text-white">
+            Commercial Laundry for Small to Large Businesses
+          </h2>
+          <p className="mx-auto mt-2 max-w-3xl text-center text-base text-white/90 sm:text-lg">
+            The Laundry Bag™ provides professional laundry services to
+            government establishments, hospitals, hotels, restaurants,
+            colleges, schools and companies of all sizes who share a need
+            for cost-effective, consistent and reliable laundry service.
+            With a focus on health care, hospitality and commercial laundry
+            sectors, The Laundry Bag™ has designed its operational formats
+            in various models:
+          </p>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {operationalModels.map((m, i) => (
+              <article
+                key={m.title}
+                className="rounded-3xl bg-white/95 p-6 text-ink-800 shadow-soft sm:p-8"
+              >
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 font-display text-lg font-bold text-brand-500">
+                  {i + 1}
                 </span>
                 <h3 className="mt-4 font-display text-lg font-bold text-ink-900">
-                  {p.title}
+                  {m.title}
                 </h3>
-                <p className="mt-1 text-sm text-ink-600">{p.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === PRIMARY — locations (Raipur · Pune · Goa) ========================= */}
-      <section className="section">
-        <div className="container-page">
-          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-            <div>
-              <span className="eyebrow">Where we are</span>
-              <h2 className="h2 mt-4 max-w-2xl">
-                Headquartered in Raipur · On-campus in Pune &amp; Goa.
-              </h2>
-            </div>
-            <Link to="/locations" className="btn-secondary self-start">
-              Explore all locations
-            </Link>
-          </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {locations.map((l) => (
-              <article key={l.city} className="card">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <Icon name="pin" />
-                </span>
-                <h3 className="h3 mt-4">
-                  {l.city}
-                  <span className="ml-2 text-sm font-semibold text-ink-500">
-                    · {l.state}
-                  </span>
-                </h3>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                  {l.role}
+                <p className="mt-3 text-sm leading-relaxed text-ink-700">
+                  {m.description}
                 </p>
-                <p className="mt-3 text-sm text-ink-600">{l.description}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === SECONDARY — by the numbers (supplementary intel) ================== */}
-      <section className="bg-ink-50/60 section">
+      {/* === Testimonials (legacy carousel) =================================== */}
+      <section
+        className="relative section"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.94),rgba(255,255,255,0.94)), url(/images/parallax-img-01.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="container-page">
-          <span className="eyebrow">By the numbers</span>
-          <h2 className="h2 mt-4 max-w-2xl">A decade of clean. Counting.</h2>
-          <p className="lead mt-4 max-w-2xl">
-            Supplementary stats from our retail and on-campus operations.
+          <h2 className="title-underline">What our customers say</h2>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((t) => (
+              <figure key={t.name} className="card">
+                <blockquote className="text-sm italic text-ink-700">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-4 text-xs font-semibold uppercase tracking-wider text-brand-700">
+                  — {t.name}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* === "A few words about us" + Why Choose Us =========================== */}
+      <section className="section">
+        <div className="container-page">
+          <h2 className="title-underline">A few words about us</h2>
+          <p className="mx-auto mt-2 max-w-3xl text-center text-base text-ink-700 sm:text-lg">
+            We are professionals in the laundry and dry-cleaning business,
+            which means we always stay up to date on the latest technologies,
+            cleaning methods, and solutions for dealing with stains or
+            delicate fabrics. Plus, we maintain the highest standards of
+            business integrity by following local and national regulations
+            and environmental safety rules.
           </p>
-          <dl className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="card">
-                <dt className="text-xs uppercase tracking-wider text-ink-500">
-                  {s.label}
-                </dt>
-                <dd className="mt-2 font-display text-3xl font-extrabold text-ink-900">
-                  {s.value}
+
+          <h3 className="title-underline mt-16">Why Choose Us</h3>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {whyChooseUs.map((r) => (
+              <article key={r.title} className="card">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
+                  <Icon name={r.icon} />
+                </span>
+                <h4 className="h3 mt-5">{r.title}</h4>
+                <p className="mt-2 text-sm text-ink-600">{r.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* === Counters (legacy product-total row) ============================== */}
+      <section
+        className="relative py-16 text-white sm:py-20"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0,156,220,0.88),rgba(51,214,91,0.88)), url(/images/parallax-img-02.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div className="container-page">
+          <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {counters.map((c) => (
+              <div key={c.label} className="text-center">
+                <dd className="font-display text-4xl font-extrabold sm:text-5xl">
+                  {c.value}
                 </dd>
+                <dt className="mt-2 text-sm font-semibold uppercase tracking-wider text-white/85">
+                  {c.label}
+                </dt>
               </div>
             ))}
           </dl>
-          <ul className="mt-8 grid gap-3 text-sm text-ink-600 sm:grid-cols-3">
-            {Object.entries(locationDetails).map(([city, d]) => (
-              <li key={city} className="rounded-xl bg-white px-4 py-3 shadow-soft">
-                <span className="block text-xs font-semibold uppercase tracking-wider text-brand-700">
-                  {city}
-                </span>
-                <span className="block text-ink-800">{d.stat}</span>
-                {d.partner && (
-                  <span className="block text-xs text-ink-500">
-                    {d.partner}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
-      {/* === SECONDARY — featured B2B partners (supplementary) ================= */}
+      {/* === Corporate office =================================================== */}
       <section className="section">
-        <div className="container-page">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-ink-500">
-            A few of the businesses that trust us
-          </p>
-          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-ink-700">
-            {featuredClients.map((c) => (
-              <li
-                key={c}
-                className="rounded-full bg-ink-50 px-4 py-1.5 text-ink-700"
-              >
-                {c}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* === PRIMARY — commercial CTA ========================================= */}
-      <section className="section pt-0">
-        <div className="container-page">
-          <div className="rounded-3xl bg-brand-700 px-6 py-12 text-white sm:px-12 sm:py-16 lg:flex lg:items-center lg:justify-between lg:gap-10">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider">
-                B2B / Commercial
-              </span>
-              <h2 className="mt-4 font-display text-3xl font-extrabold sm:text-4xl">
-                Run a hotel, hospital, hostel or salon? Let us handle the
-                laundry.
-              </h2>
-              <p className="mt-4 text-white/85">
-                We partner with hospitality, healthcare, education and
-                business clients across India — delivering reliable, hygienic,
-                large-volume laundry programs with linen rentals available.
-              </p>
+        <div className="container-page grid items-center gap-10 lg:grid-cols-3">
+          <div className="lg:col-span-1">
+            <h2 className="title-underline-left">Corporate Office</h2>
+            <p className="lead mt-4">
+              Our corporate office is located in Raipur, CG — a
+              visitor-friendly location in the city centre. It&apos;s the
+              house of all our laundry machines, employees and processing
+              unit.
+            </p>
+            <p className="mt-6 text-sm text-ink-700">
+              {site.address.full}
+              <br />
+              {site.hours}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={site.address.mapsHref} target="_blank" rel="noreferrer" className="btn-secondary">
+                <Icon name="pin" className="h-4 w-4" />
+                Get directions
+              </a>
+              <Link to="/contact" className="btn-primary">
+                Contact us
+              </Link>
             </div>
-            <div className="mt-6 flex flex-wrap gap-3 lg:mt-0">
-              <Link
-                to="/commercial"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-700 hover:bg-brand-50"
-              >
-                Explore B2B
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
-              >
-                Talk to sales
-              </Link>
+          </div>
+          <div className="lg:col-span-2">
+            <div className="overflow-hidden rounded-3xl shadow-soft">
+              <iframe
+                title="The Laundry Bag — Raipur"
+                src={`https://www.google.com/maps?q=${site.address.geo.lat},${site.address.geo.lng}&z=14&output=embed`}
+                width="100%"
+                height="360"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </div>
         </div>

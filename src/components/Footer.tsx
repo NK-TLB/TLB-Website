@@ -14,6 +14,16 @@ export default function Footer() {
           </p>
           <div className="mt-5 flex items-center gap-3">
             <SocialIcon
+              href={site.socials.facebook}
+              label="Facebook"
+              path="M13.5 22v-8h3l.5-4h-3.5V7.5c0-1.2.3-2 2-2H17V2.2c-.3 0-1.4-.2-2.7-.2-2.7 0-4.5 1.6-4.5 4.6V10H6v4h3.8v8h3.7z"
+            />
+            <SocialIcon
+              href={site.socials.twitter}
+              label="Twitter"
+              path="M22 5.9a8.2 8.2 0 0 1-2.4.7 4.2 4.2 0 0 0 1.8-2.3 8.3 8.3 0 0 1-2.6 1A4.1 4.1 0 0 0 11.7 9 11.7 11.7 0 0 1 3 4.5a4.1 4.1 0 0 0 1.3 5.5 4 4 0 0 1-1.9-.5v.1a4.1 4.1 0 0 0 3.3 4 4.2 4.2 0 0 1-1.8.1 4.1 4.1 0 0 0 3.9 2.9A8.2 8.2 0 0 1 2 18.3 11.6 11.6 0 0 0 8.3 20c7.5 0 11.6-6.3 11.6-11.6v-.5A8.3 8.3 0 0 0 22 5.9z"
+            />
+            <SocialIcon
               href={site.socials.instagram}
               label="Instagram"
               path="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.97.24 2.66.51a5.4 5.4 0 0 1 1.95 1.27 5.4 5.4 0 0 1 1.27 1.95c.27.69.46 1.49.51 2.66.07 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.24 1.97-.51 2.66a5.4 5.4 0 0 1-1.27 1.95 5.4 5.4 0 0 1-1.95 1.27c-.69.27-1.49.46-2.66.51-1.25.07-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.97-.24-2.66-.51a5.4 5.4 0 0 1-1.95-1.27 5.4 5.4 0 0 1-1.27-1.95c-.27-.69-.46-1.49-.51-2.66C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.24-1.97.51-2.66a5.4 5.4 0 0 1 1.27-1.95A5.4 5.4 0 0 1 6 1.27c.69-.27 1.49-.46 2.66-.51C9.91 1.7 10.31 1.7 13.5 1.7m0 1.95H12c-3.16 0-3.53 0-4.78.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.27.83-.39.39-.63.76-.83 1.27-.15.39-.33.97-.38 2.04-.07 1.25-.07 1.62-.07 4.78s0 3.53.07 4.78c.05 1.07.23 1.65.38 2.04.2.51.44.88.83 1.27.39.39.76.63 1.27.83.39.15.97.33 2.04.38 1.25.07 1.62.07 4.78.07s3.53 0 4.78-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.27-.83.39-.39.63-.76.83-1.27.15-.39.33-.97.38-2.04.07-1.25.07-1.62.07-4.78s0-3.53-.07-4.78c-.05-1.07-.23-1.65-.38-2.04-.2-.51-.44-.88-.83-1.27-.39-.39-.76-.63-1.27-.83-.39-.15-.97-.33-2.04-.38C15.53 3.65 15.16 3.65 12 3.65zM12 7.4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 1.95a2.65 2.65 0 1 0 0 5.3 2.65 2.65 0 0 0 0-5.3zm5.8-2.4a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0z"
@@ -36,11 +46,12 @@ export default function Footer() {
             Company
           </h4>
           <ul className="mt-4 space-y-2 text-sm text-ink-700">
-            <li><Link className="hover:text-brand-700" to="/about">About us</Link></li>
-            <li><Link className="hover:text-brand-700" to="/services">Services</Link></li>
-            <li><Link className="hover:text-brand-700" to="/commercial">B2B / Commercial</Link></li>
+            <li><Link className="hover:text-brand-700" to="/about">Who we are</Link></li>
+            <li><Link className="hover:text-brand-700" to="/services">For your Home</Link></li>
+            <li><Link className="hover:text-brand-700" to="/commercial">For your Business</Link></li>
             <li><Link className="hover:text-brand-700" to="/locations">Locations</Link></li>
             <li><Link className="hover:text-brand-700" to="/faq">FAQ</Link></li>
+            <li><Link className="hover:text-brand-700" to="/privacy-policy">Privacy Policy</Link></li>
           </ul>
         </div>
 
@@ -52,6 +63,7 @@ export default function Footer() {
             <li><a href={site.android} target="_blank" rel="noreferrer" className="hover:text-brand-700">Android (Play Store)</a></li>
             <li><a href={site.ios} target="_blank" rel="noreferrer" className="hover:text-brand-700">iOS (App Store)</a></li>
             <li><Link className="hover:text-brand-700" to="/app">App download page</Link></li>
+            <li><Link className="hover:text-brand-700" to="/delete-my-account">Delete my account</Link></li>
           </ul>
         </div>
 
@@ -62,18 +74,36 @@ export default function Footer() {
           <address className="not-italic">
             <ul className="mt-4 space-y-2 text-sm text-ink-700">
               <li>
-                <a className="hover:text-brand-700" href={`mailto:${site.email}`}>
-                  {site.email}
+                For Query:{" "}
+                <a className="hover:text-brand-700" href={`mailto:${site.emails.query}`}>
+                  {site.emails.query}
+                </a>
+              </li>
+              <li>
+                For Commercial:{" "}
+                <a className="hover:text-brand-700" href={`mailto:${site.emails.contact}`}>
+                  {site.emails.contact}
+                </a>
+              </li>
+              <li>
+                For Franchise:{" "}
+                <a className="hover:text-brand-700" href={`mailto:${site.emails.franchise}`}>
+                  {site.emails.franchise}
+                </a>
+              </li>
+              <li>
+                For a Job:{" "}
+                <a className="hover:text-brand-700" href={`mailto:${site.emails.hr}`}>
+                  {site.emails.hr}
                 </a>
               </li>
               <li>
                 <a className="hover:text-brand-700" href={site.phoneHref}>
-                  {site.phone}
+                  {site.phoneDisplay}
                 </a>
               </li>
               <li className="pt-2 text-ink-500">
                 {site.address.street}<br />
-                {site.address.landmark}<br />
                 {site.address.city}, {site.address.region} {site.address.postalCode}<br />
                 {site.hours}
               </li>
@@ -84,7 +114,7 @@ export default function Footer() {
       <div className="border-t border-ink-100">
         <div className="container-page flex flex-col items-start justify-between gap-3 py-6 text-xs text-ink-500 sm:flex-row sm:items-center">
           <p>
-            © {new Date().getFullYear()} {site.legalName}. All rights reserved.
+            © {new Date().getFullYear()} {site.legalName}. All Rights Reserved.
           </p>
           <p>{site.motto}</p>
         </div>

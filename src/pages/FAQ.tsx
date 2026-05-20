@@ -1,102 +1,78 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
-import { faqs, site } from "../data/site";
+import { faqs } from "../data/site";
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
-
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: f.a,
-      },
-    })),
+    mainEntity: faqs.flatMap((g) =>
+      g.items.map((q) => ({
+        "@type": "Question",
+        name: q.q,
+        acceptedAnswer: { "@type": "Answer", text: q.a },
+      })),
+    ),
   };
 
   return (
     <>
       <SEO
         path="/faq"
-        title="FAQ — Laundry pickup, pricing &amp; turnaround"
-        description="Answers to common questions about The LaundryBag (TLB) — how pickup works, turnaround time, pricing, dry cleaning, and our Raipur flagship location."
+        title="Frequently Asked Questions"
+        description="Common questions about The Laundry Bag — pickup &amp; delivery, turnaround, dry cleaning, wash and fold, damage policy and more."
         schema={faqSchema}
       />
+      <div className="breadcrumb-strip">
+        <div className="container-page py-3 text-xs text-ink-500">
+          <Link to="/" className="hover:text-brand-700">Home</Link>{" "}
+          <span className="mx-2">/</span>{" "}
+          <span className="text-ink-700">FAQ</span>
+        </div>
+      </div>
+
       <PageHero
-        eyebrow="Help"
-        title="Frequently asked questions."
-        description="Everything you might want to know about how we pick up, clean and return your laundry."
+        eyebrow="Help & support"
+        title="Frequently Asked Questions"
+        description="We make doing your laundry simple. We can save your time, so you can enjoy doing the things you love. We can save you money on soap, water, heating and electricity — so you can enjoy even more of the things you love. Our prices are simple and affordable."
       />
 
-      <section className="section">
-        <div className="container-page max-w-3xl">
-          <ul className="divide-y divide-ink-100 rounded-2xl border border-ink-100 bg-white shadow-soft">
-            {faqs.map((f, i) => {
-              const isOpen = open === i;
-              return (
-                <li key={f.q}>
-                  <button
-                    type="button"
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-start justify-between gap-6 px-6 py-5 text-left"
-                    aria-expanded={isOpen}
-                  >
-                    <span className="font-display text-base font-bold text-ink-900 sm:text-lg">
-                      {f.q}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className={`mt-1 inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-ink-200 text-ink-600 transition ${
-                        isOpen ? "rotate-45 bg-brand-50 text-brand-700" : ""
-                      }`}
-                    >
+      {faqs.map((group) => (
+        <section key={group.category} className="section">
+          <div className="container-page">
+            <h2 className="title-underline-left">{group.category}</h2>
+            <div className="mt-8 divide-y divide-ink-100 rounded-2xl border border-ink-100 bg-white shadow-soft">
+              {group.items.map((item) => (
+                <details
+                  key={item.q}
+                  className="group px-5 py-4 sm:px-6 sm:py-5"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-display text-base font-semibold text-ink-900 sm:text-lg">
+                    {item.q}
+                    <span className="ml-4 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700 transition group-open:rotate-45">
                       <svg
                         viewBox="0 0 24 24"
-                        className="h-3.5 w-3.5"
+                        className="h-4 w-4"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="2.4"
+                        strokeWidth="2"
                         strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
                         <path d="M12 5v14M5 12h14" />
                       </svg>
                     </span>
-                  </button>
-                  {isOpen && (
-                    <div className="px-6 pb-6 text-ink-600">{f.a}</div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-
-          <div className="mt-10 rounded-2xl bg-brand-50 p-6 text-center">
-            <h3 className="h3">Still have questions?</h3>
-            <p className="mt-2 text-ink-600">
-              Our team usually replies within a few hours.
-            </p>
-            <div className="mt-5 flex flex-wrap justify-center gap-3">
-              <Link to="/contact" className="btn-primary">
-                Contact us
-              </Link>
-              <a
-                href={site.whatsappHref}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-secondary"
-              >
-                WhatsApp us
-              </a>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-700 sm:text-base">
+                    {item.a}
+                  </p>
+                </details>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
     </>
   );
 }

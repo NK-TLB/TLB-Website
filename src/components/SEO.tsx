@@ -17,8 +17,14 @@ const BASE_URL = "https://www.thelaundrybag.co.in";
 const defaultLocalBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "The LaundryBag",
-  alternateName: ["TLB", "The Laundry Bag", "TLB Raipur", "TheLaundryBag"],
+  name: "The Laundry Bag",
+  alternateName: [
+    "TLB",
+    "TheLaundryBag",
+    "The LaundryBag",
+    "TLB Raipur",
+    "Laundry Bag",
+  ],
   url: `${BASE_URL}/`,
   logo: `${BASE_URL}/logo.jpg`,
   image: `${BASE_URL}/og-image.svg`,
@@ -30,7 +36,7 @@ const defaultLocalBusinessSchema = {
   slogan: site.motto,
   address: {
     "@type": "PostalAddress",
-    streetAddress: `${site.address.street}, ${site.address.landmark}`,
+    streetAddress: site.address.street,
     addressLocality: site.address.city,
     addressRegion: site.address.region,
     postalCode: site.address.postalCode,
@@ -58,16 +64,11 @@ const defaultLocalBusinessSchema = {
       closes: "21:00",
     },
   ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: site.rating.value,
-    reviewCount: site.rating.count,
-  },
   sameAs: [
+    site.socials.facebook,
+    site.socials.twitter,
     site.socials.instagram,
     site.socials.linkedin,
-    site.socials.justdial,
-    site.socials.indiamart,
   ],
   keywords: seoKeywords.join(", "),
 };
@@ -75,7 +76,7 @@ const defaultLocalBusinessSchema = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "The LaundryBag",
+  name: "The Laundry Bag",
   url: `${BASE_URL}/`,
   logo: `${BASE_URL}/logo.jpg`,
   contactPoint: [
@@ -89,17 +90,17 @@ const organizationSchema = {
     },
   ],
   sameAs: [
+    site.socials.facebook,
+    site.socials.twitter,
     site.socials.instagram,
     site.socials.linkedin,
-    site.socials.justdial,
-    site.socials.indiamart,
   ],
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "The LaundryBag",
+  name: "The Laundry Bag",
   url: `${BASE_URL}/`,
   inLanguage: "en-IN",
   potentialAction: {
@@ -120,17 +121,14 @@ export default function SEO({
   noindex,
 }: SEOProps) {
   const fullTitle = title
-    ? `${title} · The LaundryBag`
-    : "The LaundryBag · On-Demand Laundry & Dry Cleaning · Raipur · India";
+    ? `${title} · The Laundry Bag`
+    : "The Laundry Bag · Commercial and Residential Laundry and Dry Cleaning";
   const fullDescription =
     description ??
-    "The LaundryBag (TLB) — on-demand laundry and dry cleaning in Raipur, India. Free pickup & delivery, hygienic processing, no mixing of clothes. Commercial laundry for hotels, hospitals, salons and universities since 2013.";
+    "The Laundry Bag provides professional laundry and dry-cleaning services to government establishments, hospitals, hotels, restaurants, colleges, schools and companies — and on-demand pickup and delivery for homes and students across Raipur, Pune and Goa, India.";
   const url = `${BASE_URL}${path}`;
   const imageUrl = image.startsWith("http") ? image : `${BASE_URL}${image}`;
-  const allKeywords = [
-    ...(keywords ?? []),
-    ...seoKeywords,
-  ];
+  const allKeywords = [...(keywords ?? []), ...seoKeywords];
 
   const schemaPayload = [
     defaultLocalBusinessSchema,
@@ -144,29 +142,51 @@ export default function SEO({
       <html lang="en-IN" />
       <title>{fullTitle}</title>
       <meta name="description" content={fullDescription} />
-      <meta name="keywords" content={Array.from(new Set(allKeywords)).join(", ")} />
+      <meta
+        name="keywords"
+        content={Array.from(new Set(allKeywords)).join(", ")}
+      />
       <meta
         name="robots"
-        content={noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1"}
+        content={
+          noindex
+            ? "noindex,nofollow"
+            : "index,follow,max-image-preview:large,max-snippet:-1"
+        }
       />
-      <meta name="googlebot" content={noindex ? "noindex,nofollow" : "index,follow"} />
-      <meta name="bingbot" content={noindex ? "noindex,nofollow" : "index,follow"} />
-      <meta name="author" content="The LaundryBag" />
-      <meta name="publisher" content="The LaundryBag" />
+      <meta
+        name="googlebot"
+        content={noindex ? "noindex,nofollow" : "index,follow"}
+      />
+      <meta
+        name="bingbot"
+        content={noindex ? "noindex,nofollow" : "index,follow"}
+      />
+      <meta name="author" content="The Laundry Bag" />
+      <meta name="publisher" content="The Laundry Bag" />
       <meta name="geo.region" content="IN-CT" />
       <meta name="geo.placename" content="Raipur" />
-      <meta name="geo.position" content="21.2466;81.6328" />
-      <meta name="ICBM" content="21.2466, 81.6328" />
+      <meta
+        name="geo.position"
+        content={`${site.address.geo.lat};${site.address.geo.lng}`}
+      />
+      <meta
+        name="ICBM"
+        content={`${site.address.geo.lat}, ${site.address.geo.lng}`}
+      />
       <link rel="canonical" href={url} />
 
       <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="The LaundryBag" />
+      <meta property="og:site_name" content="The Laundry Bag" />
       <meta property="og:locale" content="en_IN" />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={fullDescription} />
       <meta property="og:image" content={imageUrl} />
-      <meta property="og:image:alt" content="The LaundryBag — Wash. Dry. Iron." />
+      <meta
+        property="og:image:alt"
+        content="The Laundry Bag — Commercial and Residential Laundry and Dry Cleaning"
+      />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />

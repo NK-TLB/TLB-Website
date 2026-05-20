@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { navLinks, site } from "../data/site";
 import Logo from "./Logo";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    setOpen(false);
-  }, [location.pathname]);
+  const [newsOpen, setNewsOpen] = useState(false);
+  const closeMenu = () => setOpen(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -28,7 +25,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container-page flex h-20 items-center justify-between sm:h-24">
-        <Link to="/" aria-label={site.name} title="The LaundryBag — On-Demand Laundry &amp; Dry Cleaning">
+        <Link to="/" aria-label={site.name} title="The Laundry Bag — Commercial and Residential Laundry and Dry Cleaning">
           <Logo className="h-12 w-auto sm:h-14" />
         </Link>
 
@@ -49,15 +46,55 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
+
+          {/* Legacy nav element: News dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setNewsOpen(true)}
+            onMouseLeave={() => setNewsOpen(false)}
+          >
+            <button
+              type="button"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-ink-700 transition hover:bg-ink-50 hover:text-ink-900"
+              aria-haspopup="menu"
+              aria-expanded={newsOpen}
+            >
+              News
+            </button>
+            {newsOpen && (
+              <div
+                role="menu"
+                className="absolute left-0 top-full mt-2 w-80 overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft"
+              >
+                {site.press.map((p) => (
+                  <a
+                    key={p.href}
+                    role="menuitem"
+                    href={p.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block px-4 py-3 text-sm text-ink-700 hover:bg-ink-50"
+                  >
+                    {p.title}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
           <a href={site.phoneHref} className="btn-secondary">
             Call us
           </a>
-          <Link to="/contact" className="btn-primary">
-            Schedule pick-up
-          </Link>
+          <a
+            href={site.android}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-primary"
+          >
+            Get the App
+          </a>
         </div>
 
         <button
@@ -93,6 +130,7 @@ export default function Navbar() {
                 key={link.to}
                 to={link.to}
                 end={link.to === "/"}
+                onClick={closeMenu}
                 className={({ isActive }) =>
                   `rounded-lg px-4 py-3 text-sm font-semibold ${
                     isActive
@@ -104,13 +142,38 @@ export default function Navbar() {
                 {link.label}
               </NavLink>
             ))}
+
+            <div className="mt-1 rounded-lg border border-ink-100 bg-white">
+              <p className="px-4 pb-1 pt-3 text-xs font-semibold uppercase tracking-wider text-ink-500">
+                News
+              </p>
+              <div className="flex flex-col pb-2">
+                {site.press.map((p) => (
+                  <a
+                    key={p.href}
+                    href={p.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 text-sm font-semibold text-ink-700 hover:bg-ink-50"
+                  >
+                    {p.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+
             <div className="mt-2 grid grid-cols-2 gap-2">
               <a href={site.phoneHref} className="btn-secondary">
                 Call us
               </a>
-              <Link to="/contact" className="btn-primary">
-                Pick-up
-              </Link>
+              <a
+                href={site.android}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-primary"
+              >
+                Get App
+              </a>
             </div>
           </div>
         </div>

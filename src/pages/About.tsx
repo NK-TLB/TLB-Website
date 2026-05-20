@@ -1,163 +1,123 @@
-import PageHero from "../components/PageHero";
+import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
+import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
-import { site, stats } from "../data/site";
-
-const values = [
-  {
-    icon: "shield",
-    title: "Trust, by design",
-    description:
-      "No mixing of clothes. Every garment is tagged, tracked and returned to the right customer.",
-  },
-  {
-    icon: "leaf",
-    title: "Cleaner for the planet",
-    description:
-      "PERC-free dry cleaning, water-efficient machines and responsible packaging.",
-  },
-  {
-    icon: "check",
-    title: "Quality you can feel",
-    description:
-      "Trained operators, professional equipment, and a quality check on every order.",
-  },
-  {
-    icon: "clock",
-    title: "Always on time",
-    description:
-      "Reliable turnarounds and on-schedule pickup &amp; delivery slots, every time.",
-  },
-];
+import { counters, site, whyChooseUs } from "../data/site";
 
 export default function About() {
   return (
     <>
       <SEO
         path="/about"
-        title="About The LaundryBag — India's On-Demand Laundry Since 2013"
-        description="Established in 2013 by two college friends, The LaundryBag (TLB) is one of India's first companies to provide on-campus laundromat facilities. Our vision: bring India's unorganised laundry sector into an organised industry."
+        title="Who we are"
+        description="We are professionals in the laundry and dry-cleaning business — staying up to date on the latest technologies, cleaning methods and solutions for dealing with stains or delicate fabrics."
       />
-
-      {/* === PRIMARY — "A few words about us" (from original homepage) ======== */}
-      <PageHero
-        eyebrow="About us"
-        title="A few words about us."
-        description={`Established in ${site.founded} by two college friends, ${site.name} (TLB) is one of India's first companies to provide on-campus laundromat facilities — and a trusted laundry partner for homes, hotels, hospitals and hostels.`}
-      />
-
-      <section className="section">
-        <div className="container-page grid gap-12 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <h2 className="h2">Our story</h2>
-            <div className="lead mt-5 space-y-5">
-              <p>
-                We started The LaundryBag with a simple frustration: India&apos;s
-                laundry industry was largely unorganised, inconsistent and
-                opaque. Clothes were mixed, turnaround times were unpredictable
-                and quality varied wildly from one shop to the next.
-              </p>
-              <p>
-                Over the last decade, we&apos;ve built a service that does the
-                boring stuff brilliantly — clean processes, trained teams,
-                modern machines and software that keeps customers in control.
-                From students on campus to five-star hotels, we treat every
-                order with the same care.
-              </p>
-              <p>
-                Today, we operate retail laundry &amp; dry-cleaning in Raipur
-                and on-campus laundromats in Pune and Goa, serving government
-                establishments, hospitals, hotels, restaurants, colleges,
-                schools and corporates across India.
-              </p>
-            </div>
-          </div>
-          <aside className="card self-start">
-            <h3 className="h3">Our vision</h3>
-            <p className="mt-3 text-ink-600">
-              To be India&apos;s leading laundry service provider — bringing
-              the unorganised laundry sector into an organised, customer-first
-              industry through quality service and smart technology.
-            </p>
-            <dl className="mt-6 grid grid-cols-2 gap-4">
-              <div>
-                <dt className="text-xs uppercase tracking-wider text-ink-500">
-                  Founded
-                </dt>
-                <dd className="font-display text-xl font-bold text-ink-900">
-                  {site.founded}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-wider text-ink-500">
-                  HQ
-                </dt>
-                <dd className="font-display text-xl font-bold text-ink-900">
-                  Raipur
-                </dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-wider text-ink-500">
-                  Cities
-                </dt>
-                <dd className="font-display text-xl font-bold text-ink-900">
-                  {site.cities.length}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-wider text-ink-500">
-                  Team
-                </dt>
-                <dd className="font-display text-xl font-bold text-ink-900">
-                  13+
-                </dd>
-              </div>
-            </dl>
-          </aside>
+      <div className="breadcrumb-strip">
+        <div className="container-page py-3 text-xs text-ink-500">
+          <Link to="/" className="hover:text-brand-700">Home</Link>{" "}
+          <span className="mx-2">/</span>{" "}
+          <span className="text-ink-700">Who we are</span>
         </div>
-      </section>
+      </div>
 
-      {/* === PRIMARY — values / promises ====================================== */}
-      <section className="bg-ink-50/60 section">
+      <PageHero
+        eyebrow={`Since ${site.founded}`}
+        title="A few words about us"
+        description="We are professionals in the laundry and dry-cleaning business, which means we always stay up to date on the latest technologies, cleaning methods, and solutions for dealing with stains or delicate fabrics. Plus, we maintain the highest standards of business integrity by following local and national regulations and environmental safety rules!"
+      />
+
+      {/* === Why Choose Us =================================================== */}
+      <section className="section">
         <div className="container-page">
-          <span className="eyebrow">What we stand for</span>
-          <h2 className="h2 mt-4 max-w-2xl">
-            Four promises we make on every single order.
-          </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v) => (
-              <article key={v.title} className="card">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <Icon name={v.icon} />
+          <h2 className="title-underline">Why Choose Us</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {whyChooseUs.map((r) => (
+              <article key={r.title} className="card">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
+                  <Icon name={r.icon} />
                 </span>
-                <h3 className="h3 mt-5">{v.title}</h3>
-                <p className="mt-2 text-sm text-ink-600">{v.description}</p>
+                <h3 className="h3 mt-5">{r.title}</h3>
+                <p className="mt-2 text-sm text-ink-600">{r.description}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === SECONDARY — by the numbers (supplementary intel) ================ */}
-      <section className="section">
+      {/* === Counters ======================================================== */}
+      <section
+        className="relative py-16 text-white sm:py-20"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0,156,220,0.88),rgba(51,214,91,0.88)), url(/images/parallax-img-02.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
         <div className="container-page">
-          <span className="eyebrow">Additional details</span>
-          <h2 className="h2 mt-4 max-w-2xl">By the numbers.</h2>
-          <p className="lead mt-4 max-w-2xl">
-            Supplementary stats compiled from our retail and on-campus operations.
-          </p>
-          <dl className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="card">
-                <dt className="text-xs uppercase tracking-wider text-ink-500">
-                  {s.label}
-                </dt>
-                <dd className="mt-2 font-display text-3xl font-extrabold text-ink-900">
-                  {s.value}
+          <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {counters.map((c) => (
+              <div key={c.label} className="text-center">
+                <dd className="font-display text-4xl font-extrabold sm:text-5xl">
+                  {c.value}
                 </dd>
+                <dt className="mt-2 text-sm font-semibold uppercase tracking-wider text-white/85">
+                  {c.label}
+                </dt>
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      {/* === Our Dream / story ============================================== */}
+      <section className="section">
+        <div className="container-page grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <h2 className="title-underline-left">Our Dream</h2>
+            <p className="lead mt-4">
+              We follow a dream — to serve our customers in a way that far
+              exceeds expectations. Being one of the leading laundry service
+              providers, we know our customers&apos; mindset. It is not easy
+              to come home from a hectic day at the office and rush to the
+              nearest laundry service with your clothes. So, we have an
+              array of services to make things easy for you.
+            </p>
+            <p className="mt-4 text-ink-700">
+              You need not tolerate late deliveries, low standard of work
+              merged with high prices. Our services cater to all your
+              laundering and ironing, dry cleaning, shoe repairs, upholstery
+              cleaning, etc. Our highly efficient employees ensure you face
+              no difficulty, the technology we use is state of the art and
+              the service we provide is incredibly good.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link to="/services" className="btn-primary">
+                For your Home
+              </Link>
+              <Link to="/commercial" className="btn-secondary">
+                For your Business
+              </Link>
+            </div>
+          </div>
+          <div className="card">
+            <h3 className="h3">News &amp; Press</h3>
+            <ul className="mt-4 space-y-3 text-sm text-ink-700">
+              {site.press.map((p) => (
+                <li key={p.href}>
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-brand-700"
+                  >
+                    {p.title} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
     </>

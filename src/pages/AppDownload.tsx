@@ -40,41 +40,33 @@ export default function AppDownload() {
       />
       <PageHero
         eyebrow="Our app"
-        title="The LaundryBag in your pocket."
+        title="The Laundry Bag in your pocket."
         description="Schedule pickups, pay, track orders and reach support — all from one app. Available on Android and iOS."
       >
-        <div className="mt-2 flex flex-wrap gap-3">
+        <div className="mt-2 flex flex-wrap items-center gap-3">
           <a
             href={site.android}
             target="_blank"
             rel="noreferrer"
-            className="btn-primary"
+            className="inline-flex h-12 items-center"
           >
-            <svg
-              viewBox="0 0 24 24"
-              className="h-5 w-5"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M17.5 12.5l2.6-1.5a1 1 0 0 0 0-1.7L6.8 1.6a1 1 0 0 0-1.5.9v19a1 1 0 0 0 1.5.9L17.5 16M5.3 2.5L15 12 5.3 21.5M15 12l4.6-2.7M15 12l4.6 2.7" />
-            </svg>
-            Get it on Google Play
+            <img
+              src="/images/Get_it_on_Google_play.svg"
+              alt="Get it on Google Play"
+              className="h-12 w-auto"
+            />
           </a>
           <a
             href={site.ios}
             target="_blank"
             rel="noreferrer"
-            className="btn-secondary"
+            className="inline-flex h-12 items-center"
           >
-            <svg
-              viewBox="0 0 24 24"
-              className="h-5 w-5"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M16.4 1.3c-1.5.1-3.3 1-4.4 2.3-1 1.1-1.8 2.8-1.5 4.4 1.7.1 3.4-.9 4.4-2.1 1-1.2 1.7-2.9 1.5-4.6zM20.4 17.4c-.8 1.9-1.2 2.7-2.3 4.4-1.5 2.4-3.7 2.4-5.3 1.4-1.6-1-3.5-.9-5.2 0-2.1 1.1-3.6.4-5-1.4C-.6 16 .3 8 5.9 7.7c1.9-.1 3.2.9 4.4.9 1.1 0 3.2-1.1 5.3-1 .9 0 3.4.3 5 2.6-4.3 2.4-3.7 8.6-.2 7.2z" />
-            </svg>
-            Download on the App Store
+            <img
+              src="/images/apple_btn_135x40.svg"
+              alt="Download on the App Store"
+              className="h-12 w-auto"
+            />
           </a>
         </div>
       </PageHero>
@@ -84,7 +76,7 @@ export default function AppDownload() {
           <div className="order-2 grid gap-6 sm:grid-cols-2 lg:order-1">
             {features.map((f) => (
               <article key={f.title} className="card">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
                   <Icon name={f.icon} />
                 </span>
                 <h3 className="h3 mt-5">{f.title}</h3>
