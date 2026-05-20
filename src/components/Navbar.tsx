@@ -9,6 +9,7 @@ export default function Navbar() {
   const [newsOpen, setNewsOpen] = useState(false);
   const closeMenu = () => setOpen(false);
   const newsRef = useRef<HTMLDivElement | null>(null);
+  const newsCloseTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -80,8 +81,20 @@ export default function Navbar() {
           <div
             ref={newsRef}
             className="relative"
-            onMouseEnter={() => setNewsOpen(true)}
-            onMouseLeave={() => setNewsOpen(false)}
+            onMouseEnter={() => {
+              if (newsCloseTimer.current) {
+                window.clearTimeout(newsCloseTimer.current);
+                newsCloseTimer.current = null;
+              }
+              setNewsOpen(true);
+            }}
+            onMouseLeave={() => {
+              // Small delay prevents the menu from closing while the cursor
+              // travels from the button to the dropdown.
+              newsCloseTimer.current = window.setTimeout(() => {
+                setNewsOpen(false);
+              }, 140);
+            }}
           >
             <button
               type="button"
@@ -110,7 +123,7 @@ export default function Navbar() {
             {newsOpen && (
               <div
                 role="menu"
-                className="absolute right-0 top-full mt-2 w-80 overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft"
+                className="absolute right-0 top-full mt-1 w-80 overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft"
               >
                 {site.press.map((p) => (
                   <a
@@ -133,7 +146,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-2 xl:flex">
           <a
             href={site.phoneHref}
-            className="btn-secondary !px-4 !py-2 !text-sm"
+            className="btn-secondary !h-10 !px-4 !py-2 !text-sm"
             aria-label={`Call ${site.phoneDisplay}`}
           >
             Call us
@@ -142,7 +155,7 @@ export default function Navbar() {
             href={site.android}
             target="_blank"
             rel="noreferrer"
-            className="btn-primary !px-4 !py-2 !text-sm"
+            className="btn-primary !h-10 !px-4 !py-2 !text-sm"
           >
             Get the App
           </a>
