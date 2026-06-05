@@ -9,7 +9,7 @@
 /index.php/pages/who-we-are                                                 /about                  301!
 /index.php/pages/contact-us                                                 /contact                301!
 /index.php/pages/privacy-policy                                             /privacy-policy         301!
-/index.php/pages/delete-my-account                                          /delete-my-account      301!
+/index.php/pages/delete-my-account                                          /contact                301!
 /pages/frequently-asked-questions                                           /faq                    301!
 /pages/commercial-laundry-for-institutions-and-businesses                   /commercial             301!
 /pages/laundry-and-dry-cleaning-for-residents-and-students                  /services               301!
@@ -17,7 +17,7 @@
 /pages/who-we-are                                                           /about                  301!
 /pages/contact-us                                                           /contact                301!
 /pages/privacy-policy                                                       /privacy-policy         301!
-/pages/delete-my-account                                                    /delete-my-account      301!
+/pages/delete-my-account                                                    /contact                301!
 
 # /home/* tree from the legacy CI install
 /home/index.php/pages/frequently-asked-questions                            /faq                    301!
@@ -27,14 +27,16 @@
 /home/index.php/pages/who-we-are                                            /about                  301!
 /home/index.php/pages/contact-us                                            /contact                301!
 /home/index.php/pages/privacy-policy                                        /privacy-policy         301!
-/home/index.php/pages/delete-my-account                                     /delete-my-account      301!
+/home/index.php/pages/delete-my-account                                     /contact                301!
 /home/index.php/pages/*                                                     /                       301!
 /home/index.php                                                             /                       301!
 /home/*                                                                     /                       301!
 
 # Convenience aliases
-/appdownload                                                                /app                    301!
-/appdownload/*                                                              /app                    301!
+/app                                                                        /contact                301!
+/appdownload                                                                /contact                301!
+/appdownload/*                                                              /contact                301!
+/delete-my-account                                                          /contact                301!
 
 # SPA fallback
 /*                                                                          /index.html             200

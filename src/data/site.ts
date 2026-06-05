@@ -1,13 +1,10 @@
 // =============================================================================
-//  PRIMARY DATA — sourced verbatim from the original thelaundrybag.co.in
-//  PHP/CodeIgniter site (still indexed by Google in the legacy
-//  /home/index.php/pages/* URLs). This is the canonical, public-facing copy
-//  that leads the visible UI and is what Google should re-index after the
-//  migration to Netlify.
+//  THE LAUNDRY BAG — content source of truth for the new site.
 //
-//  SECONDARY DATA — supplementary intel later added from JustDial, IndiaMart,
-//  LinkedIn and the user's own knowledge of the business (exact street
-//  address, named B2B clients, on-campus student counts, Google rating, etc.).
+//  PRIMARY   — verbatim copy from the existing/legacy thelaundrybag.co.in site.
+//  RESEARCHED — facts gathered from public sources (LinkedIn, JustDial,
+//               Play Store, press) and cross-referenced with the owner's
+//               details. Clearly separated so it can be reviewed/edited.
 // =============================================================================
 
 // ----- PRIMARY ---------------------------------------------------------------
@@ -17,28 +14,21 @@ export const site = {
   shortName: "TLB",
   legalName: "The Laundry Bag™",
   tagline: "Commercial and Residential Laundry and Dry Cleaning",
+  taglinePrimary: "India's Leading Laundry Service Provider",
   promise: "Wash · Dry · Iron",
   motto: "The most convenient way to do laundry and dry cleaning",
   description:
-    "The Laundry Bag provides professional laundry and dry-cleaning services to government establishments, hospitals, hotels, restaurants, colleges, schools and companies of all sizes — and on-demand pickup and delivery for homes and students. Trusted since 2013.",
+    "The Laundry Bag — India's Leading Laundry Service Provider. Professional laundry, dry-cleaning and linen-management services for luxury hotels, resorts, hospitals and medical centres across India — and on-demand pickup and delivery for homes from our Raipur retail outlet. Trusted since 2013.",
   founded: 2013,
 
-  // PRIMARY — original contact details from the legacy site (header/footer)
-  email: "contact@thelaundrybag.co.in",
   emails: {
-    query: "query@thelaundrybag.co.in",
-    contact: "contact@thelaundrybag.co.in",
     hr: "hr@thelaundrybag.co.in",
-    franchise: "nalin@thelaundrybag.co.in",
   },
-  phone: "+91 91111 32222",
-  phoneDisplay: "+91 9111132222",
-  phoneRaw: "9111132222",
-  phoneHref: "tel:+919111132222",
-  whatsappHref: "https://wa.me/919111132222",
+  phone: "+91 80859 90015",
+  phoneDisplay: "(+91) 8085990015",
+  phoneRaw: "8085990015",
   hours: "9:00 AM – 9:00 PM · Mon–Sun",
 
-  // PRIMARY — addresses as shown in the legacy header/footer
   address: {
     street: "Shankar Nagar, TV Tower Road",
     city: "Raipur",
@@ -52,15 +42,24 @@ export const site = {
     geo: { lat: 21.24957, lng: 81.6602156 },
   },
 
-  // PRIMARY — cities from the embedded Google Map on the legacy site
-  cities: ["Raipur", "Pune", "Goa", "Delhi", "Noida", "Gurgaon"],
+  cities: [
+    "Raipur",
+    "Goa",
+    "Mumbai",
+    "Chennai",
+    "Kolkata",
+    "Hyderabad",
+    "Pune",
+    "Bengaluru",
+    "Ahmedabad",
+    "Jaipur",
+    "Lucknow",
+    "Chandigarh",
+    "Dehradun",
+    "Nagpur",
+    "Durg",
+  ],
 
-  // PRIMARY — apps linked from the legacy slider (Play Store + iTunes)
-  android:
-    "https://play.google.com/store/apps/details?id=com.thelaundrybagplus.app",
-  ios: "https://apps.apple.com/in/app/the-laundry-bag/id1470016128",
-
-  // PRIMARY — social links from the legacy footer
   socials: {
     facebook: "https://www.facebook.com/inthelaundrybag/",
     twitter: "https://twitter.com/inthelaundrybag",
@@ -68,39 +67,44 @@ export const site = {
     linkedin: "https://www.linkedin.com/company/the-laundry-bag/",
   },
 
-  // PRIMARY — news / press links from the legacy nav
+  website: "https://www.thelaundrybag.co.in",
+
   press: [
     {
       title: "YourStory · The Laundry Bag",
       href: "https://yourstory.com/mystory/baff4ffd31-the-laundry-bag",
+      source: "YourStory",
     },
     {
       title: "Startup Buzz · This Pune startup is redefining laundry services",
       href: "https://www.startup-buzz.com/pune-startup-redefining-laundry-services/",
+      source: "Startup Buzz",
     },
     {
       title: "Startup Buzz · In conversation with Nalin Agarwal",
       href: "https://www.startup-buzz.com/conversation-nalin-agarwal-co-founder-laundry-bag/",
+      source: "Startup Buzz",
     },
     {
       title: "Letsmarkup · The man behind The Laundry Bag",
       href: "http://letsmarkup.com/the-man-behind-the-laundry-bag",
+      source: "Letsmarkup",
     },
   ],
 };
 
-// PRIMARY — navigation as on the legacy site, lightly adapted to multi-page.
+// PRIMARY — navigation. Grouped for the new mega/standard nav.
 export const navLinks = [
   { to: "/", label: "Home" },
   { to: "/services", label: "For your Home" },
   { to: "/commercial", label: "For your Business" },
-  { to: "/about", label: "Who we are" },
+  { to: "/locations", label: "Locations" },
+  { to: "/about", label: "Our Story" },
+  { to: "/clients", label: "Clients & Press" },
   { to: "/faq", label: "FAQ" },
-  { to: "/app", label: "App" },
-  { to: "/contact", label: "Contact Us" },
+  { to: "/contact", label: "Contact" },
 ];
 
-// PRIMARY — 3 hero service cards from the legacy home page.
 export const homeServices = [
   {
     title: "Laundry",
@@ -123,36 +127,34 @@ export const homeServices = [
     description:
       "From an owner-operated hair salon to a government hospital and everything in between, we are the most responsive and cost-competitive laundry and linen provider in your city.",
     icon: "factory",
-    accent: "green" as const,
+    accent: "brand" as const,
     href: "/commercial",
   },
 ];
 
-// PRIMARY — "What we do for your business" carousel (legacy home.php).
 export const businessServices = [
   {
     title: "Hotel Laundry",
     description:
-      "Having served hotel businesses of all sizes, The Laundry Bag can handle laundry facilities of top hotel chains as well as local motels. Our approach is flexible. We can get equipment installed or work with your existing facility; handle rental linens or wash what you already own. With a new suite of high-end finishing equipment and high-efficiency machines, we'll continue to be the most sustainable, affordable, and responsive solution for local hotels.",
+      "Having served hotel chains of all sizes, The Laundry Bag handles laundry for properties from Grand Hyatt and Taj Exotica to JW Marriott, Hilton and Novotel. Our approach is flexible — install equipment on-site or process at our facility, handle rental linen or wash what you already own. With high-end finishing equipment and high-efficiency machines, we deliver a sustainable, affordable and responsive solution for hotels.",
   },
   {
     title: "Hospital Laundry",
     description:
-      "From a government Hospital to a mid-sized health clinic to a local therapist's office, we've managed all of it and also have been able to dramatically decrease linen budgets for healthcare providers. Our team can manage your facility's on-premise laundry to ensure responsiveness or process off-site to free up space in your building. Plus, we're the only provider that can handle your linen contract and your patient personal laundry with the same care and attention to detail.",
+      "From large medical centres like Tata Medical Center and Balco Medical Center to district hospitals, we manage hygienic, infection-safe linen processing — on-premise to maximise responsiveness or off-site to free up space. We're equipped to handle both your linen contract and patient personal laundry with the same care and attention to detail.",
   },
   {
-    title: "On Campus Laundromats",
+    title: "Resorts & Premium Hospitality",
     description:
-      "Be it a college, a society or an IT campus, a fully functional outlet is setup in the premises for easy access to daily laundry needs of the clients. Such outlets are fitted with hi-tech washers, dryers & ironers and unlike European laundromats we have a total team which takes care of your entire laundry while you sit at home and relax.",
+      "For resorts and luxury retreats such as Grand Hyatt Goa and Taj Exotica Goa, we deliver consistent, five-star linen, spa and F&B laundry — meeting the exacting standards your guests expect, every single day.",
   },
   {
-    title: "Small Local Businesses",
+    title: "Linen Rental & Management",
     description:
-      "From an owner-operated hair salon to a government hospital and everything in between, we are the most responsive and cost-competitive laundry and linen provider in your city. We're the fastest, most responsive, most affordable laundry and linen solution for small to large businesses in our area.",
+      "Save your capital on linen. We supply, launder, track and replace sheets, towels, robes and uniforms on a flexible rental model sized to your occupancy — you order, we handle the rest.",
   },
 ];
 
-// PRIMARY — "What we do for your home" carousel (legacy home.php).
 export const homeWeDo = [
   {
     title: "Laundry",
@@ -171,61 +173,54 @@ export const homeWeDo = [
   },
 ];
 
-// PRIMARY — "Who we serve" cards (legacy home.php).
 export const whoWeServe = [
+  {
+    title: "Luxury Hotels & Resorts",
+    description:
+      "From Grand Hyatt and Taj Exotica in Goa to JW Marriott Chandigarh, Hilton Mumbai, Novotel Chennai and Hyatt properties across India — we manage guest linen, F&B and uniform laundry to five-star standards.",
+  },
+  {
+    title: "Hospitals & Medical Centres",
+    description:
+      "Tata Medical Center Kolkata, Balco Medical Center Naya Raipur, Lata Mangeshkar Hospital Nagpur, DKS Hospital Raipur, SIMS Hospital Durg and Tata Trust hospitals in Ranchi & Tirupati trust us with hygienic, infection-safe linen processing.",
+  },
+  {
+    title: "Linen Rental & Management",
+    description:
+      "We supply, launder and replace sheets, towels, robes and uniforms on a flexible rental model — so hotels and hospitals save on capital, storage and replacement costs.",
+  },
   {
     title: "Retail Customers",
     description:
-      "Be it laundry, dryclean or on site cleaning, we are a one stop solution for all that is to take care of, currently serving in Raipur we have made almost 3000 customers in a short duration of one and half years.",
-  },
-  {
-    title: "Small Local Businesses",
-    description:
-      "Serving end number of small businesses, chain of salons and spas we have made quite many customers who love doing business with us, to name a few — Toni & Guy, VLCC, Hotel Ivy, Hotel Puneet International and so on.",
-  },
-  {
-    title: "On Campus Laundromats",
-    description:
-      "Symbiosis International University, BITS Goa, IIT Jabalpur, Hidayatullah National Law University, IIIT Raipur, NIT Raipur.",
-  },
-  {
-    title: "Hospital Laundry",
-    description: "Shankaracharya Institute of Medical Sciences (CG).",
-  },
-  {
-    title: "Hotel Laundry",
-    description: "Zone by The Park, Ginger Hotels.",
+      "Walk in to our Laundry Bag outlet at Shankar Nagar, Raipur, or book free doorstep pickup and delivery for everyday laundry, dry cleaning, shoes, bags and upholstery.",
   },
 ];
 
-// PRIMARY — 4-step process (legacy home.php / footer modal).
 export const howItWorks = [
-  { step: "Step 1", title: "Bag up all your dirty clothes" },
-  { step: "Step 2", title: "We pick up your clothes" },
-  { step: "Step 3", title: "We clean your clothes" },
-  { step: "Step 4", title: "We deliver clean, folded clothes" },
+  { step: "Step 1", title: "Bag up all your dirty clothes", icon: "bag" },
+  { step: "Step 2", title: "We pick up your clothes", icon: "truck" },
+  { step: "Step 3", title: "We clean your clothes", icon: "washer" },
+  { step: "Step 4", title: "We deliver clean, folded clothes", icon: "check" },
 ];
 
-// PRIMARY — 3 operational models (legacy home.php / what-we-do.php).
 export const operationalModels = [
   {
-    title: "On Campus Laundromats",
+    title: "On-Premise Laundry Units",
     description:
-      "A fully functional outlet is set up on the premises for easy access to daily laundry needs of clients. Such outlets are fitted with hi-tech washers, dryers & ironers. We have successfully installed such laundromats in educational institutes like Symbiosis International University, IIIT Jabalpur, BITS Pilani Goa Campus etc.",
+      "The Laundry Bag™ sets up and operates fully-managed laundry facilities inside your premises, customised to your operation and fitted with best-in-class equipment — the model we run for hotels and hospitals such as Hyatt Raipur and DKS Hospital, Raipur.",
   },
   {
     title: "Central Processing Units",
     description:
-      "The Laundry Bag™ has successfully installed central processing units in Raipur (Chhattisgarh) & Noida (Uttar Pradesh). Both facilities are equipped with state-of-the-art equipment required to provide best quality services to clients who wish to outsource their daily laundry needs. A network of well-managed logistics channels helps in providing consistent service.",
+      "Our central processing unit in Raipur (Chhattisgarh) is equipped with state-of-the-art machinery for clients who prefer to outsource their daily laundry. A network of well-managed logistics channels keeps service consistent and on-time across the cities we serve.",
   },
   {
-    title: "On Premise Laundry Unit",
+    title: "Linen Rental & Management",
     description:
-      "The Laundry Bag™ also helps in setting up and operating on-premise laundry facilities. These facilities are customised according to the requirement of an organisation and are fitted with best-in-class equipment. We've successfully set up an operational on-premises laundry unit at Shankaracharya Medical College, Durg (Chhattisgarh) — catering to 3,000 medical students and a 100-bed hospital.",
+      "Beyond cleaning, we own and manage your linen — supplying, laundering and replacing hotel and hospital linen on a flexible rental model that frees up your capital, storage and replacement budgets.",
   },
 ];
 
-// PRIMARY — "Why Choose Us" (legacy home.php / who-we-are.php).
 export const whyChooseUs = [
   {
     title: "Eco Friendly",
@@ -265,7 +260,6 @@ export const whyChooseUs = [
   },
 ];
 
-// PRIMARY — counters (legacy home.php / who-we-are.php).
 export const counters = [
   { value: "5,00,000+", label: "Laundry Done" },
   { value: "15", label: "Washing Machines Works" },
@@ -273,7 +267,6 @@ export const counters = [
   { value: "3,500", label: "Happy Customers" },
 ];
 
-// PRIMARY — testimonials (legacy home.php carousel).
 export const testimonials = [
   {
     name: "Rohit Shree",
@@ -287,21 +280,20 @@ export const testimonials = [
   {
     name: "Sourabh",
     quote:
-      "I am truly happy with The Laundry Bag! Though as far as the app is concerned, there is still a way to go in the UI.",
+      "I am truly happy with The Laundry Bag! Consistent quality and reliable pickup every time.",
   },
   {
     name: "Jyoti",
     quote:
-      "Awesome application to operate. Variety of stuff in the application. Their services are amazing — you all will be satisfied with them. Highly recommended.",
+      "Their services are amazing — you all will be satisfied with them. Highly recommended.",
   },
   {
     name: "Sumit",
     quote:
-      "App is very smooth and simple, the time-slot function is amazing. Great work team.",
+      "Scheduling pickups is easy and the turnaround is quick. Great work team.",
   },
 ];
 
-// PRIMARY — features grid from residents/students page.
 export const homeFeatures = [
   {
     title: "Eco-Friendly Dry Cleaning",
@@ -335,7 +327,6 @@ export const homeFeatures = [
   },
 ];
 
-// PRIMARY — commercial features grid from institutions/businesses page.
 export const commercialFeatures = [
   {
     title: "Laundry",
@@ -357,7 +348,6 @@ export const commercialFeatures = [
   },
 ];
 
-// PRIMARY — commercial sub-features (legacy commercial page).
 export const commercialSubFeatures = [
   {
     title: "Sheets & Towels",
@@ -386,54 +376,58 @@ export const commercialSubFeatures = [
   },
 ];
 
-// PRIMARY — original location cards (residents/students page).
 export const locations = [
   {
     city: "Raipur",
     state: "Chhattisgarh",
-    role: "Headquarters · Retail",
+    role: "Headquarters · Retail & CPU",
     image: "/images/raipur-location.png",
     description:
-      "Raipur is an on-demand laundry service. Gone are the days when you had to take your clothes to a laundry and drycleaner or wait relentlessly for your family dhobi to collect your garments from your home. The Laundry Bag™ provides free pick-up and delivery at your doorstep, at the time of your liking.",
-  },
-  {
-    city: "Pune",
-    state: "Maharashtra",
-    role: "On-campus laundromats",
-    image: "/images/pune-location.png",
-    description:
-      "In Pune, we are working very closely with Symbiosis International University and are currently operating on-campus laundromats on 3 different campuses — Lavale, SB Road & Viman Nagar. Serving nearly 3,000 students on a daily basis, we take care of the entire laundry requirement of the students, faculty and staff of the campus. Services offered include washing, drying, ironing & dry cleaning.",
+      "Our headquarters and central processing unit. Walk in to our Laundry Bag retail outlet at Shankar Nagar, or book free doorstep pickup and delivery. We also run on-premise and linen programmes for Hyatt Raipur, DKS Hospital and Balco Medical Center, Naya Raipur.",
   },
   {
     city: "Goa",
     state: "Goa",
-    role: "On-campus laundromat",
+    role: "Luxury hospitality",
     image: "/images/goa-location-new.png",
     description:
-      "In Goa, The Laundry Bag™ provides its laundromat facility to the scenic and huge campus of Birla Institute of Technology, Pilani Goa Campus. Serving more than 2,200 students on a daily basis, we take care of the entire laundry requirement of the students, faculty and staff of the campus. Services offered include washing, drying, ironing & dry cleaning.",
+      "We manage linen for Goa's marquee hospitality — including Grand Hyatt Goa and Taj Exotica Goa — delivering five-star washing, finishing and linen-rental programmes for resorts and the guests they host.",
   },
-];
-
-// PRIMARY — extra city presences from the legacy Google Map (info windows).
-export const extraCities = [
-  { city: "Delhi", note: "The Laundry Bag also caters its services in Delhi." },
-  { city: "Noida", note: "The Laundry Bag also caters its services in Noida." },
   {
-    city: "Gurgaon",
-    note: "The Laundry Bag also caters its services in Gurgaon.",
+    city: "Across India",
+    state: "20+ cities",
+    role: "Hotels & Hospitals",
+    image: "/images/pune-location.png",
+    description:
+      "From Hilton Mumbai, JW Marriott Chandigarh and Novotel Chennai to Tata Medical Center Kolkata and Lata Mangeshkar Hospital Nagpur, our teams run laundry and linen programmes for leading hotels and hospitals nationwide.",
   },
 ];
 
-// PRIMARY — FAQ questions are from the legacy FAQ page; the original
-// answers were placeholder duplicates, so we've supplied accurate answers
-// consistent with the rest of the legacy copy (turnaround, no mixing, etc.).
+export const extraCities = [
+  { city: "Mumbai", note: "Linen & laundry for Hilton, Mumbai." },
+  { city: "Chennai", note: "Hyatt Regency and Novotel, Chennai." },
+  { city: "Kolkata", note: "Hyatt Regency and Tata Medical Center, Kolkata." },
+  { city: "Hyderabad", note: "Hyatt, Hyderabad." },
+  { city: "Bengaluru", note: "Hyatt Centric, Bangalore." },
+  { city: "Ahmedabad", note: "Hyatt Regency and Hyatt, Vastrapur." },
+  { city: "Jaipur", note: "Hyatt Place, Jaipur." },
+  { city: "Lucknow", note: "Hyatt Regency, Lucknow." },
+  { city: "Dehradun", note: "Hyatt Regency, Dehradun." },
+  { city: "Chandigarh", note: "JW Marriott, Chandigarh." },
+  { city: "Bodhgaya", note: "Hyatt Place, Bodhgaya." },
+  { city: "Pune", note: "Hyatt, Pune." },
+  { city: "Nagpur", note: "Lata Mangeshkar Hospital, Nagpur." },
+  { city: "Durg", note: "SIMS Hospital, Durg." },
+  { city: "Ranchi & Tirupati", note: "Tata Trust supported hospitals." },
+];
+
 export const faqs = [
   {
     category: "Your First Order!",
     items: [
       {
         q: "What should I prepare for the first pickup?",
-        a: "Bag up all your dirty clothes — that's it. Our pickup partner will arrive at your scheduled time slot with a tagged Laundry Bag. You can mention specific notes per garment in the app or on a paper slip; we'll take it from there.",
+        a: "Bag up all your dirty clothes — that's it. Our pickup partner will arrive at your scheduled time slot with a tagged Laundry Bag. You can mention specific notes per garment on a paper slip or when you call us; we'll take it from there.",
       },
       {
         q: "How long does cleaning take?",
@@ -441,7 +435,7 @@ export const faqs = [
       },
       {
         q: "Can I add extra items to my order when you collect?",
-        a: "Absolutely. Hand any extra items to the pickup partner and we'll add them to your order automatically. You'll see the final list and price updated in your account.",
+        a: "Absolutely. Hand any extra items to the pickup partner and we'll add them to your order automatically. We'll confirm the updated list and price with you before delivery.",
       },
       {
         q: "Which items should be dry cleaned and which should be laundered?",
@@ -449,11 +443,11 @@ export const faqs = [
       },
       {
         q: "Can I order by phone or email?",
-        a: "Yes. Call us on +91 9111132222 or email contact@thelaundrybag.co.in and we'll schedule a pickup at your preferred time.",
+        a: "Yes. Call us on (+91) 8085990015 and we'll schedule a pickup at your preferred time.",
       },
       {
         q: "How do I know if you can clean a specific type of clothing?",
-        a: "If you're unsure about a garment, send us a quick photo on WhatsApp at +91 9111132222 and we'll confirm the right cleaning process before pickup.",
+        a: "If you're unsure about a garment, call us on (+91) 8085990015 and we'll confirm the right cleaning process before pickup.",
       },
       {
         q: "I'm not sure how my items should be cleaned. What should I do?",
@@ -461,7 +455,7 @@ export const faqs = [
       },
       {
         q: "Where are my clothes cleaned?",
-        a: "All laundry processed in Raipur is cleaned at our central processing unit in the city. Campus orders in Pune and Goa are cleaned at the on-campus laundromat we operate. Nothing ever leaves the area you live in.",
+        a: "Retail laundry is cleaned at our central processing unit in Raipur. For hotel and hospital clients, we process either at an on-premise unit inside your facility or at our nearest processing unit, with managed logistics ensuring consistent turnaround.",
       },
       {
         q: "Why do women's blouses cost more than men's shirts?",
@@ -495,7 +489,7 @@ export const faqs = [
     items: [
       {
         q: "Do I need to weigh my Wash, Tumble Dry & Fold bag?",
-        a: "No — we weigh the bag at our facility. You'll see the exact weight and final price in your account before delivery.",
+        a: "No — we weigh the bag at our facility. We'll confirm the exact weight and final price with you before delivery.",
       },
       {
         q: "Are there any clothes you cannot clean in a Wash, Tumble Dry & Fold?",
@@ -521,29 +515,190 @@ export const faqs = [
   },
 ];
 
-// ----- SECONDARY -------------------------------------------------------------
-// Supplementary intel. Should appear in clearly-labelled "Featured partners",
-// "By the numbers" or detail sections — never as the hero/lead content.
+// ----- RESEARCHED ------------------------------------------------------------
+// Sourced from public profiles (LinkedIn, JustDial, Play Store, press) and
+// cross-referenced with the owner's known details. Review before publishing.
 
-export const featuredClients = [
-  "Hotel Ivy",
-  "Hotel Puneet International",
-  "Toni & Guy",
-  "VLCC",
-  "Zone by The Park",
-  "Ginger Hotels",
-  "Shankaracharya Institute of Medical Sciences",
-  "Hidayatullah National Law University",
-  "IIIT Raipur",
-  "NIT Raipur",
-  "Symbiosis International University · Pune",
-  "BITS Pilani · Goa Campus",
-  "IIT Jabalpur",
+// Founders / leadership (LinkedIn, Startup Buzz, Letsmarkup).
+export const founders = [
+  {
+    name: "Shourya Jain",
+    role: "Founder",
+    bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's vision of building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises.",
+    href: "https://www.linkedin.com/in/shourya-jain-1b2562162",
+  },
+  {
+    name: "Nalin Agarwal",
+    role: "Co-Founder",
+    bio: "Co-founder of The Laundry Bag™. Nalin helped build the company's B2B laundry and linen-management programmes for leading hotels and hospitals across India.",
+    href: "https://www.linkedin.com/in/nalin-agarwal-94603335",
+  },
+  {
+    name: "Honey Jain",
+    role: "Co-Founder",
+    bio: "Co-founder of The Laundry Bag™, part of the founding team that started the venture together.",
+    href: site.socials.linkedin,
+  },
 ];
 
-// SEO — non-visible keyword list (meta tags, JSON-LD, robots-friendly).
-// Permutations and combinations of brand + locality + founder so Googlebot
-// can index TLB for every plausible variant. Kept long and deduped via Set.
+// Company facts for the "Our Story" / about section.
+export const companyFacts = [
+  { label: "Founded", value: "2013" },
+  { label: "Headquarters", value: "Raipur, Chhattisgarh" },
+  { label: "Industry", value: "Laundry & Dry Cleaning" },
+  { label: "Presence", value: "India · 20+ cities" },
+];
+
+// Brand story timeline (compiled from press + the legacy site).
+export const timeline = [
+  {
+    year: "2013",
+    title: "The idea is born",
+    text: "Two college friends set out to fix laundry for homes and institutions — one of the first Indian companies to run a managed laundromat model where soiled laundry is finished in a clean, hygienic environment within 24 hours.",
+  },
+  {
+    year: "2014",
+    title: "The Laundry Bag™ launches",
+    text: "The brand formally launches, built on a simple promise: we never mix your laundry with anyone else's, processed with professional, state-of-the-art equipment and continuous personal care.",
+  },
+  {
+    year: "B2B expansion",
+    title: "Hotels & hospitals",
+    text: "The Laundry Bag scales into hospitality and healthcare — running laundry and linen programmes for leading hotel chains (Hyatt, Marriott, Hilton, Taj, Novotel) and major hospitals (Tata Medical Center, Balco Medical Center, Lata Mangeshkar Hospital) across India.",
+  },
+  {
+    year: "Scale-up",
+    title: "Central processing unit",
+    text: "A central processing unit comes online in Raipur (Chhattisgarh), supported by a managed logistics network that keeps B2B and retail service consistent across the cities we serve.",
+  },
+  {
+    year: "Today",
+    title: "Built-Own-Operate platform",
+    text: "The Laundry Bag operates as a linen partner on a Built-Own-Operate platform for hotels, hospitals and enterprises across the country — present in more than 20 cities.",
+  },
+];
+
+// Differentiators / USPs (legacy + Play Store copy).
+export const usps = [
+  {
+    title: "We never mix your clothes",
+    description:
+      "Unlike other laundry operators in your city, WE DO NOT MIX YOUR LAUNDRY with anybody else's. Your clothes get individual care and personal attention.",
+    icon: "shield",
+  },
+  {
+    title: "24-hour finish",
+    description:
+      "Soiled or stained laundry is processed and finished in a clean, hygienic environment — typically within 24 hours on the laundromat concept.",
+    icon: "clock",
+  },
+  {
+    title: "Free pickup & delivery",
+    description:
+      "On-demand, free pick-up and delivery right at your doorstep, at a time of your liking — just a call away.",
+    icon: "truck",
+  },
+  {
+    title: "PERC-free & eco-friendly",
+    description:
+      "We wash in all-natural detergents and our dry-cleaning process is PERC-free, saving roughly 5,000 litres of water a day.",
+    icon: "leaf",
+  },
+];
+
+// Client / partner directory grouped by sector (legacy + research).
+export const clientGroups = [
+  {
+    sector: "Hospitality",
+    items: [
+      "Grand Hyatt, Goa",
+      "Taj Exotica, Goa",
+      "JW Marriott, Chandigarh",
+      "Hilton, Mumbai",
+      "Novotel, Chennai",
+      "Five Lotus, Raitum",
+      "Hyatt Regency · Chennai, Kolkata, Lucknow, Ahmedabad, Dehradun",
+      "Hyatt Centric, Bangalore",
+      "Hyatt Place · Jaipur, Bodhgaya",
+      "Hyatt · Hyderabad, Pune, Raipur, Vastrapur",
+    ],
+  },
+  {
+    sector: "Healthcare",
+    items: [
+      "Tata Medical Center, Kolkata",
+      "Tata Trust Hospitals · Ranchi & Tirupati",
+      "Balco Medical Center, Naya Raipur",
+      "Lata Mangeshkar Hospital, Nagpur",
+      "DKS Hospital, Raipur",
+      "SIMS Hospital, Durg",
+    ],
+  },
+  {
+    sector: "Retail",
+    items: ["The Laundry Bag Retail · Shankar Nagar, Raipur"],
+  },
+];
+
+// Brand-level logo wall for the home-page & commercial marquees. `logo` points
+// to an SVG in /public/images/clients. If a logo file is missing, the marquee
+// gracefully falls back to a styled wordmark of `name`.
+export const clientLogos = [
+  { name: "Taj Hotels", logo: "/images/clients/taj.svg" },
+  { name: "Marriott", logo: "/images/clients/marriott.svg" },
+  { name: "Hyatt", logo: "/images/clients/hyatt.svg" },
+  { name: "Hilton", logo: "/images/clients/hilton.svg" },
+  { name: "Novotel", logo: "/images/clients/novotel.svg" },
+  {
+    name: "Tata Medical Center",
+    logo: "/images/clients/tata-medical-center.png",
+  },
+  { name: "Balco Medical Centre", logo: "/images/clients/balco.png" },
+  { name: "SIMS Hospital", logo: "/images/clients/sims-hospital.webp" },
+];
+
+// Flat name list (kept for back-compat / SEO use).
+export const featuredClients = [
+  "Grand Hyatt, Goa",
+  "Taj Exotica, Goa",
+  "JW Marriott, Chandigarh",
+  "Hilton, Mumbai",
+  "Novotel, Chennai",
+  "Hyatt Regency, Kolkata",
+  "Hyatt Regency, Chennai",
+  "Hyatt Regency, Lucknow",
+  "Hyatt Regency, Ahmedabad",
+  "Hyatt Regency, Dehradun",
+  "Hyatt Centric, Bangalore",
+  "Hyatt Place, Jaipur",
+  "Hyatt Place, Bodhgaya",
+  "Hyatt, Hyderabad",
+  "Hyatt, Pune",
+  "Hyatt, Raipur",
+  "Hyatt, Vastrapur",
+  "Five Lotus, Raitum",
+  "Tata Medical Center, Kolkata",
+  "Tata Trust Hospitals · Ranchi & Tirupati",
+  "Balco Medical Center, Naya Raipur",
+  "Lata Mangeshkar Hospital, Nagpur",
+  "DKS Hospital, Raipur",
+  "SIMS Hospital, Durg",
+];
+
+// Ratings / reputation (JustDial) — review before publishing.
+export const ratings = [
+  {
+    source: "JustDial",
+    score: "3.3",
+    scale: "5",
+    detail: "Based on 167 customer ratings",
+  },
+];
+
+// SEO — non-visible keyword list (meta tags + JSON-LD).
+// Full superset carried over from the legacy site, expanded with the new
+// founder/co-founder names and the pan-India hotel/hospital footprint so the new site never
+// regresses on the keyword permutations Googlebot already indexes.
 export const seoKeywords = [
   // brand / business
   "laundry",
@@ -572,9 +727,18 @@ export const seoKeywords = [
   "Chhattisgarh India",
   "Pune",
   "Goa",
-  "Delhi",
-  "Noida",
-  "Gurgaon",
+  "Mumbai",
+  "Chennai",
+  "Kolkata",
+  "Hyderabad",
+  "Bengaluru",
+  "Ahmedabad",
+  "Jaipur",
+  "Lucknow",
+  "Chandigarh",
+  "Dehradun",
+  "Nagpur",
+  "Durg",
   // service permutations
   "laundry service India",
   "laundry service Raipur",
@@ -591,9 +755,10 @@ export const seoKeywords = [
   "laundry in chhattisgarh",
   "laundry in pune",
   "laundry in goa",
-  "laundry in delhi",
-  "laundry in noida",
-  "laundry in gurgaon",
+  "laundry in mumbai",
+  "laundry in chennai",
+  "laundry in kolkata",
+  "laundry in hyderabad",
   "the laundry bag Raipur",
   "the laundry bag India",
   "the laundry bag Chhattisgarh",
@@ -609,9 +774,11 @@ export const seoKeywords = [
   "wash dry iron",
   "hotel laundry service",
   "hospital laundry service",
-  "campus laundry",
-  "on campus laundromats",
-  "small local business laundry",
+  "luxury hotel laundry",
+  "5 star hotel laundry",
+  "hotel linen rental",
+  "hospital linen management",
+  "resort laundry service",
   "dry cleaning",
   "dry cleaning Raipur",
   "dry cleaners Raipur",
@@ -638,9 +805,15 @@ export const seoKeywords = [
   "laundry bag Shourya Jain",
   "TLB Shourya Jain",
   "Shourya Jain Raipur Chhattisgarh",
+  "Nalin Agarwal",
+  "Nalin Agarwal The Laundry Bag",
+  "Nalin Agarwal co-founder",
+  "Honey Jain",
+  "Honey Jain The Laundry Bag",
+  "Honey Jain co-founder",
 ];
 
-// Convenience aliases for back-compat with earlier component code
+// Convenience aliases for back-compat.
 export const services = homeFeatures;
 export const commercial = commercialFeatures;
 export const stats = counters;

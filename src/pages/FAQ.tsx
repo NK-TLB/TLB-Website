@@ -1,78 +1,97 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
+import Reveal from "../components/Reveal";
 import { faqs } from "../data/site";
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.flatMap((group) =>
+    group.items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    }))
+  ),
+};
+
 export default function FAQ() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.flatMap((g) =>
-      g.items.map((q) => ({
-        "@type": "Question",
-        name: q.q,
-        acceptedAnswer: { "@type": "Answer", text: q.a },
-      })),
-    ),
-  };
+  const [openKey, setOpenKey] = useState<string | null>("0-0");
 
   return (
     <>
       <SEO
         path="/faq"
         title="Frequently Asked Questions"
-        description="Common questions about The Laundry Bag — pickup &amp; delivery, turnaround, dry cleaning, wash and fold, damage policy and more."
+        description="Answers about your first order, dry cleaning, wash-tumble-dry-fold, turnaround times, stains and more from The Laundry Bag."
         schema={faqSchema}
       />
-      <div className="breadcrumb-strip">
-        <div className="container-page py-3 text-xs text-ink-500">
-          <Link to="/" className="hover:text-brand-700">Home</Link>{" "}
-          <span className="mx-2">/</span>{" "}
-          <span className="text-ink-700">FAQ</span>
-        </div>
-      </div>
 
       <PageHero
-        eyebrow="Help & support"
-        title="Frequently Asked Questions"
-        description="We make doing your laundry simple. We can save your time, so you can enjoy doing the things you love. We can save you money on soap, water, heating and electricity — so you can enjoy even more of the things you love. Our prices are simple and affordable."
+        eyebrow="Help centre"
+        title="Frequently asked questions"
+        description="Everything about your first order, dry cleaning, and our wash, tumble-dry & fold service. Can't find an answer? Call us on (+91) 8085990015."
+        crumbs={[{ label: "Home", to: "/" }, { label: "FAQ" }]}
       />
 
-      {faqs.map((group) => (
-        <section key={group.category} className="section">
-          <div className="container-page">
-            <h2 className="title-underline-left">{group.category}</h2>
-            <div className="mt-8 divide-y divide-ink-100 rounded-2xl border border-ink-100 bg-white shadow-soft">
-              {group.items.map((item) => (
-                <details
-                  key={item.q}
-                  className="group px-5 py-4 sm:px-6 sm:py-5"
-                >
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-display text-base font-semibold text-ink-900 sm:text-lg">
-                    {item.q}
-                    <span className="ml-4 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700 transition group-open:rotate-45">
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="h-4 w-4"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M12 5v14M5 12h14" />
-                      </svg>
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-700 sm:text-base">
-                    {item.a}
-                  </p>
-                </details>
-              ))}
+      <section className="section">
+        <div className="container-page max-w-3xl">
+          {faqs.map((group, gi) => (
+            <div key={group.category} className={gi > 0 ? "mt-12" : ""}>
+              <h2 className="font-display text-xl font-bold text-ink-900">
+                {group.category}
+              </h2>
+              <div className="mt-5 space-y-3">
+                {group.items.map((item, ii) => {
+                  const key = `${gi}-${ii}`;
+                  const isOpen = openKey === key;
+                  return (
+                    <Reveal key={key} delay={ii * 30}>
+                      <div className="overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft">
+                        <button
+                          type="button"
+                          onClick={() => setOpenKey(isOpen ? null : key)}
+                          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                          aria-expanded={isOpen}
+                        >
+                          <span className="font-semibold text-ink-900">{item.q}</span>
+                          <svg
+                            viewBox="0 0 24 24"
+                            className={`h-5 w-5 shrink-0 text-brand-500 transition-transform ${
+                              isOpen ? "rotate-45" : ""
+                            }`}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M12 5v14M5 12h14" />
+                          </svg>
+                        </button>
+                        <div
+                          className={`grid transition-all duration-300 ${
+                            isOpen
+                              ? "grid-rows-[1fr] opacity-100"
+                              : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <p className="px-5 pb-5 text-sm leading-relaxed text-ink-600">
+                              {item.a}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </Reveal>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
+          ))}
+        </div>
+      </section>
     </>
   );
 }

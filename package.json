@@ -1,6 +1,6 @@
 {
   "name": "thelaundrybag-website",
-  "description": "The LaundryBag — commercial & residential laundry website (Vite + React + Tailwind, deployable to Netlify).",
+  "description": "The Laundry Bag — India's Leading Laundry Service Provider. Premium marketing site (Vite + React 19 + TypeScript + Tailwind).",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --port 3000"
   },
   "dependencies": {
     "react": "^19.2.6",

@@ -14,27 +14,20 @@ type SEOProps = {
 
 const BASE_URL = "https://www.thelaundrybag.co.in";
 
-const defaultLocalBusinessSchema = {
+const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "The Laundry Bag",
-  alternateName: [
-    "TLB",
-    "TheLaundryBag",
-    "The LaundryBag",
-    "TLB Raipur",
-    "Laundry Bag",
-  ],
+  alternateName: ["TLB", "TheLaundryBag", "The LaundryBag", "Laundry Bag"],
   url: `${BASE_URL}/`,
-  logo: `${BASE_URL}/logo.jpg`,
-  image: `${BASE_URL}/og-image.svg`,
+  logo: `${BASE_URL}/logo.png`,
+  image: `${BASE_URL}/logo.png`,
   telephone: site.phone,
-  email: site.email,
   priceRange: "₹₹",
   foundingDate: `${site.founded}-01-01`,
   founder: { "@type": "Person", name: "Shourya Jain" },
   description: site.description,
-  slogan: site.motto,
+  slogan: "India's Leading Laundry Service Provider",
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address.street,
@@ -79,13 +72,13 @@ const organizationSchema = {
   "@type": "Organization",
   name: "The Laundry Bag",
   url: `${BASE_URL}/`,
-  logo: `${BASE_URL}/logo.jpg`,
+  logo: `${BASE_URL}/logo.png`,
+  founder: { "@type": "Person", name: "Shourya Jain" },
   contactPoint: [
     {
       "@type": "ContactPoint",
       telephone: site.phone,
       contactType: "customer service",
-      email: site.email,
       areaServed: "IN",
       availableLanguage: ["en", "hi"],
     },
@@ -104,11 +97,6 @@ const websiteSchema = {
   name: "The Laundry Bag",
   url: `${BASE_URL}/`,
   inLanguage: "en-IN",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${BASE_URL}/?q={search_term_string}`,
-    "query-input": "required name=search_term_string",
-  },
 };
 
 export default function SEO({
@@ -116,7 +104,7 @@ export default function SEO({
   description,
   path = "/",
   type = "website",
-  image = "/og-image.svg",
+  image = "/logo.png",
   keywords,
   schema,
   noindex,
@@ -124,15 +112,13 @@ export default function SEO({
   const fullTitle = title
     ? `${title} · The Laundry Bag`
     : "The Laundry Bag · Commercial and Residential Laundry and Dry Cleaning";
-  const fullDescription =
-    description ??
-    "The Laundry Bag provides professional laundry and dry-cleaning services to government establishments, hospitals, hotels, restaurants, colleges, schools and companies — and on-demand pickup and delivery for homes and students across Raipur, Pune and Goa, India.";
+  const fullDescription = description ?? site.description;
   const url = `${BASE_URL}${path}`;
   const imageUrl = image.startsWith("http") ? image : `${BASE_URL}${image}`;
-  const allKeywords = [...(keywords ?? []), ...seoKeywords];
+  const allKeywords = Array.from(new Set([...(keywords ?? []), ...seoKeywords]));
 
   const schemaPayload = [
-    defaultLocalBusinessSchema,
+    localBusinessSchema,
     organizationSchema,
     websiteSchema,
     ...(Array.isArray(schema) ? schema : schema ? [schema] : []),
@@ -143,10 +129,7 @@ export default function SEO({
       <html lang="en-IN" />
       <title>{fullTitle}</title>
       <meta name="description" content={fullDescription} />
-      <meta
-        name="keywords"
-        content={Array.from(new Set(allKeywords)).join(", ")}
-      />
+      <meta name="keywords" content={allKeywords.join(", ")} />
       <meta
         name="robots"
         content={
@@ -154,26 +137,6 @@ export default function SEO({
             ? "noindex,nofollow"
             : "index,follow,max-image-preview:large,max-snippet:-1"
         }
-      />
-      <meta
-        name="googlebot"
-        content={noindex ? "noindex,nofollow" : "index,follow"}
-      />
-      <meta
-        name="bingbot"
-        content={noindex ? "noindex,nofollow" : "index,follow"}
-      />
-      <meta name="author" content="The Laundry Bag" />
-      <meta name="publisher" content="The Laundry Bag" />
-      <meta name="geo.region" content="IN-CT" />
-      <meta name="geo.placename" content="Raipur" />
-      <meta
-        name="geo.position"
-        content={`${site.address.geo.lat};${site.address.geo.lng}`}
-      />
-      <meta
-        name="ICBM"
-        content={`${site.address.geo.lat}, ${site.address.geo.lng}`}
       />
       <link rel="canonical" href={url} />
 
@@ -184,10 +147,6 @@ export default function SEO({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={fullDescription} />
       <meta property="og:image" content={imageUrl} />
-      <meta
-        property="og:image:alt"
-        content="The Laundry Bag — Commercial and Residential Laundry and Dry Cleaning"
-      />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />

@@ -5,12 +5,12 @@ type Props = {
 export default function Logo({ className = "h-10 w-auto" }: Props) {
   return (
     <img
-      src="/images/logo.png"
-      alt="The Laundry Bag — Commercial and Residential Laundry and Dry Cleaning"
-      className={`${className} select-none border border-white`}
+      src="/logo.png"
+      alt="The Laundry Bag™ — India's Leading Laundry Service Provider"
+      className={`${className} select-none`}
       draggable={false}
-      width={480}
-      height={300}
+      width={1280}
+      height={613}
     />
   );
 }

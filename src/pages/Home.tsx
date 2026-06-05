@@ -1,20 +1,50 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
 import SEO from "../components/SEO";
+import Reveal from "../components/Reveal";
+import SectionHeading from "../components/SectionHeading";
+import Marquee from "../components/Marquee";
 import {
   businessServices,
+  clientLogos,
   counters,
   homeServices,
-  homeWeDo,
   howItWorks,
   operationalModels,
   site,
   testimonials,
+  usps,
   whoWeServe,
   whyChooseUs,
 } from "../data/site";
 
-const howItWorksIcons = ["bag", "truck", "washer", "check"];
+// B2B segments TLB actively serves (sourced from the live client list in
+// site.ts) — rotated in the hero to lead with the business story.
+const heroSegments = [
+  "luxury hotels",
+  "hospitals & medical centres",
+  "resorts & retreats",
+  "homes & walk-ins",
+];
+
+function RotatingSegment() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setIndex((i) => (i + 1) % heroSegments.length),
+      2200,
+    );
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <span key={index} className="word-cycle inline-block text-gradient">
+      {heroSegments[index]}
+    </span>
+  );
+}
 
 export default function Home() {
   return (
@@ -22,415 +52,431 @@ export default function Home() {
       <SEO
         path="/"
         title="Commercial and Residential Laundry and Dry Cleaning"
-        description="The Laundry Bag provides professional laundry and dry-cleaning services to hotels, hospitals, restaurants, colleges, schools and companies of all sizes — and on-demand pickup and delivery for homes and students."
+        description="The Laundry Bag runs laundry and linen programmes for luxury hotels, resorts, hospitals and medical centres across India — and on-demand pickup and delivery for homes from our Raipur retail outlet."
       />
 
-      {/* === HERO — "For your Business" / "For your Home" (legacy slider) ====== */}
-      <section className="relative overflow-hidden bg-hero-radial">
-        <div className="container-page relative grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:py-24">
-          <div>
-            <span className="eyebrow">Since {site.founded}</span>
-            <h2 className="h1 mt-4">
-              The most convenient way
+      {/* ===================== HERO ===================== */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-hero-radial" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-40 top-0 -z-10 h-[36rem] w-[36rem] rounded-full bg-ink-mesh blur-2xl"
+        />
+        <div className="container-page grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:py-28">
+          <div className="lg:col-span-6">
+            <span className="eyebrow animate-fade-up">
+              <Icon name="leaf" className="h-3.5 w-3.5" />
+              Trusted by businesses since {site.founded}
+            </span>
+            <h1 className="h1 mt-5 animate-fade-up">
+              The laundry &amp; linen partner
               <br />
-              <span className="text-brand-500">to do laundry</span>{" "}
-              <span className="text-ink-800">and</span>{" "}
-              <span className="text-sky2-500">dry cleaning</span>.
-            </h2>
-            <p className="lead mt-6 max-w-xl">
-              We provide on-demand pick-up and delivery services for homes
-              and students, and professional laundry programs for hotels,
-              hospitals, restaurants, colleges, schools and companies of all
-              sizes.
+              for <RotatingSegment />.
+            </h1>
+            <p className="lead mt-6 max-w-xl animate-fade-up">
+              From leading hotel chains and major hospitals to resorts and
+              medical centres, we run cost-effective, consistent linen and
+              laundry programmes for businesses of every size — plus on-demand
+              pick-up and delivery for homes. We never mix your clothes with
+              anyone else&apos;s.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={site.android}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-primary"
-              >
-                <Icon name="truck" className="h-4 w-4" />
-                Get the App
-              </a>
-              <a href={site.phoneHref} className="btn-secondary">
+              <a href={`tel:+91${site.phoneRaw}`} className="btn-primary">
                 <Icon name="phone" className="h-4 w-4" />
                 {site.phoneDisplay}
               </a>
+              <Link to="/contact" className="btn-secondary">
+                Schedule a pickup
+              </Link>
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-600">
-              <span className="inline-flex items-center gap-2">
-                <Icon name="check" className="h-4 w-4 text-brand-500" />
-                Free pickup &amp; delivery
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <Icon name="check" className="h-4 w-4 text-brand-500" />
-                48-hour turnaround
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <Icon name="check" className="h-4 w-4 text-brand-500" />
-                We do not mix clothes
-              </span>
-            </div>
+            <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-600">
+              {[
+                "Free pickup & delivery",
+                "48-hour turnaround",
+                "We do not mix clothes",
+              ].map((f) => (
+                <li key={f} className="inline-flex items-center gap-2">
+                  <Icon name="check" className="h-4 w-4 text-brand-500" />
+                  {f}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* "For your Business" / "For your Home" split CTA — matches the
-              legacy slide-1 split layout. */}
-          <div className="grid gap-4 sm:grid-cols-2">
+          {/* Split CTA cards */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-6">
             <Link
               to="/commercial"
-              className="group block overflow-hidden rounded-3xl bg-brand-400 p-6 text-white shadow-soft transition hover:-translate-y-1 hover:bg-brand-500"
+              className="group relative block overflow-hidden rounded-4xl bg-brand-gradient p-7 text-white shadow-lift transition hover:-translate-y-1"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/80">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/80">
                 For your Business
               </p>
-              <ul className="mt-4 space-y-1 font-display text-lg font-semibold leading-tight">
+              <ul className="mt-4 space-y-1.5 font-display text-lg font-semibold leading-tight">
                 <li>Hotel Laundry</li>
                 <li>Hospital Laundry</li>
-                <li>On Campus Laundromats</li>
-                <li>Small Local Businesses</li>
+                <li>Resorts &amp; Hospitality</li>
+                <li>Linen Rental &amp; Management</li>
               </ul>
-              <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white">
-                Know more
-                <Icon name="check" className="h-4 w-4" />
+              <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold">
+                Explore B2B
+                <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
               </span>
             </Link>
             <Link
               to="/services"
-              className="group block overflow-hidden rounded-3xl bg-sky2-500 p-6 text-white shadow-soft transition hover:-translate-y-1 hover:bg-sky2-600"
+              className="group relative block overflow-hidden rounded-4xl bg-ink-900 p-7 text-white shadow-lift transition hover:-translate-y-1"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/80">
-                For your Home
-              </p>
-              <ul className="mt-4 space-y-1 font-display text-lg font-semibold leading-tight">
-                <li>Laundry</li>
-                <li>Dry Clean</li>
-                <li>On Site Cleaning</li>
-              </ul>
-              <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white">
-                Know more
-                <Icon name="check" className="h-4 w-4" />
-              </span>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-70"
+              />
+              <div className="relative">
+                <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/70">
+                  For your Home
+                </p>
+                <ul className="mt-4 space-y-1.5 font-display text-lg font-semibold leading-tight">
+                  <li>Laundry</li>
+                  <li>Dry Clean</li>
+                  <li>On Site Cleaning</li>
+                </ul>
+                <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold">
+                  Explore home
+                  <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
+                </span>
+              </div>
             </Link>
           </div>
         </div>
+
+        {/* Trust bar */}
+        <div className="border-y border-ink-100 bg-white/70 backdrop-blur">
+          <div className="container-page py-6">
+            <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.2em] text-ink-400">
+              Trusted by India&apos;s leading hotels &amp; hospitals
+            </p>
+            <Marquee items={clientLogos} durationSeconds={46} />
+          </div>
+        </div>
       </section>
 
-      {/* === Three top services (legacy services-box row) ====================== */}
+      {/* ===================== TOP SERVICES ===================== */}
       <section className="section">
         <div className="container-page">
-          <div className="grid gap-6 md:grid-cols-3">
-            {homeServices.map((s) => (
-              <Link
-                key={s.title}
-                to={s.href}
-                className={`group relative block overflow-hidden rounded-3xl p-8 shadow-soft transition hover:-translate-y-1 ${
-                  s.accent === "blue"
-                    ? "bg-sky2-500 text-white"
-                    : s.accent === "green"
-                    ? "bg-brand-400 text-white"
-                    : "bg-ink-50 text-ink-900"
-                }`}
-              >
-                <span
-                  className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl ${
-                    s.accent === "grey"
-                      ? "bg-white/70 text-brand-500"
-                      : "bg-white/15 text-white"
+          <SectionHeading
+            eyebrow="What we do"
+            title="Three ways we take laundry off your plate"
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {homeServices.map((s, i) => (
+              <Reveal key={s.title} delay={i * 80}>
+                <Link
+                  to={s.href}
+                  className={`group relative block h-full overflow-hidden rounded-4xl p-8 shadow-soft transition hover:-translate-y-1.5 hover:shadow-lift ${
+                    s.accent === "blue"
+                      ? "bg-sky2-500 text-white"
+                      : s.accent === "brand"
+                      ? "bg-brand-gradient text-white"
+                      : "bg-ink-50 text-ink-900"
                   }`}
                 >
-                  <Icon name={s.icon} className="h-7 w-7" />
-                </span>
-                <h3 className="mt-6 font-display text-2xl font-bold uppercase tracking-wide">
-                  {s.title}
-                </h3>
-                <p
-                  className={`mt-3 text-sm ${
-                    s.accent === "grey" ? "text-ink-700" : "text-white/90"
-                  }`}
-                >
-                  {s.description}
-                </p>
-              </Link>
+                  <span
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl ${
+                      s.accent === "grey"
+                        ? "bg-white text-brand-500"
+                        : "bg-white/15 text-white"
+                    }`}
+                  >
+                    <Icon name={s.icon} className="h-7 w-7" />
+                  </span>
+                  <h3 className="mt-6 font-display text-2xl font-bold uppercase tracking-wide">
+                    {s.title}
+                  </h3>
+                  <p
+                    className={`mt-3 text-sm ${
+                      s.accent === "grey" ? "text-ink-700" : "text-white/90"
+                    }`}
+                  >
+                    {s.description}
+                  </p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">
+                    Learn more
+                    <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === "What we do for your business" (legacy carousel) ================= */}
-      <section
-        className="parallax relative section text-white"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,30,40,0.78),rgba(0,30,40,0.78)), url(/images/parallax-img-03.jpg)",
-        }}
-      >
-        <div className="container-page">
-          <h2 className="title-underline text-white">
-            What we do for your business?
-          </h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {businessServices.map((b) => (
-              <article
-                key={b.title}
-                className="rounded-3xl bg-white/95 p-6 text-ink-800 shadow-soft sm:p-8"
-              >
-                <h3 className="font-display text-xl font-bold text-ink-900">
-                  {b.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-700">
-                  {b.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === "Who we serve?" (legacy permission-box row) ====================== */}
-      <section className="section">
-        <div className="container-page">
-          <h2 className="title-underline">Who we serve?</h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {whoWeServe.map((w) => (
-              <article key={w.title} className="card">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
-                  <Icon name="check" />
-                </span>
-                <h3 className="h3 mt-5">{w.title}</h3>
-                <p className="mt-2 text-sm text-ink-600">{w.description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === "What we do for your home" ======================================= */}
-      <section
-        className="parallax relative section text-white"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,60,90,0.82),rgba(0,60,90,0.82)), url(/images/parallax-img-04.jpg)",
-        }}
-      >
-        <div className="container-page">
-          <h2 className="title-underline text-white">
-            What we do for your home?
-          </h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {homeWeDo.map((b) => (
-              <article
-                key={b.title}
-                className="rounded-3xl bg-white/95 p-6 text-ink-800 shadow-soft sm:p-8"
-              >
-                <h3 className="font-display text-xl font-bold text-ink-900">
-                  {b.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-700">
-                  {b.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === "How It Works: in 4 Easy Steps" (legacy box-step row) ============ */}
+      {/* ===================== USP BAND ===================== */}
       <section className="bg-ink-50/60 section">
         <div className="container-page">
-          <h2 className="title-underline">How It Works: in 4 Easy Steps</h2>
-          <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {howItWorks.map((s, i) => (
-              <li key={s.step} className="card text-center">
-                <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-sky2-100 text-sky2-700">
-                  <Icon name={howItWorksIcons[i]} className="h-7 w-7" />
-                </span>
-                <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                  {s.step}
-                </p>
-                <p className="mt-2 font-display text-lg font-bold text-ink-900">
-                  {s.title}
-                </p>
-              </li>
+          <SectionHeading
+            eyebrow="Why TLB"
+            title="The details other laundries skip"
+            description="The promises we have kept since day one — and the reason hotels, hospitals and homes stay with us."
+          />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {usps.map((u, i) => (
+              <Reveal key={u.title} delay={i * 70}>
+                <article className="card card-hover h-full">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient text-white">
+                    <Icon name={u.icon} className="h-6 w-6" />
+                  </span>
+                  <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                    {u.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-600">{u.description}</p>
+                </article>
+              </Reveal>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
-      {/* === "How we do it?" (process diagram) ================================ */}
+      {/* ===================== HOW IT WORKS ===================== */}
       <section className="section">
         <div className="container-page">
-          <h2 className="title-underline">How we do it?</h2>
-          <div className="mt-10 flex justify-center">
+          <SectionHeading
+            eyebrow="How it works"
+            title="Clean clothes in 4 easy steps"
+          />
+          <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {howItWorks.map((s, i) => (
+              <Reveal key={s.step} delay={i * 80}>
+                <li className="relative h-full rounded-4xl border border-ink-100 bg-white p-7 text-center shadow-soft">
+                  <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-sky2-50 text-sky2-600">
+                    <Icon name={s.icon} className="h-7 w-7" />
+                  </span>
+                  <p className="mt-5 text-xs font-bold uppercase tracking-wider text-brand-600">
+                    {s.step}
+                  </p>
+                  <p className="mt-2 font-display text-lg font-bold text-ink-900">
+                    {s.title}
+                  </p>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+          <Reveal className="mt-12 flex justify-center">
             <img
               src="/images/process.png"
               alt="The Laundry Bag — How we do it: pickup, sort, treat, wash, dry, iron, fold, deliver"
               className="h-auto w-full max-w-3xl"
               loading="lazy"
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* === "Commercial Laundry for Small to Large Businesses" =============== */}
+      {/* ===================== FOR BUSINESS (parallax) ===================== */}
       <section
         className="parallax relative section text-white"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(10,40,60,0.8),rgba(10,40,60,0.8)), url(/images/parallax-img-02.jpg)",
+            "linear-gradient(rgba(0,30,40,0.82),rgba(0,40,55,0.82)), url(/images/parallax-img-03.jpg)",
         }}
       >
         <div className="container-page">
-          <h2 className="title-underline text-white">
-            Commercial Laundry for Small to Large Businesses
-          </h2>
-          <p className="mx-auto mt-2 max-w-3xl text-center text-base text-white/90 sm:text-lg">
-            The Laundry Bag™ provides professional laundry services to
-            government establishments, hospitals, hotels, restaurants,
-            colleges, schools and companies of all sizes who share a need
-            for cost-effective, consistent and reliable laundry service.
-            With a focus on health care, hospitality and commercial laundry
-            sectors, The Laundry Bag™ has designed its operational formats
-            in various models:
-          </p>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {operationalModels.map((m, i) => (
-              <article
-                key={m.title}
-                className="rounded-3xl bg-white/95 p-6 text-ink-800 shadow-soft sm:p-8"
-              >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 font-display text-lg font-bold text-brand-500">
-                  {i + 1}
-                </span>
-                <h3 className="mt-4 font-display text-lg font-bold text-ink-900">
-                  {m.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-700">
-                  {m.description}
-                </p>
-              </article>
+          <SectionHeading
+            eyebrow="For your business"
+            title="What we do for your business"
+            description="Having served businesses of all sizes — leading hotel chains, luxury resorts and major hospitals across India."
+            invert
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {businessServices.map((b, i) => (
+              <Reveal key={b.title} delay={i * 70}>
+                <article className="glass h-full rounded-4xl p-7 text-ink-800">
+                  <h3 className="font-display text-xl font-bold text-ink-900">
+                    {b.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-700">
+                    {b.description}
+                  </p>
+                </article>
+              </Reveal>
             ))}
           </div>
+          <Reveal className="mt-10 flex justify-center">
+            <Link to="/commercial" className="btn-primary">
+              See commercial services
+              <Icon name="arrow" className="h-4 w-4" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 
-      {/* === Testimonials (legacy carousel) =================================== */}
-      <section
-        className="parallax relative section"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.94),rgba(255,255,255,0.94)), url(/images/parallax-img-01.jpg)",
-        }}
-      >
-        <div className="container-page">
-          <h2 className="title-underline">What our customers say</h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((t) => (
-              <figure key={t.name} className="card">
-                <blockquote className="text-sm italic text-ink-700">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-4 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                  — {t.name}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === "A few words about us" + Why Choose Us =========================== */}
+      {/* ===================== WHO WE SERVE ===================== */}
       <section className="section">
         <div className="container-page">
-          <h2 className="title-underline">A few words about us</h2>
-          <p className="mx-auto mt-2 max-w-3xl text-center text-base text-ink-700 sm:text-lg">
-            We are professionals in the laundry and dry-cleaning business,
-            which means we always stay up to date on the latest technologies,
-            cleaning methods, and solutions for dealing with stains or
-            delicate fabrics. Plus, we maintain the highest standards of
-            business integrity by following local and national regulations
-            and environmental safety rules.
-          </p>
-
-          <h3 className="title-underline mt-16">Why Choose Us</h3>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {whyChooseUs.map((r) => (
-              <article key={r.title} className="card">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
-                  <Icon name={r.icon} />
-                </span>
-                <h4 className="h3 mt-5">{r.title}</h4>
-                <p className="mt-2 text-sm text-ink-600">{r.description}</p>
-              </article>
+          <SectionHeading
+            eyebrow="Who we serve"
+            title="From a single home to a 100-bed hospital"
+          />
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {whoWeServe.map((w, i) => (
+              <Reveal key={w.title} delay={i * 60}>
+                <article className="card card-hover h-full">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                    <Icon name="users" />
+                  </span>
+                  <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                    {w.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-600">{w.description}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === Counters (legacy product-total row) ============================== */}
+      {/* ===================== OPERATIONAL MODELS ===================== */}
+      <section className="bg-ink-50/60 section">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Operational models"
+            title="Commercial laundry, your way"
+            description="The Laundry Bag™ designs its operational formats around your needs — on your premises, off-site, or as a fully-managed linen-rental programme."
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {operationalModels.map((m, i) => (
+              <Reveal key={m.title} delay={i * 80}>
+                <article className="card card-hover h-full">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-gradient font-display text-lg font-bold text-white">
+                    {i + 1}
+                  </span>
+                  <h3 className="mt-4 font-display text-lg font-bold text-ink-900">
+                    {m.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-700">
+                    {m.description}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== COUNTERS ===================== */}
       <section
         className="parallax relative py-16 text-white sm:py-20"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0,156,220,0.88),rgba(51,214,91,0.88)), url(/images/parallax-img-02.jpg)",
+            "linear-gradient(120deg, rgba(0,156,220,0.92), rgba(28,191,69,0.92)), url(/images/parallax-img-02.jpg)",
         }}
       >
         <div className="container-page">
           <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {counters.map((c) => (
-              <div key={c.label} className="text-center">
+            {counters.map((c, i) => (
+              <Reveal key={c.label} delay={i * 80} className="text-center">
                 <dd className="font-display text-4xl font-extrabold sm:text-5xl">
                   {c.value}
                 </dd>
                 <dt className="mt-2 text-sm font-semibold uppercase tracking-wider text-white/85">
                   {c.label}
                 </dt>
-              </div>
+              </Reveal>
             ))}
           </dl>
         </div>
       </section>
 
-      {/* === Corporate office =================================================== */}
+      {/* ===================== WHY CHOOSE US ===================== */}
       <section className="section">
-        <div className="container-page grid items-center gap-10 lg:grid-cols-3">
-          <div className="lg:col-span-1">
-            <h2 className="title-underline-left">Corporate Office</h2>
-            <p className="lead mt-4">
-              Our corporate office is located in Raipur, CG — a
-              visitor-friendly location in the city centre. It&apos;s the
-              house of all our laundry machines, employees and processing
-              unit.
-            </p>
-            <p className="mt-6 text-sm text-ink-700">
-              {site.address.full}
-              <br />
-              {site.hours}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href={site.address.mapsHref} target="_blank" rel="noreferrer" className="btn-secondary">
-                <Icon name="pin" className="h-4 w-4" />
-                Get directions
-              </a>
-              <Link to="/contact" className="btn-primary">
-                Contact us
-              </Link>
-            </div>
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Why choose us"
+            title="A few words about us"
+            description="We are professionals in the laundry and dry-cleaning business — always up to date on the latest technologies, cleaning methods and solutions for stains and delicate fabrics."
+          />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {whyChooseUs.map((r, i) => (
+              <Reveal key={r.title} delay={i * 60}>
+                <article className="card card-hover h-full">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-sky2-50 text-sky2-600">
+                    <Icon name={r.icon} />
+                  </span>
+                  <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                    {r.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-600">{r.description}</p>
+                </article>
+              </Reveal>
+            ))}
           </div>
-          <div className="lg:col-span-2">
-            <div className="overflow-hidden rounded-3xl shadow-soft">
-              <iframe
-                title="The Laundry Bag — Raipur"
-                src={`https://www.google.com/maps?q=${site.address.geo.lat},${site.address.geo.lng}&z=14&output=embed`}
-                width="100%"
-                height="360"
-                style={{ border: 0 }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-            </div>
+        </div>
+      </section>
+
+      {/* ===================== TESTIMONIALS ===================== */}
+      <section
+        className="parallax relative section"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(246,248,251,0.95),rgba(246,248,251,0.95)), url(/images/parallax-img-01.jpg)",
+        }}
+      >
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Customer love"
+            title="What our customers say"
+          />
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((t, i) => (
+              <Reveal key={t.name} delay={i * 60}>
+                <figure className="card h-full">
+                  <div className="flex gap-1 text-brand-400">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <Icon key={s} name="star" className="h-4 w-4" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 text-sm italic text-ink-700">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-4 text-xs font-semibold uppercase tracking-wider text-brand-700">
+                    — {t.name}
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===================== FINAL CTA ===================== */}
+      <section className="section">
+        <div className="container-page">
+          <Reveal className="relative overflow-hidden rounded-5xl bg-ink-900 px-6 py-14 text-center text-white sm:px-12 lg:py-20">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-80"
+            />
+            <div className="relative mx-auto max-w-2xl">
+              <h2 className="h2 text-white">
+                Ready for laundry day to take care of itself?
+              </h2>
+              <p className="lead mt-4 text-white/80">
+                Call us or book online — free pickup, 48-hour turnaround,
+                and clothes that are never mixed with anyone else&apos;s.
+              </p>
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <a href={`tel:+91${site.phoneRaw}`} className="btn-primary">
+                  <Icon name="phone" className="h-4 w-4" />
+                  {site.phoneDisplay}
+                </a>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                >
+                  Talk to our team
+                </Link>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>
