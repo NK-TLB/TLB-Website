@@ -60,7 +60,7 @@ export default function Locations() {
       </section>
 
       {/* Corporate office */}
-      <section className="bg-ink-50/60 section">
+      <section className="bg-brand-50/50 section">
         <div className="container-page">
           <SectionHeading
             align="left"

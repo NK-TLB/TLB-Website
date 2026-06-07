@@ -188,17 +188,36 @@ export const pressGallery: { caption: string; image: PressImage }[] = [
       alt: "The Laundry Bag team with the Hon\u2019ble Chief Minister and senior CSSDA officials at the MoU exchange ceremony in Raipur.",
     },
   },
-  {
-    caption: "Founder Shourya Jain with the late Shri Ratan Tata",
-    image: {
-      base: "/images/press/shourya-ratan-tata",
-      widths: [400, 800, 1200],
-      width: 1200,
-      height: 900,
-      alt: "The Laundry Bag founder Shourya Jain in conversation with the late Shri Ratan Tata.",
-    },
-  },
 ];
+
+// Standout milestone: founder Shourya Jain met the late Shri Ratan Tata while
+// inaugurating The Laundry Bag's dedicated laundry unit at Tata Medical Center,
+// Kolkata — a newly onboarded healthcare site. Copy is written in the brand's
+// own voice; no quotes are attributed to Shri Ratan Tata.
+export const ratanTata = {
+  eyebrow: "A milestone we will always cherish",
+  kicker: "Tata Medical Center · Kolkata",
+  title: "An honour: meeting the late Shri Ratan Tata",
+  lead: "When The Laundry Bag commissioned its dedicated in-house laundry unit at Tata Medical Center, Kolkata, founder Shourya Jain travelled to inaugurate the new facility — and had the rare privilege of meeting the late Shri Ratan Tata.",
+  body: [
+    "Tata Medical Center is among India\u2019s most respected cancer hospitals, where linen hygiene sits at the very heart of safe patient care. Standing up a hospital-grade laundry on this campus was a defining moment in our healthcare journey \u2014 proof that The Laundry Bag\u2019s never-mix, infection-aware processes belong in the country\u2019s finest institutions.",
+    "Meeting Shri Ratan Tata that day turned an already special occasion into one our team will never forget \u2014 a quiet, lasting reminder of the values of trust, humility and uncompromising quality that continue to guide everything we do.",
+  ],
+  pullQuote:
+    "A reminder that in healthcare, hygiene is never a detail \u2014 it is a duty.",
+  facts: [
+    { label: "Where", value: "Tata Medical Center, Kolkata" },
+    { label: "Occasion", value: "Inauguration of the new laundry unit" },
+    { label: "Sector", value: "Healthcare linen & hygiene" },
+  ],
+  image: {
+    base: "/images/press/shourya-ratan-tata",
+    widths: [400, 800, 1200],
+    width: 1200,
+    height: 900,
+    alt: "The Laundry Bag founder Shourya Jain with the late Shri Ratan Tata at Tata Medical Center, Kolkata, during the inauguration of the hospital\u2019s new laundry unit.",
+  } as PressImage,
+};
 
 // "As featured in" — online press features. Links are real and verified.
 export const pressFeatures = [

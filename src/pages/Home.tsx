@@ -6,21 +6,18 @@ import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import Marquee from "../components/Marquee";
 import IndiaMap from "../components/IndiaMap";
+import CountUp from "../components/CountUp";
 import CertificationsBand from "../components/CertificationsBand";
 import ServiceAreaChecker from "../components/ServiceAreaChecker";
 import { PressStripBar } from "../components/PressStrip";
 import {
-  businessServices,
   clientLogos,
   counters,
   homeServices,
   howItWorks,
-  operationalModels,
   site,
-  testimonials,
   usps,
   whoWeServe,
-  whyChooseUs,
 } from "../data/site";
 
 // B2B segments TLB actively serves (sourced from the live client list in
@@ -283,7 +280,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== FOR BUSINESS (parallax) ===================== */}
+      {/* ===================== FOR BUSINESS (teaser → Commercial) ===================== */}
       <section
         className="parallax relative section text-white"
         style={{
@@ -294,27 +291,28 @@ export default function Home() {
         <div className="container-page">
           <SectionHeading
             eyebrow="For your business"
-            title="What we do for your business"
-            description="Having served businesses of all sizes — leading hotel chains, luxury resorts and major hospitals across India."
+            title="A linen partner for every kind of institution"
+            description="From a boutique resort to a 100-bed hospital — on your premises, off-site or on a fully-managed linen-rental model, tailored to your operation."
             invert
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {businessServices.map((b, i) => (
-              <Reveal key={b.title} delay={i * 70}>
-                <article className="glass h-full rounded-4xl p-7 text-ink-800">
-                  <h3 className="font-display text-xl font-bold text-ink-900">
-                    {b.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-700">
-                    {b.description}
-                  </p>
-                </article>
-              </Reveal>
+          <ul className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
+            {[
+              "Hotels & resorts",
+              "Hospitals & healthcare",
+              "Enterprises & institutions",
+              "Managed linen rental",
+            ].map((label) => (
+              <li
+                key={label}
+                className="glass rounded-full px-4 py-2 text-sm font-semibold text-ink-800"
+              >
+                {label}
+              </li>
             ))}
-          </div>
+          </ul>
           <Reveal className="mt-10 flex justify-center">
             <Link to="/commercial" className="btn-primary">
-              See commercial services
+              Explore commercial services
               <Icon name="arrow" className="h-4 w-4" />
             </Link>
           </Reveal>
@@ -375,34 +373,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== OPERATIONAL MODELS ===================== */}
-      <section className="bg-ink-50/60 section">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Operational models"
-            title="Commercial laundry, your way"
-            description="The Laundry Bag™ designs its operational formats around your needs — on your premises, off-site, or as a fully-managed linen-rental programme."
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {operationalModels.map((m, i) => (
-              <Reveal key={m.title} delay={i * 80}>
-                <article className="card card-hover h-full">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-gradient font-display text-lg font-bold text-white">
-                    {i + 1}
-                  </span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-ink-900">
-                    {m.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-700">
-                    {m.description}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ===================== COUNTERS ===================== */}
       <section
         className="parallax relative py-16 text-white sm:py-20"
@@ -416,7 +386,7 @@ export default function Home() {
             {counters.map((c, i) => (
               <Reveal key={c.label} delay={i * 80} className="text-center">
                 <dd className="font-display text-4xl font-extrabold sm:text-5xl">
-                  {c.value}
+                  <CountUp value={c.value} />
                 </dd>
                 <dt className="mt-2 text-sm font-semibold uppercase tracking-wider text-white/85">
                   {c.label}
@@ -424,67 +394,6 @@ export default function Home() {
               </Reveal>
             ))}
           </dl>
-        </div>
-      </section>
-
-      {/* ===================== WHY CHOOSE US ===================== */}
-      <section className="section">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Why choose us"
-            title="A few words about us"
-            description="We are professionals in the laundry and dry-cleaning business — always up to date on the latest technologies, cleaning methods and solutions for stains and delicate fabrics."
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {whyChooseUs.map((r, i) => (
-              <Reveal key={r.title} delay={i * 60}>
-                <article className="card card-hover h-full">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-sky2-50 text-sky2-600">
-                    <Icon name={r.icon} />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
-                    {r.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-ink-600">{r.description}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== TESTIMONIALS ===================== */}
-      <section
-        className="parallax relative section"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(246,248,251,0.95),rgba(246,248,251,0.95)), url(/images/parallax-img-01.jpg)",
-        }}
-      >
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Customer love"
-            title="What our customers say"
-          />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <Reveal key={t.name} delay={i * 60}>
-                <figure className="card h-full">
-                  <div className="flex gap-1 text-brand-400">
-                    {Array.from({ length: 5 }).map((_, s) => (
-                      <Icon key={s} name="star" className="h-4 w-4" />
-                    ))}
-                  </div>
-                  <blockquote className="mt-4 text-sm italic text-ink-700">
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
-                  <figcaption className="mt-4 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                    — {t.name}
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 

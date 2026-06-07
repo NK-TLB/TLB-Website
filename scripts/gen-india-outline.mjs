@@ -10,9 +10,16 @@ const SOURCES = [
   "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson",
 ];
 
+// Admin-1 (states/provinces) for the internal political borders.
+const STATE_SOURCES = [
+  "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_1_states_provinces.geojson",
+  "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_1_states_provinces.geojson",
+];
+
 const TARGET_WIDTH = 1000; // viewBox width; height derived from aspect
 const PAD = 12; // px padding inside the viewBox
 const SIMPLIFY_EPS = 0.05; // Douglas-Peucker tolerance in degrees
+const STATE_SIMPLIFY_EPS = 0.05; // tolerance for the internal state borders
 
 const mercY = (lat) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
 
@@ -107,14 +114,61 @@ const height = (yMax - yMin) * k + PAD * 2;
 const projX = (lon) => PAD + (lon * DEG - lonMinRad) * k;
 const projY = (lat) => PAD + (yMax - mercY(lat)) * k;
 
-const d =
-  mainland
+const ringToPath = (ring) =>
+  ring
     .map(([lon, lat], i) => {
       const x = projX(lon).toFixed(1);
       const y = projY(lat).toFixed(1);
       return `${i === 0 ? "M" : "L"}${x} ${y}`;
     })
     .join("") + "Z";
+
+const d = ringToPath(mainland);
+
+// --- Internal state borders (admin-1), projected with the SAME projection ----
+// so they line up exactly with the silhouette and the city markers. Island
+// territories are dropped (the borders layer is clipped to the mainland anyway).
+const SKIP_STATES = new Set([
+  "Andaman and Nicobar",
+  "Andaman and Nicobar Islands",
+  "Lakshadweep",
+]);
+
+let statePaths = [];
+try {
+  const statesGeo = await fetchFirst(STATE_SOURCES);
+  const indiaStates = statesGeo.features.filter((f) => {
+    const p = f.properties || {};
+    const country = p.admin || p.geonunit || p.sr_adm0_a3;
+    return (
+      (country === "India" || p.adm0_a3 === "IND" || p.iso_a2 === "IN") &&
+      !SKIP_STATES.has(p.name) &&
+      !SKIP_STATES.has(p.name_en)
+    );
+  });
+
+  for (const feat of indiaStates) {
+    const g = feat.geometry;
+    if (!g) continue;
+    const polys = g.type === "MultiPolygon" ? g.coordinates : [g.coordinates];
+    const subPaths = [];
+    for (const poly of polys) {
+      for (const ring of poly) {
+        if (ringArea(ring) < 0.02) continue; // drop tiny slivers/islands
+        let open = ring.slice();
+        const a = open[0];
+        const b = open[open.length - 1];
+        if (a[0] === b[0] && a[1] === b[1]) open = open.slice(0, -1);
+        const simplified = simplify(open, STATE_SIMPLIFY_EPS);
+        if (simplified.length < 3) continue;
+        subPaths.push(ringToPath(simplified));
+      }
+    }
+    if (subPaths.length) statePaths.push(subPaths.join(""));
+  }
+} catch (err) {
+  console.warn("State borders skipped:", err.message);
+}
 
 const W = TARGET_WIDTH;
 const H = Math.round(height);
@@ -129,6 +183,12 @@ export const height = ${H};
 
 export const indiaPath =
   "${d}";
+
+// Internal state/UT borders (admin-1), same projection as the silhouette.
+// Render clipped to indiaPath so only the internal divisions show.
+export const statePaths: string[] = [
+${statePaths.map((s) => `  "${s}",`).join("\n")}
+];
 
 const PAD = ${PAD};
 const DEG = Math.PI / 180;
@@ -156,5 +216,5 @@ export function projectToPercent(lat: number, lng: number) {
 
 writeFileSync(new URL("../src/components/india-outline.ts", import.meta.url), file);
 console.log(
-  `Wrote india-outline.ts — viewBox ${W}x${H}, ${mainland.length} points (from ${best.ring.length}).`
+  `Wrote india-outline.ts — viewBox ${W}x${H}, ${mainland.length} points (from ${best.ring.length}), ${statePaths.length} state borders.`
 );

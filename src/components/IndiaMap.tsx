@@ -10,6 +10,7 @@ import {
 } from "../data/mapMarkers";
 import {
   indiaPath,
+  statePaths,
   projectToPercent,
   projectToViewBox,
   viewBox,
@@ -119,6 +120,11 @@ export default function IndiaMap({
                 floodOpacity="0.28"
               />
             </filter>
+            {/* Clip the internal borders to the silhouette so only the state
+                divisions show (any coastline overdraw is trimmed away). */}
+            <clipPath id={`clip-${uid}`}>
+              <path d={indiaPath} />
+            </clipPath>
           </defs>
 
           <path
@@ -131,6 +137,22 @@ export default function IndiaMap({
           />
           {/* subtle top highlight for a printed/elevated feel */}
           <path d={indiaPath} fill="#ffffff" opacity={0.06} />
+
+          {/* Internal state / UT borders — a political-map feel */}
+          <g
+            clipPath={`url(#clip-${uid})`}
+            fill="none"
+            stroke="#ffffff"
+            strokeOpacity={0.5}
+            strokeWidth={1}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          >
+            {statePaths.map((d, i) => (
+              <path key={i} d={d} vectorEffect="non-scaling-stroke" />
+            ))}
+          </g>
 
           {/* HQ -> city connecting arcs */}
           <g

@@ -5,7 +5,6 @@ import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import Marquee from "../components/Marquee";
-import CertificationsBand from "../components/CertificationsBand";
 import {
   businessServices,
   clientLogos,
@@ -114,7 +113,7 @@ export default function Commercial() {
       </section>
 
       {/* Operational models */}
-      <section className="bg-ink-50/60 section">
+      <section className="bg-brand-50/50 section">
         <div className="container-page">
           <SectionHeading eyebrow="Operational models" title="Three ways we operate" />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -130,18 +129,6 @@ export default function Commercial() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Certifications & equipment */}
-      <section className="section">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Certifications & equipment"
-            title="Standards your auditors will love"
-            description="An ISO-certified operation running best-in-class equipment, eco-friendly chemistry and accountable, never-mix processing."
-          />
-          <CertificationsBand className="mt-12" />
         </div>
       </section>
 
@@ -171,7 +158,7 @@ export default function Commercial() {
           </div>
           <Reveal className="mt-10 flex justify-center">
             <Link to="/clients" className="btn-secondary">
-              See all clients &amp; press
+              See all clients
               <Icon name="arrow" className="h-4 w-4" />
             </Link>
           </Reveal>

@@ -13,11 +13,11 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="mt-10 border-t border-ink-100 bg-ink-50/60">
+    <footer className="mt-10 bg-brand-950 text-white/70">
       <div className="container-page grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-3">
         <div>
-          <Logo className="h-14 w-auto sm:h-16" />
-          <p className="mt-4 max-w-xs text-sm text-ink-600">
+          <Logo className="h-14 w-auto brightness-0 invert sm:h-16" />
+          <p className="mt-4 max-w-xs text-sm text-white/60">
             India&apos;s Leading Laundry Service Provider — commercial laundry,
             dry cleaning and linen management for hotels, resorts and hospitals
             across India since {site.founded}.
@@ -31,7 +31,7 @@ export default function Footer() {
                 rel="noreferrer"
                 aria-label={s.label}
                 title={s.label}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-ink-200 bg-white text-ink-700 transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20"
               >
                 <Icon name={s.icon} className="h-4 w-4" />
               </a>
@@ -40,32 +40,33 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-500">
+          <h4 className="text-sm font-semibold uppercase tracking-wider text-white/50">
             Company
           </h4>
-          <ul className="mt-4 space-y-2 text-sm text-ink-700">
-            <li><Link className="hover:text-brand-700" to="/commercial">Services</Link></li>
-            <li><Link className="hover:text-brand-700" to="/about">Our Story</Link></li>
-            <li><Link className="hover:text-brand-700" to="/locations">Locations</Link></li>
-            <li><Link className="hover:text-brand-700" to="/clients">Clients &amp; Press</Link></li>
-            <li><Link className="hover:text-brand-700" to="/faq">FAQ</Link></li>
-            <li><Link className="hover:text-brand-700" to="/contact">Contact</Link></li>
-            <li><Link className="hover:text-brand-700" to="/privacy-policy">Privacy Policy</Link></li>
+          <ul className="mt-4 space-y-2 text-sm text-white/70">
+            <li><Link className="transition hover:text-white" to="/commercial">Services</Link></li>
+            <li><Link className="transition hover:text-white" to="/about">Our Story</Link></li>
+            <li><Link className="transition hover:text-white" to="/locations">Locations</Link></li>
+            <li><Link className="transition hover:text-white" to="/clients">Clients</Link></li>
+            <li><Link className="transition hover:text-white" to="/press">Press</Link></li>
+            <li><Link className="transition hover:text-white" to="/faq">FAQ</Link></li>
+            <li><Link className="transition hover:text-white" to="/contact">Contact</Link></li>
+            <li><Link className="transition hover:text-white" to="/privacy-policy">Privacy Policy</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-500">
+          <h4 className="text-sm font-semibold uppercase tracking-wider text-white/50">
             Contact
           </h4>
           <address className="not-italic">
-            <ul className="mt-4 space-y-2 text-sm text-ink-700">
+            <ul className="mt-4 space-y-2 text-sm text-white/70">
               <li>
                 For a Job:{" "}
-                <a className="hover:text-brand-700" href={`mailto:${site.emails.hr}`}>{site.emails.hr}</a>
+                <a className="transition hover:text-white" href={`mailto:${site.emails.hr}`}>{site.emails.hr}</a>
               </li>
               <li>{site.phoneDisplay}</li>
-              <li className="pt-2 text-ink-500">
+              <li className="pt-2 text-white/50">
                 {site.address.street}<br />
                 {site.address.city}, {site.address.region} {site.address.postalCode}<br />
                 {site.hours}
@@ -74,8 +75,8 @@ export default function Footer() {
           </address>
         </div>
       </div>
-      <div className="border-t border-ink-100">
-        <div className="container-page flex flex-col items-start justify-between gap-4 py-6 text-xs text-ink-500 sm:flex-row sm:items-center">
+      <div className="border-t border-white/10">
+        <div className="container-page flex flex-col items-start justify-between gap-4 py-6 text-xs text-white/50 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} {site.legalName}. All Rights Reserved.</p>
           <p className="order-last sm:order-none">{site.motto}</p>
           <TemplateSwitcher />

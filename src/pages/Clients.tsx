@@ -18,15 +18,15 @@ export default function Clients() {
     <>
       <SEO
         path="/clients"
-        title="Clients & Press — hotels, resorts & hospitals"
-        description="The Laundry Bag serves leading hotels and resorts (Grand Hyatt, Taj Exotica, JW Marriott, Hilton, Novotel, Hyatt) and major hospitals (Tata Medical Center, Balco Medical Center, Lata Mangeshkar Hospital), and has been featured in YourStory and Startup Buzz."
+        title="Clients — hotels, resorts & hospitals we serve"
+        description="The Laundry Bag serves leading hotels and resorts (Grand Hyatt, Taj Exotica, JW Marriott, Hilton, Novotel, Hyatt) and major hospitals (Tata Medical Center, Balco Medical Center, Lata Mangeshkar Hospital) across India."
       />
 
       <PageHero
-        eyebrow="Clients & Press"
+        eyebrow="Our clients"
         title="Trusted by India's leading hotels & hospitals"
-        description="From five-star hotels and luxury resorts to large medical centres — here are some of the institutions that count on The Laundry Bag, and the press that has covered our journey."
-        crumbs={[{ label: "Home", to: "/" }, { label: "Clients & Press" }]}
+        description="From five-star hotels and luxury resorts to large medical centres — here are some of the institutions that count on The Laundry Bag every single day."
+        crumbs={[{ label: "Home", to: "/" }, { label: "Clients" }]}
       />
 
       {/* Rating cards */}
@@ -69,7 +69,7 @@ export default function Clients() {
       </section>
 
       {/* Client groups */}
-      <section className="bg-ink-50/60 section">
+      <section className="bg-brand-50/50 section">
         <div className="container-page">
           <SectionHeading eyebrow="Our clients" title="A few of the businesses that trust us" />
           <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -114,7 +114,7 @@ export default function Clients() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-ink-50/60 section">
+      <section className="bg-brand-50/50 section">
         <div className="container-page">
           <SectionHeading eyebrow="Customer love" title="What our customers say" />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

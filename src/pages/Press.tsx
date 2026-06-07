@@ -14,6 +14,7 @@ import {
   pressClippings,
   pressGallery,
   pressFeatures,
+  ratanTata,
 } from "../data/site";
 
 const BASE_URL = "https://www.thelaundrybag.co.in";
@@ -59,13 +60,27 @@ const videoSchema = {
   },
 };
 
-const imageSchemas = pressGallery.map((g) => ({
-  "@context": "https://schema.org",
-  "@type": "ImageObject",
-  contentUrl: abs(`${g.image.base}-1200.jpg`),
-  caption: g.caption,
-  creditText: "The Laundry Bag",
-}));
+const imageSchemas = [
+  ...pressGallery.map((g) => ({
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    contentUrl: abs(`${g.image.base}-1200.jpg`),
+    caption: g.caption,
+    creditText: "The Laundry Bag",
+  })),
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    contentUrl: abs(`${ratanTata.image.base}-1200.jpg`),
+    caption: ratanTata.image.alt,
+    creditText: "The Laundry Bag",
+  },
+];
+
+const ratanItem: LightboxItem = {
+  image: ratanTata.image,
+  caption: ratanTata.image.alt,
+};
 
 const clippingItems: LightboxItem[] = pressClippings.map((c) => ({
   image: c.image,
@@ -144,7 +159,7 @@ export default function Press() {
       </section>
 
       {/* MoU video */}
-      <section className="bg-ink-50/60 section">
+      <section className="bg-brand-50/50 section">
         <div className="container-page">
           <SectionHeading
             eyebrow="Watch the ceremony"
@@ -177,15 +192,84 @@ export default function Press() {
         </div>
       </section>
 
-      {/* As featured in */}
+      {/* Ratan Tata — standout milestone */}
       <section className="section">
+        <div className="container-page">
+          <div className="mb-8 text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-600">
+              {ratanTata.eyebrow}
+            </p>
+          </div>
+          <div className="overflow-hidden rounded-4xl bg-ink-950 text-white shadow-lift ring-1 ring-white/10">
+            <div className="grid lg:grid-cols-2">
+              <button
+                type="button"
+                onClick={() => setBox({ items: [ratanItem], index: 0 })}
+                className="group relative flex w-full items-center justify-center overflow-hidden bg-ink-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-400"
+                aria-label="View the photo full-screen"
+              >
+                <ResponsiveImage
+                  image={ratanTata.image}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="block w-full"
+                  imgClassName="aspect-[4/3] w-full object-cover object-center transition duration-500 group-hover:scale-105"
+                />
+                <span className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink-950/70 to-transparent" />
+                <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-ink-950/60 px-3 py-1.5 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100">
+                  <Icon name="expand" className="h-4 w-4" />
+                  View photo
+                </span>
+              </button>
+
+              <div className="p-8 sm:p-10 lg:p-12">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-brand-200 ring-1 ring-white/15">
+                  <Icon name="star" className="h-4 w-4" />
+                  {ratanTata.kicker}
+                </span>
+                <h2 className="mt-5 font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
+                  {ratanTata.title}
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-white/85">
+                  {ratanTata.lead}
+                </p>
+                {ratanTata.body.map((para) => (
+                  <p key={para.slice(0, 24)} className="mt-3 text-sm leading-relaxed text-white/65">
+                    {para}
+                  </p>
+                ))}
+
+                <figure className="mt-6 border-l-2 border-brand-400 pl-4">
+                  <Icon name="quote" className="h-6 w-6 text-brand-300" />
+                  <blockquote className="mt-1 font-display text-lg font-semibold leading-snug text-white">
+                    {ratanTata.pullQuote}
+                  </blockquote>
+                </figure>
+
+                <dl className="mt-7 grid gap-3 sm:grid-cols-3">
+                  {ratanTata.facts.map((f) => (
+                    <div key={f.label} className="rounded-2xl bg-white/5 p-3.5 ring-1 ring-white/10">
+                      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-white/45">
+                        {f.label}
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold text-white/90">{f.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* As featured in */}
+      <section className="bg-brand-50/50 section">
         <div className="container-page">
           <PressStripBar />
         </div>
       </section>
 
       {/* Newspaper clippings */}
-      <section className="bg-ink-50/60 section">
+      <section className="section">
         <div className="container-page">
           <SectionHeading
             eyebrow="In print"
@@ -228,14 +312,14 @@ export default function Press() {
       </section>
 
       {/* Recognition gallery */}
-      <section className="section">
+      <section className="bg-brand-50/50 section">
         <div className="container-page">
           <SectionHeading
             eyebrow="Moments & recognition"
-            title="With the leaders who shape Indian industry"
-            description="From the Hon'ble Chief Minister of Chhattisgarh to the late Shri Ratan Tata."
+            title="On stage with the Hon'ble Chief Minister"
+            description="Highlights from the MoU exchange ceremony at Chhattisgarh Skill Tech, Raipur."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {pressGallery.map((g, i) => (
               <Reveal key={g.image.base} delay={i * 70}>
                 <button
@@ -246,7 +330,7 @@ export default function Press() {
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink-100">
                     <ResponsiveImage
                       image={g.image}
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      sizes="(min-width: 640px) 50vw, 100vw"
                       imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     />
                     <span className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-ink-950/60 text-white opacity-0 transition group-hover:opacity-100">
@@ -264,7 +348,7 @@ export default function Press() {
       </section>
 
       {/* Online features list */}
-      <section className="bg-ink-50/60 section">
+      <section className="section">
         <div className="container-page">
           <SectionHeading eyebrow="Read more" title="Featured stories" />
           <div className="mt-12 grid gap-6 md:grid-cols-3">

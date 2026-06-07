@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import FloatingCTA from "./FloatingCTA";
 import ScrollProgress from "./ScrollProgress";
 import { site } from "../data/site";
 
@@ -57,6 +58,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingCTA />
     </div>
   );
 }

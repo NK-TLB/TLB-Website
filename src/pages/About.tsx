@@ -6,7 +6,7 @@ import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import Timeline from "../components/Timeline";
 import Leadership from "../components/Leadership";
-import { companyFacts, counters, site, whyChooseUs } from "../data/site";
+import { companyFacts, site, whyChooseUs } from "../data/site";
 
 export default function About() {
   return (
@@ -45,7 +45,7 @@ export default function About() {
       </section>
 
       {/* Our dream / mission */}
-      <section className="bg-ink-50/60 section">
+      <section className="bg-brand-50/50 section">
         <div className="container-page grid items-center gap-10 lg:grid-cols-2">
           <Reveal>
             <SectionHeading align="left" eyebrow="Our dream" title="Laundry that exceeds expectations" />
@@ -93,7 +93,7 @@ export default function About() {
       </section>
 
       {/* Founder / leadership */}
-      <section className="bg-ink-50/60 section">
+      <section className="bg-brand-50/50 section">
         <div className="container-page">
           <SectionHeading
             eyebrow="Leadership"
@@ -101,28 +101,6 @@ export default function About() {
             description="Built on a simple promise — never mix one client's linen with anyone else's."
           />
           <Leadership />
-        </div>
-      </section>
-
-      {/* Counters */}
-      <section
-        className="parallax relative py-16 text-white sm:py-20"
-        style={{
-          backgroundImage:
-            "linear-gradient(120deg, rgba(0,156,220,0.92), rgba(28,191,69,0.92)), url(/images/parallax-img-02.jpg)",
-        }}
-      >
-        <div className="container-page">
-          <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {counters.map((c, i) => (
-              <Reveal key={c.label} delay={i * 80} className="text-center">
-                <dd className="font-display text-4xl font-extrabold sm:text-5xl">{c.value}</dd>
-                <dt className="mt-2 text-sm font-semibold uppercase tracking-wider text-white/85">
-                  {c.label}
-                </dt>
-              </Reveal>
-            ))}
-          </dl>
         </div>
       </section>
 
