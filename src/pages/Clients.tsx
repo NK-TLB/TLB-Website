@@ -5,7 +5,7 @@ import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import ClientWall from "../components/ClientWall";
-import PressStrip from "../components/PressStrip";
+import PressTeaser from "../components/PressStrip";
 import { clientGroups, ratings, testimonials } from "../data/site";
 
 const sectorIcon: Record<string, string> = {
@@ -99,16 +99,16 @@ export default function Clients() {
         </div>
       </section>
 
-      {/* Press */}
+      {/* Press teaser */}
       <section className="section">
         <div className="container-page">
           <SectionHeading
             eyebrow="As featured in"
-            title="In the press"
-            description="Our journey — from organising India's unorganised laundry sector to serving the country's leading hotels and hospitals — covered by the press."
+            title="Recognised by government & the press"
+            description="A skill-development MoU with the Government of Chhattisgarh, national media coverage and moments with India's industry leaders."
           />
           <Reveal className="mt-12">
-            <PressStrip />
+            <PressTeaser />
           </Reveal>
         </div>
       </section>

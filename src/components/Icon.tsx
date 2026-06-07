@@ -113,6 +113,26 @@ const paths: Record<string, ReactElement> = {
     </>
   ),
   close: <path d="M6 6l12 12M18 6L6 18" />,
+  play: <path d="M8 5v14l11-7-11-7z" fill="currentColor" stroke="none" />,
+  quote: (
+    <>
+      <path d="M6 7c-1.7 1-2.6 2.7-2.6 5.3V17H9v-5.2H6.1c0-1.3.5-2.3 1.6-3.1z" />
+      <path d="M16 7c-1.7 1-2.6 2.7-2.6 5.3V17H19v-5.2h-2.9c0-1.3.5-2.3 1.6-3.1z" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M3 9h18M8 3v4M16 3v4" />
+    </>
+  ),
+  expand: <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />,
+  external: (
+    <>
+      <path d="M14 4h6v6M20 4l-9 9" />
+      <path d="M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" />
+    </>
+  ),
   facebook: (
     <path d="M13.5 22v-8h3l.5-4h-3.5V7.5c0-1.2.3-2 2-2H17V2.2c-.3 0-1.4-.2-2.7-.2-2.7 0-4.5 1.6-4.5 4.6V10H6v4h3.8v8h3.7z" />
   ),

@@ -26,3 +26,7 @@ dist-ssr
 
 
 
+
+# Whisper models (large, regenerable)
+scripts/models/
+scripts/*.wav

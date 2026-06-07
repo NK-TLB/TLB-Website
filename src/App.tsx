@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Commercial from "./pages/Commercial";
 import Locations from "./pages/Locations";
 import Clients from "./pages/Clients";
+import Press from "./pages/Press";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -24,6 +25,9 @@ export default function App() {
         <Route path="/what-we-do" element={<Navigate to="/commercial" replace />} />
         <Route path="/locations" element={<Locations />} />
         <Route path="/clients" element={<Clients />} />
+        <Route path="/clients-and-press" element={<Navigate to="/clients" replace />} />
+        <Route path="/press" element={<Press />} />
+        <Route path="/press-coverage" element={<Navigate to="/press" replace />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/frequently-asked-questions" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
