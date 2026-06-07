@@ -43,7 +43,7 @@ export default function Navbar() {
           <Logo className="h-[4rem] w-auto sm:h-[4.25rem] lg:h-20" />
         </Link>
 
-        <nav className="hidden flex-1 items-center justify-end gap-1 lg:flex xl:gap-2">
+        <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex xl:gap-2">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -61,6 +61,12 @@ export default function Navbar() {
             </NavLink>
           ))}
         </nav>
+
+        {/* Invisible logo-width spacer balances the left logo so the nav sits
+            in the true horizontal centre of the header on desktop. */}
+        <div aria-hidden="true" className="hidden shrink-0 lg:block">
+          <Logo className="h-[4rem] w-auto opacity-0 sm:h-[4.25rem] lg:h-20" />
+        </div>
 
         <div className="flex items-center gap-2 lg:hidden">
           <a
