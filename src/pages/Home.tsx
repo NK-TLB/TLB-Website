@@ -228,7 +228,7 @@ export default function Home() {
       </section>
 
       {/* ===================== USP BAND ===================== */}
-      <section className="bg-ink-50/60 section">
+      <section className="bg-brand-50/50 section">
         <div className="container-page">
           <SectionHeading
             eyebrow="Why TLB"

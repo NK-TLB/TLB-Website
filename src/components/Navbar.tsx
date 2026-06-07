@@ -44,14 +44,14 @@ export default function Navbar() {
           <Logo className="h-[4rem] w-auto sm:h-[4.25rem] lg:h-20" />
         </Link>
 
-        <nav className="hidden items-center gap-0.5 xl:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               end={link.to === "/"}
               className={({ isActive }) =>
-                `whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-semibold transition ${
+                `whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-semibold transition xl:px-3.5 ${
                   isActive
                     ? "bg-brand-50 text-brand-700"
                     : "text-ink-700 hover:bg-ink-50 hover:text-ink-900"
@@ -63,7 +63,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 xl:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <a
             href={`tel:+91${site.phoneRaw}`}
             className="btn-primary !px-5 !py-2.5"
@@ -74,7 +74,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className="flex items-center gap-2 xl:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <a
             href={`tel:+91${site.phoneRaw}`}
             className="hidden h-10 items-center justify-center rounded-full bg-brand-gradient px-4 text-sm font-semibold text-white shadow-soft sm:inline-flex"
@@ -113,7 +113,7 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-nav"
-          className="border-t border-ink-100 bg-white shadow-lift xl:hidden"
+          className="border-t border-ink-100 bg-white shadow-lift lg:hidden"
         >
           <div className="container-page flex max-h-[calc(100vh-4.5rem)] flex-col gap-1 overflow-y-auto py-3">
             {navLinks.map((link) => (
