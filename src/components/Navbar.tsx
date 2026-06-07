@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { navLinks, site } from "../data/site";
 import Logo from "./Logo";
-import Icon from "./Icon";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -44,14 +43,14 @@ export default function Navbar() {
           <Logo className="h-[4rem] w-auto sm:h-[4.25rem] lg:h-20" />
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex">
+        <nav className="hidden flex-1 items-center justify-end gap-1 lg:flex xl:gap-2">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               end={link.to === "/"}
               className={({ isActive }) =>
-                `whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-semibold transition xl:px-3.5 ${
+                `whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition xl:px-5 ${
                   isActive
                     ? "bg-brand-50 text-brand-700"
                     : "text-ink-700 hover:bg-ink-50 hover:text-ink-900"
@@ -62,17 +61,6 @@ export default function Navbar() {
             </NavLink>
           ))}
         </nav>
-
-        <div className="hidden items-center gap-2 lg:flex">
-          <a
-            href={`tel:+91${site.phoneRaw}`}
-            className="btn-primary !px-5 !py-2.5"
-            aria-label={`Call ${site.phoneDisplay}`}
-          >
-            <Icon name="phone" className="h-4 w-4" />
-            Call us
-          </a>
-        </div>
 
         <div className="flex items-center gap-2 lg:hidden">
           <a
