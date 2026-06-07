@@ -1,8 +1,9 @@
 # The Laundry Bag — Website
 
 **India's Leading Laundry Service Provider.** The official marketing site for
-The Laundry Bag (TLB) — commercial and residential laundry and dry cleaning,
-founded by Shourya Jain, headquartered in Raipur, Chhattisgarh, India.
+The Laundry Bag (TLB) — commercial laundry, dry cleaning and linen management
+for hotels, resorts and hospitals, founded by Shourya Jain, headquartered in
+Raipur, Chhattisgarh, India.
 
 Built with **Vite + React 19 + TypeScript + Tailwind CSS 3**, with SEO handled
 via `react-helmet-async` (per-page titles, descriptions, canonical/hreflang,

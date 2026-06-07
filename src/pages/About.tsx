@@ -4,14 +4,9 @@ import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
-import {
-  companyFacts,
-  counters,
-  founders,
-  site,
-  timeline,
-  whyChooseUs,
-} from "../data/site";
+import Timeline from "../components/Timeline";
+import Leadership from "../components/Leadership";
+import { companyFacts, counters, site, whyChooseUs } from "../data/site";
 
 export default function About() {
   return (
@@ -19,7 +14,7 @@ export default function About() {
       <SEO
         path="/about"
         title="Our Story — founded by Shourya Jain"
-        description="The Laundry Bag was founded in 2013 by Shourya Jain with co-founders Nalin Agarwal and Honey Jain — today a trusted laundry & linen partner for leading hotels and hospitals across India. We are professionals in the laundry and dry-cleaning business."
+        description="The Laundry Bag was founded in 2013 by Shourya Jain in Raipur, Chhattisgarh — today India's Leading Laundry Service Provider and a trusted commercial laundry & linen partner for leading hotels and hospitals across India."
       />
 
       <PageHero
@@ -55,22 +50,22 @@ export default function About() {
           <Reveal>
             <SectionHeading align="left" eyebrow="Our dream" title="Laundry that exceeds expectations" />
             <p className="lead mt-5">
-              We follow a dream — to serve our customers in a way that far
-              exceeds expectations. It is not easy to come home from a hectic
-              day and rush to the nearest laundry with your clothes. So we
-              built an array of services to make things easy for you.
+              We follow a dream — to organise India&apos;s unorganised laundry
+              sector and serve institutions in a way that far exceeds
+              expectations. So we built an array of commercial laundry, linen
+              and dry-cleaning services to take the laundry room off your plate.
             </p>
             <p className="mt-4 text-ink-700">
-              You need not tolerate late deliveries or low standards merged
-              with high prices. Our services cater to all your laundering,
-              ironing, dry cleaning, shoe repairs and upholstery cleaning. Our
-              highly efficient employees ensure you face no difficulty, the
+              Hotels and hospitals need not tolerate late turnarounds or low
+              standards merged with high costs. Our programmes cover guest-room
+              and patient linen, F&amp;B, uniforms, dry cleaning and upholstery.
+              Our highly efficient teams ensure you face no difficulty, the
               technology we use is state of the art, and the service we provide
               is incredibly good.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/services" className="btn-primary">For your Home</Link>
-              <Link to="/commercial" className="btn-secondary">For your Business</Link>
+              <Link to="/commercial" className="btn-primary">Our Services</Link>
+              <Link to="/contact" className="btn-secondary">Talk to our team</Link>
             </div>
           </Reveal>
           <Reveal delay={120}>
@@ -93,63 +88,19 @@ export default function About() {
             eyebrow="Our journey"
             title="From a simple idea to a national network"
           />
-          <ol className="mx-auto mt-12 max-w-3xl space-y-6">
-            {timeline.map((t, i) => (
-              <Reveal key={t.title} delay={i * 60}>
-                <li className="relative rounded-4xl border border-ink-100 bg-white p-6 pl-20 shadow-soft">
-                  <span className="absolute left-6 top-6 inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-gradient text-xs font-bold text-white">
-                    {i + 1}
-                  </span>
-                  <p className="text-xs font-bold uppercase tracking-wider text-brand-600">
-                    {t.year}
-                  </p>
-                  <h3 className="mt-1 font-display text-lg font-bold text-ink-900">
-                    {t.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-ink-600">{t.text}</p>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
+          <Timeline />
         </div>
       </section>
 
-      {/* Founders */}
+      {/* Founder / leadership */}
       <section className="bg-ink-50/60 section">
         <div className="container-page">
           <SectionHeading
             eyebrow="Leadership"
-            title="The people behind The Laundry Bag"
-            description="Started by college friends with a simple promise — never mix a customer's clothes with anyone else's."
+            title="The founder behind The Laundry Bag"
+            description="Built on a simple promise — never mix one client's linen with anyone else's."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {founders.map((p, i) => (
-              <Reveal key={p.name} delay={i * 80}>
-                <article className="card card-hover h-full text-center">
-                  <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-gradient font-display text-xl font-extrabold text-white">
-                    {p.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-bold text-ink-900">{p.name}</h3>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-brand-700">
-                    {p.role}
-                  </p>
-                  <p className="mt-3 text-sm text-ink-600">{p.bio}</p>
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sky2-700 hover:text-sky2-800"
-                  >
-                    <Icon name="linkedin" className="h-4 w-4" />
-                    Profile
-                  </a>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <Leadership />
         </div>
       </section>
 

@@ -4,12 +4,13 @@ import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
-import { clientGroups, ratings, site, testimonials } from "../data/site";
+import ClientWall from "../components/ClientWall";
+import PressStrip from "../components/PressStrip";
+import { clientGroups, ratings, testimonials } from "../data/site";
 
 const sectorIcon: Record<string, string> = {
   Hospitality: "hotel",
   Healthcare: "shield",
-  Retail: "building",
 };
 
 export default function Clients() {
@@ -53,6 +54,20 @@ export default function Clients() {
         </div>
       </section>
 
+      {/* Logo wall */}
+      <section className="section">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Brands that trust us"
+            title="A wall of logos we're proud of"
+            description="Five-star hotels, luxury resorts and major medical centres rely on The Laundry Bag for their linen and laundry."
+          />
+          <Reveal className="mt-12">
+            <ClientWall />
+          </Reveal>
+        </div>
+      </section>
+
       {/* Client groups */}
       <section className="bg-ink-50/60 section">
         <div className="container-page">
@@ -87,29 +102,14 @@ export default function Clients() {
       {/* Press */}
       <section className="section">
         <div className="container-page">
-          <SectionHeading eyebrow="In the press" title="News & coverage" />
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {site.press.map((p, i) => (
-              <Reveal key={p.href} delay={i * 70}>
-                <a
-                  href={p.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="card card-hover flex h-full items-start justify-between gap-4"
-                >
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-brand-700">
-                      {p.source}
-                    </p>
-                    <p className="mt-2 font-display text-lg font-bold text-ink-900">
-                      {p.title}
-                    </p>
-                  </div>
-                  <Icon name="arrow" className="mt-1 h-5 w-5 shrink-0 text-ink-400" />
-                </a>
-              </Reveal>
-            ))}
-          </div>
+          <SectionHeading
+            eyebrow="As featured in"
+            title="In the press"
+            description="Our journey — from organising India's unorganised laundry sector to serving the country's leading hotels and hospitals — covered by the press."
+          />
+          <Reveal className="mt-12">
+            <PressStrip />
+          </Reveal>
         </div>
       </section>
 

@@ -5,6 +5,10 @@ import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import Marquee from "../components/Marquee";
+import IndiaMap from "../components/IndiaMap";
+import CertificationsBand from "../components/CertificationsBand";
+import ServiceAreaChecker from "../components/ServiceAreaChecker";
+import { PressStripBar } from "../components/PressStrip";
 import {
   businessServices,
   clientLogos,
@@ -25,7 +29,7 @@ const heroSegments = [
   "luxury hotels",
   "hospitals & medical centres",
   "resorts & retreats",
-  "homes & walk-ins",
+  "enterprises & institutions",
 ];
 
 function RotatingSegment() {
@@ -51,8 +55,8 @@ export default function Home() {
     <>
       <SEO
         path="/"
-        title="Commercial and Residential Laundry and Dry Cleaning"
-        description="The Laundry Bag runs laundry and linen programmes for luxury hotels, resorts, hospitals and medical centres across India — and on-demand pickup and delivery for homes from our Raipur retail outlet."
+        title="India's Leading Laundry Service Provider"
+        description="The Laundry Bag is India's Leading Laundry Service Provider — commercial laundry, dry-cleaning and linen-management programmes for luxury hotels, resorts, hospitals and medical centres across India. On-premise, off-site or linen-rental models from our Raipur HQ."
       />
 
       {/* ===================== HERO ===================== */}
@@ -62,11 +66,19 @@ export default function Home() {
           aria-hidden="true"
           className="pointer-events-none absolute -right-40 top-0 -z-10 h-[36rem] w-[36rem] rounded-full bg-ink-mesh blur-2xl"
         />
+        {/* Decorative floating bubbles — subtle laundry-day delight */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <span className="absolute left-[8%] top-[22%] h-3 w-3 animate-float rounded-full bg-brand-300/50 [animation-delay:0s]" />
+          <span className="absolute left-[18%] top-[64%] h-5 w-5 animate-float rounded-full bg-sky2-300/40 [animation-delay:1.2s]" />
+          <span className="absolute right-[26%] top-[30%] h-4 w-4 animate-float rounded-full bg-accent-300/40 [animation-delay:0.6s]" />
+          <span className="absolute right-[12%] top-[58%] h-6 w-6 animate-float rounded-full bg-brand-200/50 [animation-delay:2s]" />
+          <span className="absolute left-[46%] top-[12%] h-2.5 w-2.5 animate-float rounded-full bg-sky2-300/50 [animation-delay:1.6s]" />
+        </div>
         <div className="container-page grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:py-28">
           <div className="lg:col-span-6">
             <span className="eyebrow animate-fade-up">
               <Icon name="leaf" className="h-3.5 w-3.5" />
-              Trusted by businesses since {site.founded}
+              India&apos;s Leading Laundry Service Provider
             </span>
             <h1 className="h1 mt-5 animate-fade-up">
               The laundry &amp; linen partner
@@ -74,11 +86,11 @@ export default function Home() {
               for <RotatingSegment />.
             </h1>
             <p className="lead mt-6 max-w-xl animate-fade-up">
-              From leading hotel chains and major hospitals to resorts and
-              medical centres, we run cost-effective, consistent linen and
-              laundry programmes for businesses of every size — plus on-demand
-              pick-up and delivery for homes. We never mix your clothes with
-              anyone else&apos;s.
+              From leading hotel chains and major hospitals to luxury resorts
+              and medical centres, we run cost-effective, consistent commercial
+              laundry and linen programmes for institutions of every size — on
+              your premises, off-site or on a managed linen-rental model. We
+              never mix one client&apos;s linen with anyone else&apos;s.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={`tel:+91${site.phoneRaw}`} className="btn-primary">
@@ -86,14 +98,14 @@ export default function Home() {
                 {site.phoneDisplay}
               </a>
               <Link to="/contact" className="btn-secondary">
-                Schedule a pickup
+                Request a quote
               </Link>
             </div>
             <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-600">
               {[
-                "Free pickup & delivery",
-                "48-hour turnaround",
-                "We do not mix clothes",
+                "On-premise or off-site",
+                "24-hour finish",
+                "We never mix your linen",
               ].map((f) => (
                 <li key={f} className="inline-flex items-center gap-2">
                   <Icon name="check" className="h-4 w-4 text-brand-500" />
@@ -109,22 +121,25 @@ export default function Home() {
               to="/commercial"
               className="group relative block overflow-hidden rounded-4xl bg-brand-gradient p-7 text-white shadow-lift transition hover:-translate-y-1"
             >
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/80">
-                For your Business
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white">
+                <Icon name="hotel" className="h-6 w-6" />
+              </span>
+              <p className="mt-5 text-xs font-bold uppercase tracking-[0.25em] text-white/80">
+                Hotels &amp; Resorts
               </p>
-              <ul className="mt-4 space-y-1.5 font-display text-lg font-semibold leading-tight">
-                <li>Hotel Laundry</li>
-                <li>Hospital Laundry</li>
-                <li>Resorts &amp; Hospitality</li>
-                <li>Linen Rental &amp; Management</li>
+              <ul className="mt-3 space-y-1.5 font-display text-lg font-semibold leading-tight">
+                <li>Guest-room linen</li>
+                <li>F&amp;B &amp; banquet</li>
+                <li>Spa &amp; uniforms</li>
+                <li>Linen rental</li>
               </ul>
               <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold">
-                Explore B2B
+                Explore hospitality
                 <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
               </span>
             </Link>
             <Link
-              to="/services"
+              to="/commercial"
               className="group relative block overflow-hidden rounded-4xl bg-ink-900 p-7 text-white shadow-lift transition hover:-translate-y-1"
             >
               <div
@@ -132,16 +147,20 @@ export default function Home() {
                 className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-70"
               />
               <div className="relative">
-                <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/70">
-                  For your Home
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white">
+                  <Icon name="shield" className="h-6 w-6" />
+                </span>
+                <p className="mt-5 text-xs font-bold uppercase tracking-[0.25em] text-white/70">
+                  Hospitals &amp; Healthcare
                 </p>
-                <ul className="mt-4 space-y-1.5 font-display text-lg font-semibold leading-tight">
-                  <li>Laundry</li>
-                  <li>Dry Clean</li>
-                  <li>On Site Cleaning</li>
+                <ul className="mt-3 space-y-1.5 font-display text-lg font-semibold leading-tight">
+                  <li>Infection-safe linen</li>
+                  <li>Patient &amp; theatre linen</li>
+                  <li>On-premise units</li>
+                  <li>Managed logistics</li>
                 </ul>
                 <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold">
-                  Explore home
+                  Explore healthcare
                   <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
                 </span>
               </div>
@@ -151,11 +170,12 @@ export default function Home() {
 
         {/* Trust bar */}
         <div className="border-y border-ink-100 bg-white/70 backdrop-blur">
-          <div className="container-page py-6">
+          <div className="container-page py-8">
             <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.2em] text-ink-400">
               Trusted by India&apos;s leading hotels &amp; hospitals
             </p>
             <Marquee items={clientLogos} durationSeconds={46} />
+            <PressStripBar className="mt-8 border-t border-ink-100 pt-8" />
           </div>
         </div>
       </section>
@@ -165,7 +185,7 @@ export default function Home() {
         <div className="container-page">
           <SectionHeading
             eyebrow="What we do"
-            title="Three ways we take laundry off your plate"
+            title="Three ways we take linen off your plate"
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {homeServices.map((s, i) => (
@@ -216,7 +236,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Why TLB"
             title="The details other laundries skip"
-            description="The promises we have kept since day one — and the reason hotels, hospitals and homes stay with us."
+            description="The promises we have kept since day one — and the reason hotels, hospitals and resorts stay with us."
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {usps.map((u, i) => (
@@ -240,8 +260,8 @@ export default function Home() {
       <section className="section">
         <div className="container-page">
           <SectionHeading
-            eyebrow="How it works"
-            title="Clean clothes in 4 easy steps"
+            eyebrow="How we partner"
+            title="From first call to fully managed in 4 steps"
           />
           <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {howItWorks.map((s, i) => (
@@ -260,14 +280,6 @@ export default function Home() {
               </Reveal>
             ))}
           </ol>
-          <Reveal className="mt-12 flex justify-center">
-            <img
-              src="/images/process.png"
-              alt="The Laundry Bag — How we do it: pickup, sort, treat, wash, dry, iron, fold, deliver"
-              className="h-auto w-full max-w-3xl"
-              loading="lazy"
-            />
-          </Reveal>
         </div>
       </section>
 
@@ -314,7 +326,7 @@ export default function Home() {
         <div className="container-page">
           <SectionHeading
             eyebrow="Who we serve"
-            title="From a single home to a 100-bed hospital"
+            title="From a boutique resort to a 100-bed hospital"
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {whoWeServe.map((w, i) => (
@@ -331,6 +343,35 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===================== WHERE WE OPERATE ===================== */}
+      <section className="section bg-ink-mesh">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Where we operate"
+            title="Trusted across 20+ Indian cities"
+            description="Headquartered in Raipur, we run laundry and linen programmes for leading hotels, resorts and hospitals nationwide."
+          />
+          <Reveal className="mt-12">
+            <IndiaMap variant="compact" />
+          </Reveal>
+          <Reveal className="mx-auto mt-10 max-w-2xl">
+            <ServiceAreaChecker />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ===================== STANDARDS & EQUIPMENT ===================== */}
+      <section className="section">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Standards & equipment"
+            title="Certified, equipped and accountable"
+            description="The standards, machinery and promises that make us a dependable partner for hotels and hospitals."
+          />
+          <CertificationsBand className="mt-12" />
         </div>
       </section>
 
@@ -457,11 +498,12 @@ export default function Home() {
             />
             <div className="relative mx-auto max-w-2xl">
               <h2 className="h2 text-white">
-                Ready for laundry day to take care of itself?
+                Ready to take linen off your operation&apos;s plate?
               </h2>
               <p className="lead mt-4 text-white/80">
-                Call us or book online — free pickup, 48-hour turnaround,
-                and clothes that are never mixed with anyone else&apos;s.
+                Call us or request a proposal — on-premise, off-site or
+                linen-rental, with a 24-hour finish and linen that is never
+                mixed with anyone else&apos;s.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <a href={`tel:+91${site.phoneRaw}`} className="btn-primary">

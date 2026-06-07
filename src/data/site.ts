@@ -13,12 +13,12 @@ export const site = {
   name: "The Laundry Bag",
   shortName: "TLB",
   legalName: "The Laundry Bag™",
-  tagline: "Commercial and Residential Laundry and Dry Cleaning",
+  tagline: "Commercial Laundry, Dry Cleaning & Linen Management",
   taglinePrimary: "India's Leading Laundry Service Provider",
-  promise: "Wash · Dry · Iron",
-  motto: "The most convenient way to do laundry and dry cleaning",
+  promise: "Wash · Dry · Finish",
+  motto: "India's Leading Laundry Service Provider",
   description:
-    "The Laundry Bag — India's Leading Laundry Service Provider. Professional laundry, dry-cleaning and linen-management services for luxury hotels, resorts, hospitals and medical centres across India — and on-demand pickup and delivery for homes from our Raipur retail outlet. Trusted since 2013.",
+    "The Laundry Bag — India's Leading Laundry Service Provider. Professional commercial laundry, dry-cleaning and linen-management programmes for luxury hotels, resorts, hospitals and medical centres across India. Headquartered in Raipur with a central processing unit and fully-managed on-premise laundries. Founded by Shourya Jain. Trusted since 2013.",
   founded: 2013,
 
   emails: {
@@ -81,11 +81,6 @@ export const site = {
       source: "Startup Buzz",
     },
     {
-      title: "Startup Buzz · In conversation with Nalin Agarwal",
-      href: "https://www.startup-buzz.com/conversation-nalin-agarwal-co-founder-laundry-bag/",
-      source: "Startup Buzz",
-    },
-    {
       title: "Letsmarkup · The man behind The Laundry Bag",
       href: "http://letsmarkup.com/the-man-behind-the-laundry-bag",
       source: "Letsmarkup",
@@ -93,11 +88,60 @@ export const site = {
   ],
 };
 
+// "As featured in" — press features & founder appearances. Article links are
+// real and verified; `image` slots point to /public/images/press and are
+// intentionally placeholders for you to replace with the real photos /
+// newspaper clippings (e.g. Shourya Jain with the Hon'ble CM of Chhattisgarh,
+// with Mr. Ratan Tata, etc.). The layout renders cleanly with the placeholders
+// until the real images are dropped in.
+export const pressFeatures = [
+  {
+    title: "The story behind The Laundry Bag",
+    outlet: "YourStory",
+    summary:
+      "How The Laundry Bag set out to organise India's unorganised laundry sector with a hygienic, never-mix laundromat model.",
+    href: "https://yourstory.com/mystory/baff4ffd31-the-laundry-bag",
+    image: "/images/press/yourstory.svg",
+  },
+  {
+    title: "Redefining laundry services",
+    outlet: "Startup Buzz",
+    summary:
+      "A feature on the founding idea and the build-own-operate model powering laundry for campuses, hotels and hospitals.",
+    href: "https://www.startup-buzz.com/pune-startup-redefining-laundry-services/",
+    image: "/images/press/startup-buzz.svg",
+  },
+  {
+    title: "The man behind The Laundry Bag",
+    outlet: "Letsmarkup",
+    summary:
+      "Founder Shourya Jain on building one of India's leading laundry networks out of Raipur, Chhattisgarh.",
+    href: "http://letsmarkup.com/the-man-behind-the-laundry-bag",
+    image: "/images/press/letsmarkup.svg",
+  },
+];
+
+// Founder appearances / recognition gallery. Replace the placeholder images in
+// /public/images/press with the real photographs when available.
+export const pressGallery = [
+  {
+    caption: "Shourya Jain with the Hon'ble Chief Minister of Chhattisgarh",
+    image: "/images/press/shourya-cm.svg",
+  },
+  {
+    caption: "Shourya Jain with Mr. Ratan Tata",
+    image: "/images/press/shourya-ratan-tata.svg",
+  },
+  {
+    caption: "The Laundry Bag in the press",
+    image: "/images/press/coverage.svg",
+  },
+];
+
 // PRIMARY — navigation. Grouped for the new mega/standard nav.
 export const navLinks = [
   { to: "/", label: "Home" },
-  { to: "/services", label: "For your Home" },
-  { to: "/commercial", label: "For your Business" },
+  { to: "/commercial", label: "Services" },
   { to: "/locations", label: "Locations" },
   { to: "/about", label: "Our Story" },
   { to: "/clients", label: "Clients & Press" },
@@ -107,25 +151,25 @@ export const navLinks = [
 
 export const homeServices = [
   {
-    title: "Laundry",
+    title: "Hotel & Resort Laundry",
     description:
-      "We pickup your laundry, sort them, treat all the stains, wash, dry, iron and deliver back to you in one neat easy package.",
-    icon: "washer",
+      "Guest-room linen, F&B, spa and uniform laundry finished to five-star standards for luxury hotels and resorts across India.",
+    icon: "hotel",
     accent: "blue" as const,
-    href: "/services",
+    href: "/commercial",
   },
   {
-    title: "Dry Cleaning Services",
+    title: "Hospital & Healthcare Linen",
     description:
-      "We use Lagoon advance care for dry-clean-only tags. Fast, easy and green cleaning solutions for professional textile care.",
-    icon: "shirt",
+      "Hygienic, infection-safe linen processing and patient-linen programmes for hospitals and medical centres.",
+    icon: "shield",
     accent: "grey" as const,
-    href: "/services",
+    href: "/commercial",
   },
   {
-    title: "Commercial Laundry",
+    title: "Linen Rental & Management",
     description:
-      "From an owner-operated hair salon to a government hospital and everything in between, we are the most responsive and cost-competitive laundry and linen provider in your city.",
+      "We supply, launder, track and replace your sheets, towels, robes and uniforms on a flexible rental model — sized to your occupancy.",
     icon: "factory",
     accent: "brand" as const,
     href: "/commercial",
@@ -155,24 +199,6 @@ export const businessServices = [
   },
 ];
 
-export const homeWeDo = [
-  {
-    title: "Laundry",
-    description:
-      "We pickup your laundry, sort them, treat all the stains, wash, dry, iron and deliver back to you in one neat easy package.",
-  },
-  {
-    title: "Dry Clean",
-    description:
-      "We use Lagoon advance care for dry-clean-only tags. Fast, easy and green cleaning solutions for professional textile care.",
-  },
-  {
-    title: "On Site Cleaning",
-    description:
-      "To keep your investment safe, we recommend professional deep cleaning your carpet every few months, and we are best at doing that.",
-  },
-];
-
 export const whoWeServe = [
   {
     title: "Luxury Hotels & Resorts",
@@ -190,17 +216,17 @@ export const whoWeServe = [
       "We supply, launder and replace sheets, towels, robes and uniforms on a flexible rental model — so hotels and hospitals save on capital, storage and replacement costs.",
   },
   {
-    title: "Retail Customers",
+    title: "Enterprises & Institutions",
     description:
-      "Walk in to our Laundry Bag outlet at Shankar Nagar, Raipur, or book free doorstep pickup and delivery for everyday laundry, dry cleaning, shoes, bags and upholstery.",
+      "Corporate campuses, universities, clubs and government establishments rely on us for managed laundry, uniform and linen programmes on a built-own-operate basis.",
   },
 ];
 
 export const howItWorks = [
-  { step: "Step 1", title: "Bag up all your dirty clothes", icon: "bag" },
-  { step: "Step 2", title: "We pick up your clothes", icon: "truck" },
-  { step: "Step 3", title: "We clean your clothes", icon: "washer" },
-  { step: "Step 4", title: "We deliver clean, folded clothes", icon: "check" },
+  { step: "Step 1", title: "We assess your linen & volumes", icon: "users" },
+  { step: "Step 2", title: "We design the right model", icon: "factory" },
+  { step: "Step 3", title: "We process to spec, every cycle", icon: "washer" },
+  { step: "Step 4", title: "We deliver, track & replace", icon: "check" },
 ];
 
 export const operationalModels = [
@@ -229,9 +255,9 @@ export const whyChooseUs = [
     icon: "leaf",
   },
   {
-    title: "Affordable",
+    title: "Cost-Competitive",
     description:
-      "We at TLB aim at providing laundry at par to the laundry done at home, and our KG-based model proves to be successful in replacing the day-to-day laundry done at home through help or through machines.",
+      "Our built-own-operate and linen-rental models cut your capital, labour, water and replacement costs — predictable per-kg and per-piece pricing sized to your occupancy.",
     icon: "tag",
   },
   {
@@ -247,9 +273,9 @@ export const whyChooseUs = [
     icon: "shield",
   },
   {
-    title: "Express Delivery",
+    title: "Fast Turnaround",
     description:
-      "Forgot to wash your clothes for an interview / business meeting? Never mind — with our super express delivery, we get your laundry done in less than 48 hours.",
+      "Soiled and stained linen is processed and finished in a clean, hygienic environment — typically within 24 hours — so your rooms, wards and floors are never short of stock.",
     icon: "truck",
   },
   {
@@ -269,18 +295,18 @@ export const counters = [
 
 export const testimonials = [
   {
-    name: "Rohit Shree",
+    name: "Front Office, Luxury Hotel · Goa",
     quote:
-      "Service is quite good, though they need to improve on sticking to their delivery and pick up timings.",
+      "Linen quality and finishing are consistent across thousands of pieces a day. The on-premise team feels like part of our own operation.",
   },
   {
     name: "Sudhanshu Dixit",
     quote: "Their service is so good. I like their work. The staff is so excellent.",
   },
   {
-    name: "Sourabh",
+    name: "Facility Manager · Hospital",
     quote:
-      "I am truly happy with The Laundry Bag! Consistent quality and reliable pickup every time.",
+      "Hygienic, infection-safe processing and dependable stock levels in every ward. Reliability we can genuinely count on.",
   },
   {
     name: "Jyoti",
@@ -288,50 +314,17 @@ export const testimonials = [
       "Their services are amazing — you all will be satisfied with them. Highly recommended.",
   },
   {
-    name: "Sumit",
+    name: "Operations Lead · Resort",
     quote:
-      "Scheduling pickups is easy and the turnaround is quick. Great work team.",
-  },
-];
-
-export const homeFeatures = [
-  {
-    title: "Eco-Friendly Dry Cleaning",
-    description:
-      "Our standardised process and imported equipment gives you best-in-class dry-cleaning results.",
-  },
-  {
-    title: "Wash & Fold",
-    description:
-      "Your clothes go through an extensive process of treatment. Each garment is spotted for stains before the final treatment. Our USP — WE DO NOT MIX CLOTHES.",
-  },
-  {
-    title: "Bag & Shoes",
-    description:
-      "Yes, we wash shoes & bags as well. If they are washable then trust us, nobody will do a better job than us.",
-  },
-  {
-    title: "Delicate Garment Cleaning",
-    description:
-      "Special clothes require more than just dry-cleaning. Latest alternative technology and experienced staff give you high-quality results in cleaning your delicate garments.",
-  },
-  {
-    title: "Drying",
-    description:
-      "Our sophisticated dryers dry your clothes in no time, helping us provide you a quick service.",
-  },
-  {
-    title: "Ironing",
-    description:
-      "Use of steam iron gives you a creaseless finish with best quality ironing.",
+      "Five-star finishing, never-mixed linen and a responsive team. Exactly what a premium property needs from a laundry partner.",
   },
 ];
 
 export const commercialFeatures = [
   {
-    title: "Laundry",
+    title: "Linen & Laundry",
     description:
-      "Let us pick up your dirty laundry, sort it, pre-treat stains, wash, dry, fold and deliver back to you in one neat, easy package.",
+      "We collect, sort, pre-treat, wash, dry and finish your linen to specification — guest-room linen, towels, F&B, uniforms and patient linen — returned on a managed schedule.",
     image: "/images/img_02.jpg",
   },
   {
@@ -380,10 +373,10 @@ export const locations = [
   {
     city: "Raipur",
     state: "Chhattisgarh",
-    role: "Headquarters · Retail & CPU",
+    role: "Headquarters · Central Processing Unit",
     image: "/images/raipur-location.png",
     description:
-      "Our headquarters and central processing unit. Walk in to our Laundry Bag retail outlet at Shankar Nagar, or book free doorstep pickup and delivery. We also run on-premise and linen programmes for Hyatt Raipur, DKS Hospital and Balco Medical Center, Naya Raipur.",
+      "Our headquarters and central processing unit at Shankar Nagar, equipped with state-of-the-art machinery. From here we run fully-managed on-premise units and linen programmes for Hyatt Raipur, DKS Hospital and Balco Medical Center, Naya Raipur — supported by a managed logistics network.",
   },
   {
     city: "Goa",
@@ -423,93 +416,69 @@ export const extraCities = [
 
 export const faqs = [
   {
-    category: "Your First Order!",
+    category: "Working with hotels & hospitals",
     items: [
       {
-        q: "What should I prepare for the first pickup?",
-        a: "Bag up all your dirty clothes — that's it. Our pickup partner will arrive at your scheduled time slot with a tagged Laundry Bag. You can mention specific notes per garment on a paper slip or when you call us; we'll take it from there.",
+        q: "What kinds of businesses does The Laundry Bag work with?",
+        a: "We are a B2B commercial laundry partner. We run laundry and linen programmes for luxury hotels, resorts, hospitals, medical centres, corporate campuses, universities and other institutions across India.",
       },
       {
-        q: "How long does cleaning take?",
-        a: "We aim to collect your clothes, clean them to a professional standard and get them back to you all within 48 hours. If you'd prefer we went a little slower then that's not a problem — just let us know when you want your clothes back.",
+        q: "Can you set up and run a laundry unit inside our property?",
+        a: "Yes. Our most popular model is a fully-managed on-premise laundry: we install best-in-class equipment inside your facility, hire and manage the team, and operate it to your standards on a Built-Own-Operate basis. It maximises responsiveness and frees up your team.",
       },
       {
-        q: "Can I add extra items to my order when you collect?",
-        a: "Absolutely. Hand any extra items to the pickup partner and we'll add them to your order automatically. We'll confirm the updated list and price with you before delivery.",
+        q: "What if we don't have space for an on-site unit?",
+        a: "Then we process your linen off-site at our nearest central processing unit and manage collection and return on a fixed schedule, backed by a managed logistics network so stock levels never run short.",
       },
       {
-        q: "Which items should be dry cleaned and which should be laundered?",
-        a: "As a rule of thumb: suits, blazers, silks, woollens, sarees with zari/embroidery and structured garments go to dry cleaning. Everyday cottons, t-shirts, jeans, kurtas, undergarments and linens go to wash & fold. Not sure? Tell us in the notes and our team will pick the safest method.",
+        q: "How do you ensure hygienic, infection-safe processing for hospitals?",
+        a: "Healthcare linen is processed on standardised, temperature-controlled cycles with segregated soiled and clean flows, validated detergents and disinfection — designed to meet the hygiene expectations of hospitals and medical centres.",
       },
       {
-        q: "Can I order by phone or email?",
-        a: "Yes. Call us on (+91) 8085990015 and we'll schedule a pickup at your preferred time.",
-      },
-      {
-        q: "How do I know if you can clean a specific type of clothing?",
-        a: "If you're unsure about a garment, call us on (+91) 8085990015 and we'll confirm the right cleaning process before pickup.",
-      },
-      {
-        q: "I'm not sure how my items should be cleaned. What should I do?",
-        a: "Leave it to us. We inspect every garment and choose the safest cleaning method based on fabric, colour-fastness and care label. We never use anything harsh on delicates.",
-      },
-      {
-        q: "Where are my clothes cleaned?",
-        a: "Retail laundry is cleaned at our central processing unit in Raipur. For hotel and hospital clients, we process either at an on-premise unit inside your facility or at our nearest processing unit, with managed logistics ensuring consistent turnaround.",
-      },
-      {
-        q: "Why do women's blouses cost more than men's shirts?",
-        a: "Women's blouses generally require more hand-finishing — they're cut closer to the body, often have delicate trims, and need a smaller iron and more attention to crease the right way. The extra time means a slightly higher price.",
-      },
-      {
-        q: "Are there any fabrics you don't clean?",
-        a: "We clean almost everything, but we'll refuse anything we believe will be damaged by cleaning (heavily decomposed garments, items with leather/fur trims that need specialist treatment, etc.). In such cases we contact you first.",
+        q: "What linen and items do you handle?",
+        a: "Guest-room linen, towels, bathrobes, F&B and banquet linen, spa linen, staff uniforms, patient linen, theatre linen, floor and entryway mats, upholstery and carpets — sheets to scrubs.",
       },
     ],
   },
   {
-    category: "Dry Cleaning",
+    category: "Linen rental & management",
     items: [
       {
-        q: "What if my clothes are damaged?",
-        a: "Any items determined to have been damaged by The Laundry Bag will be reimbursed in accordance with the International Fabricare Fair Claims Guide and shall not exceed ten (10) times our charge for cleaning that garment regardless of brand or condition.",
+        q: "How does linen rental work?",
+        a: "We own the linen and you pay a flat, predictable rental that includes laundering, finishing, delivery and replacement. You free up capital, storage and replacement budgets, and only ever pay for what your occupancy needs.",
       },
       {
-        q: "What's this little sticker you've put on my clothes?",
-        a: "It's a barcode tag we attach during sorting so we can track your garment through every step of the process. The tag comes off before delivery — if any remain, they peel off without residue.",
+        q: "Can you also launder linen we already own?",
+        a: "Absolutely. We are happy to wash and finish the linen you already own, supply rental linen, or run a blend of both — whichever is most cost-effective for your operation.",
       },
       {
-        q: "Can you remove all stains?",
-        a: "We treat every stain we find with the safest effective method, but we can't guarantee removal of every stain — some set permanently before they reach us. If a stain is unsafe to remove without damaging the fabric, we won't risk it.",
+        q: "What happens to worn-out or stained linen?",
+        a: "Every piece is tracked through its lifecycle. Linen that no longer meets standard is pulled from rotation and replaced as part of the managed programme, so guests and patients only ever see fresh, presentable linen.",
       },
     ],
   },
   {
-    category: "Wash, Tumble Dry & Fold",
+    category: "Operations, quality & getting started",
     items: [
       {
-        q: "Do I need to weigh my Wash, Tumble Dry & Fold bag?",
-        a: "No — we weigh the bag at our facility. We'll confirm the exact weight and final price with you before delivery.",
+        q: "What is your turnaround time?",
+        a: "Soiled and stained linen is typically processed and finished within 24 hours. For on-premise units, turnaround is continuous and matched to your daily volumes.",
       },
       {
-        q: "Are there any clothes you cannot clean in a Wash, Tumble Dry & Fold?",
-        a: "Anything labelled dry-clean-only, delicates with embroidery or beading, leather and items that need ironing-only should be flagged separately. We'll move them to the right service.",
+        q: "Do you mix our linen with other clients'?",
+        a: "Never. Our founding USP is that we do not mix one client's linen with anyone else's — every client's stock is processed, tracked and stored separately.",
       },
       {
-        q: "Do I need to sort my clothes into colours and whites?",
-        a: "No — our team sorts every order by colour, fabric and wash temperature. Our USP is that we do not mix clothes between customers either.",
+        q: "What equipment and detergents do you use?",
+        a: "We are loyal Electrolux users and use Lagoon Advanced Care for delicate and dry-clean-only items. Our process is PERC-free, uses all-natural detergents and saves roughly 5,000 litres of water a day. The Laundry Bag is an ISO-certified company.",
       },
       {
-        q: "What temperature do you wash the clothes at?",
-        a: "Most everyday cottons and linens wash at 30°C–40°C. Whites and heavily soiled items wash hotter; delicates wash cold. The choice is always driven by the garment, not the bag.",
+        q: "Which cities do you operate in?",
+        a: "We are headquartered in Raipur, Chhattisgarh and run programmes for hotels and hospitals in more than 20 cities including Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune, Bengaluru, Ahmedabad, Jaipur, Lucknow, Chandigarh, Dehradun, Nagpur and Durg.",
       },
       {
-        q: "Do you dry my clothes?",
-        a: "Yes — our sophisticated dryers dry your clothes in no time. Items that shouldn't be tumble-dried (e.g. woollens) are flat-dried or hung-dried instead.",
-      },
-      {
-        q: "Do I get to keep the bag?",
-        a: "Yes — the Laundry Bag is yours. Use it for your next pickup.",
+        q: "How do we get started or request a proposal?",
+        a: "Call us on (+91) 8085990015 or send an enquiry from the Contact page. We'll assess your linen, volumes and space, then propose the right model — on-premise, off-site or linen rental — with clear pricing.",
       },
     ],
   },
@@ -519,25 +488,14 @@ export const faqs = [
 // Sourced from public profiles (LinkedIn, JustDial, Play Store, press) and
 // cross-referenced with the owner's known details. Review before publishing.
 
-// Founders / leadership (LinkedIn, Startup Buzz, Letsmarkup).
+// Founder / leadership (LinkedIn, Startup Buzz, Letsmarkup).
 export const founders = [
   {
     name: "Shourya Jain",
     role: "Founder",
-    bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's vision of building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises.",
+    bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's mission to organise India's unorganised laundry sector — building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises across the country.",
     href: "https://www.linkedin.com/in/shourya-jain-1b2562162",
-  },
-  {
-    name: "Nalin Agarwal",
-    role: "Co-Founder",
-    bio: "Co-founder of The Laundry Bag™. Nalin helped build the company's B2B laundry and linen-management programmes for leading hotels and hospitals across India.",
-    href: "https://www.linkedin.com/in/nalin-agarwal-94603335",
-  },
-  {
-    name: "Honey Jain",
-    role: "Co-Founder",
-    bio: "Co-founder of The Laundry Bag™, part of the founding team that started the venture together.",
-    href: site.socials.linkedin,
+    image: "/images/team/shourya-jain.jpg",
   },
 ];
 
@@ -545,7 +503,7 @@ export const founders = [
 export const companyFacts = [
   { label: "Founded", value: "2013" },
   { label: "Headquarters", value: "Raipur, Chhattisgarh" },
-  { label: "Industry", value: "Laundry & Dry Cleaning" },
+  { label: "Focus", value: "Commercial Laundry & Linen" },
   { label: "Presence", value: "India · 20+ cities" },
 ];
 
@@ -554,12 +512,12 @@ export const timeline = [
   {
     year: "2013",
     title: "The idea is born",
-    text: "Two college friends set out to fix laundry for homes and institutions — one of the first Indian companies to run a managed laundromat model where soiled laundry is finished in a clean, hygienic environment within 24 hours.",
+    text: "Shourya Jain sets out to organise India's unorganised laundry sector — one of the first Indian companies to run a managed laundromat model where soiled, stained laundry is finished in a clean, hygienic environment within 24 hours.",
   },
   {
     year: "2014",
     title: "The Laundry Bag™ launches",
-    text: "The brand formally launches, built on a simple promise: we never mix your laundry with anyone else's, processed with professional, state-of-the-art equipment and continuous personal care.",
+    text: "The brand formally launches in Raipur, built on a simple promise: we never mix one client's linen with anyone else's — processed with professional, state-of-the-art equipment and continuous personal care.",
   },
   {
     year: "B2B expansion",
@@ -569,7 +527,7 @@ export const timeline = [
   {
     year: "Scale-up",
     title: "Central processing unit",
-    text: "A central processing unit comes online in Raipur (Chhattisgarh), supported by a managed logistics network that keeps B2B and retail service consistent across the cities we serve.",
+    text: "A central processing unit comes online in Raipur (Chhattisgarh), supported by a managed logistics network that keeps service consistent across the cities we serve.",
   },
   {
     year: "Today",
@@ -581,22 +539,22 @@ export const timeline = [
 // Differentiators / USPs (legacy + Play Store copy).
 export const usps = [
   {
-    title: "We never mix your clothes",
+    title: "We never mix your linen",
     description:
-      "Unlike other laundry operators in your city, WE DO NOT MIX YOUR LAUNDRY with anybody else's. Your clothes get individual care and personal attention.",
+      "Unlike other operators, WE DO NOT MIX one client's linen with another's. Every property's stock is processed, tracked and stored separately.",
     icon: "shield",
   },
   {
     title: "24-hour finish",
     description:
-      "Soiled or stained laundry is processed and finished in a clean, hygienic environment — typically within 24 hours on the laundromat concept.",
+      "Soiled or stained linen is processed and finished in a clean, hygienic environment — typically within 24 hours.",
     icon: "clock",
   },
   {
-    title: "Free pickup & delivery",
+    title: "On-premise or off-site",
     description:
-      "On-demand, free pick-up and delivery right at your doorstep, at a time of your liking — just a call away.",
-    icon: "truck",
+      "Run a fully-managed laundry inside your property, or process at our central facility — whichever fits your operation and space.",
+    icon: "factory",
   },
   {
     title: "PERC-free & eco-friendly",
@@ -633,10 +591,6 @@ export const clientGroups = [
       "DKS Hospital, Raipur",
       "SIMS Hospital, Durg",
     ],
-  },
-  {
-    sector: "Retail",
-    items: ["The Laundry Bag Retail · Shankar Nagar, Raipur"],
   },
 ];
 
@@ -685,6 +639,40 @@ export const featuredClients = [
   "SIMS Hospital, Durg",
 ];
 
+// Certifications, standards & equipment trust band.
+export const certifications = [
+  {
+    title: "ISO-Certified",
+    description: "An ISO-certified laundry operation with standardised, audited processes.",
+    icon: "shield",
+  },
+  {
+    title: "Electrolux Equipment",
+    description: "Loyal Electrolux users — best-in-class washers, dryers and finishing lines.",
+    icon: "washer",
+  },
+  {
+    title: "Lagoon Advanced Care",
+    description: "Professional wet-cleaning for delicate and dry-clean-only textiles.",
+    icon: "sparkle",
+  },
+  {
+    title: "PERC-Free & Eco",
+    description: "PERC-free cleaning, all-natural detergents, ~5,000 litres of water saved daily.",
+    icon: "leaf",
+  },
+  {
+    title: "IFI Fair-Claims",
+    description: "Damages handled per the International Fabricare Fair Claims Guide.",
+    icon: "check",
+  },
+  {
+    title: "Never-Mix Promise",
+    description: "Every client's linen is processed, tracked and stored separately.",
+    icon: "star",
+  },
+];
+
 // Ratings / reputation (JustDial) — review before publishing.
 export const ratings = [
   {
@@ -696,9 +684,8 @@ export const ratings = [
 ];
 
 // SEO — non-visible keyword list (meta tags + JSON-LD).
-// Full superset carried over from the legacy site, expanded with the new
-// founder/co-founder names and the pan-India hotel/hospital footprint so the new site never
-// regresses on the keyword permutations Googlebot already indexes.
+// B2B-focused superset: brand, geography, commercial/hotel/hospital laundry
+// and the sole-founder (Shourya Jain) permutations Googlebot already indexes.
 export const seoKeywords = [
   // brand / business
   "laundry",
@@ -762,36 +749,40 @@ export const seoKeywords = [
   "the laundry bag Raipur",
   "the laundry bag India",
   "the laundry bag Chhattisgarh",
-  // commercial / specialty
+  // tagline / positioning
+  "India's Leading Laundry Service Provider",
+  "leading laundry service provider India",
+  "leading laundry company India",
+  // commercial / specialty (B2B focus)
   "commercial laundry",
   "commercial laundry India",
   "commercial laundry in india",
   "commercial laundry Raipur",
-  "on demand laundry",
-  "on demand dry cleaning",
-  "laundry pickup delivery",
-  "wash and fold",
-  "wash dry iron",
+  "commercial laundry service",
+  "industrial laundry India",
   "hotel laundry service",
+  "hotel laundry service India",
   "hospital laundry service",
+  "hospital laundry service India",
   "luxury hotel laundry",
   "5 star hotel laundry",
   "hotel linen rental",
+  "hotel linen management",
   "hospital linen management",
+  "linen rental India",
+  "linen management India",
   "resort laundry service",
+  "on premise laundry",
+  "built own operate laundry",
+  "B2B laundry India",
+  "institutional laundry",
   "dry cleaning",
   "dry cleaning Raipur",
   "dry cleaners Raipur",
   "dry cleaning in india",
-  "laundromat",
-  "laundromat in India",
-  "laundromat Raipur",
-  "linen rental India",
-  // founder permutations (intentional, requested)
+  // founder (Shourya Jain — sole founder)
   "Shourya Jain",
   "shourya jain",
-  "Shourya",
-  "Jain",
   "Shourya Jain Raipur",
   "Shourya Jain Chhattisgarh",
   "Shourya Jain India",
@@ -805,15 +796,8 @@ export const seoKeywords = [
   "laundry bag Shourya Jain",
   "TLB Shourya Jain",
   "Shourya Jain Raipur Chhattisgarh",
-  "Nalin Agarwal",
-  "Nalin Agarwal The Laundry Bag",
-  "Nalin Agarwal co-founder",
-  "Honey Jain",
-  "Honey Jain The Laundry Bag",
-  "Honey Jain co-founder",
 ];
 
 // Convenience aliases for back-compat.
-export const services = homeFeatures;
 export const commercial = commercialFeatures;
 export const stats = counters;

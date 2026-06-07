@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { site } from "../data/site";
 import Logo from "./Logo";
 import Icon from "./Icon";
+import TemplateSwitcher from "./TemplateSwitcher";
 
 const socials = [
   { href: site.socials.facebook, label: "Facebook", icon: "facebook" },
@@ -17,8 +18,9 @@ export default function Footer() {
         <div>
           <Logo className="h-14 w-auto sm:h-16" />
           <p className="mt-4 max-w-xs text-sm text-ink-600">
-            On-demand laundry and dry cleaning for homes, students, hotels,
-            hospitals and businesses across India since {site.founded}.
+            India&apos;s Leading Laundry Service Provider — commercial laundry,
+            dry cleaning and linen management for hotels, resorts and hospitals
+            across India since {site.founded}.
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-2.5">
             {socials.map((s) => (
@@ -42,13 +44,12 @@ export default function Footer() {
             Company
           </h4>
           <ul className="mt-4 space-y-2 text-sm text-ink-700">
+            <li><Link className="hover:text-brand-700" to="/commercial">Services</Link></li>
             <li><Link className="hover:text-brand-700" to="/about">Our Story</Link></li>
-            <li><Link className="hover:text-brand-700" to="/services">For your Home</Link></li>
-            <li><Link className="hover:text-brand-700" to="/commercial">For your Business</Link></li>
             <li><Link className="hover:text-brand-700" to="/locations">Locations</Link></li>
             <li><Link className="hover:text-brand-700" to="/clients">Clients &amp; Press</Link></li>
             <li><Link className="hover:text-brand-700" to="/faq">FAQ</Link></li>
-            <li><Link className="hover:text-brand-700" to="/comparison">Old vs New</Link></li>
+            <li><Link className="hover:text-brand-700" to="/contact">Contact</Link></li>
             <li><Link className="hover:text-brand-700" to="/privacy-policy">Privacy Policy</Link></li>
           </ul>
         </div>
@@ -74,9 +75,10 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-ink-100">
-        <div className="container-page flex flex-col items-start justify-between gap-3 py-6 text-xs text-ink-500 sm:flex-row sm:items-center">
+        <div className="container-page flex flex-col items-start justify-between gap-4 py-6 text-xs text-ink-500 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} {site.legalName}. All Rights Reserved.</p>
-          <p>{site.motto}</p>
+          <p className="order-last sm:order-none">{site.motto}</p>
+          <TemplateSwitcher />
         </div>
       </div>
     </footer>

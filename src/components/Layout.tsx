@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import ScrollProgress from "./ScrollProgress";
 import { site } from "../data/site";
 
 export default function Layout() {
@@ -13,32 +14,34 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <ScrollProgress />
       <h1 className="sr-only">
-        The Laundry Bag (TLB) — Commercial and Residential Laundry, Dry
-        Cleaning &amp; Laundromat Services in Raipur, Chhattisgarh and across
-        India · Founded by Shourya Jain
+        The Laundry Bag (TLB) — India&apos;s Leading Laundry Service Provider ·
+        Commercial Laundry, Dry Cleaning &amp; Linen Management for Hotels &amp;
+        Hospitals in Raipur, Chhattisgarh and across India · Founded by Shourya
+        Jain
       </h1>
       <p className="sr-only">
-        The Laundry Bag (TLB) is one of India&apos;s leading on-demand laundry
-        and dry-cleaning services, founded in {site.founded} by Shourya Jain in
-        Raipur, Chhattisgarh, with co-founders Nalin Agarwal and Honey Jain. We
-        provide wash, dry, iron, dry-clean and linen-management services for
-        homes, luxury hotels, resorts and hospitals, with retail operations in
-        Raipur and laundry &amp; linen programmes for leading hotels and
-        hospitals across 20+ cities. Call {site.phoneDisplay} for free pickup
-        and delivery, or visit {site.address.full}.
+        The Laundry Bag (TLB) is India&apos;s Leading Laundry Service Provider,
+        founded in {site.founded} by Shourya Jain in Raipur, Chhattisgarh. We
+        run commercial laundry, dry-cleaning and linen-management programmes for
+        luxury hotels, resorts, hospitals and medical centres — on a
+        fully-managed on-premise, central-processing or linen-rental model. From
+        our Raipur headquarters and central processing unit we serve leading
+        hotels and hospitals across 20+ cities. Call {site.phoneDisplay} or
+        visit {site.address.full}.
       </p>
 
       <div className="sr-only" aria-hidden="true">
         <p>
-          laundry, the laundry bag, laundry bag, TLB, thelaundrybag, best
-          laundry, laundry near me, laundry service India, laundry Raipur,
-          laundry Chhattisgarh, dry cleaning Raipur, on demand laundry,
-          commercial laundry India, hotel laundry, hospital laundry, luxury
-          hotel laundry, hotel linen rental, hospital linen management,
-          laundromat Raipur, Shourya Jain, Shourya Jain Raipur, Shourya Jain
-          founder, founder of The Laundry Bag, Nalin Agarwal, Honey Jain,
-          India, Raipur, Chhattisgarh.
+          India&apos;s Leading Laundry Service Provider, the laundry bag, TLB,
+          thelaundrybag, commercial laundry India, hotel laundry service,
+          hospital laundry service, luxury hotel laundry, hotel linen rental,
+          hospital linen management, linen management India, on premise laundry,
+          built own operate laundry, dry cleaning Raipur, laundry service India,
+          laundry Raipur, laundry Chhattisgarh, Shourya Jain, Shourya Jain
+          Raipur, Shourya Jain founder, founder of The Laundry Bag, India,
+          Raipur, Chhattisgarh.
         </p>
       </div>
 

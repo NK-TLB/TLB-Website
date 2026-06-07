@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Shourya Jain with Mr. Ratan Tata  photo to be added">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1cbf45"/>
+      <stop offset="1" stop-color="#0b2a3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g2)"/>
+  <g fill="#ffffff" opacity="0.92" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">
+    <circle cx="400" cy="232" r="78" fill="none" stroke="#ffffff" stroke-width="6" opacity="0.7"/>
+    <path d="M400 200a26 26 0 1 0 0 52 26 26 0 0 0 0-52zm0 64c-30 0-54 18-54 40h108c0-22-24-40-54-40z" opacity="0.85"/>
+    <text x="400" y="380" font-size="34" font-weight="700">Photo placeholder</text>
+    <text x="400" y="424" font-size="22" opacity="0.85">Shourya Jain with Mr. Ratan Tata</text>
+    <text x="400" y="510" font-size="16" opacity="0.7">Replace /public/images/press/shourya-ratan-tata.svg with the real photo</text>
+  </g>
+</svg>

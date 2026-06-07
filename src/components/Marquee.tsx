@@ -26,15 +26,18 @@ function LogoCell({
   const showLogo = logo && !failed;
 
   return (
-    <span className="flex h-14 shrink-0 items-center justify-center px-8">
+    <span className="flex h-14 shrink-0 items-center justify-center px-7">
       {showLogo ? (
+        // Each logo is bounded by the same max height AND width, so it scales
+        // down to fit an identical box regardless of its aspect ratio — no
+        // logo can render taller or wider than another.
         <img
           src={logo}
           alt={name}
           title={name}
           loading="lazy"
           onError={() => setFailed(true)}
-          className={`${imgClass ?? "h-9 max-w-[280px]"} w-auto object-contain transition duration-300 hover:scale-105`}
+          className={`max-h-11 max-w-[150px] h-auto w-auto object-contain transition duration-300 hover:scale-105 ${imgClass ?? ""}`}
         />
       ) : (
         <span className="whitespace-nowrap font-display text-base font-semibold tracking-wide text-ink-400 transition hover:text-brand-600">

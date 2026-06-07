@@ -24,14 +24,14 @@ export default function FAQ() {
       <SEO
         path="/faq"
         title="Frequently Asked Questions"
-        description="Answers about your first order, dry cleaning, wash-tumble-dry-fold, turnaround times, stains and more from The Laundry Bag."
+        description="Answers about working with hotels and hospitals, on-premise vs off-site laundry, linen rental & management, infection-safe processing, turnaround times and getting started with The Laundry Bag."
         schema={faqSchema}
       />
 
       <PageHero
         eyebrow="Help centre"
         title="Frequently asked questions"
-        description="Everything about your first order, dry cleaning, and our wash, tumble-dry & fold service. Can't find an answer? Call us on (+91) 8085990015."
+        description="Everything about working with hotels and hospitals, our operating models, linen rental and how to get started. Can't find an answer? Call us on (+91) 8085990015."
         crumbs={[{ label: "Home", to: "/" }, { label: "FAQ" }]}
       />
 

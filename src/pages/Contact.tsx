@@ -23,8 +23,8 @@ export default function Contact() {
 
       <PageHero
         eyebrow="Contact"
-        title="Let's talk laundry"
-        description="Tell us a bit about what you need and we'll get back to you with timings, pricing and a free pickup slot."
+        title="Let's talk linen"
+        description="Tell us about your property, volumes and space, and we'll get back to you with the right model — on-premise, off-site or linen rental — along with timings and pricing."
         crumbs={[{ label: "Home", to: "/" }, { label: "Contact" }]}
       />
 
@@ -89,7 +89,7 @@ export default function Contact() {
                 <textarea
                   name="message"
                   rows={6}
-                  placeholder="Tell us about your laundry needs, preferred pickup time, or anything else."
+                  placeholder="Tell us about your property or institution, approximate linen volumes, and whether you'd like an on-premise, off-site or linen-rental programme."
                   className="mt-1 w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100"
                 />
               </div>

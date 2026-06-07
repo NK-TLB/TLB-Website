@@ -23,13 +23,13 @@
 
 [[redirects]]
   from = "/home/index.php/pages/laundry-and-dry-cleaning-for-residents-and-students"
-  to = "/services"
+  to = "/commercial"
   status = 301
   force = true
 
 [[redirects]]
   from = "/home/index.php/pages/what-we-do"
-  to = "/services"
+  to = "/commercial"
   status = 301
   force = true
 
@@ -90,13 +90,13 @@
 
 [[redirects]]
   from = "/index.php/pages/laundry-and-dry-cleaning-for-residents-and-students"
-  to = "/services"
+  to = "/commercial"
   status = 301
   force = true
 
 [[redirects]]
   from = "/index.php/pages/what-we-do"
-  to = "/services"
+  to = "/commercial"
   status = 301
   force = true
 
@@ -151,13 +151,13 @@
 
 [[redirects]]
   from = "/pages/laundry-and-dry-cleaning-for-residents-and-students"
-  to = "/services"
+  to = "/commercial"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pages/what-we-do"
-  to = "/services"
+  to = "/commercial"
   status = 301
   force = true
 
@@ -206,6 +206,19 @@
 [[redirects]]
   from = "/delete-my-account"
   to = "/contact"
+  status = 301
+  force = true
+
+# Legacy B2C route now folds into the B2B services page
+[[redirects]]
+  from = "/services"
+  to = "/commercial"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/what-we-do"
+  to = "/commercial"
   status = 301
   force = true
 

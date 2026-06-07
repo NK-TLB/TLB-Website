@@ -5,6 +5,7 @@ import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import Marquee from "../components/Marquee";
+import CertificationsBand from "../components/CertificationsBand";
 import {
   businessServices,
   clientLogos,
@@ -129,6 +130,18 @@ export default function Commercial() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Certifications & equipment */}
+      <section className="section">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Certifications & equipment"
+            title="Standards your auditors will love"
+            description="An ISO-certified operation running best-in-class equipment, eco-friendly chemistry and accountable, never-mix processing."
+          />
+          <CertificationsBand className="mt-12" />
         </div>
       </section>
 

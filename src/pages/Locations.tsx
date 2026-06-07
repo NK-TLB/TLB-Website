@@ -4,7 +4,9 @@ import Icon from "../components/Icon";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
-import { extraCities, locations, site } from "../data/site";
+import IndiaMap from "../components/IndiaMap";
+import ServiceAreaChecker from "../components/ServiceAreaChecker";
+import { locations, site } from "../data/site";
 
 export default function Locations() {
   return (
@@ -12,13 +14,13 @@ export default function Locations() {
       <SEO
         path="/locations"
         title="Locations — Raipur HQ · hotels & hospitals across India"
-        description="The Laundry Bag operates retail laundry & dry-cleaning from its Raipur HQ, and runs laundry & linen programmes for hotels and hospitals across Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune and 20+ cities."
+        description="The Laundry Bag is headquartered in Raipur with a central processing unit, and runs commercial laundry & linen programmes for hotels and hospitals across Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune and 20+ cities."
       />
 
       <PageHero
         eyebrow="Locations"
         title="Where you'll find us"
-        description="Retail laundry & dry-cleaning and our central processing unit in Raipur, plus laundry & linen programmes for leading hotels and hospitals across Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune and more than 20 cities nationwide."
+        description="Our headquarters and central processing unit in Raipur, plus commercial laundry & linen programmes for leading hotels and hospitals across Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune and more than 20 cities nationwide."
         crumbs={[{ label: "Home", to: "/" }, { label: "Locations" }]}
       />
 
@@ -63,7 +65,7 @@ export default function Locations() {
           <SectionHeading
             align="left"
             eyebrow="Corporate office · Raipur"
-            title="Walk in, drop off, or schedule a free pickup"
+            title="Visit our headquarters & processing unit"
           />
           <div className="mt-10 grid gap-10 lg:grid-cols-2">
             <ul className="space-y-4 text-sm">
@@ -101,7 +103,7 @@ export default function Locations() {
                 <a href={site.address.mapsHref} target="_blank" rel="noreferrer" className="btn-primary">
                   Get directions
                 </a>
-                <Link to="/contact" className="btn-secondary">Schedule pickup</Link>
+                <Link to="/contact" className="btn-secondary">Talk to our team</Link>
               </li>
             </ul>
 
@@ -118,23 +120,20 @@ export default function Locations() {
         </div>
       </section>
 
-      {/* Also serving */}
+      {/* India operations map */}
       <section className="section">
         <div className="container-page">
-          <SectionHeading eyebrow="Also serving" title="More cities on the map" />
-          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {extraCities.map((c, i) => (
-              <Reveal key={c.city} delay={i * 60}>
-                <li className="card card-hover h-full">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sky2-50 text-sky2-600">
-                    <Icon name="pin" />
-                  </span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-ink-900">{c.city}</h3>
-                  <p className="mt-2 text-sm text-ink-600">{c.note}</p>
-                </li>
-              </Reveal>
-            ))}
-          </ul>
+          <SectionHeading
+            eyebrow="Across India"
+            title="Everywhere you need us"
+            description="From our Raipur headquarters, our laundry and linen programmes reach leading hotels, resorts and hospitals in more than 20 cities. Hover or tap a city to see what we run there."
+          />
+          <Reveal className="mt-12">
+            <IndiaMap variant="full" />
+          </Reveal>
+          <Reveal className="mx-auto mt-12 max-w-2xl">
+            <ServiceAreaChecker />
+          </Reveal>
         </div>
       </section>
     </>

@@ -111,7 +111,7 @@ export default function SEO({
 }: SEOProps) {
   const fullTitle = title
     ? `${title} · The Laundry Bag`
-    : "The Laundry Bag · Commercial and Residential Laundry and Dry Cleaning";
+    : "The Laundry Bag · India's Leading Laundry Service Provider";
   const fullDescription = description ?? site.description;
   const url = `${BASE_URL}${path}`;
   const imageUrl = image.startsWith("http") ? image : `${BASE_URL}${image}`;

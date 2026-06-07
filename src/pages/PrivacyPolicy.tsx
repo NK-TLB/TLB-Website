@@ -19,7 +19,7 @@ const clauses = [
   {
     title: "Lost Items",
     body: [
-      "The customer must notify The Laundry Bag within 48 hours of receipt of a delivery by an email at hr@thelaundrybag.co.in of any lost items from that particular delivery; failure to do so constitutes waiver of a claim for any lost items from that delivery. The Laundry Bag makes its best reasonable effort to track every item that we process and will review all lost-item claims on a case-by-case basis. Any items determined to have been lost by The Laundry Bag will be reimbursed in accordance with the International Fabricare Fair Claims Guide and shall not exceed ten (10) times our charge for cleaning that garment regardless of brand or condition. The Laundry Bag is not responsible for your items before we pick them up and after we drop them off — it is your responsibility to ensure the safety of your items during these times.",
+      "The customer must notify The Laundry Bag within 48 hours of receipt of a delivery by an email at hr@thelaundrybag.co.in of any lost items from that particular delivery; failure to do so constitutes waiver of a claim for any lost items from that delivery. The Laundry Bag makes its best reasonable effort to track every item that we process and will review all lost-item claims on a case-by-case basis. Any items determined to have been lost by The Laundry Bag will be reimbursed in accordance with the International Fabricare Fair Claims Guide and shall not exceed ten (10) times our charge for cleaning that garment regardless of brand or condition. The Laundry Bag is not responsible for items before we collect them and after we deliver them — it is the client's responsibility to ensure the safety of items during these times.",
     ],
   },
   {
@@ -41,9 +41,9 @@ const clauses = [
     ],
   },
   {
-    title: "Pick-Up and Drop-Off",
+    title: "Collection and Delivery",
     body: [
-      "The Laundry Bag pick-up & delivery service will pick up the customer's laundry bag upon the customer's request. The Laundry Bag pick-up & delivery service will not take place on company holidays. The Laundry Bag pick-up & delivery service reserves the right to determine the pick-up and drop-off times at its own discretion and reserves the right to reschedule such times upon prior notice to the customer.",
+      "For managed and off-site programmes, The Laundry Bag collects and returns linen on a schedule agreed with the client. Collection and delivery will not take place on company holidays. The Laundry Bag reserves the right to determine collection and delivery times at its own discretion and to reschedule such times upon prior notice to the client.",
     ],
   },
 ];
@@ -54,7 +54,7 @@ export default function PrivacyPolicy() {
       <SEO
         path="/privacy-policy"
         title="Privacy Policy"
-        description="The Laundry Bag privacy policy — entire agreement, damaged property, lost items, loose items, personal property, turnaround time and pick-up & drop-off terms."
+        description="The Laundry Bag privacy policy — entire agreement, damaged property, lost items, loose items, personal property, turnaround time and collection & delivery terms."
       />
 
       <PageHero
