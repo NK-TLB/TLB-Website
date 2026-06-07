@@ -24,13 +24,16 @@ npm run lint    # eslint
 
 ```
 public/            # static assets (logo, favicons, images, robots, sitemap, _redirects)
-  logo.svg         # primary logo (vector, with tagline) used in the UI
-  logo.png         # raster logo for social / JSON-LD
-  favicon.svg      # scalable favicon (washer mark)
-  favicon-32/192/512.png, apple-touch-icon.png
+  logo.png         # primary brand logo (used in UI, social, JSON-LD)
+  og-image.png     # 1200×630 social share image (Open Graph / Twitter)
+  favicon.svg      # scalable favicon (washer mark from the logo)
+  favicon.ico      # multi-size .ico (16/32/48) for browsers & Google
+  favicon-16/32/48/192/512.png, apple-touch-icon.png
+  icon-192/512-maskable.png  # maskable PWA icons
+  site.webmanifest # PWA manifest (icons, theme, name)
 src/
   components/      # Layout, Navbar, Footer, Logo, Icon, SEO, PageHero, …
-  pages/           # Home, Services, Commercial, Locations, About, Clients, FAQ, App, Contact, …
+  pages/           # Home, Commercial, Locations, About, Clients, FAQ, Contact, …
   data/site.ts     # single source of truth for all content + SEO keywords
 ```
 
@@ -43,6 +46,7 @@ src/
 
 ## Branding
 
-- **Logo:** `public/logo.svg` (with the tagline *"India's Leading Laundry
-  Service Provider"*); raster fallback at `public/logo.png`.
-- **Colors:** brand green `#33d65b`, sky blue `#009cdc` (see `tailwind.config.js`).
+- **Logo:** `public/logo.png` (with the tagline *"India's Leading Laundry
+  Service Provider"*). All favicons, the maskable PWA icons and the social
+  share image are derived from this single logo.
+- **Colors:** brand sky blue `#00afef` / `#009cdc` (see `tailwind.config.js`).
