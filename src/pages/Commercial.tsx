@@ -47,12 +47,12 @@ export default function Commercial() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {commercialFeatures.map((s, i) => (
               <Reveal key={s.title} delay={i * 80}>
-                <article className="card h-full overflow-hidden p-0">
+                <article className="card card-hover group h-full overflow-hidden p-0">
                   <div className="h-44 w-full overflow-hidden bg-ink-50">
                     <img
                       src={s.image}
                       alt={`${s.title} — The Laundry Bag`}
-                      className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
@@ -119,12 +119,22 @@ export default function Commercial() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {operationalModels.map((m, i) => (
               <Reveal key={m.title} delay={i * 80}>
-                <article className="card card-hover h-full">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-gradient font-display text-lg font-bold text-white">
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-brand-100/70 bg-white p-8 shadow-soft transition duration-300 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-lift">
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-brand-gradient transition-transform duration-300 group-hover:scale-x-100"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-1 -top-3 select-none font-display text-[5.5rem] font-black leading-none text-brand-50 transition-colors duration-300 group-hover:text-brand-100"
+                  >
                     {i + 1}
                   </span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-ink-900">{m.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-700">{m.description}</p>
+                  <span className="relative inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient font-display text-lg font-bold text-white shadow-soft ring-1 ring-white/30">
+                    {i + 1}
+                  </span>
+                  <h3 className="relative mt-5 font-display text-lg font-bold text-ink-900">{m.title}</h3>
+                  <p className="relative mt-3 text-sm leading-relaxed text-ink-700">{m.description}</p>
                 </article>
               </Reveal>
             ))}

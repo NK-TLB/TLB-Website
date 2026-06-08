@@ -5,7 +5,6 @@ import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import IndiaMap from "../components/IndiaMap";
-import ServiceAreaChecker from "../components/ServiceAreaChecker";
 import { locations, site } from "../data/site";
 
 export default function Locations() {
@@ -30,18 +29,18 @@ export default function Locations() {
           <div className="grid gap-6 md:grid-cols-3">
             {locations.map((l, i) => (
               <Reveal key={l.city} delay={i * 80}>
-                <article className="card h-full overflow-hidden p-0">
+                <article className="card card-hover group h-full overflow-hidden p-0">
                   <div className="h-48 w-full overflow-hidden bg-ink-50">
                     <img
                       src={l.image}
                       alt={`${l.city} — The Laundry Bag`}
-                      className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
                   <div className="p-6">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                      <Icon name="pin" />
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
+                      <Icon name="pin" className="h-6 w-6" />
                     </span>
                     <h2 className="mt-4 font-display text-xl font-bold text-ink-900">
                       {l.city}
@@ -130,9 +129,6 @@ export default function Locations() {
           />
           <Reveal className="mt-12">
             <IndiaMap variant="full" />
-          </Reveal>
-          <Reveal className="mx-auto mt-12 max-w-2xl">
-            <ServiceAreaChecker />
           </Reveal>
         </div>
       </section>

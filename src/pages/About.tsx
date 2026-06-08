@@ -112,8 +112,8 @@ export default function About() {
             {whyChooseUs.map((r, i) => (
               <Reveal key={r.title} delay={i * 60}>
                 <article className="card card-hover h-full">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                    <Icon name={r.icon} />
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
+                    <Icon name={r.icon} className="h-6 w-6" />
                   </span>
                   <h3 className="mt-5 font-display text-lg font-bold text-ink-900">{r.title}</h3>
                   <p className="mt-2 text-sm text-ink-600">{r.description}</p>

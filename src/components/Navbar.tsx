@@ -32,7 +32,7 @@ export default function Navbar() {
           : "bg-white/55 backdrop-blur-md"
       }`}
     >
-      <div className="container-page flex h-[4.5rem] items-center justify-between gap-3 lg:h-24">
+      <div className="container-page flex h-[4.5rem] items-center justify-between gap-3 lg:h-24 lg:gap-[calc(0.75rem*1.1)]">
         <Link
           to="/"
           aria-label="The Laundry Bag — India's Leading Laundry Service Provider"

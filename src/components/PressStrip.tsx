@@ -1,32 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
 import ResponsiveImage from "./ResponsiveImage";
-import { pressFeature, pressClippings, pressFeatures } from "../data/site";
-
-/** Slim "As featured in" outlet strip — quick social proof for any page. */
-export function PressStripBar({ className = "" }: { className?: string }) {
-  return (
-    <div className={className}>
-      <p className="text-center text-xs font-bold uppercase tracking-[0.25em] text-ink-400">
-        As featured in
-      </p>
-      <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-        {pressFeatures.map((p) => (
-          <li key={p.href}>
-            <a
-              href={p.href}
-              target="_blank"
-              rel="noreferrer"
-              className="font-display text-lg font-bold tracking-tight text-ink-400 transition hover:text-brand-700 sm:text-xl"
-            >
-              {p.outlet}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+import { pressFeature, pressClippings } from "../data/site";
 
 /**
  * Slim press teaser for the Clients page — highlights the government MoU with a

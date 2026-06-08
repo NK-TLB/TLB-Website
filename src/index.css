@@ -472,28 +472,6 @@ body {
   }
 }
 
-/* Rotating hero segment — re-triggered on each word via React `key`. */
-@keyframes word-cycle {
-  0% {
-    opacity: 0;
-    transform: translateY(0.45em);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.word-cycle {
-  animation: word-cycle 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .word-cycle {
-    animation: none;
-  }
-}
-
 a {
   text-decoration: none;
 }

@@ -258,7 +258,7 @@ export const navLinks = [
 
 export const homeServices = [
   {
-    title: "Hotel & Resort Laundry",
+    title: "Consultation",
     description:
       "Guest-room linen, F&B, spa and uniform laundry finished to five-star standards for luxury hotels and resorts across India.",
     icon: "hotel",
@@ -266,7 +266,7 @@ export const homeServices = [
     href: "/commercial",
   },
   {
-    title: "Hospital & Healthcare Linen",
+    title: "Optimisation",
     description:
       "Hygienic, infection-safe linen processing and patient-linen programmes for hospitals and medical centres.",
     icon: "shield",
@@ -274,7 +274,7 @@ export const homeServices = [
     href: "/commercial",
   },
   {
-    title: "Linen Rental & Management",
+    title: "Outsourcing",
     description:
       "We supply, launder, track and replace your sheets, towels, robes and uniforms on a flexible rental model — sized to your occupancy.",
     icon: "factory",
@@ -330,10 +330,30 @@ export const whoWeServe = [
 ];
 
 export const howItWorks = [
-  { step: "Step 1", title: "We assess your linen & volumes", icon: "users" },
-  { step: "Step 2", title: "We design the right model", icon: "factory" },
-  { step: "Step 3", title: "We process to spec, every cycle", icon: "washer" },
-  { step: "Step 4", title: "We deliver, track & replace", icon: "check" },
+  {
+    step: "Step 1",
+    title: "Assessment",
+    text: "We analyse your existing linen requirements, volumes and current operational model.",
+    icon: "users",
+  },
+  {
+    step: "Step 2",
+    title: "Solution design",
+    text: "We design the right model for you — on-premise, off-site or linen rental — with clear costing.",
+    icon: "factory",
+  },
+  {
+    step: "Step 3",
+    title: "Transition",
+    text: "We begin taking over your laundry operations with a structured, low-disruption handover plan.",
+    icon: "washer",
+  },
+  {
+    step: "Step 4",
+    title: "Installation",
+    text: "We install equipment, streamline SOPs and complete the operations takeover and handover.",
+    icon: "check",
+  },
 ];
 
 export const operationalModels = [

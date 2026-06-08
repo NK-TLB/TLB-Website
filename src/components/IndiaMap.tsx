@@ -107,17 +107,17 @@ export default function IndiaMap({
         >
           <defs>
             <linearGradient id={`fill-${uid}`} x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" style={{ stopColor: "rgb(var(--brand-400))" }} />
-              <stop offset="55%" style={{ stopColor: "rgb(var(--brand-500))" }} />
-              <stop offset="100%" style={{ stopColor: "rgb(var(--brand-700))" }} />
+              <stop offset="0%" style={{ stopColor: "rgb(var(--brand-50))" }} />
+              <stop offset="55%" style={{ stopColor: "rgb(var(--brand-100))" }} />
+              <stop offset="100%" style={{ stopColor: "rgb(var(--brand-200))" }} />
             </linearGradient>
             <filter id={`soft-${uid}`} x="-15%" y="-15%" width="130%" height="130%">
               <feDropShadow
                 dx="0"
-                dy="18"
-                stdDeviation="22"
+                dy="16"
+                stdDeviation="20"
                 floodColor="rgb(var(--brand-700))"
-                floodOpacity="0.28"
+                floodOpacity="0.18"
               />
             </filter>
             {/* Clip the internal borders to the silhouette so only the state
@@ -130,20 +130,18 @@ export default function IndiaMap({
           <path
             d={indiaPath}
             fill={`url(#fill-${uid})`}
-            stroke="rgb(var(--brand-200))"
+            stroke="rgb(var(--brand-500))"
             strokeWidth={2}
             strokeLinejoin="round"
             filter={`url(#soft-${uid})`}
           />
-          {/* subtle top highlight for a printed/elevated feel */}
-          <path d={indiaPath} fill="#ffffff" opacity={0.06} />
 
           {/* Internal state / UT borders — a political-map feel */}
           <g
             clipPath={`url(#clip-${uid})`}
             fill="none"
-            stroke="#ffffff"
-            strokeOpacity={0.5}
+            stroke="rgb(var(--brand-500))"
+            strokeOpacity={0.4}
             strokeWidth={1}
             strokeLinejoin="round"
             strokeLinecap="round"
@@ -157,7 +155,7 @@ export default function IndiaMap({
           {/* HQ -> city connecting arcs */}
           <g
             fill="none"
-            stroke="#ffffff"
+            stroke="rgb(var(--brand-600))"
             strokeWidth={1.6}
             strokeLinecap="round"
             opacity={0.55}
@@ -216,10 +214,14 @@ export default function IndiaMap({
                 />
                 {/* dot */}
                 <span
-                  className={`relative block rounded-full ring-2 ring-white shadow-soft transition-transform duration-200 ${
+                  className={`relative block rounded-full ring-2 ring-white transition-transform duration-200 ${
                     typeDotClass[m.type]
                   } ${isOn ? "scale-125" : "group-hover:scale-110"}`}
-                  style={{ width: isHQ ? 16 : 11, height: isHQ ? 16 : 11 }}
+                  style={{
+                    width: isHQ ? 18 : 13,
+                    height: isHQ ? 18 : 13,
+                    boxShadow: "0 1px 4px rgba(6,44,64,0.45)",
+                  }}
                   aria-hidden="true"
                 />
                 {/* tooltip */}

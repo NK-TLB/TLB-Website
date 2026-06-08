@@ -19,33 +19,29 @@ export default function SectionHeading({
   const centered = align === "center";
   return (
     <Reveal
-      className={centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}
+      className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}
     >
       {eyebrow && (
-        <span
-          className={`eyebrow ${
-            invert ? "border-white/30 bg-white/10 text-white" : ""
+        <p
+          className={`text-xs font-bold uppercase tracking-[0.25em] ${
+            invert ? "text-white/60" : "text-brand-500"
           }`}
         >
           {eyebrow}
-        </span>
+        </p>
       )}
       <h2
-        className={`h2 ${eyebrow ? "mt-4" : ""} ${
+        className={`h2 ${eyebrow ? "mt-3" : ""} ${
           invert ? "text-white" : ""
         }`}
       >
         {title}
       </h2>
-      <span
-        className={`rule ${centered ? "" : "ml-0"}`}
-        aria-hidden="true"
-      />
       {description && (
         <p
-          className={`lead mt-5 ${invert ? "text-white/80" : ""} ${
-            centered ? "mx-auto" : ""
-          }`}
+          className={`mt-4 text-base leading-relaxed sm:text-lg ${
+            invert ? "text-white/70" : "text-ink-500"
+          } ${centered ? "mx-auto max-w-2xl" : ""}`}
         >
           {description}
         </p>

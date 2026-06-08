@@ -8,7 +8,6 @@ import Icon from "../components/Icon";
 import ResponsiveImage from "../components/ResponsiveImage";
 import VideoFeature from "../components/VideoFeature";
 import Lightbox, { type LightboxItem } from "../components/Lightbox";
-import { PressStripBar } from "../components/PressStrip";
 import {
   pressFeature,
   pressClippings,
@@ -258,13 +257,6 @@ export default function Press() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* As featured in */}
-      <section className="bg-brand-50/50 section">
-        <div className="container-page">
-          <PressStripBar />
         </div>
       </section>
 

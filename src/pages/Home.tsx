@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
 import SEO from "../components/SEO";
@@ -6,46 +5,13 @@ import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import Marquee from "../components/Marquee";
 import IndiaMap from "../components/IndiaMap";
-import CountUp from "../components/CountUp";
-import CertificationsBand from "../components/CertificationsBand";
-import ServiceAreaChecker from "../components/ServiceAreaChecker";
-import { PressStripBar } from "../components/PressStrip";
 import {
   clientLogos,
-  counters,
   homeServices,
   howItWorks,
   site,
   usps,
-  whoWeServe,
 } from "../data/site";
-
-// B2B segments TLB actively serves (sourced from the live client list in
-// site.ts) — rotated in the hero to lead with the business story.
-const heroSegments = [
-  "luxury hotels",
-  "hospitals & medical centres",
-  "resorts & retreats",
-  "enterprises & institutions",
-];
-
-function RotatingSegment() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(
-      () => setIndex((i) => (i + 1) % heroSegments.length),
-      2200,
-    );
-    return () => clearInterval(id);
-  }, []);
-
-  return (
-    <span key={index} className="word-cycle inline-block text-gradient">
-      {heroSegments[index]}
-    </span>
-  );
-}
 
 export default function Home() {
   return (
@@ -73,14 +39,18 @@ export default function Home() {
         </div>
         <div className="container-page grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:py-28">
           <div className="lg:col-span-6">
-            <span className="eyebrow animate-fade-up">
-              <Icon name="leaf" className="h-3.5 w-3.5" />
-              India&apos;s Leading Laundry Service Provider
+            <span className="inline-flex animate-fade-up items-center gap-2 rounded-full border border-brand-200/70 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-brand-700 shadow-soft backdrop-blur">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500/70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-600" />
+              </span>
+              India&apos;s Leading Laundry Service Provider · Since {site.founded}
             </span>
-            <h1 className="h1 mt-5 animate-fade-up">
+            <h1 className="h1 mt-6 animate-fade-up">
               The laundry &amp; linen partner
               <br />
-              for <RotatingSegment />.
+              for{" "}
+              <span className="text-gradient">luxury hotels and hospitals</span>.
             </h1>
             <p className="lead mt-6 max-w-xl animate-fade-up">
               From leading hotel chains and major hospitals to luxury resorts
@@ -89,7 +59,7 @@ export default function Home() {
               your premises, off-site or on a managed linen-rental model. We
               never mix one client&apos;s linen with anyone else&apos;s.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 animate-fade-up">
               <a href={`tel:+91${site.phoneRaw}`} className="btn-primary">
                 <Icon name="phone" className="h-4 w-4" />
                 {site.phoneDisplay}
@@ -98,7 +68,7 @@ export default function Home() {
                 Request a quote
               </Link>
             </div>
-            <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-600">
+            <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-600 animate-fade-up">
               {[
                 "On-premise or off-site",
                 "24-hour finish",
@@ -110,58 +80,49 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            {/* Headline stats */}
+            <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 animate-fade-up">
+              {[
+                { value: "20+", label: "Cities served" },
+                { value: "5L+", label: "Loads laundered" },
+                { value: "ISO", label: "Certified ops" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-2xl border border-brand-100/70 bg-white/70 px-4 py-3 text-center shadow-soft backdrop-blur"
+                >
+                  <dd className="font-display text-2xl font-extrabold text-brand-600">
+                    {stat.value}
+                  </dd>
+                  <dt className="mt-0.5 text-xs font-semibold text-ink-500">
+                    {stat.label}
+                  </dt>
+                </div>
+              ))}
+            </dl>
           </div>
 
-          {/* Split CTA cards */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:col-span-6">
-            <Link
-              to="/commercial"
-              className="group relative block overflow-hidden rounded-4xl bg-brand-gradient p-7 text-white shadow-lift transition hover:-translate-y-1"
-            >
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white">
-                <Icon name="hotel" className="h-6 w-6" />
-              </span>
-              <p className="mt-5 text-xs font-bold uppercase tracking-[0.25em] text-white/80">
-                Hotels &amp; Resorts
-              </p>
-              <ul className="mt-3 space-y-1.5 font-display text-lg font-semibold leading-tight">
-                <li>Guest-room linen</li>
-                <li>F&amp;B &amp; banquet</li>
-                <li>Spa &amp; uniforms</li>
-                <li>Linen rental</li>
-              </ul>
-              <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold">
-                Explore hospitality
-                <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
-              </span>
-            </Link>
-            <Link
-              to="/commercial"
-              className="group relative block overflow-hidden rounded-4xl bg-ink-900 p-7 text-white shadow-lift transition hover:-translate-y-1"
-            >
+          {/* India coverage map */}
+          <div className="lg:col-span-6">
+            <div className="relative">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-70"
+                className="pointer-events-none absolute -inset-4 -z-10 rounded-[2.5rem] bg-brand-gradient opacity-15 blur-3xl"
               />
-              <div className="relative">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white">
-                  <Icon name="shield" className="h-6 w-6" />
-                </span>
-                <p className="mt-5 text-xs font-bold uppercase tracking-[0.25em] text-white/70">
-                  Hospitals &amp; Healthcare
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/70 p-6 shadow-lift backdrop-blur-xl sm:p-8">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 -z-10 bg-hero-radial opacity-60"
+                />
+                <p className="mb-1 text-center text-xs font-bold uppercase tracking-[0.2em] text-brand-500">
+                  Our footprint
                 </p>
-                <ul className="mt-3 space-y-1.5 font-display text-lg font-semibold leading-tight">
-                  <li>Infection-safe linen</li>
-                  <li>Patient &amp; theatre linen</li>
-                  <li>On-premise units</li>
-                  <li>Managed logistics</li>
-                </ul>
-                <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold">
-                  Explore healthcare
-                  <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
-                </span>
+                <p className="mb-4 text-center font-display text-lg font-bold text-ink-900">
+                  Trusted across India
+                </p>
+                <IndiaMap variant="compact" />
               </div>
-            </Link>
+            </div>
           </div>
         </div>
 
@@ -172,51 +133,47 @@ export default function Home() {
               Trusted by India&apos;s leading hotels &amp; hospitals
             </p>
             <Marquee items={clientLogos} durationSeconds={46} />
-            <PressStripBar className="mt-8 border-t border-ink-100 pt-8" />
           </div>
         </div>
       </section>
 
-      {/* ===================== TOP SERVICES ===================== */}
+      {/* ===================== OPERATIONAL MODELS ===================== */}
       <section className="section">
         <div className="container-page">
           <SectionHeading
             eyebrow="What we do"
-            title="Three ways we take linen off your plate"
+            title="Operational Models"
+            description="Three flexible ways we plug into your operation — advise, optimise or run it end-to-end."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3 lg:gap-8">
             {homeServices.map((s, i) => (
-              <Reveal key={s.title} delay={i * 80}>
+              <Reveal key={s.title} delay={i * 100}>
                 <Link
                   to={s.href}
-                  className={`group relative block h-full overflow-hidden rounded-4xl p-8 shadow-soft transition hover:-translate-y-1.5 hover:shadow-lift ${
-                    s.accent === "blue"
-                      ? "bg-sky2-500 text-white"
-                      : s.accent === "brand"
-                      ? "bg-brand-gradient text-white"
-                      : "bg-ink-50 text-ink-900"
-                  }`}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-brand-100/70 bg-white p-8 shadow-soft transition duration-300 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-lift"
                 >
+                  {/* animated top accent */}
                   <span
-                    className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl ${
-                      s.accent === "grey"
-                        ? "bg-white text-brand-500"
-                        : "bg-white/15 text-white"
-                    }`}
+                    aria-hidden="true"
+                    className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-brand-gradient transition-transform duration-300 group-hover:scale-x-100"
+                  />
+                  {/* oversized watermark index */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-1 -top-3 select-none font-display text-[5.5rem] font-black leading-none text-brand-50 transition-colors duration-300 group-hover:text-brand-100"
                   >
+                    {i + 1}
+                  </span>
+                  <span className="relative inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/30">
                     <Icon name={s.icon} className="h-7 w-7" />
                   </span>
-                  <h3 className="mt-6 font-display text-2xl font-bold uppercase tracking-wide">
+                  <h3 className="relative mt-7 font-display text-xl font-extrabold tracking-tight text-ink-900">
                     {s.title}
                   </h3>
-                  <p
-                    className={`mt-3 text-sm ${
-                      s.accent === "grey" ? "text-ink-700" : "text-white/90"
-                    }`}
-                  >
+                  <p className="relative mt-3 flex-1 text-sm leading-relaxed text-ink-600">
                     {s.description}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">
+                  <span className="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition group-hover:text-brand-700">
                     Learn more
                     <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
                   </span>
@@ -227,25 +184,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== USP BAND ===================== */}
-      <section className="bg-brand-50/50 section">
-        <div className="container-page">
+      {/* ===================== WHY TLB ===================== */}
+      <section className="relative overflow-hidden bg-brand-950 py-20 text-white sm:py-24 lg:py-28">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-40"
+        />
+        <div className="container-page relative">
           <SectionHeading
-            eyebrow="Why TLB"
-            title="The details other laundries skip"
+            title="Why TLB"
             description="The promises we have kept since day one — and the reason hotels, hospitals and resorts stay with us."
+            invert
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {usps.map((u, i) => (
-              <Reveal key={u.title} delay={i * 70}>
-                <article className="card card-hover h-full">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient text-white">
+              <Reveal key={u.title} delay={i * 80}>
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-white/[0.02] p-6 backdrop-blur-sm transition duration-300 hover:border-brand-400/40 hover:from-white/[0.12]">
+                  {/* hover glow */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand-500/20 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                  <span className="relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
                     <Icon name={u.icon} className="h-6 w-6" />
                   </span>
-                  <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                  <h3 className="relative mt-5 font-display text-base font-bold text-white">
                     {u.title}
                   </h3>
-                  <p className="mt-2 text-sm text-ink-600">{u.description}</p>
+                  <p className="relative mt-2 text-sm leading-relaxed text-white/65">{u.description}</p>
                 </article>
               </Reveal>
             ))}
@@ -254,24 +220,36 @@ export default function Home() {
       </section>
 
       {/* ===================== HOW IT WORKS ===================== */}
-      <section className="section">
+      <section className="bg-brand-50/40 py-20 sm:py-24 lg:py-28">
         <div className="container-page">
           <SectionHeading
             eyebrow="How we partner"
             title="From first call to fully managed in 4 steps"
+            description="A clear, proven onboarding path — so you know exactly how we take linen off your plate."
           />
-          <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="relative mt-16 grid gap-y-12 gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
+            {/* connector line behind the step badges (lg only) */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-0 hidden h-0.5 bg-gradient-to-r from-brand-200 via-brand-400 to-brand-200 lg:block"
+            />
             {howItWorks.map((s, i) => (
-              <Reveal key={s.step} delay={i * 80}>
-                <li className="relative h-full rounded-4xl border border-ink-100 bg-white p-7 text-center shadow-soft">
-                  <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-sky2-50 text-sky2-600">
-                    <Icon name={s.icon} className="h-7 w-7" />
+              <Reveal key={s.step} delay={i * 100}>
+                <li className="group relative flex h-full flex-col items-center rounded-2xl bg-white px-6 pb-8 pt-10 text-center shadow-soft ring-1 ring-brand-100/60 transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+                  <span className="absolute -top-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient font-display text-lg font-extrabold text-white shadow-lift ring-4 ring-[rgb(var(--page-bg))]">
+                    {i + 1}
                   </span>
-                  <p className="mt-5 text-xs font-bold uppercase tracking-wider text-brand-600">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition duration-300 group-hover:bg-brand-100">
+                    <Icon name={s.icon} className="h-6 w-6" />
+                  </span>
+                  <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
                     {s.step}
                   </p>
-                  <p className="mt-2 font-display text-lg font-bold text-ink-900">
+                  <p className="mt-2 font-display text-base font-bold leading-snug text-ink-900">
                     {s.title}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-600">
+                    {s.text}
                   </p>
                 </li>
               </Reveal>
@@ -280,154 +258,64 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== FOR BUSINESS (teaser → Commercial) ===================== */}
-      <section
-        className="parallax relative section text-white"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,30,40,0.82),rgba(0,40,55,0.82)), url(/images/parallax-img-03.jpg)",
-        }}
-      >
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="For your business"
-            title="A linen partner for every kind of institution"
-            description="From a boutique resort to a 100-bed hospital — on your premises, off-site or on a fully-managed linen-rental model, tailored to your operation."
-            invert
-          />
-          <ul className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
-            {[
-              "Hotels & resorts",
-              "Hospitals & healthcare",
-              "Enterprises & institutions",
-              "Managed linen rental",
-            ].map((label) => (
-              <li
-                key={label}
-                className="glass rounded-full px-4 py-2 text-sm font-semibold text-ink-800"
-              >
-                {label}
-              </li>
-            ))}
-          </ul>
-          <Reveal className="mt-10 flex justify-center">
-            <Link to="/commercial" className="btn-primary">
-              Explore commercial services
-              <Icon name="arrow" className="h-4 w-4" />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ===================== WHO WE SERVE ===================== */}
+      {/* ===================== CONTACT ===================== */}
       <section className="section">
         <div className="container-page">
           <SectionHeading
-            eyebrow="Who we serve"
-            title="From a boutique resort to a 100-bed hospital"
+            eyebrow="Get in touch"
+            title="Contact us"
+            description="Call, email or visit us — we'll help you find the right laundry and linen model for your operation."
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {whoWeServe.map((w, i) => (
-              <Reveal key={w.title} delay={i * 60}>
-                <article className="card card-hover h-full">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                    <Icon name="users" />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
-                    {w.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-ink-600">{w.description}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== WHERE WE OPERATE ===================== */}
-      <section className="section bg-ink-mesh">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Where we operate"
-            title="Trusted across 20+ Indian cities"
-            description="Headquartered in Raipur, we run laundry and linen programmes for leading hotels, resorts and hospitals nationwide."
-          />
-          <Reveal className="mt-12">
-            <IndiaMap variant="compact" />
-          </Reveal>
-          <Reveal className="mx-auto mt-10 max-w-2xl">
-            <ServiceAreaChecker />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ===================== STANDARDS & EQUIPMENT ===================== */}
-      <section className="section">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Standards & equipment"
-            title="Certified, equipped and accountable"
-            description="The standards, machinery and promises that make us a dependable partner for hotels and hospitals."
-          />
-          <CertificationsBand className="mt-12" />
-        </div>
-      </section>
-
-      {/* ===================== COUNTERS ===================== */}
-      <section
-        className="parallax relative py-16 text-white sm:py-20"
-        style={{
-          backgroundImage:
-            "linear-gradient(120deg, rgba(0,156,220,0.92), rgba(28,191,69,0.92)), url(/images/parallax-img-02.jpg)",
-        }}
-      >
-        <div className="container-page">
-          <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {counters.map((c, i) => (
-              <Reveal key={c.label} delay={i * 80} className="text-center">
-                <dd className="font-display text-4xl font-extrabold sm:text-5xl">
-                  <CountUp value={c.value} />
-                </dd>
-                <dt className="mt-2 text-sm font-semibold uppercase tracking-wider text-white/85">
-                  {c.label}
-                </dt>
-              </Reveal>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* ===================== FINAL CTA ===================== */}
-      <section className="section">
-        <div className="container-page">
-          <Reveal className="relative overflow-hidden rounded-5xl bg-ink-900 px-6 py-14 text-center text-white sm:px-12 lg:py-20">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-80"
-            />
-            <div className="relative mx-auto max-w-2xl">
-              <h2 className="h2 text-white">
-                Ready to take linen off your operation&apos;s plate?
-              </h2>
-              <p className="lead mt-4 text-white/80">
-                Call us or request a proposal — on-premise, off-site or
-                linen-rental, with a 24-hour finish and linen that is never
-                mixed with anyone else&apos;s.
+            <a
+              href={`tel:+91${site.phoneRaw}`}
+              className="card card-hover group flex h-full flex-col"
+            >
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
+                <Icon name="phone" className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                Call us
+              </h3>
+              <p className="mt-2 text-base font-semibold text-brand-600">
+                {site.phoneDisplay}
               </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <a href={`tel:+91${site.phoneRaw}`} className="btn-primary">
-                  <Icon name="phone" className="h-4 w-4" />
-                  {site.phoneDisplay}
-                </a>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-                >
-                  Talk to our team
-                </Link>
-              </div>
-            </div>
-          </Reveal>
+              <p className="mt-1 text-sm text-ink-500">{site.hours}</p>
+            </a>
+
+            <a
+              href={`mailto:${site.emails.hr}`}
+              className="card card-hover group flex h-full flex-col"
+            >
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
+                <Icon name="mail" className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                Email us
+              </h3>
+              <p className="mt-2 break-all text-base font-semibold text-brand-600">
+                {site.emails.hr}
+              </p>
+              <p className="mt-1 text-sm text-ink-500">We reply within one business day.</p>
+            </a>
+
+            <a
+              href={site.address.mapsHref}
+              target="_blank"
+              rel="noreferrer"
+              className="card card-hover group flex h-full flex-col"
+            >
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
+                <Icon name="pin" className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                Visit us
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-600">
+                {site.address.full}
+              </p>
+            </a>
+          </div>
         </div>
       </section>
     </>
