@@ -8,6 +8,8 @@ type Props = {
   description?: ReactNode;
   children?: ReactNode;
   crumbs?: Crumb[];
+  /** Giant faint background word derived from eyebrow (default: false) */
+  showWatermark?: boolean;
 };
 
 /** Floating soap bubbles, an on-brand laundry motif that drifts gently behind
@@ -46,6 +48,7 @@ export default function PageHero({
   title,
   description,
   children,
+  showWatermark = false,
 }: Props) {
   return (
     <section className="relative overflow-hidden border-b border-brand-100/50">
@@ -70,7 +73,7 @@ export default function PageHero({
 
       <Bubbles />
 
-      {eyebrow && (
+      {eyebrow && showWatermark && (
         <span
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-display text-[clamp(3rem,13vw,9rem)] font-extrabold uppercase leading-none tracking-tighter text-brand-500/[0.07]"
