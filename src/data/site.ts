@@ -111,11 +111,11 @@ export const pressFeature = {
   outlet: "The Hitavada",
   edition: "Raipur · 25 December 2025",
   title: "CSSDA ties up with The Laundry Bag to boost job-oriented training",
-  dek: "The Chhattisgarh State Skill Development Authority (CSSDA) signed a Memorandum of Understanding with The Laundry Bag to roll out a structured \u201CLaundry Operations \u2013 Skill Development Programme\u201D \u2014 formalising and professionalising the organised laundry workforce for hospitality, healthcare, residential and commercial establishments.",
+  dek: "A government partnership to professionalise India\u2019s organised laundry workforce \u2014 turning everyday laundry skills into certified, job-ready training for hospitality, healthcare and commercial linen.",
   facts: [
-    { label: "Event", value: "Chhattisgarh Skill Tech, Raipur" },
-    { label: "Signed with", value: "Chhattisgarh State Skill Development Authority (CSSDA)" },
-    { label: "Programme", value: "Laundry Operations \u2013 Skill Development Programme" },
+    { label: "Signed with", value: "Chhattisgarh State Skill Development Authority" },
+    { label: "Programme", value: "Laundry Operations \u2013 Skill Development" },
+    { label: "Signed at", value: "Chhattisgarh Skill Tech, Raipur" },
     { label: "Presided by", value: "Hon\u2019ble CM Shri Vishnu Deo Sai" },
   ],
   image: {

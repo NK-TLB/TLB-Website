@@ -112,8 +112,7 @@ export default function IndiaMap({
   const map = (
     <div
       ref={containerRef}
-      className="relative mx-auto w-full"
-      style={{ maxWidth: variant === "compact" ? 460 : 560 }}
+      className="relative mx-auto w-full max-w-[560px] lg:max-w-none"
     >
       {/* aspect-ratio box matching the India viewBox so pins + arcs align */}
       <div className="relative" style={{ paddingTop: `${(VB_H / VB_W) * 100}%` }}>
@@ -263,25 +262,26 @@ export default function IndiaMap({
   );
 
   const legend = (
-    <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold text-ink-600">
-      <li className="flex items-center gap-2">
-        <span className="h-3 w-3 rounded-full bg-gradient-to-br from-ink-700 to-ink-950 ring-2 ring-white" />
-        Head Office
-      </li>
-      <li className="flex items-center gap-2">
-        <span className="h-2.5 w-2.5 rounded-full bg-gradient-to-br from-brand-300 to-brand-600" />
-        Hotels &amp; resorts
-      </li>
-      <li className="flex items-center gap-2">
-        <span className="h-2.5 w-2.5 rounded-full bg-gradient-to-br from-accent-400 to-accent-600" />
-        Hospitals
-      </li>
+    <ul className="flex flex-wrap items-center gap-3">
+      {[
+        { className: "bg-gradient-to-br from-ink-700 to-ink-950", label: "Head Office", size: "h-3 w-3" },
+        { className: "bg-gradient-to-br from-brand-300 to-brand-600", label: "Hotels & resorts", size: "h-2.5 w-2.5" },
+        { className: "bg-gradient-to-br from-accent-400 to-accent-600", label: "Hospitals", size: "h-2.5 w-2.5" },
+      ].map((item) => (
+        <li
+          key={item.label}
+          className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50/60 px-3 py-1.5 text-xs font-semibold text-ink-700"
+        >
+          <span className={`rounded-full ring-2 ring-white ${item.size} ${item.className}`} />
+          {item.label}
+        </li>
+      ))}
     </ul>
   );
 
   if (variant === "compact") {
     return (
-      <div className={className}>
+      <div className={`mx-auto max-w-[460px] ${className}`}>
         {map}
         <div className="mt-8 flex flex-col items-center gap-5">
           {legend}
@@ -295,26 +295,57 @@ export default function IndiaMap({
   }
 
   return (
-    <div className={`grid items-start gap-10 lg:grid-cols-2 ${className}`}>
-      {map}
-
-      <div>
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { value: "18", label: "Cities" },
-            { value: "30+", label: "Operational units" },
-            { value: `${counts.hospitals}+`, label: "Hospitals" },
-          ].map((s) => (
-            <div key={s.label} className="rounded-2xl border border-ink-100 bg-white p-4 text-center shadow-soft">
-              <div className="font-display text-2xl font-extrabold text-brand-600">{s.value}</div>
-              <div className="mt-1 text-xs font-semibold text-ink-500">{s.label}</div>
-            </div>
-          ))}
+    <div className={`grid items-start gap-8 lg:grid-cols-2 lg:gap-10 ${className}`}>
+      <div className="flex min-w-0 flex-col gap-5">
+        <div className="relative overflow-hidden rounded-3xl border border-brand-100/60 bg-gradient-to-br from-brand-50/60 via-white to-brand-50/20 p-5 shadow-soft sm:p-6">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-200/30 blur-3xl"
+          />
+          <div className="relative">{map}</div>
         </div>
 
-        <div className="mt-8">
-          {legend}
-          <ul className="mt-6 grid grid-cols-2 gap-3 overflow-y-auto sm:grid-cols-3">
+        <div className="overflow-hidden rounded-3xl border border-brand-100/70 bg-gradient-to-br from-white via-brand-50/30 to-white shadow-soft">
+          <span
+            aria-hidden="true"
+            className="block h-1 bg-brand-gradient"
+          />
+          <dl className="grid grid-cols-3 divide-x divide-brand-100/70">
+            {[
+              { value: "18", label: "Cities", icon: "pin" },
+              { value: "30+", label: "Operational units", icon: "factory" },
+              { value: `${counts.hospitals}+`, label: "Hospitals", icon: "shield" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="group relative px-3 py-5 text-center transition duration-300 hover:bg-brand-50/50 sm:px-4"
+              >
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-4 -top-4 h-16 w-16 rounded-full bg-brand-100/40 blur-2xl opacity-0 transition duration-300 group-hover:opacity-100"
+                />
+                <dt className="relative flex items-center justify-center gap-1.5 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-brand-600">
+                  <Icon name={s.icon} className="h-3.5 w-3.5 opacity-80" />
+                  {s.label}
+                </dt>
+                <dd className="relative mt-2 font-display text-2xl font-extrabold leading-none text-ink-900 sm:text-[1.75rem]">
+                  {s.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div className="flex min-w-0 flex-col">
+        <div className="flex flex-1 flex-col rounded-3xl border border-brand-100/60 bg-brand-50/25 p-5 sm:p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
+              Cities we serve
+            </p>
+            {legend}
+          </div>
+          <ul className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
             {mapMarkers.map((m) => {
               const isOn = currentId === m.id;
               return (
@@ -326,10 +357,10 @@ export default function IndiaMap({
                     onFocus={() => setActive(m.id)}
                     onBlur={() => setActive(null)}
                     onClick={() => setSelectedId(m.id)}
-                    className={`flex w-full items-center gap-2.5 rounded-xl border px-3 py-2.5 text-left text-sm font-semibold transition ${
+                    className={`flex w-full items-center gap-2 rounded-2xl border px-3 py-2.5 text-left text-sm font-semibold transition duration-200 ${
                       isOn
-                        ? "border-brand-300 bg-brand-50 text-brand-700 shadow-sm"
-                        : "border-ink-100 bg-white text-ink-700 hover:border-brand-200 hover:bg-brand-50/50 hover:text-brand-800"
+                        ? "border-brand-300 bg-white text-brand-700 shadow-soft"
+                        : "border-brand-100/80 bg-white/90 text-ink-700 hover:border-brand-200 hover:bg-white hover:text-brand-800 hover:shadow-sm"
                     }`}
                   >
                     <span className={`h-2 w-2 shrink-0 rounded-full ${typeDotClass[m.type]}`} />

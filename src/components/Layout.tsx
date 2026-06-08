@@ -3,7 +3,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import FloatingCTA from "./FloatingCTA";
-import ScrollProgress from "./ScrollProgress";
 import { site } from "../data/site";
 
 export default function Layout() {
@@ -15,7 +14,6 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <ScrollProgress />
       <h1 className="sr-only">
         The Laundry Bag (TLB), India&apos;s Leading Laundry Service Provider ·
         Commercial Laundry, Dry Cleaning &amp; Linen Management for Hotels &amp;

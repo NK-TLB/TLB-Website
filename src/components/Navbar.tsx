@@ -1,21 +1,117 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { navLinks } from "../data/site";
+import Icon from "./Icon";
+import { navLinks, site } from "../data/site";
 import Logo from "./Logo";
+
+function HeaderSeparator({ progress }: { progress: number }) {
+  const active = progress > 0.4;
+  const complete = progress >= 99.8;
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[3px]"
+    >
+      {/* Full-width baseline — always visible, fades at edges */}
+      <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-ink-900/[0.07] to-transparent" />
+      <span
+        className={`absolute inset-x-[4%] bottom-0 h-px bg-gradient-to-r from-transparent via-brand-300/55 to-transparent transition-opacity duration-700 sm:inset-x-[8%] ${
+          active ? "opacity-30" : "opacity-100"
+        }`}
+      />
+
+      {/* Resting centre mark — visible before scroll */}
+      <span
+        className={`absolute bottom-0 left-1/2 z-[2] flex -translate-x-1/2 translate-y-1/2 items-center gap-1.5 transition-all duration-700 motion-reduce:transition-none ${
+          active ? "scale-90 opacity-0" : "opacity-100"
+        }`}
+      >
+        <span className="h-px w-10 bg-gradient-to-r from-transparent to-brand-400/70 sm:w-12" />
+        <span className="relative flex h-1.5 w-1.5 items-center justify-center">
+          <span className="absolute inset-0 rounded-full bg-brand-400/25 blur-[2px]" />
+          <span className="relative h-1.5 w-1.5 rounded-full bg-brand-gradient ring-[3px] ring-brand-50/90" />
+        </span>
+        <span className="h-px w-10 bg-gradient-to-l from-transparent to-brand-400/70 sm:w-12" />
+      </span>
+
+      {/* Scroll progress */}
+      <div
+        className={`absolute inset-x-0 bottom-0 transition-opacity duration-500 ${
+          active ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {/* Track */}
+        <span className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-brand-100/10 via-brand-100/35 to-brand-100/10" />
+
+        {/* Glow beneath active portion */}
+        <span
+          className="absolute bottom-0 left-0 h-3 bg-gradient-to-r from-brand-400/25 via-brand-400/10 to-transparent blur-md transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          style={{ width: `${progress}%` }}
+        />
+
+        {/* Fill */}
+        <span
+          className="absolute bottom-0 left-0 h-[2px] origin-left rounded-r-full bg-brand-gradient transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          style={{ width: `${progress}%` }}
+        />
+
+        {/* Specular highlight */}
+        <span
+          className="absolute bottom-[1px] left-0 h-px rounded-r-full bg-gradient-to-r from-white/50 via-white/15 to-transparent transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          style={{ width: `${Math.max(0, progress - 0.5)}%` }}
+        />
+
+        {/* Leading tip — soft luminescence, hidden at completion */}
+        {active && !complete && (
+          <span
+            className="absolute bottom-0 z-[1] -translate-x-1/2 translate-y-1/2"
+            style={{ left: `${progress}%` }}
+          >
+            <span className="block h-2 w-2 rounded-full bg-brand-300/90 shadow-[0_0_10px_2px_rgb(var(--brand-400)/0.45)] ring-2 ring-brand-50/95" />
+          </span>
+        )}
+      </div>
+
+      {/* Container-aligned inner hairline on large screens */}
+      <span className="absolute inset-x-0 bottom-0 mx-auto hidden h-px max-w-7xl bg-gradient-to-r from-transparent via-brand-200/25 to-transparent lg:block lg:px-10" />
+    </div>
+  );
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const { pathname } = useLocation();
   const closeMenu = () => setOpen(false);
+  const scrolled = scrollProgress > 0.5;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    let frame = 0;
+
+    const update = () => {
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - doc.clientHeight;
+      const pct = scrollable > 0 ? (doc.scrollTop / scrollable) * 100 : 0;
+      setScrollProgress(Math.min(100, Math.max(0, pct)));
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => closeMenu());
@@ -128,27 +224,22 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`sticky top-0 z-[110] w-full bg-brand-50/90 backdrop-blur-xl transition-all duration-300 ${
-          scrolled ? "shadow-[0_4px_20px_-10px_rgb(var(--shadow-rgb)/0.15)]" : ""
+        className={`relative sticky top-0 z-[110] w-full border-b border-transparent bg-brand-50/90 backdrop-blur-xl transition-all duration-500 ${
+          scrolled
+            ? "border-brand-100/40 bg-brand-50/[0.97] shadow-[0_8px_32px_-12px_rgb(var(--shadow-rgb)/0.18)]"
+            : ""
         }`}
       >
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brand-300/70 to-transparent"
-        />
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-[15%] bottom-0 h-px bg-gradient-to-r from-transparent via-brand-500/40 to-transparent blur-[1px]"
-        />
-        <div className="container-page flex h-[4.5rem] items-center justify-between gap-3 lg:h-24 lg:gap-[calc(0.75rem*1.1)]">
+        <HeaderSeparator progress={scrollProgress} />
+        <div className="container-page flex h-[4.5rem] items-center justify-between gap-3 lg:h-20 lg:gap-6">
           <Link
             to="/"
             aria-label="The Laundry Bag, India's Leading Laundry Service Provider"
             title="The Laundry Bag, India's Leading Laundry Service Provider"
-            className="shrink-0"
+            className="group relative shrink-0 rounded-xl transition duration-300 hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
             onClick={closeMenu}
           >
-            <Logo className="h-[4rem] w-auto sm:h-[4.25rem] lg:h-20" />
+            <Logo className="h-[3.25rem] w-auto transition duration-300 group-hover:scale-[1.01] sm:h-14 lg:h-[3.75rem]" />
           </Link>
 
           <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex xl:gap-2">
@@ -170,14 +261,22 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <a
+              href={`tel:+91${site.phoneRaw}`}
+              className="hidden h-10 w-10 items-center justify-center rounded-full border border-brand-100/80 bg-white/80 text-brand-700 shadow-sm ring-1 ring-brand-50/80 transition hover:border-brand-200 hover:bg-white hover:text-brand-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 xl:inline-flex"
+              aria-label={`Call ${site.phoneDisplay}`}
+            >
+              <Icon name="phone" className="h-4 w-4" />
+            </a>
+
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition focus:outline-none focus:ring-2 focus:ring-brand-500 ${
+              className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 lg:hidden ${
                 open
                   ? "bg-brand-gradient text-white shadow-soft"
-                  : "bg-white/80 text-ink-700 shadow-sm ring-1 ring-brand-100/60 hover:bg-white"
+                  : "border border-brand-100/80 bg-white/80 text-ink-700 shadow-sm ring-1 ring-brand-50/80 hover:border-brand-200 hover:bg-white"
               }`}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}

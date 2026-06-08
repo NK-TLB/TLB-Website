@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import SEO from "../components/SEO";
 import PageHero from "../components/PageHero";
 import SectionHeading from "../components/SectionHeading";
@@ -7,12 +7,7 @@ import Icon from "../components/Icon";
 import ResponsiveImage from "../components/ResponsiveImage";
 import VideoFeature from "../components/VideoFeature";
 import Lightbox, { type LightboxItem } from "../components/Lightbox";
-import {
-  pressFeature,
-  pressClippings,
-  pressGallery,
-  ratanTata,
-} from "../data/site";
+import { pressFeature, pressClippings, ratanTata } from "../data/site";
 
 const BASE_URL = "https://www.thelaundrybag.co.in";
 const abs = (p: string) => `${BASE_URL}${p}`;
@@ -58,13 +53,6 @@ const videoSchema = {
 };
 
 const imageSchemas = [
-  ...pressGallery.map((g) => ({
-    "@context": "https://schema.org",
-    "@type": "ImageObject",
-    contentUrl: abs(`${g.image.base}-1200.jpg`),
-    caption: g.caption,
-    creditText: "The Laundry Bag",
-  })),
   {
     "@context": "https://schema.org",
     "@type": "ImageObject",
@@ -79,10 +67,119 @@ const ratanItem: LightboxItem = {
   caption: ratanTata.image.alt,
 };
 
+const ratanHeroSrc = `${ratanTata.image.base}-${Math.max(...ratanTata.image.widths)}.jpg`;
+
 const clippingItems: LightboxItem[] = pressClippings.map((c) => ({
   image: c.image,
   caption: `${c.outlet}, ${c.title}`,
 }));
+
+function PremiumFrame({
+  children,
+  accent = "brand",
+}: {
+  children: ReactNode;
+  accent?: "brand" | "prestige" | "ink";
+}) {
+  const accentBar =
+    accent === "prestige"
+      ? "bg-gradient-to-r from-ink-700 via-brand-500 to-accent-500"
+      : accent === "ink"
+        ? "bg-gradient-to-r from-ink-800 via-ink-700 to-brand-600"
+        : "bg-brand-gradient";
+
+  return (
+    <article className="relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
+      <span aria-hidden="true" className="absolute inset-0 bg-brand-gradient opacity-90" />
+      <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white">
+        <span aria-hidden="true" className={`block h-1.5 ${accentBar}`} />
+        {children}
+      </div>
+    </article>
+  );
+}
+
+function MetaPill({
+  icon,
+  children,
+  tone = "brand",
+}: {
+  icon: string;
+  children: ReactNode;
+  tone?: "brand" | "neutral" | "dark";
+}) {
+  return (
+    <span
+      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold shadow-sm ${
+        tone === "dark"
+          ? "border-white/15 bg-white/10 text-white/90 backdrop-blur-md"
+          : tone === "brand"
+            ? "border-brand-200/80 bg-brand-50/80 text-brand-700"
+            : "border-brand-100 bg-white text-ink-600"
+      }`}
+    >
+      <Icon name={icon} className="h-3.5 w-3.5" />
+      {children}
+    </span>
+  );
+}
+
+function MemorialQuote({ children }: { children: ReactNode }) {
+  return (
+    <figure className="relative overflow-hidden rounded-2xl border border-brand-100/60 bg-gradient-to-br from-ink-950/[0.03] via-brand-50/50 to-white p-6 sm:p-8">
+      <span
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 top-0 w-1 bg-gradient-to-b from-ink-700 via-brand-500 to-accent-400"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-brand-200/25 blur-3xl"
+      />
+      <div className="relative flex gap-4 sm:gap-5">
+        <Icon name="quote" className="mt-0.5 h-8 w-8 shrink-0 text-brand-300 sm:h-9 sm:w-9" />
+        <blockquote className="font-display text-xl font-semibold leading-snug text-ink-900 sm:text-2xl">
+          {children}
+        </blockquote>
+      </div>
+    </figure>
+  );
+}
+
+function FactCards({
+  facts,
+  icons,
+  columns = 3,
+}: {
+  facts: { label: string; value: string }[];
+  icons: string[];
+  columns?: 2 | 3 | 4;
+}) {
+  const colClass =
+    columns === 4
+      ? "sm:grid-cols-2 xl:grid-cols-4"
+      : columns === 2
+        ? "sm:grid-cols-2"
+        : "sm:grid-cols-3";
+
+  return (
+    <dl className={`grid gap-3 ${colClass}`}>
+      {facts.map((f, i) => (
+        <div
+          key={f.label}
+          className="rounded-2xl border border-brand-100/70 bg-white p-4 shadow-sm ring-1 ring-brand-50/80 transition duration-200 hover:border-brand-200 hover:shadow-soft"
+        >
+          <dt className="flex items-center gap-2 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-brand-600">
+            <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100/80">
+              <Icon name={icons[i] ?? "star"} className="h-3.5 w-3.5" />
+            </span>
+            {f.label}
+          </dt>
+          <dd className="mt-3 text-sm font-semibold leading-snug text-ink-800">{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
 
 export default function Press() {
   const [box, setBox] = useState<{ items: LightboxItem[]; index: number } | null>(
@@ -106,191 +203,229 @@ export default function Press() {
         crumbs={[{ label: "Home", to: "/" }, { label: "Press" }]}
       />
 
-      {/* Ratan Tata, standout milestone */}
+      {/* Ratan Tata milestone */}
       <section className="section">
         <div className="container-page">
-          <div className="mb-8 text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-600">
-              {ratanTata.eyebrow}
-            </p>
-          </div>
-          <div className="overflow-hidden rounded-4xl border border-brand-100 bg-white shadow-lift">
-            <div className="grid items-stretch lg:grid-cols-2">
-              <button
-                type="button"
-                onClick={() => setBox({ items: [ratanItem], index: 0 })}
-                className="group relative flex w-full items-center justify-center overflow-hidden bg-ink-50 p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-400 sm:p-6"
-                aria-label="View the photo full-screen"
-              >
-                <ResponsiveImage
-                  image={ratanTata.image}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="block w-full"
-                  imgClassName="mx-auto max-h-[34rem] w-full rounded-2xl object-contain transition duration-500 group-hover:scale-[1.02]"
-                />
-                <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-ink-950/60 px-3 py-1.5 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100">
-                  <Icon name="expand" className="h-4 w-4" />
-                  View photo
-                </span>
-              </button>
+          <SectionHeading
+            eyebrow={ratanTata.eyebrow}
+            title="An honour we will always cherish"
+            align="left"
+            showRule={false}
+          />
 
-              <div className="p-8 sm:p-10 lg:p-12">
-                <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-brand-700 ring-1 ring-brand-100">
-                  <Icon name="star" className="h-4 w-4" />
-                  {ratanTata.kicker}
-                </span>
-                <h2 className="mt-5 font-display text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
-                  {ratanTata.title}
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-ink-700">
-                  {ratanTata.lead}
-                </p>
-                {ratanTata.body.map((para) => (
-                  <p key={para.slice(0, 24)} className="mt-3 text-sm leading-relaxed text-ink-600">
-                    {para}
-                  </p>
-                ))}
+          <Reveal className="mt-10">
+            <PremiumFrame accent="prestige">
+              <div className="grid items-stretch lg:grid-cols-2">
+                <figure className="relative min-h-[28rem] border-b border-brand-100/60 lg:min-h-[36rem] lg:border-b-0 lg:border-r">
+                  <button
+                    type="button"
+                    onClick={() => setBox({ items: [ratanItem], index: 0 })}
+                    className="group/photo relative flex h-full min-h-[28rem] w-full flex-col overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-400 lg:min-h-[36rem]"
+                    aria-label="View the photo full-screen"
+                  >
+                    <div className="relative flex min-h-[22rem] flex-1 flex-col bg-ink-950">
+                      <img
+                        src={ratanHeroSrc}
+                        alt=""
+                        aria-hidden="true"
+                        draggable={false}
+                        className="pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover opacity-35 blur-3xl brightness-75 saturate-125"
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-ink-950/80 via-ink-900/50 to-brand-950/70"
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-25"
+                      />
 
-                <figure className="mt-6 border-l-2 border-brand-400 pl-4">
-                  <Icon name="quote" className="h-6 w-6 text-brand-300" />
-                  <blockquote className="mt-1 font-display text-lg font-semibold leading-snug text-ink-900">
-                    {ratanTata.pullQuote}
-                  </blockquote>
+                      <span className="absolute left-5 top-5 z-20 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white/90 shadow-sm backdrop-blur-md">
+                        <Icon name="pin" className="h-3.5 w-3.5 text-brand-300" />
+                        {ratanTata.kicker}
+                      </span>
+
+                      <ResponsiveImage
+                        image={ratanTata.image}
+                        sizes="(min-width: 1024px) 50vw, 92vw"
+                        className="absolute inset-0 z-10 block h-full w-full"
+                        imgClassName="h-full w-full object-contain transition duration-500 group-hover/photo:scale-[1.01]"
+                      />
+
+                      <span className="pointer-events-none absolute inset-0 z-10 bg-ink-950/0 transition duration-300 group-hover/photo:bg-ink-950/15 group-focus-visible/photo:bg-ink-950/15" />
+                    </div>
+
+                    <figcaption className="border-t border-brand-100/60 bg-gradient-to-r from-brand-50/40 via-white to-brand-50/40 px-6 py-3.5 text-center text-xs leading-relaxed text-ink-500 sm:px-8">
+                      {ratanTata.image.alt}
+                    </figcaption>
+                  </button>
                 </figure>
 
-                <dl className="mt-7 grid gap-3 sm:grid-cols-3">
-                  {ratanTata.facts.map((f) => (
-                    <div key={f.label} className="rounded-2xl border border-ink-100 bg-brand-50/50 p-3.5">
-                      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-ink-400">
-                        {f.label}
-                      </dt>
-                      <dd className="mt-1 text-sm font-semibold text-ink-800">{f.value}</dd>
-                    </div>
-                  ))}
-                </dl>
+                <div className="flex flex-col justify-center gap-6 p-8 sm:p-10 lg:p-12">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <MetaPill icon="star">Healthcare milestone</MetaPill>
+                    <MetaPill icon="shield" tone="neutral">
+                      Hospital-grade linen
+                    </MetaPill>
+                  </div>
+
+                  <div>
+                    <h3 className="font-display text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
+                      {ratanTata.title}
+                    </h3>
+                    <p className="mt-4 text-base leading-relaxed text-ink-700 sm:text-[1.05rem]">
+                      {ratanTata.lead}
+                    </p>
+                  </div>
+
+                  <div className="space-y-4 border-l-2 border-brand-200/80 pl-5">
+                    {ratanTata.body.map((para) => (
+                      <p
+                        key={para.slice(0, 24)}
+                        className="text-sm leading-relaxed text-ink-600 sm:text-[0.9375rem]"
+                      >
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+
+              <div className="border-t border-brand-100/70 bg-gradient-to-r from-brand-50/30 via-white to-brand-50/30 px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
+                <MemorialQuote>{ratanTata.pullQuote}</MemorialQuote>
+                <div className="mt-6">
+                  <FactCards
+                    facts={ratanTata.facts}
+                    icons={["pin", "calendar", "shield"]}
+                  />
+                </div>
+              </div>
+            </PremiumFrame>
+          </Reveal>
         </div>
       </section>
 
-      {/* Headline MoU feature */}
-      <section className="section-tint section">
-        <div className="container-page">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-brand-700">
-                <Icon name="shield" className="h-4 w-4" />
-                {pressFeature.kicker}
-              </span>
-              <h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
-                {pressFeature.title}
-              </h2>
-              <p className="mt-4 text-ink-600">{pressFeature.dek}</p>
-              <dl className="mt-6 grid gap-4 sm:grid-cols-2">
-                {pressFeature.facts.map((f) => (
-                  <div key={f.label} className="rounded-2xl border border-ink-100 bg-white p-4 shadow-soft">
-                    <dt className="text-xs font-bold uppercase tracking-[0.14em] text-ink-400">
-                      {f.label}
-                    </dt>
-                    <dd className="mt-1 text-sm font-semibold text-ink-800">{f.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <figure>
-                <ResponsiveImage
-                  image={pressFeature.image}
-                  priority
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="block overflow-hidden rounded-4xl border border-ink-100 bg-ink-100 shadow-soft"
-                  imgClassName="aspect-video w-full object-cover"
-                />
-                <figcaption className="mt-3 text-xs text-ink-500">
-                  {pressFeature.image.alt}
-                </figcaption>
-              </figure>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* MoU video */}
-      <section className="section">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Watch the ceremony"
-            title="The MoU, on stage at Chhattisgarh Skill Tech"
-            description="Captioned in English and हिन्दी. The clip loads only when you press play."
-          />
-          <div className="mt-12 grid items-center gap-10 lg:grid-cols-2">
-            <Reveal>
-              <VideoFeature
-                mp4={pressFeature.video.mp4}
-                webm={pressFeature.video.webm}
-                poster={pressFeature.video.poster}
-                posterAlt={pressFeature.image.alt}
-                captions={pressFeature.video.captions}
-                durationSec={pressFeature.video.durationSec}
-              />
-            </Reveal>
-            <Reveal delay={80}>
-              <figure className="rounded-4xl border border-ink-100 bg-white p-6 shadow-soft sm:p-8">
-                <Icon name="quote" className="h-8 w-8 text-brand-300" />
-                <blockquote className="mt-3 text-lg font-medium leading-relaxed text-ink-800">
-                  {pressFeature.video.summary}
-                </blockquote>
-                <figcaption className="mt-4 text-sm font-semibold text-ink-600">
-                  Chhattisgarh Skill Tech · Raipur
-                </figcaption>
-              </figure>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Newspaper clippings */}
+      {/* CSSDA MoU — agreement, ceremony & press coverage */}
       <section className="section-tint section">
         <div className="container-page">
           <SectionHeading
-            eyebrow="In print"
-            title="Newspaper coverage"
-            description="Click any clipping to read it full-screen."
+            eyebrow={pressFeature.kicker}
+            title={pressFeature.title}
+            align="left"
+            showRule={false}
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {pressClippings.map((c, i) => (
-              <Reveal key={c.image.base} delay={i * 70}>
-                <button
-                  type="button"
-                  onClick={() => setBox({ items: clippingItems, index: i })}
-                  className="group block w-full overflow-hidden rounded-4xl border border-ink-100 bg-white text-left shadow-soft transition hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
-                >
-                  <div className="relative overflow-hidden bg-ink-100">
-                    <ResponsiveImage
-                      image={c.image}
-                      sizes="(min-width: 640px) 50vw, 100vw"
-                      imgClassName="max-h-[26rem] w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+
+          <Reveal className="mt-10">
+            <PremiumFrame>
+              <div className="grid items-stretch lg:grid-cols-2">
+                <div className="flex flex-col justify-center gap-7 p-8 sm:p-10 lg:p-12">
+                  <p className="text-lg leading-relaxed text-ink-700 sm:text-xl">
+                    {pressFeature.dek}
+                  </p>
+
+                  <FactCards
+                    facts={pressFeature.facts}
+                    icons={["shield", "star", "pin", "star"]}
+                    columns={2}
+                  />
+                </div>
+
+                <figure className="relative min-h-[20rem] border-t border-brand-100/60 lg:min-h-full lg:border-l lg:border-t-0">
+                  <div className="relative flex h-full w-full flex-col overflow-hidden bg-ink-950">
+                    <img
+                      src={`${pressFeature.image.base}-1600.jpg`}
+                      alt=""
+                      aria-hidden="true"
+                      draggable={false}
+                      className="pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover opacity-30 blur-3xl"
                     />
-                    <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-ink-950/70 px-3 py-1.5 text-xs font-semibold text-white">
-                      <Icon name="expand" className="h-4 w-4" />
-                      Read
-                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-br from-ink-950/70 via-ink-900/40 to-brand-950/60"
+                    />
+                    <ResponsiveImage
+                      image={pressFeature.image}
+                      priority
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="absolute inset-0 z-10 block h-full w-full"
+                      imgClassName="h-full w-full object-cover"
+                    />
+                    <figcaption className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-ink-950/90 to-transparent px-5 py-4 text-xs font-medium text-white/85 sm:px-6">
+                      <span className="font-bold uppercase tracking-[0.14em] text-brand-300">
+                        {pressFeature.outlet}
+                      </span>
+                      <span className="mx-2 text-white/40">·</span>
+                      {pressFeature.edition}
+                    </figcaption>
                   </div>
-                  <div className="px-5 py-4">
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700">
-                      {c.outlet}
+                </figure>
+              </div>
+
+              <div className="grid items-stretch border-t border-brand-100/70 lg:grid-cols-2">
+                <div className="flex flex-col gap-5 border-b border-brand-100/70 p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
+                  <div>
+                    <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600">
+                      Watch the ceremony
                     </p>
-                    <p className="mt-1 font-display text-base font-bold text-ink-900">
-                      {c.title}
-                    </p>
-                    <p className="mt-1 text-xs text-ink-500">{c.edition}</p>
+                    <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-ink-900 sm:text-2xl">
+                      The MoU, on stage
+                    </h3>
                   </div>
-                </button>
-              </Reveal>
-            ))}
-          </div>
+                  <VideoFeature
+                    mp4={pressFeature.video.mp4}
+                    webm={pressFeature.video.webm}
+                    poster={pressFeature.video.poster}
+                    posterAlt={pressFeature.image.alt}
+                    captions={pressFeature.video.captions}
+                    durationSec={pressFeature.video.durationSec}
+                  />
+                  <p className="text-sm text-ink-500">
+                    Captioned in English &amp; हिन्दी. Loads only when you press play.
+                  </p>
+                </div>
+
+                <div className="p-6 sm:p-8 lg:p-10">
+                  <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600">
+                    In the papers
+                  </p>
+                  <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-ink-900 sm:text-2xl">
+                    Press coverage
+                  </h3>
+                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                    {pressClippings.map((c, i) => (
+                      <button
+                        key={c.image.base}
+                        type="button"
+                        onClick={() => setBox({ items: clippingItems, index: i })}
+                        className="group block h-full w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+                      >
+                        <article className="flex h-full flex-col overflow-hidden rounded-xl border border-brand-100/70 bg-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-soft">
+                          <div className="relative overflow-hidden bg-ink-50/50">
+                            <ResponsiveImage
+                              image={c.image}
+                              sizes="(min-width: 1024px) 16vw, 50vw"
+                              className="block overflow-hidden"
+                              imgClassName="h-40 w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+                            />
+                            <span className="absolute inset-0 flex items-center justify-center bg-ink-950/0 transition duration-300 group-hover:bg-ink-950/30">
+                              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-ink-800 opacity-0 shadow-soft transition group-hover:opacity-100">
+                                <Icon name="expand" className="h-4 w-4 text-brand-600" />
+                                Read
+                              </span>
+                            </span>
+                          </div>
+                          <div className="border-t border-brand-100/70 px-4 py-3">
+                            <p className="font-display text-sm font-bold text-ink-900">{c.outlet}</p>
+                            <p className="mt-0.5 text-[0.7rem] text-ink-500">{c.edition}</p>
+                          </div>
+                        </article>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </PremiumFrame>
+          </Reveal>
         </div>
       </section>
 

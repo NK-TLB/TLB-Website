@@ -6,7 +6,8 @@ import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import Timeline from "../components/Timeline";
 import Leadership from "../components/Leadership";
-import { companyFacts, site, whyChooseUs } from "../data/site";
+import WhyChooseUsGrid from "../components/WhyChooseUsGrid";
+import { companyFacts, site } from "../data/site";
 
 const factIcon: Record<string, string> = {
   Founded: "calendar",
@@ -14,6 +15,22 @@ const factIcon: Record<string, string> = {
   Focus: "washer",
   Presence: "pin",
 };
+
+function factValueClass(value: string) {
+  if (value.length <= 6) {
+    return "font-display text-4xl font-extrabold leading-none text-brand-600 sm:text-[2.75rem]";
+  }
+  if (value.length <= 22) {
+    return "font-display text-xl font-extrabold leading-snug text-ink-900 sm:text-2xl";
+  }
+  return "font-display text-base font-bold leading-snug text-ink-900 sm:text-lg";
+}
+
+const dreamHighlights = [
+  { icon: "hotel", label: "Hotels & hospitals" },
+  { icon: "factory", label: "On-premise & off-site" },
+  { icon: "clock", label: "24-hour turnaround" },
+] as const;
 
 export default function About() {
   return (
@@ -33,23 +50,29 @@ export default function About() {
       {/* Company facts */}
       <section className="section">
         <div className="container-page">
-          <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {companyFacts.map((f, i) => (
               <Reveal key={f.label} delay={i * 70}>
-                <div className="card card-hover group relative h-full overflow-hidden">
+                <div className="group relative flex h-full flex-col items-center overflow-hidden rounded-3xl border border-brand-200/60 bg-white px-6 py-8 text-center shadow-soft transition duration-300 hover:-translate-y-1 hover:border-brand-400/80 hover:shadow-lift sm:px-7 sm:py-9">
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-100/40 blur-2xl transition duration-300 group-hover:bg-brand-200/50"
+                    className="absolute inset-x-0 top-0 h-1 bg-brand-gradient opacity-90"
                   />
-                  <span className="relative inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
-                    <Icon name={factIcon[f.label] ?? "spark"} className="h-6 w-6" />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-100/45 blur-2xl transition duration-300 group-hover:bg-brand-200/55"
+                  />
+
+                  <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-brand-100 transition duration-300 group-hover:bg-brand-gradient group-hover:text-white group-hover:ring-transparent group-hover:shadow-soft">
+                    <Icon name={factIcon[f.label] ?? "spark"} className="h-5 w-5" />
                   </span>
-                  <dt className="relative mt-5 text-xs font-bold uppercase tracking-[0.16em] text-ink-500">
-                    {f.label}
-                  </dt>
-                  <dd className="relative mt-1.5 font-display text-2xl font-extrabold leading-tight text-ink-900">
+
+                  <dd className={`relative mt-5 ${factValueClass(f.value)}`}>
                     {f.value}
                   </dd>
+                  <dt className="relative mt-3 text-xs font-bold uppercase tracking-[0.18em] text-ink-500">
+                    {f.label}
+                  </dt>
                 </div>
               </Reveal>
             ))}
@@ -59,10 +82,15 @@ export default function About() {
 
       {/* Our dream / mission */}
       <section className="section-tint section">
-        <div className="container-page grid items-center gap-10 lg:grid-cols-2">
+        <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <SectionHeading align="left" eyebrow="Our dream" title="Laundry that exceeds expectations" />
-            <p className="lead mt-5">
+            <SectionHeading
+              align="left"
+              eyebrow="Our dream"
+              title="Laundry that exceeds expectations"
+              showRule={false}
+            />
+            <p className="lead mt-6">
               We follow a dream, to organise India&apos;s unorganised laundry
               sector and serve institutions in a way that far exceeds
               expectations. So we built an array of commercial laundry, linen
@@ -71,31 +99,65 @@ export default function About() {
             <p className="mt-4 text-ink-700">
               Hotels and hospitals need not tolerate late turnarounds or low
               standards merged with high costs. Our programmes cover guest-room
-              and patient linen, F&amp;B, uniforms, dry cleaning and upholstery.
-              Our highly efficient teams ensure you face no difficulty, the
-              technology we use is state of the art, and the service we provide
-              is incredibly good.
+              and patient linen, F&amp;B, uniforms, dry cleaning and upholstery
+              — with efficient teams and state-of-the-art technology behind
+              every load.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/clients" className="btn-primary">See who we serve</Link>
-              <Link to="/contact" className="btn-secondary">Talk to our team</Link>
+
+            <ul className="mt-7 flex flex-wrap gap-3">
+              {dreamHighlights.map((item) => (
+                <li
+                  key={item.label}
+                  className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-white/80 px-4 py-2 text-sm font-semibold text-brand-800 shadow-sm"
+                >
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                    <Icon name={item.icon} className="h-4 w-4" />
+                  </span>
+                  {item.label}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/clients" className="btn-primary">
+                See who we serve
+                <Icon name="arrow" className="h-4 w-4" />
+              </Link>
+              <Link to="/contact" className="btn-secondary">
+                Talk to our team
+              </Link>
             </div>
           </Reveal>
+
           <Reveal delay={120}>
-            <div className="overflow-hidden rounded-4xl shadow-soft">
-              <img
-                src="/images/res_laundry.jpg"
-                alt="The Laundry Bag processing facility"
-                className="h-full w-full object-cover"
-                loading="lazy"
+            <div className="group relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 rounded-[2rem] bg-brand-gradient opacity-90"
               />
+              <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] bg-ink-100">
+                <img
+                  src="/images/res_laundry.jpg"
+                  alt="The Laundry Bag processing facility"
+                  className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-950/75 via-ink-950/20 to-transparent px-6 pb-6 pt-16">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-200">
+                    Raipur · Chhattisgarh
+                  </p>
+                  <p className="mt-1 font-display text-lg font-bold text-white">
+                    Processing facility
+                  </p>
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* Timeline */}
-      <section className="section">
+      <section className="section-tint section">
         <div className="container-page">
           <SectionHeading
             eyebrow="Our journey"
@@ -117,25 +179,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Why choose us */}
-      <section className="section">
-        <div className="container-page">
-          <SectionHeading eyebrow="Why choose us" title="Built on values that stick" />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {whyChooseUs.map((r, i) => (
-              <Reveal key={r.title} delay={i * 60}>
-                <article className="card card-hover h-full">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
-                    <Icon name={r.icon} className="h-6 w-6" />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-bold text-ink-900">{r.title}</h3>
-                  <p className="mt-2 text-sm text-ink-600">{r.description}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WhyChooseUsGrid />
     </>
   );
 }

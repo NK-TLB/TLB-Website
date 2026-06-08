@@ -51,7 +51,7 @@ export default function PageHero({
   showWatermark = false,
 }: Props) {
   return (
-    <section className="relative overflow-hidden border-b border-brand-100/50">
+    <section className="relative overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-hero-radial" />
       <div
         aria-hidden="true"
@@ -136,6 +136,20 @@ export default function PageHero({
           </div>
         </div>
       </div>
+
+      {/* Modern hero bottom separator — all inner pages using PageHero */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-[6%] bottom-0 z-10 h-px bg-gradient-to-r from-transparent via-brand-300/80 to-transparent sm:inset-x-[10%]"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-[18%] bottom-0 z-10 h-px bg-gradient-to-r from-transparent via-brand-500/45 to-transparent blur-[1px] sm:inset-x-[22%]"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-1/2 z-10 h-1.5 w-1.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-brand-400/70 ring-4 ring-[rgb(var(--page-bg))]"
+      />
     </section>
   );
 }

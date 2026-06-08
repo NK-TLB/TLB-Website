@@ -7,6 +7,7 @@ type Props = {
   description?: ReactNode;
   align?: "center" | "left";
   invert?: boolean;
+  showRule?: boolean;
 };
 
 export default function SectionHeading({
@@ -15,6 +16,7 @@ export default function SectionHeading({
   description,
   align = "center",
   invert = false,
+  showRule = true,
 }: Props) {
   const centered = align === "center";
   return (
@@ -45,12 +47,14 @@ export default function SectionHeading({
       >
         {title}
       </h2>
-      <span
-        aria-hidden="true"
-        className={`mt-5 block h-1 w-14 rounded-full bg-brand-gradient ${
-          centered ? "mx-auto" : ""
-        }`}
-      />
+      {showRule && (
+        <span
+          aria-hidden="true"
+          className={`mt-5 block h-1 w-14 rounded-full bg-brand-gradient ${
+            centered ? "mx-auto" : ""
+          }`}
+        />
+      )}
       {description && (
         <p
           className={`mt-5 text-base leading-relaxed sm:text-lg ${
