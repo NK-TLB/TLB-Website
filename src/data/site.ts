@@ -23,6 +23,7 @@ export const site = {
 
   emails: {
     hr: "hr@thelaundrybag.co.in",
+    contact: "prakhar@thelaundrybag.co.in",
   },
   phone: "+91 80859 90015",
   phoneDisplay: "(+91) 8085990015",

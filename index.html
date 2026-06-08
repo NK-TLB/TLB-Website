@@ -171,6 +171,17 @@
         } catch (e) {}
       })();
     </script>
+    <!--
+      Netlify Forms detection: this hidden static form lets Netlify's build bot
+      register the "contact" form (the React app posts to it via AJAX at runtime).
+      Field names must match the React form in src/pages/Contact.tsx.
+    -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <noscript>
       <h1>

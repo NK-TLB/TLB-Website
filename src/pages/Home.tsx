@@ -68,38 +68,6 @@ export default function Home() {
                 Request a quote
               </Link>
             </div>
-            <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-600 animate-fade-up">
-              {[
-                "On-premise or off-site",
-                "24-hour finish",
-                "We never mix your linen",
-              ].map((f) => (
-                <li key={f} className="inline-flex items-center gap-2">
-                  <Icon name="check" className="h-4 w-4 text-brand-500" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            {/* Headline stats */}
-            <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 animate-fade-up">
-              {[
-                { value: "20+", label: "Cities served" },
-                { value: "5L+", label: "Loads laundered" },
-                { value: "ISO", label: "Certified ops" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-2xl border border-brand-100/70 bg-white/70 px-4 py-3 text-center shadow-soft backdrop-blur"
-                >
-                  <dd className="font-display text-2xl font-extrabold text-brand-600">
-                    {stat.value}
-                  </dd>
-                  <dt className="mt-0.5 text-xs font-semibold text-ink-500">
-                    {stat.label}
-                  </dt>
-                </div>
-              ))}
-            </dl>
           </div>
 
           {/* India coverage map */}
@@ -143,7 +111,6 @@ export default function Home() {
           <SectionHeading
             eyebrow="What we do"
             title="Operational Models"
-            description="Three flexible ways we plug into your operation — advise, optimise or run it end-to-end."
           />
           <div className="mt-14 grid gap-6 md:grid-cols-3 lg:gap-8">
             {homeServices.map((s, i) => (
@@ -193,7 +160,6 @@ export default function Home() {
         <div className="container-page relative">
           <SectionHeading
             title="Why TLB"
-            description="The promises we have kept since day one — and the reason hotels, hospitals and resorts stay with us."
             invert
           />
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -225,7 +191,6 @@ export default function Home() {
           <SectionHeading
             eyebrow="How we partner"
             title="From first call to fully managed in 4 steps"
-            description="A clear, proven onboarding path — so you know exactly how we take linen off your plate."
           />
           <ol className="relative mt-16 grid gap-y-12 gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
             {/* connector line behind the step badges (lg only) */}
@@ -264,7 +229,6 @@ export default function Home() {
           <SectionHeading
             eyebrow="Get in touch"
             title="Contact us"
-            description="Call, email or visit us — we'll help you find the right laundry and linen model for your operation."
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <a
@@ -284,7 +248,7 @@ export default function Home() {
             </a>
 
             <a
-              href={`mailto:${site.emails.hr}`}
+              href={`mailto:${site.emails.contact}`}
               className="card card-hover group flex h-full flex-col"
             >
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
@@ -294,7 +258,7 @@ export default function Home() {
                 Email us
               </h3>
               <p className="mt-2 break-all text-base font-semibold text-brand-600">
-                {site.emails.hr}
+                {site.emails.contact}
               </p>
               <p className="mt-1 text-sm text-ink-500">We reply within one business day.</p>
             </a>
