@@ -1,7 +1,7 @@
 import { site } from "../data/site";
 import Icon from "./Icon";
 
-// Site-wide floating WhatsApp button — a low-friction contact path that follows
+// Site-wide floating WhatsApp button, a low-friction contact path that follows
 // the visitor on every page. Hidden in print.
 export default function FloatingCTA() {
   const message = encodeURIComponent(

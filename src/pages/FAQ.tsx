@@ -30,8 +30,7 @@ export default function FAQ() {
 
       <PageHero
         eyebrow="Help centre"
-        title="Frequently asked questions"
-        description="Everything about working with hotels and hospitals, our operating models, linen rental and how to get started. Can't find an answer? Call us on (+91) 8085990015."
+        title="Everything you wanted to know"
         crumbs={[{ label: "Home", to: "/" }, { label: "FAQ" }]}
       />
 

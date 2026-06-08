@@ -1,8 +1,8 @@
 // =============================================================================
-//  THE LAUNDRY BAG — content source of truth for the new site.
+//  THE LAUNDRY BAG, content source of truth for the new site.
 //
-//  PRIMARY   — verbatim copy from the existing/legacy thelaundrybag.co.in site.
-//  RESEARCHED — facts gathered from public sources (LinkedIn, JustDial,
+//  PRIMARY  , verbatim copy from the existing/legacy thelaundrybag.co.in site.
+//  RESEARCHED, facts gathered from public sources (LinkedIn, JustDial,
 //               Play Store, press) and cross-referenced with the owner's
 //               details. Clearly separated so it can be reviewed/edited.
 // =============================================================================
@@ -18,7 +18,7 @@ export const site = {
   promise: "Wash · Dry · Finish",
   motto: "India's Leading Laundry Service Provider",
   description:
-    "The Laundry Bag — India's Leading Laundry Service Provider. Professional commercial laundry, dry-cleaning and linen-management programmes for luxury hotels, resorts, hospitals and medical centres across India. Headquartered in Raipur with a central processing unit and fully-managed on-premise laundries. Founded by Shourya Jain. Trusted since 2013.",
+    "The Laundry Bag, India's Leading Laundry Service Provider. Professional commercial laundry, dry-cleaning and linen-management programmes for luxury hotels, resorts, hospitals and medical centres across India. Headquartered in Raipur with a central processing unit and fully-managed on-premise laundries. Founded by Shourya Jain. Trusted since 2013.",
   founded: 2013,
 
   emails: {
@@ -139,7 +139,7 @@ export const pressFeature = {
   },
 };
 
-// Newspaper clippings — shown full-frame in a zoom lightbox so the text reads.
+// Newspaper clippings, shown full-frame in a zoom lightbox so the text reads.
 export const pressClippings: { outlet: string; edition: string; title: string; image: PressImage }[] = [
   {
     outlet: "The Hitavada",
@@ -193,13 +193,13 @@ export const pressGallery: { caption: string; image: PressImage }[] = [
 
 // Standout milestone: founder Shourya Jain met the late Shri Ratan Tata while
 // inaugurating The Laundry Bag's dedicated laundry unit at Tata Medical Center,
-// Kolkata — a newly onboarded healthcare site. Copy is written in the brand's
+// Kolkata, a newly onboarded healthcare site. Copy is written in the brand's
 // own voice; no quotes are attributed to Shri Ratan Tata.
 export const ratanTata = {
   eyebrow: "A milestone we will always cherish",
   kicker: "Tata Medical Center · Kolkata",
   title: "An honour: meeting the late Shri Ratan Tata",
-  lead: "When The Laundry Bag commissioned its dedicated in-house laundry unit at Tata Medical Center, Kolkata, founder Shourya Jain travelled to inaugurate the new facility — and had the rare privilege of meeting the late Shri Ratan Tata.",
+  lead: "When The Laundry Bag commissioned its dedicated in-house laundry unit at Tata Medical Center, Kolkata, founder Shourya Jain travelled to inaugurate the new facility, and had the rare privilege of meeting the late Shri Ratan Tata.",
   body: [
     "Tata Medical Center is among India\u2019s most respected cancer hospitals, where linen hygiene sits at the very heart of safe patient care. Standing up a hospital-grade laundry on this campus was a defining moment in our healthcare journey \u2014 proof that The Laundry Bag\u2019s never-mix, infection-aware processes belong in the country\u2019s finest institutions.",
     "Meeting Shri Ratan Tata that day turned an already special occasion into one our team will never forget \u2014 a quiet, lasting reminder of the values of trust, humility and uncompromising quality that continue to guide everything we do.",
@@ -220,7 +220,7 @@ export const ratanTata = {
   } as PressImage,
 };
 
-// "As featured in" — online press features. Links are real and verified.
+// "As featured in", online press features. Links are real and verified.
 export const pressFeatures = [
   {
     title: "The story behind The Laundry Bag",
@@ -245,12 +245,11 @@ export const pressFeatures = [
   },
 ];
 
-// PRIMARY — navigation. Grouped for the new mega/standard nav.
+// PRIMARY, navigation. Grouped for the new mega/standard nav.
 export const navLinks = [
   { to: "/", label: "Home" },
-  { to: "/commercial", label: "Services" },
-  { to: "/locations", label: "Locations" },
   { to: "/about", label: "Our Story" },
+  { to: "/locations", label: "Locations" },
   { to: "/clients", label: "Clients" },
   { to: "/press", label: "Press" },
   { to: "/faq", label: "FAQ" },
@@ -261,26 +260,26 @@ export const homeServices = [
   {
     title: "Consultation",
     description:
-      "Guest-room linen, F&B, spa and uniform laundry finished to five-star standards for luxury hotels and resorts across India.",
+      "We study your existing linen flow, volumes and costs, then design the most efficient laundry setup for your property.",
     icon: "hotel",
     accent: "blue" as const,
-    href: "/commercial",
+    href: "/contact",
   },
   {
     title: "Optimisation",
     description:
-      "Hygienic, infection-safe linen processing and patient-linen programmes for hospitals and medical centres.",
+      "We fine-tune your current operation, upgrading processes, equipment and standards to cut costs and lift quality.",
     icon: "shield",
     accent: "grey" as const,
-    href: "/commercial",
+    href: "/contact",
   },
   {
     title: "Outsourcing",
     description:
-      "We supply, launder, track and replace your sheets, towels, robes and uniforms on a flexible rental model — sized to your occupancy.",
+      "We take laundry off your plate entirely, running it on-premise, off-site or on a managed rental model sized to your occupancy.",
     icon: "factory",
     accent: "brand" as const,
-    href: "/commercial",
+    href: "/contact",
   },
 ];
 
@@ -288,22 +287,22 @@ export const businessServices = [
   {
     title: "Hotel Laundry",
     description:
-      "Having served hotel chains of all sizes, The Laundry Bag handles laundry for properties from Grand Hyatt and Taj Exotica to JW Marriott, Hilton and Novotel. Our approach is flexible — install equipment on-site or process at our facility, handle rental linen or wash what you already own. With high-end finishing equipment and high-efficiency machines, we deliver a sustainable, affordable and responsive solution for hotels.",
+      "Having served hotel chains of all sizes, The Laundry Bag handles laundry for properties from Grand Hyatt and Taj Exotica to JW Marriott, Hilton and Novotel. Our approach is flexible, install equipment on-site or process at our facility, handle rental linen or wash what you already own. With high-end finishing equipment and high-efficiency machines, we deliver a sustainable, affordable and responsive solution for hotels.",
   },
   {
     title: "Hospital Laundry",
     description:
-      "From large medical centres like Tata Medical Center and Balco Medical Center to district hospitals, we manage hygienic, infection-safe linen processing — on-premise to maximise responsiveness or off-site to free up space. We're equipped to handle both your linen contract and patient personal laundry with the same care and attention to detail.",
+      "From large medical centres like Tata Medical Center and Balco Medical Center to district hospitals, we manage hygienic, infection-safe linen processing, on-premise to maximise responsiveness or off-site to free up space. We're equipped to handle both your linen contract and patient personal laundry with the same care and attention to detail.",
   },
   {
     title: "Resorts & Premium Hospitality",
     description:
-      "For resorts and luxury retreats such as Grand Hyatt Goa and Taj Exotica Goa, we deliver consistent, five-star linen, spa and F&B laundry — meeting the exacting standards your guests expect, every single day.",
+      "For resorts and luxury retreats such as Grand Hyatt Goa and Taj Exotica Goa, we deliver consistent, five-star linen, spa and F&B laundry, meeting the exacting standards your guests expect, every single day.",
   },
   {
     title: "Linen Rental & Management",
     description:
-      "Save your capital on linen. We supply, launder, track and replace sheets, towels, robes and uniforms on a flexible rental model sized to your occupancy — you order, we handle the rest.",
+      "Save your capital on linen. We supply, launder, track and replace sheets, towels, robes and uniforms on a flexible rental model sized to your occupancy, you order, we handle the rest.",
   },
 ];
 
@@ -311,7 +310,7 @@ export const whoWeServe = [
   {
     title: "Luxury Hotels & Resorts",
     description:
-      "From Grand Hyatt and Taj Exotica in Goa to JW Marriott Chandigarh, Hilton Mumbai, Novotel Chennai and Hyatt properties across India — we manage guest linen, F&B and uniform laundry to five-star standards.",
+      "From Grand Hyatt and Taj Exotica in Goa to JW Marriott Chandigarh, Hilton Mumbai, Novotel Chennai and Hyatt properties across India, we manage guest linen, F&B and uniform laundry to five-star standards.",
   },
   {
     title: "Hospitals & Medical Centres",
@@ -321,7 +320,7 @@ export const whoWeServe = [
   {
     title: "Linen Rental & Management",
     description:
-      "We supply, launder and replace sheets, towels, robes and uniforms on a flexible rental model — so hotels and hospitals save on capital, storage and replacement costs.",
+      "We supply, launder and replace sheets, towels, robes and uniforms on a flexible rental model, so hotels and hospitals save on capital, storage and replacement costs.",
   },
   {
     title: "Enterprises & Institutions",
@@ -340,7 +339,7 @@ export const howItWorks = [
   {
     step: "Step 2",
     title: "Solution design",
-    text: "We design the right model for you — on-premise, off-site or linen rental — with clear costing.",
+    text: "We design the right model for you, on-premise, off-site or linen rental, with clear costing.",
     icon: "factory",
   },
   {
@@ -361,7 +360,7 @@ export const operationalModels = [
   {
     title: "On-Premise Laundry Units",
     description:
-      "The Laundry Bag™ sets up and operates fully-managed laundry facilities inside your premises, customised to your operation and fitted with best-in-class equipment — the model we run for hotels and hospitals such as Hyatt Raipur and DKS Hospital, Raipur.",
+      "The Laundry Bag™ sets up and operates fully-managed laundry facilities inside your premises, customised to your operation and fitted with best-in-class equipment, the model we run for hotels and hospitals such as Hyatt Raipur and DKS Hospital, Raipur.",
   },
   {
     title: "Central Processing Units",
@@ -371,7 +370,7 @@ export const operationalModels = [
   {
     title: "Linen Rental & Management",
     description:
-      "Beyond cleaning, we own and manage your linen — supplying, laundering and replacing hotel and hospital linen on a flexible rental model that frees up your capital, storage and replacement budgets.",
+      "Beyond cleaning, we own and manage your linen, supplying, laundering and replacing hotel and hospital linen on a flexible rental model that frees up your capital, storage and replacement budgets.",
   },
 ];
 
@@ -385,7 +384,7 @@ export const whyChooseUs = [
   {
     title: "Cost-Competitive",
     description:
-      "Our built-own-operate and linen-rental models cut your capital, labour, water and replacement costs — predictable per-kg and per-piece pricing sized to your occupancy.",
+      "Our built-own-operate and linen-rental models cut your capital, labour, water and replacement costs, predictable per-kg and per-piece pricing sized to your occupancy.",
     icon: "tag",
   },
   {
@@ -403,7 +402,7 @@ export const whyChooseUs = [
   {
     title: "Fast Turnaround",
     description:
-      "Soiled and stained linen is processed and finished in a clean, hygienic environment — typically within 24 hours — so your rooms, wards and floors are never short of stock.",
+      "Soiled and stained linen is processed and finished in a clean, hygienic environment, typically within 24 hours, so your rooms, wards and floors are never short of stock.",
     icon: "truck",
   },
   {
@@ -439,7 +438,7 @@ export const testimonials = [
   {
     name: "Jyoti",
     quote:
-      "Their services are amazing — you all will be satisfied with them. Highly recommended.",
+      "Their services are amazing, you all will be satisfied with them. Highly recommended.",
   },
   {
     name: "Operations Lead · Resort",
@@ -452,7 +451,7 @@ export const commercialFeatures = [
   {
     title: "Linen & Laundry",
     description:
-      "We collect, sort, pre-treat, wash, dry and finish your linen to specification — guest-room linen, towels, F&B, uniforms and patient linen — returned on a managed schedule.",
+      "We collect, sort, pre-treat, wash, dry and finish your linen to specification, guest-room linen, towels, F&B, uniforms and patient linen, returned on a managed schedule.",
     image: "/images/img_02.jpg",
   },
   {
@@ -488,12 +487,12 @@ export const commercialSubFeatures = [
   {
     title: "Linen Rentals",
     description:
-      "Save investments on all the linen you purchase for your business — just order from us according to your occupancy and we'll handle the rest.",
+      "Save investments on all the linen you purchase for your business, just order from us according to your occupancy and we'll handle the rest.",
   },
   {
     title: "All Under One Roof",
     description:
-      "From Sofa, Carpets to Upholstery — we have it all under control for you.",
+      "From Sofa, Carpets to Upholstery, we have it all under control for you.",
   },
 ];
 
@@ -504,7 +503,7 @@ export const locations = [
     role: "Headquarters · Central Processing Unit",
     image: "/images/raipur-location.png",
     description:
-      "Our headquarters and central processing unit at Shankar Nagar, equipped with state-of-the-art machinery. From here we run fully-managed on-premise units and linen programmes for Hyatt Raipur, DKS Hospital and Balco Medical Center, Naya Raipur — supported by a managed logistics network.",
+      "Our headquarters and central processing unit at Shankar Nagar, equipped with state-of-the-art machinery. From here we run fully-managed on-premise units and linen programmes for Hyatt Raipur, DKS Hospital and Balco Medical Center, Naya Raipur, supported by a managed logistics network.",
   },
   {
     city: "Goa",
@@ -512,11 +511,11 @@ export const locations = [
     role: "Luxury hospitality",
     image: "/images/goa-location-new.png",
     description:
-      "We manage linen for Goa's marquee hospitality — including Grand Hyatt Goa and Taj Exotica Goa — delivering five-star washing, finishing and linen-rental programmes for resorts and the guests they host.",
+      "We manage linen for Goa's marquee hospitality, including Grand Hyatt Goa and Taj Exotica Goa, delivering five-star washing, finishing and linen-rental programmes for resorts and the guests they host.",
   },
   {
     city: "Across India",
-    state: "20+ cities",
+    state: "18 cities",
     role: "Hotels & Hospitals",
     image: "/images/pune-location.png",
     description:
@@ -560,11 +559,11 @@ export const faqs = [
       },
       {
         q: "How do you ensure hygienic, infection-safe processing for hospitals?",
-        a: "Healthcare linen is processed on standardised, temperature-controlled cycles with segregated soiled and clean flows, validated detergents and disinfection — designed to meet the hygiene expectations of hospitals and medical centres.",
+        a: "Healthcare linen is processed on standardised, temperature-controlled cycles with segregated soiled and clean flows, validated detergents and disinfection, designed to meet the hygiene expectations of hospitals and medical centres.",
       },
       {
         q: "What linen and items do you handle?",
-        a: "Guest-room linen, towels, bathrobes, F&B and banquet linen, spa linen, staff uniforms, patient linen, theatre linen, floor and entryway mats, upholstery and carpets — sheets to scrubs.",
+        a: "Guest-room linen, towels, bathrobes, F&B and banquet linen, spa linen, staff uniforms, patient linen, theatre linen, floor and entryway mats, upholstery and carpets, sheets to scrubs.",
       },
     ],
   },
@@ -577,7 +576,7 @@ export const faqs = [
       },
       {
         q: "Can you also launder linen we already own?",
-        a: "Absolutely. We are happy to wash and finish the linen you already own, supply rental linen, or run a blend of both — whichever is most cost-effective for your operation.",
+        a: "Absolutely. We are happy to wash and finish the linen you already own, supply rental linen, or run a blend of both, whichever is most cost-effective for your operation.",
       },
       {
         q: "What happens to worn-out or stained linen?",
@@ -594,7 +593,7 @@ export const faqs = [
       },
       {
         q: "Do you mix our linen with other clients'?",
-        a: "Never. Our founding USP is that we do not mix one client's linen with anyone else's — every client's stock is processed, tracked and stored separately.",
+        a: "Never. Our founding USP is that we do not mix one client's linen with anyone else's, every client's stock is processed, tracked and stored separately.",
       },
       {
         q: "What equipment and detergents do you use?",
@@ -602,11 +601,11 @@ export const faqs = [
       },
       {
         q: "Which cities do you operate in?",
-        a: "We are headquartered in Raipur, Chhattisgarh and run programmes for hotels and hospitals in more than 20 cities including Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune, Bengaluru, Ahmedabad, Jaipur, Lucknow, Chandigarh, Dehradun, Nagpur and Durg.",
+        a: "We are headquartered in Raipur, Chhattisgarh and run programmes for hotels and hospitals across 18 cities including Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune, Bengaluru, Ahmedabad, Jaipur, Lucknow, Chandigarh, Dehradun, Nagpur and Durg.",
       },
       {
         q: "How do we get started or request a proposal?",
-        a: "Call us on (+91) 8085990015 or send an enquiry from the Contact page. We'll assess your linen, volumes and space, then propose the right model — on-premise, off-site or linen rental — with clear pricing.",
+        a: "Call us on (+91) 8085990015 or send an enquiry from the Contact page. We'll assess your linen, volumes and space, then propose the right model, on-premise, off-site or linen rental, with clear pricing.",
       },
     ],
   },
@@ -621,7 +620,7 @@ export const founders = [
   {
     name: "Shourya Jain",
     role: "Founder",
-    bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's mission to organise India's unorganised laundry sector — building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises across the country.",
+    bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's mission to organise India's unorganised laundry sector, building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises across the country.",
     href: "https://www.linkedin.com/in/shourya-jain-1b2562162",
     image: "/images/team/shourya-jain.jpg",
   },
@@ -632,7 +631,7 @@ export const companyFacts = [
   { label: "Founded", value: "2013" },
   { label: "Headquarters", value: "Raipur, Chhattisgarh" },
   { label: "Focus", value: "Commercial Laundry & Linen" },
-  { label: "Presence", value: "India · 20+ cities" },
+  { label: "Presence", value: "India · 18 cities" },
 ];
 
 // Brand story timeline (compiled from press + the legacy site).
@@ -640,17 +639,17 @@ export const timeline = [
   {
     year: "2013",
     title: "The idea is born",
-    text: "Shourya Jain sets out to organise India's unorganised laundry sector — one of the first Indian companies to run a managed laundromat model where soiled, stained laundry is finished in a clean, hygienic environment within 24 hours.",
+    text: "Shourya Jain sets out to organise India's unorganised laundry sector, one of the first Indian companies to run a managed laundromat model where soiled, stained laundry is finished in a clean, hygienic environment within 24 hours.",
   },
   {
     year: "2014",
     title: "The Laundry Bag™ launches",
-    text: "The brand formally launches in Raipur, built on a simple promise: we never mix one client's linen with anyone else's — processed with professional, state-of-the-art equipment and continuous personal care.",
+    text: "The brand formally launches in Raipur, built on a simple promise: we never mix one client's linen with anyone else's, processed with professional, state-of-the-art equipment and continuous personal care.",
   },
   {
     year: "B2B expansion",
     title: "Hotels & hospitals",
-    text: "The Laundry Bag scales into hospitality and healthcare — running laundry and linen programmes for leading hotel chains (Hyatt, Marriott, Hilton, Taj, Novotel) and major hospitals (Tata Medical Center, Balco Medical Center, Lata Mangeshkar Hospital) across India.",
+    text: "The Laundry Bag scales into hospitality and healthcare, running laundry and linen programmes for leading hotel chains (Hyatt, Marriott, Hilton, Taj, Novotel) and major hospitals (Tata Medical Center, Balco Medical Center, Lata Mangeshkar Hospital) across India.",
   },
   {
     year: "Scale-up",
@@ -660,7 +659,7 @@ export const timeline = [
   {
     year: "Today",
     title: "Built-Own-Operate platform",
-    text: "The Laundry Bag operates as a linen partner on a Built-Own-Operate platform for hotels, hospitals and enterprises across the country — present in more than 20 cities.",
+    text: "The Laundry Bag operates as a linen partner on a Built-Own-Operate platform for hotels, hospitals and enterprises across the country, present in 18 cities with 30+ operational units.",
   },
 ];
 
@@ -675,13 +674,13 @@ export const usps = [
   {
     title: "24-hour finish",
     description:
-      "Soiled or stained linen is processed and finished in a clean, hygienic environment — typically within 24 hours.",
+      "Soiled or stained linen is processed and finished in a clean, hygienic environment, typically within 24 hours.",
     icon: "clock",
   },
   {
     title: "On-premise or off-site",
     description:
-      "Run a fully-managed laundry inside your property, or process at our central facility — whichever fits your operation and space.",
+      "Run a fully-managed laundry inside your property, or process at our central facility, whichever fits your operation and space.",
     icon: "factory",
   },
   {
@@ -689,6 +688,32 @@ export const usps = [
     description:
       "We wash in all-natural detergents and our dry-cleaning process is PERC-free, saving roughly 5,000 litres of water a day.",
     icon: "leaf",
+  },
+];
+
+// "Why TLB", quantitative proof points, animated as a stat band.
+export const whyTlbStats = [
+  { value: "12+", label: "Years of expertise", icon: "clock" },
+  { value: "500+", label: "Trained engineers", icon: "users" },
+  { value: "18", label: "Cities", icon: "pin" },
+  { value: "30+", label: "Operational units", icon: "factory" },
+];
+
+// "Why TLB", qualitative trust tiles shown alongside the stat band.
+export const whyTlbFeatures = [
+  {
+    badge: "Global technology partner",
+    title: "Engineered with Girbau, Spain",
+    description:
+      "Our laundries run on Girbau, the Spanish engineering leader trusted by the world's top corporations. The same technology behind global operations now powers yours.",
+    icon: "spark",
+  },
+  {
+    badge: "Third-generation business",
+    title: "Stable, equity-backed heritage",
+    description:
+      "A largely equity-funded, third-generation enterprise, financially solid and built for the long term. The partner you choose today is the partner you keep.",
+    icon: "shield",
   },
 ];
 
@@ -776,7 +801,7 @@ export const certifications = [
   },
   {
     title: "Electrolux Equipment",
-    description: "Loyal Electrolux users — best-in-class washers, dryers and finishing lines.",
+    description: "Loyal Electrolux users, best-in-class washers, dryers and finishing lines.",
     icon: "washer",
   },
   {
@@ -801,7 +826,7 @@ export const certifications = [
   },
 ];
 
-// Ratings / reputation (JustDial) — review before publishing.
+// Ratings / reputation (JustDial), review before publishing.
 export const ratings = [
   {
     source: "JustDial",
@@ -811,7 +836,7 @@ export const ratings = [
   },
 ];
 
-// SEO — non-visible keyword list (meta tags + JSON-LD).
+// SEO, non-visible keyword list (meta tags + JSON-LD).
 // B2B-focused superset: brand, geography, commercial/hotel/hospital laundry
 // and the sole-founder (Shourya Jain) permutations Googlebot already indexes.
 export const seoKeywords = [
@@ -908,7 +933,7 @@ export const seoKeywords = [
   "dry cleaning Raipur",
   "dry cleaners Raipur",
   "dry cleaning in india",
-  // founder (Shourya Jain — sole founder)
+  // founder (Shourya Jain, sole founder)
   "Shourya Jain",
   "shourya jain",
   "Shourya Jain Raipur",

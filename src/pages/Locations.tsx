@@ -5,67 +5,49 @@ import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import IndiaMap from "../components/IndiaMap";
-import { locations, site } from "../data/site";
+import { site } from "../data/site";
 
 export default function Locations() {
   return (
     <>
       <SEO
         path="/locations"
-        title="Locations — Raipur HQ · hotels & hospitals across India"
-        description="The Laundry Bag is headquartered in Raipur with a central processing unit, and runs commercial laundry & linen programmes for hotels and hospitals across Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune and 20+ cities."
+        title="Locations, Raipur HQ · hotels & hospitals across India"
+        description="The Laundry Bag is headquartered in Raipur with a central processing unit, and runs commercial laundry & linen programmes for hotels and hospitals across Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune and 18 cities."
       />
 
       <PageHero
         eyebrow="Locations"
-        title="Where you'll find us"
-        description="Our headquarters and central processing unit in Raipur, plus commercial laundry & linen programmes for leading hotels and hospitals across Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune and more than 20 cities nationwide."
+        title="Where We Operate"
         crumbs={[{ label: "Home", to: "/" }, { label: "Locations" }]}
       />
 
-      {/* Primary locations */}
+      {/* India operations map */}
       <section className="section">
         <div className="container-page">
-          <div className="grid gap-6 md:grid-cols-3">
-            {locations.map((l, i) => (
-              <Reveal key={l.city} delay={i * 80}>
-                <article className="card card-hover group h-full overflow-hidden p-0">
-                  <div className="h-48 w-full overflow-hidden bg-ink-50">
-                    <img
-                      src={l.image}
-                      alt={`${l.city} — The Laundry Bag`}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
-                      <Icon name="pin" className="h-6 w-6" />
-                    </span>
-                    <h2 className="mt-4 font-display text-xl font-bold text-ink-900">
-                      {l.city}
-                      <span className="ml-2 text-sm font-semibold text-ink-500">· {l.state}</span>
-                    </h2>
-                    <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                      {l.role}
-                    </p>
-                    <p className="mt-3 text-sm text-ink-600">{l.description}</p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <SectionHeading
+            eyebrow="Across India"
+            title="Everywhere you need us"
+            description="From our Raipur headquarters, our laundry and linen programmes reach leading hotels, resorts and hospitals across 18 cities. Hover or tap a city to see what we run there."
+          />
+          <Reveal className="mt-12">
+            <IndiaMap variant="full" />
+          </Reveal>
         </div>
       </section>
 
-      {/* Corporate office */}
-      <section className="bg-brand-50/50 section">
+      {/* Head Office */}
+      <section className="section-tint section">
         <div className="container-page">
-          <SectionHeading
-            align="left"
-            eyebrow="Corporate office · Raipur"
-            title="Visit our headquarters & processing unit"
-          />
+          <Reveal className="text-left">
+            <span className="inline-flex items-center gap-2 rounded-full border border-brand-200/60 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-brand-700 shadow-[0_2px_10px_-4px_rgba(0,156,220,0.3)] backdrop-blur">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500/60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-600" />
+              </span>
+              Head Office · Raipur
+            </span>
+          </Reveal>
           <div className="mt-10 grid gap-10 lg:grid-cols-2">
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
@@ -109,27 +91,13 @@ export default function Locations() {
             <div className="overflow-hidden rounded-4xl border border-ink-100 shadow-soft">
               <iframe
                 title="The Laundry Bag · Raipur location map"
-                src={`https://www.google.com/maps?q=${site.address.geo.lat},${site.address.geo.lng}&z=14&output=embed`}
+                src={`https://maps.google.com/maps?q=${site.address.geo.lat},${site.address.geo.lng}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
                 className="h-80 w-full lg:h-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* India operations map */}
-      <section className="section">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Across India"
-            title="Everywhere you need us"
-            description="From our Raipur headquarters, our laundry and linen programmes reach leading hotels, resorts and hospitals in more than 20 cities. Hover or tap a city to see what we run there."
-          />
-          <Reveal className="mt-12">
-            <IndiaMap variant="full" />
-          </Reveal>
         </div>
       </section>
     </>

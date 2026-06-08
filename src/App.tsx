@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Commercial from "./pages/Commercial";
 import Locations from "./pages/Locations";
 import Clients from "./pages/Clients";
 import Press from "./pages/Press";
@@ -20,10 +19,6 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/who-we-are" element={<About />} />
         <Route path="/our-story" element={<About />} />
-        <Route path="/commercial" element={<Commercial />} />
-        {/* Legacy B2C routes now fold into the B2B services page */}
-        <Route path="/services" element={<Navigate to="/commercial" replace />} />
-        <Route path="/what-we-do" element={<Navigate to="/commercial" replace />} />
         <Route path="/locations" element={<Locations />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/clients-and-press" element={<Navigate to="/clients" replace />} />

@@ -2,84 +2,152 @@ import { Link } from "react-router-dom";
 import { site } from "../data/site";
 import Logo from "./Logo";
 import Icon from "./Icon";
-import TemplateSwitcher from "./TemplateSwitcher";
 
-const socials = [
-  { href: site.socials.facebook, label: "Facebook", icon: "facebook" },
-  { href: site.socials.twitter, label: "Twitter", icon: "twitter" },
-  { href: site.socials.instagram, label: "Instagram", icon: "instagram" },
-  { href: site.socials.linkedin, label: "LinkedIn", icon: "linkedin" },
+const companyLinks = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "Our Story" },
+  { to: "/locations", label: "Locations" },
+  { to: "/clients", label: "Clients" },
+  { to: "/press", label: "Press" },
+  { to: "/faq", label: "FAQ" },
+  { to: "/contact", label: "Contact" },
+  { to: "/privacy-policy", label: "Privacy Policy" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="mt-10 bg-brand-950 text-white/70">
-      <div className="container-page grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-3">
+    <footer className="relative mt-10 overflow-hidden bg-brand-950 text-white/70">
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/70 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-28 right-0 h-72 w-72 rounded-full bg-brand-500/15 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-24 -left-10 h-72 w-72 rounded-full bg-accent-500/10 blur-3xl"
+      />
+
+      <div className="container-page relative grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.3fr]">
+        {/* Brand */}
         <div>
           <Logo className="h-14 w-auto brightness-0 invert sm:h-16" />
-          <p className="mt-4 max-w-xs text-sm text-white/60">
-            India&apos;s Leading Laundry Service Provider — commercial laundry,
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/55">
+            India&apos;s Leading Laundry Service Provider, commercial laundry,
             dry cleaning and linen management for hotels, resorts and hospitals
             across India since {site.founded}.
           </p>
-          <div className="mt-5 flex flex-wrap items-center gap-2.5">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={s.label}
-                title={s.label}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20"
-              >
-                <Icon name={s.icon} className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
+          <Link
+            to="/contact"
+            className="group mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand-800 shadow-soft transition hover:bg-brand-50"
+          >
+            Contact Us
+            <Icon
+              name="arrow"
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+            />
+          </Link>
         </div>
 
+        {/* Company */}
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-white/50">
+          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
             Company
           </h4>
-          <ul className="mt-4 space-y-2 text-sm text-white/70">
-            <li><Link className="transition hover:text-white" to="/commercial">Services</Link></li>
-            <li><Link className="transition hover:text-white" to="/about">Our Story</Link></li>
-            <li><Link className="transition hover:text-white" to="/locations">Locations</Link></li>
-            <li><Link className="transition hover:text-white" to="/clients">Clients</Link></li>
-            <li><Link className="transition hover:text-white" to="/press">Press</Link></li>
-            <li><Link className="transition hover:text-white" to="/faq">FAQ</Link></li>
-            <li><Link className="transition hover:text-white" to="/contact">Contact</Link></li>
-            <li><Link className="transition hover:text-white" to="/privacy-policy">Privacy Policy</Link></li>
+          <ul className="mt-5 space-y-3 text-sm">
+            {companyLinks.map((l) => (
+              <li key={l.to}>
+                <Link
+                  to={l.to}
+                  className="group inline-flex items-center gap-2.5 text-white/65 transition hover:text-white"
+                >
+                  <span className="text-brand-400/70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-brand-300">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-3 w-3"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M9 6l6 6-6 6" />
+                    </svg>
+                  </span>
+                  {l.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
+        {/* Contact */}
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-white/50">
-            Contact
+          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
+            Get in touch
           </h4>
           <address className="not-italic">
-            <ul className="mt-4 space-y-2 text-sm text-white/70">
-              <li>
-                For a Job:{" "}
-                <a className="transition hover:text-white" href={`mailto:${site.emails.hr}`}>{site.emails.hr}</a>
+            <ul className="mt-5 space-y-4 text-sm">
+              <li className="flex items-start gap-3">
+                <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-200 ring-1 ring-white/10">
+                  <Icon name="pin" className="h-4 w-4" />
+                </span>
+                <span className="text-white/65">
+                  {site.address.street}
+                  <br />
+                  {site.address.city}, {site.address.region}{" "}
+                  {site.address.postalCode}
+                </span>
               </li>
-              <li>{site.phoneDisplay}</li>
-              <li className="pt-2 text-white/50">
-                {site.address.street}<br />
-                {site.address.city}, {site.address.region} {site.address.postalCode}<br />
-                {site.hours}
+              <li className="flex items-center gap-3">
+                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-200 ring-1 ring-white/10">
+                  <Icon name="phone" className="h-4 w-4" />
+                </span>
+                <a
+                  className="text-white/65 transition hover:text-white"
+                  href={`tel:${site.phone}`}
+                >
+                  {site.phoneDisplay}
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-200 ring-1 ring-white/10">
+                  <Icon name="mail" className="h-4 w-4" />
+                </span>
+                <a
+                  className="text-white/65 transition hover:text-white"
+                  href={`mailto:${site.emails.hr}`}
+                >
+                  {site.emails.hr}
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-200 ring-1 ring-white/10">
+                  <Icon name="clock" className="h-4 w-4" />
+                </span>
+                <span className="text-white/55">{site.hours}</span>
               </li>
             </ul>
           </address>
         </div>
       </div>
-      <div className="border-t border-white/10">
-        <div className="container-page flex flex-col items-start justify-between gap-4 py-6 text-xs text-white/50 sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} {site.legalName}. All Rights Reserved.</p>
-          <p className="order-last sm:order-none">{site.motto}</p>
-          <TemplateSwitcher />
+
+      <div className="relative border-t border-white/10">
+        <span
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/40 to-transparent"
+        />
+        <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/45 sm:flex-row">
+          <p className="tracking-wide">
+            © {new Date().getFullYear()} {site.legalName}. All Rights Reserved.
+          </p>
+          <p className="inline-flex items-center gap-2 font-semibold uppercase tracking-[0.16em] text-white/60 sm:text-right">
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-brand-400" />
+            {site.motto}
+          </p>
         </div>
       </div>
     </footer>

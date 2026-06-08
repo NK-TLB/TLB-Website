@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
+[dev]
+  targetPort = 3000
+  port = 8888
+
 # === Legacy PHP/CodeIgniter URLs from the old Plesk site ====================
 # We redirect with 301 so old indexed links still work and pass link equity.
 
@@ -17,19 +21,19 @@
 
 [[redirects]]
   from = "/home/index.php/pages/commercial-laundry-for-institutions-and-businesses"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
 [[redirects]]
   from = "/home/index.php/pages/laundry-and-dry-cleaning-for-residents-and-students"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
 [[redirects]]
   from = "/home/index.php/pages/what-we-do"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
@@ -84,19 +88,19 @@
 
 [[redirects]]
   from = "/index.php/pages/commercial-laundry-for-institutions-and-businesses"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
 [[redirects]]
   from = "/index.php/pages/laundry-and-dry-cleaning-for-residents-and-students"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
 [[redirects]]
   from = "/index.php/pages/what-we-do"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
@@ -145,19 +149,19 @@
 
 [[redirects]]
   from = "/pages/commercial-laundry-for-institutions-and-businesses"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pages/laundry-and-dry-cleaning-for-residents-and-students"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pages/what-we-do"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
@@ -212,13 +216,13 @@
 # Legacy B2C route now folds into the B2B services page
 [[redirects]]
   from = "/services"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 
 [[redirects]]
   from = "/what-we-do"
-  to = "/commercial"
+  to = "/clients"
   status = 301
   force = true
 

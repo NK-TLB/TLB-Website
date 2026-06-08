@@ -29,7 +29,7 @@ function LogoCell({
     <span className="flex h-14 shrink-0 items-center justify-center px-7">
       {showLogo ? (
         // Each logo is bounded by the same max height AND width, so it scales
-        // down to fit an identical box regardless of its aspect ratio — no
+        // down to fit an identical box regardless of its aspect ratio, no
         // logo can render taller or wider than another.
         <img
           src={logo}

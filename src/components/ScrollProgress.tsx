@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 /**
  * Thin brand-gradient reading-progress bar pinned to the very top of the
- * viewport. Purely decorative delight — respects reduced-motion via CSS.
+ * viewport. Purely decorative delight, respects reduced-motion via CSS.
  */
 export default function ScrollProgress() {
   const [progress, setProgress] = useState(0);

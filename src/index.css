@@ -10,7 +10,7 @@
 
    IMPORTANT: the PRIMARY (brand) ramp is the logo Sky Blue (#009cdc) and
    is IDENTICAL across every template. Templates only re-skin the accent,
-   the neutral (ink) ramp, the shadow tint and the section mesh — so the
+   the neutral (ink) ramp, the shadow tint and the section mesh, so the
    brand always reads as The Laundry Bag blue.
 
    :root           -> Default (Sky)
@@ -19,12 +19,12 @@
 :root {
   color-scheme: light;
 
-  /* Page background — a faint blue-tinted neutral (NOT pure white) so white
+  /* Page background, a faint blue-tinted neutral (NOT pure white) so white
      cards/surfaces float and the whole app reads as a cohesive, premium blue
      environment. Sections layer white cards + soft brand bands on top. */
   --page-bg: 244 249 253;
 
-  /* Brand — logo Sky Blue (shared by ALL templates) */
+  /* Brand, logo Sky Blue (shared by ALL templates) */
   --brand-50: 230 246 252;
   --brand-100: 194 233 247;
   --brand-200: 143 213 238;
@@ -37,14 +37,14 @@
   --brand-900: 12 70 97;
   --brand-950: 6 44 64;
 
-  /* Accent — teal */
+  /* Accent, teal */
   --accent-50: 232 251 249;
   --accent-100: 201 243 238;
   --accent-400: 70 216 204;
   --accent-500: 44 193 180;
   --accent-600: 28 161 151;
 
-  /* Ink — cool slate-blue neutrals */
+  /* Ink, cool slate-blue neutrals */
   --ink-50: 244 247 249;
   --ink-100: 227 235 241;
   --ink-200: 204 218 228;
@@ -69,7 +69,7 @@
     radial-gradient(45% 55% at 85% 20%, rgba(0, 156, 220, 0.28) 0%, rgba(0, 156, 220, 0) 60%),
     radial-gradient(60% 60% at 50% 100%, rgba(70, 216, 204, 0.18) 0%, rgba(70, 216, 204, 0) 60%);
 
-  /* ---- DESIGN TOKENS — Default template: "Soft" ----------------------
+  /* ---- DESIGN TOKENS, Default template: "Soft" ----------------------
      The signature TLB look: friendly rounded corners, a warm Rubik display
      face and soft, brand-tinted shadows. The five alternative templates
      below keep the EXACT same colour palette and only re-skin shape,
@@ -102,13 +102,13 @@
 }
 
 /* =====================================================================
-   ALTERNATIVE TEMPLATES — same colour palette, different design systems.
+   ALTERNATIVE TEMPLATES, same colour palette, different design systems.
    Inspired by the dominant 2026 directions: editorial serif, Swiss /
    engineering precision (Linear · Vercel), neo-brutalism, glass, and a
    friendly rounded consumer look.
    ===================================================================== */
 
-/* ---- Editorial — refined magazine feel: serif display, airy spacing,
+/* ---- Editorial, refined magazine feel: serif display, airy spacing,
         hairline rules and barely-there shadows. -------------------------- */
 [data-theme="editorial"] {
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
@@ -135,7 +135,7 @@
   --btn-shadow-hover: none;
 }
 
-/* ---- Precision — Swiss / engineering minimalism (Linear · Vercel):
+/* ---- Precision, Swiss / engineering minimalism (Linear · Vercel):
         sharp corners, tight negative tracking, geometric sans, hairline
         rings instead of drop shadows, pill CTAs. -------------------------- */
 [data-theme="precision"] {
@@ -164,7 +164,7 @@
   --btn-shadow-hover: 0 3px 8px rgb(var(--shadow-rgb) / 0.22), 0 0 0 1px rgb(var(--brand-800) / 0.3);
 }
 
-/* ---- Brutalist — challenger-brand energy: squared corners, thick ink
+/* ---- Brutalist, challenger-brand energy: squared corners, thick ink
         borders, hard offset shadows, heavy uppercase display type. -------- */
 [data-theme="brutalist"] {
   --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
@@ -193,7 +193,7 @@
   --btn-shadow-hover: 6px 6px 0 0 rgb(var(--ink-900));
 }
 
-/* ---- Glass — techno-futurist: frosted translucent surfaces, very round
+/* ---- Glass, techno-futurist: frosted translucent surfaces, very round
         corners and layered brand-tinted glows. ---------------------------- */
 [data-theme="glass"] {
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
@@ -220,7 +220,7 @@
   --btn-shadow-hover: 0 16px 36px -8px rgb(var(--brand-500) / 0.6);
 }
 
-/* ---- Friendly — warm consumer/DTC look: extra-round bubbly corners,
+/* ---- Friendly, warm consumer/DTC look: extra-round bubbly corners,
         rounded geometric Poppins type, soft bouncy shadows. --------------- */
 [data-theme="friendly"] {
   --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
@@ -279,7 +279,24 @@ body {
   }
 
   .section {
-    @apply py-20 sm:py-24 lg:py-28;
+    @apply relative py-20 sm:py-24 lg:py-28;
+  }
+
+  /* Modern classy section separator line applied automatically between sections */
+  .section + .section::before {
+    content: "";
+    @apply absolute left-[8%] right-[8%] top-0 h-px bg-gradient-to-r from-transparent via-brand-300/80 to-transparent;
+  }
+
+  /* Soft brand-tinted band used to alternate section backgrounds. A gentle
+     vertical gradient (instead of a flat fill) gives sections a more modern,
+     premium sense of depth while staying subtle and consistent site-wide. */
+  .section-tint {
+    background-image: linear-gradient(
+      180deg,
+      rgb(var(--brand-50) / 0.85) 0%,
+      rgb(var(--brand-50) / 0.35) 100%
+    );
   }
 
   /* ---- Buttons --------------------------------------------------------- */
@@ -341,11 +358,11 @@ body {
 
   /* ---- Cards / surfaces ------------------------------------------------ */
   .card {
-    @apply rounded-3xl border border-ink-100 bg-white p-6 shadow-soft transition duration-300;
+    @apply rounded-3xl border border-brand-200/60 bg-white p-6 shadow-soft transition duration-300;
   }
 
   .card-hover {
-    @apply hover:-translate-y-1.5 hover:border-ink-200 hover:shadow-lift;
+    @apply hover:-translate-y-1.5 hover:border-brand-400/80 hover:shadow-lift;
   }
 
   .glass {
@@ -369,6 +386,39 @@ body {
   /* ---- Gradient text --------------------------------------------------- */
   .text-gradient {
     @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+
+  .page-hero-grid {
+    background-image:
+      linear-gradient(rgb(var(--brand-200) / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--brand-200) / 0.12) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(
+      ellipse 85% 70% at 50% 35%,
+      #000 20%,
+      transparent 72%
+    );
+    mask-image: radial-gradient(
+      ellipse 85% 70% at 50% 35%,
+      #000 20%,
+      transparent 72%
+    );
+  }
+
+  .page-hero-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .page-hero-shine {
+    background: linear-gradient(
+      110deg,
+      transparent 35%,
+      rgb(var(--brand-100) / 0.55) 50%,
+      transparent 65%
+    );
+    background-size: 220% 100%;
+    animation: shimmer 4s ease-in-out infinite;
   }
 
   /* ---- Marquee track --------------------------------------------------- */
@@ -396,7 +446,7 @@ body {
    (translucent glass, thick brutalist borders + offset hovers, etc.).
    ===================================================================== */
 
-/* Editorial — hairline cards, no lift translate, refined section dividers. */
+/* Editorial, hairline cards, no lift translate, refined section dividers. */
 [data-theme="editorial"] .card {
   border-color: rgb(var(--ink-900) / 0.08);
 }
@@ -409,7 +459,7 @@ body {
   letter-spacing: 0.22em;
 }
 
-/* Precision — crisp hairline cards, no vertical translate on hover. */
+/* Precision, crisp hairline cards, no vertical translate on hover. */
 [data-theme="precision"] .card {
   border-color: rgb(var(--ink-900) / 0.08);
 }
@@ -422,7 +472,7 @@ body {
   letter-spacing: 0.16em;
 }
 
-/* Brutalist — thick ink borders + hard offset shadows that grow on hover. */
+/* Brutalist, thick ink borders + hard offset shadows that grow on hover. */
 [data-theme="brutalist"] .card {
   border-width: 2px;
   border-color: rgb(var(--ink-900));
@@ -446,7 +496,7 @@ body {
   --tw-ring-color: rgb(var(--ink-900));
 }
 
-/* Glass — frosted translucent surfaces with a luminous hairline. */
+/* Glass, frosted translucent surfaces with a luminous hairline. */
 [data-theme="glass"] .card {
   background-color: rgba(255, 255, 255, 0.55);
   border-color: rgba(255, 255, 255, 0.65);

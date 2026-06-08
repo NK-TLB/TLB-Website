@@ -2,7 +2,7 @@
 //
 // IMPORTANT: every template uses the EXACT same colour palette as the default
 // (logo Sky Blue #009cdc primary, teal accent, slate ink). Templates differ
-// ONLY in design language — shape (border radius), typography, depth (shadows)
+// ONLY in design language, shape (border radius), typography, depth (shadows)
 // and borders. The actual tokens live as CSS variables in src/index.css
 // (`:root` = default, `[data-theme="…"]` = the alternatives).
 //
@@ -51,7 +51,7 @@ export const THEMES: ThemeOption[] = [
   {
     id: "editorial",
     name: "Editorial",
-    tagline: "Magazine feel — serif headlines, airy space, hairline rules.",
+    tagline: "Magazine feel, serif headlines, airy space, hairline rules.",
     fontHref:
       "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap",
     previewFont: '"Fraunces", Georgia, serif',
@@ -64,7 +64,7 @@ export const THEMES: ThemeOption[] = [
   {
     id: "precision",
     name: "Precision",
-    tagline: "Swiss engineering minimal — sharp, tight type, hairline rings.",
+    tagline: "Swiss engineering minimal, sharp, tight type, hairline rings.",
     fontHref:
       "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap",
     previewFont: '"Space Grotesk", sans-serif',
@@ -77,7 +77,7 @@ export const THEMES: ThemeOption[] = [
   {
     id: "brutalist",
     name: "Brutalist",
-    tagline: "Bold challenger look — thick borders, hard offset shadows, caps.",
+    tagline: "Bold challenger look, thick borders, hard offset shadows, caps.",
     fontHref:
       "https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&display=swap",
     previewFont: '"Archivo", sans-serif',
@@ -90,7 +90,7 @@ export const THEMES: ThemeOption[] = [
   {
     id: "glass",
     name: "Glass",
-    tagline: "Techno-futurist — frosted surfaces, big radius, glowing depth.",
+    tagline: "Techno-futurist, frosted surfaces, big radius, glowing depth.",
     fontHref:
       "https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap",
     previewFont: '"Sora", sans-serif',
@@ -103,7 +103,7 @@ export const THEMES: ThemeOption[] = [
   {
     id: "friendly",
     name: "Friendly",
-    tagline: "Warm consumer vibe — extra-round bubbly corners, Poppins type.",
+    tagline: "Warm consumer vibe, extra-round bubbly corners, Poppins type.",
     fontHref:
       "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap",
     previewFont: '"Poppins", sans-serif',

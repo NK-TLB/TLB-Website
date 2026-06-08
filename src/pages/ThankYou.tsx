@@ -15,13 +15,13 @@ export default function ThankYou() {
     <>
       <SEO
         path="/contact/thank-you"
-        title="Thank you — we've received your enquiry"
+        title="Thank you, we've received your enquiry"
         description="Thanks for contacting The Laundry Bag. We've received your enquiry and will get back to you within one business day."
       />
 
       <PageHero
         eyebrow="Message received"
-        title="Thank you — we'll be in touch"
+        title="Thank you, we'll be in touch"
         description="Your enquiry has reached our team. We typically respond within one business day. A confirmation email is on its way to your inbox."
         crumbs={[
           { label: "Home", to: "/" },
@@ -43,7 +43,7 @@ export default function ThankYou() {
               <p className="mt-3 text-sm leading-relaxed text-ink-600">
                 Thank you for reaching out to {site.name}. A member of our team
                 will review your requirements and respond shortly with the right
-                model — on-premise, off-site or linen rental — along with timings
+                model, on-premise, off-site or linen rental, along with timings
                 and pricing. For anything urgent, reach us directly below.
               </p>
 

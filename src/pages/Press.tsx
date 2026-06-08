@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import PageHero from "../components/PageHero";
 import SectionHeading from "../components/SectionHeading";
@@ -12,7 +11,6 @@ import {
   pressFeature,
   pressClippings,
   pressGallery,
-  pressFeatures,
   ratanTata,
 } from "../data/site";
 
@@ -45,7 +43,7 @@ const newsArticleSchema = {
 const videoSchema = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
-  name: "The Laundry Bag × CSSDA — MoU ceremony at Chhattisgarh Skill Tech",
+  name: "The Laundry Bag × CSSDA, MoU ceremony at Chhattisgarh Skill Tech",
   description: pressFeature.video.summary,
   thumbnailUrl: [abs(pressFeature.video.poster)],
   uploadDate: PUBLISHED,
@@ -83,12 +81,7 @@ const ratanItem: LightboxItem = {
 
 const clippingItems: LightboxItem[] = pressClippings.map((c) => ({
   image: c.image,
-  caption: `${c.outlet} — ${c.title}`,
-}));
-
-const galleryItems: LightboxItem[] = pressGallery.map((g) => ({
-  image: g.image,
-  caption: g.caption,
+  caption: `${c.outlet}, ${c.title}`,
 }));
 
 export default function Press() {
@@ -101,21 +94,88 @@ export default function Press() {
       <SEO
         path="/press"
         type="article"
-        title="Press & Recognition — Government MoU & coverage"
-        description="The Laundry Bag in the news: an MoU with the Chhattisgarh State Skill Development Authority (CSSDA), signed at Chhattisgarh Skill Tech in the presence of Hon'ble CM Shri Vishnu Deo Sai — plus founder Shourya Jain's meeting with the late Shri Ratan Tata and coverage in The Hitavada, Patrika and more."
+        title="Press & Recognition, Government MoU & coverage"
+        description="The Laundry Bag in the news: an MoU with the Chhattisgarh State Skill Development Authority (CSSDA), signed at Chhattisgarh Skill Tech in the presence of Hon'ble CM Shri Vishnu Deo Sai, plus founder Shourya Jain's meeting with the late Shri Ratan Tata and coverage in The Hitavada, Patrika and more."
         image={`${pressFeature.image.base}-1600.jpg`}
         schema={[newsArticleSchema, videoSchema, ...imageSchemas]}
       />
 
       <PageHero
         eyebrow="Press & Recognition"
-        title="Recognised by government, covered by the press"
-        description="A government skill-development MoU, national media coverage and moments with leaders who have shaped Indian industry — a snapshot of the trust The Laundry Bag has earned."
+        title="Milestones, media & national recognition"
         crumbs={[{ label: "Home", to: "/" }, { label: "Press" }]}
       />
 
-      {/* Headline MoU feature */}
+      {/* Ratan Tata, standout milestone */}
       <section className="section">
+        <div className="container-page">
+          <div className="mb-8 text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-600">
+              {ratanTata.eyebrow}
+            </p>
+          </div>
+          <div className="overflow-hidden rounded-4xl border border-brand-100 bg-white shadow-lift">
+            <div className="grid items-stretch lg:grid-cols-2">
+              <button
+                type="button"
+                onClick={() => setBox({ items: [ratanItem], index: 0 })}
+                className="group relative flex w-full items-center justify-center overflow-hidden bg-ink-50 p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-400 sm:p-6"
+                aria-label="View the photo full-screen"
+              >
+                <ResponsiveImage
+                  image={ratanTata.image}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="block w-full"
+                  imgClassName="mx-auto max-h-[34rem] w-full rounded-2xl object-contain transition duration-500 group-hover:scale-[1.02]"
+                />
+                <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-ink-950/60 px-3 py-1.5 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100">
+                  <Icon name="expand" className="h-4 w-4" />
+                  View photo
+                </span>
+              </button>
+
+              <div className="p-8 sm:p-10 lg:p-12">
+                <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-brand-700 ring-1 ring-brand-100">
+                  <Icon name="star" className="h-4 w-4" />
+                  {ratanTata.kicker}
+                </span>
+                <h2 className="mt-5 font-display text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
+                  {ratanTata.title}
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-ink-700">
+                  {ratanTata.lead}
+                </p>
+                {ratanTata.body.map((para) => (
+                  <p key={para.slice(0, 24)} className="mt-3 text-sm leading-relaxed text-ink-600">
+                    {para}
+                  </p>
+                ))}
+
+                <figure className="mt-6 border-l-2 border-brand-400 pl-4">
+                  <Icon name="quote" className="h-6 w-6 text-brand-300" />
+                  <blockquote className="mt-1 font-display text-lg font-semibold leading-snug text-ink-900">
+                    {ratanTata.pullQuote}
+                  </blockquote>
+                </figure>
+
+                <dl className="mt-7 grid gap-3 sm:grid-cols-3">
+                  {ratanTata.facts.map((f) => (
+                    <div key={f.label} className="rounded-2xl border border-ink-100 bg-brand-50/50 p-3.5">
+                      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-ink-400">
+                        {f.label}
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold text-ink-800">{f.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Headline MoU feature */}
+      <section className="section-tint section">
         <div className="container-page">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <Reveal>
@@ -158,7 +218,7 @@ export default function Press() {
       </section>
 
       {/* MoU video */}
-      <section className="bg-brand-50/50 section">
+      <section className="section">
         <div className="container-page">
           <SectionHeading
             eyebrow="Watch the ceremony"
@@ -191,77 +251,8 @@ export default function Press() {
         </div>
       </section>
 
-      {/* Ratan Tata — standout milestone */}
-      <section className="section">
-        <div className="container-page">
-          <div className="mb-8 text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-600">
-              {ratanTata.eyebrow}
-            </p>
-          </div>
-          <div className="overflow-hidden rounded-4xl bg-ink-950 text-white shadow-lift ring-1 ring-white/10">
-            <div className="grid lg:grid-cols-2">
-              <button
-                type="button"
-                onClick={() => setBox({ items: [ratanItem], index: 0 })}
-                className="group relative flex w-full items-center justify-center overflow-hidden bg-ink-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-400"
-                aria-label="View the photo full-screen"
-              >
-                <ResponsiveImage
-                  image={ratanTata.image}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="block w-full"
-                  imgClassName="aspect-[4/3] w-full object-cover object-center transition duration-500 group-hover:scale-105"
-                />
-                <span className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink-950/70 to-transparent" />
-                <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-ink-950/60 px-3 py-1.5 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100">
-                  <Icon name="expand" className="h-4 w-4" />
-                  View photo
-                </span>
-              </button>
-
-              <div className="p-8 sm:p-10 lg:p-12">
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-brand-200 ring-1 ring-white/15">
-                  <Icon name="star" className="h-4 w-4" />
-                  {ratanTata.kicker}
-                </span>
-                <h2 className="mt-5 font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
-                  {ratanTata.title}
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-white/85">
-                  {ratanTata.lead}
-                </p>
-                {ratanTata.body.map((para) => (
-                  <p key={para.slice(0, 24)} className="mt-3 text-sm leading-relaxed text-white/65">
-                    {para}
-                  </p>
-                ))}
-
-                <figure className="mt-6 border-l-2 border-brand-400 pl-4">
-                  <Icon name="quote" className="h-6 w-6 text-brand-300" />
-                  <blockquote className="mt-1 font-display text-lg font-semibold leading-snug text-white">
-                    {ratanTata.pullQuote}
-                  </blockquote>
-                </figure>
-
-                <dl className="mt-7 grid gap-3 sm:grid-cols-3">
-                  {ratanTata.facts.map((f) => (
-                    <div key={f.label} className="rounded-2xl bg-white/5 p-3.5 ring-1 ring-white/10">
-                      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-white/45">
-                        {f.label}
-                      </dt>
-                      <dd className="mt-1 text-sm font-semibold text-white/90">{f.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Newspaper clippings */}
-      <section className="section">
+      <section className="section-tint section">
         <div className="container-page">
           <SectionHeading
             eyebrow="In print"
@@ -299,94 +290,6 @@ export default function Press() {
                 </button>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recognition gallery */}
-      <section className="bg-brand-50/50 section">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Moments & recognition"
-            title="On stage with the Hon'ble Chief Minister"
-            description="Highlights from the MoU exchange ceremony at Chhattisgarh Skill Tech, Raipur."
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {pressGallery.map((g, i) => (
-              <Reveal key={g.image.base} delay={i * 70}>
-                <button
-                  type="button"
-                  onClick={() => setBox({ items: galleryItems, index: i })}
-                  className="group block w-full overflow-hidden rounded-4xl border border-ink-100 bg-white text-left shadow-soft transition hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
-                >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink-100">
-                    <ResponsiveImage
-                      image={g.image}
-                      sizes="(min-width: 640px) 50vw, 100vw"
-                      imgClassName="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                    />
-                    <span className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-ink-950/60 text-white opacity-0 transition group-hover:opacity-100">
-                      <Icon name="expand" className="h-4 w-4" />
-                    </span>
-                  </div>
-                  <figcaption className="px-5 py-4 text-sm font-semibold text-ink-700">
-                    {g.caption}
-                  </figcaption>
-                </button>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Online features list */}
-      <section className="section">
-        <div className="container-page">
-          <SectionHeading eyebrow="Read more" title="Featured stories" />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {pressFeatures.map((p, i) => (
-              <Reveal key={p.href} delay={i * 70}>
-                <a
-                  href={p.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="card card-hover flex h-full flex-col"
-                >
-                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
-                    {p.outlet}
-                  </span>
-                  <h3 className="mt-3 font-display text-lg font-bold text-ink-900">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm text-ink-600">{p.summary}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sky2-700">
-                    Read the feature
-                    <Icon name="external" className="h-4 w-4" />
-                  </span>
-                </a>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section">
-        <div className="container-page">
-          <div className="overflow-hidden rounded-4xl bg-brand-gradient px-6 py-12 text-center text-white shadow-soft sm:px-12 sm:py-16">
-            <h2 className="font-display text-2xl font-extrabold sm:text-3xl">
-              Partner with India's leading laundry service provider
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-white/90">
-              Hotels, resorts, hospitals and institutions across India trust The Laundry Bag for hygienic, never-mix, industrial-grade laundry.
-            </p>
-            <Link
-              to="/contact"
-              className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-brand-700 shadow-lg transition hover:bg-ink-50"
-            >
-              Talk to our team
-              <Icon name="arrow" className="h-4 w-4" />
-            </Link>
           </div>
         </div>
       </section>

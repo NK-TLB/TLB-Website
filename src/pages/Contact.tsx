@@ -8,7 +8,7 @@ import { site } from "../data/site";
 // Enquiries are handled by Netlify Forms (no third-party backend, no API key).
 // A matching hidden static form lives in index.html so Netlify's build bot can
 // register the "contact" form; here we submit it via AJAX so the visitor never
-// leaves our site — on success we route to the on-site thank-you page, and on
+// leaves our site, on success we route to the on-site thank-you page, and on
 // failure we show an inline fallback (call / WhatsApp).
 //
 // NOTE: Netlify Forms only works on the deployed Netlify site, not on localhost.
@@ -65,8 +65,7 @@ export default function Contact() {
 
       <PageHero
         eyebrow="Contact"
-        title="Let's talk linen"
-        description="Tell us about your property, volumes and space, and we'll get back to you with the right model — on-premise, off-site or linen rental — along with timings and pricing."
+        title="Let's start your linen partnership"
         crumbs={[{ label: "Home", to: "/" }, { label: "Contact" }]}
       />
 
@@ -152,7 +151,7 @@ export default function Contact() {
               className="card space-y-5"
             >
               <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
-              {/* Honeypot — bots fill this, humans never see it */}
+              {/* Honeypot, bots fill this, humans never see it */}
               <p className="hidden">
                 <label>
                   Don&apos;t fill this out if you&apos;re human:{" "}
@@ -215,7 +214,7 @@ export default function Contact() {
         <div className="container-page mt-12">
           <div className="overflow-hidden rounded-4xl shadow-soft">
             <iframe
-              title="The Laundry Bag — Raipur location"
+              title="The Laundry Bag, Raipur location"
               src={`https://www.google.com/maps?q=${site.address.geo.lat},${site.address.geo.lng}&z=14&output=embed`}
               width="100%"
               height="400"

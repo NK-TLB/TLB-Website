@@ -98,6 +98,40 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        "hero-enter": {
+          "0%": {
+            opacity: "0",
+            transform:
+              "perspective(1200px) rotateX(14deg) translateY(36px) scale(0.94)",
+          },
+          "100%": {
+            opacity: "1",
+            transform:
+              "perspective(1200px) rotateX(0deg) translateY(0) scale(1)",
+          },
+        },
+        "hero-float-3d": {
+          "0%, 100%": {
+            transform:
+              "perspective(1200px) rotateX(3deg) rotateY(-3deg) translateY(0)",
+          },
+          "50%": {
+            transform:
+              "perspective(1200px) rotateX(-2deg) rotateY(3deg) translateY(-10px)",
+          },
+        },
+        "hero-glow": {
+          "0%, 100%": { opacity: "0.35", transform: "scale(1)" },
+          "50%": { opacity: "0.65", transform: "scale(1.08)" },
+        },
+        "menu-slide-down": {
+          "0%": { opacity: "0", transform: "translateY(-16px) scale(0.97)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        "backdrop-fade": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
         marquee: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
@@ -116,6 +150,13 @@ export default {
         "fade-up": "fade-up 0.7s cubic-bezier(0.16,1,0.3,1) both",
         "fade-in": "fade-in 0.8s ease both",
         float: "float 6s ease-in-out infinite",
+        "hero-enter":
+          "hero-enter 0.9s cubic-bezier(0.16,1,0.3,1) both",
+        "hero-float-3d": "hero-float-3d 8s ease-in-out infinite",
+        "hero-glow": "hero-glow 5s ease-in-out infinite",
+        "menu-slide-down":
+          "menu-slide-down 0.35s cubic-bezier(0.16,1,0.3,1) both",
+        "backdrop-fade": "backdrop-fade 0.25s ease both",
         marquee: "marquee 30s linear infinite",
         shimmer: "shimmer 2.5s linear infinite",
         "pulse-ring": "pulse-ring 2.4s cubic-bezier(0.16,1,0.3,1) infinite",

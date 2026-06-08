@@ -4,7 +4,6 @@ import Icon from "./Icon";
 import {
   HQ_MARKER,
   mapMarkers,
-  markerTypeLabels,
   type MapMarker,
   type MarkerType,
 } from "../data/mapMarkers";
@@ -29,9 +28,30 @@ const typeDotClass: Record<MarkerType, string> = {
   city: "bg-brand-500",
 };
 
-function directionsHref(query: string) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
-}
+// Richer map markers: a glossy gradient core with a soft colour-matched halo
+// (via box-shadow) instead of a flat dot, reads as a premium location pin.
+const typeMarker: Record<MarkerType, { core: string; glow: string }> = {
+  hq: {
+    core: "bg-gradient-to-br from-ink-700 to-ink-950",
+    glow: "0 0 0 5px rgb(var(--ink-900) / 0.15)",
+  },
+  hotel: {
+    core: "bg-gradient-to-br from-brand-300 to-brand-600",
+    glow: "0 0 0 4px rgb(var(--brand-400) / 0.18)",
+  },
+  hospital: {
+    core: "bg-gradient-to-br from-accent-400 to-accent-600",
+    glow: "0 0 0 4px rgb(var(--accent-500) / 0.18)",
+  },
+  retail: {
+    core: "bg-gradient-to-br from-brand-300 to-brand-600",
+    glow: "0 0 0 4px rgb(var(--brand-400) / 0.18)",
+  },
+  city: {
+    core: "bg-gradient-to-br from-brand-300 to-brand-600",
+    glow: "0 0 0 4px rgb(var(--brand-400) / 0.18)",
+  },
+};
 
 /** Quadratic arc path (in viewBox units) from the HQ to a destination marker. */
 function arcPath(to: MapMarker) {
@@ -71,7 +91,6 @@ export default function IndiaMap({
   }, []);
 
   const currentId = active ?? selectedId;
-  const current = mapMarkers.find((m) => m.id === currentId) ?? HQ_MARKER;
 
   // Draw the arcs in once the map scrolls into view.
   useEffect(() => {
@@ -136,7 +155,7 @@ export default function IndiaMap({
             filter={`url(#soft-${uid})`}
           />
 
-          {/* Internal state / UT borders — a political-map feel */}
+          {/* Internal state / UT borders, a political-map feel */}
           <g
             clipPath={`url(#clip-${uid})`}
             fill="none"
@@ -192,7 +211,7 @@ export default function IndiaMap({
                 type="button"
                 className="group absolute -translate-x-1/2 -translate-y-1/2 focus:outline-none"
                 style={{ left: `${pos.left}%`, top: `${pos.top}%`, zIndex: isOn ? 30 : isHQ ? 20 : 10 }}
-                aria-label={`${m.city}, ${m.state} — ${m.role}`}
+                aria-label={`${m.city}, ${m.state}, ${m.role}`}
                 onMouseEnter={() => setActive(m.id)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(m.id)}
@@ -212,15 +231,15 @@ export default function IndiaMap({
                   }}
                   aria-hidden="true"
                 />
-                {/* dot */}
+                {/* marker */}
                 <span
                   className={`relative block rounded-full ring-2 ring-white transition-transform duration-200 ${
-                    typeDotClass[m.type]
+                    typeMarker[m.type].core
                   } ${isOn ? "scale-125" : "group-hover:scale-110"}`}
                   style={{
                     width: isHQ ? 18 : 13,
                     height: isHQ ? 18 : 13,
-                    boxShadow: "0 1px 4px rgba(6,44,64,0.45)",
+                    boxShadow: `${typeMarker[m.type].glow}, 0 2px 6px rgba(6,44,64,0.5)`,
                   }}
                   aria-hidden="true"
                 />
@@ -232,7 +251,7 @@ export default function IndiaMap({
                 >
                   {m.city}
                   {isHQ && (
-                    <span className="ml-1 rounded bg-white/20 px-1 text-[0.6rem]">HQ</span>
+                    <span className="ml-1 rounded bg-white/20 px-1 text-[0.6rem]">HO</span>
                   )}
                 </span>
               </button>
@@ -246,15 +265,15 @@ export default function IndiaMap({
   const legend = (
     <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold text-ink-600">
       <li className="flex items-center gap-2">
-        <span className="h-3 w-3 rounded-full bg-brand-600 ring-2 ring-white" />
-        Headquarters
+        <span className="h-3 w-3 rounded-full bg-gradient-to-br from-ink-700 to-ink-950 ring-2 ring-white" />
+        Head Office
       </li>
       <li className="flex items-center gap-2">
-        <span className="h-2.5 w-2.5 rounded-full bg-brand-500" />
+        <span className="h-2.5 w-2.5 rounded-full bg-gradient-to-br from-brand-300 to-brand-600" />
         Hotels &amp; resorts
       </li>
       <li className="flex items-center gap-2">
-        <span className="h-2.5 w-2.5 rounded-full bg-accent-500" />
+        <span className="h-2.5 w-2.5 rounded-full bg-gradient-to-br from-accent-400 to-accent-600" />
         Hospitals
       </li>
     </ul>
@@ -276,14 +295,14 @@ export default function IndiaMap({
   }
 
   return (
-    <div className={`grid items-center gap-10 lg:grid-cols-2 ${className}`}>
+    <div className={`grid items-start gap-10 lg:grid-cols-2 ${className}`}>
       {map}
 
       <div>
         <div className="grid grid-cols-3 gap-3">
           {[
-            { value: "20+", label: "Cities" },
-            { value: `${counts.hotels}+`, label: "Hotels & resorts" },
+            { value: "18", label: "Cities" },
+            { value: "30+", label: "Operational units" },
             { value: `${counts.hospitals}+`, label: "Hospitals" },
           ].map((s) => (
             <div key={s.label} className="rounded-2xl border border-ink-100 bg-white p-4 text-center shadow-soft">
@@ -293,37 +312,9 @@ export default function IndiaMap({
           ))}
         </div>
 
-        {/* active / selected city detail */}
-        <div className="mt-5 rounded-3xl border border-ink-100 bg-white p-5 shadow-soft">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <h3 className="font-display text-xl font-bold text-ink-900">
-                {current.city}
-                <span className="ml-2 text-sm font-semibold text-ink-500">· {current.state}</span>
-              </h3>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                {markerTypeLabels[current.type]}
-              </p>
-            </div>
-            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-              <Icon name="pin" />
-            </span>
-          </div>
-          <p className="mt-3 text-sm text-ink-600">{current.note}</p>
-          <a
-            href={directionsHref(current.mapsQuery)}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-800"
-          >
-            Get directions
-            <Icon name="arrow" className="h-4 w-4" />
-          </a>
-        </div>
-
-        <div className="mt-5">
+        <div className="mt-8">
           {legend}
-          <ul className="mt-4 grid max-h-64 grid-cols-2 gap-2 overflow-y-auto pr-1 sm:grid-cols-3">
+          <ul className="mt-6 grid grid-cols-2 gap-3 overflow-y-auto sm:grid-cols-3">
             {mapMarkers.map((m) => {
               const isOn = currentId === m.id;
               return (
@@ -335,13 +326,13 @@ export default function IndiaMap({
                     onFocus={() => setActive(m.id)}
                     onBlur={() => setActive(null)}
                     onClick={() => setSelectedId(m.id)}
-                    className={`flex w-full items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition ${
+                    className={`flex w-full items-center gap-2.5 rounded-xl border px-3 py-2.5 text-left text-sm font-semibold transition ${
                       isOn
-                        ? "border-brand-300 bg-brand-50 text-brand-700"
-                        : "border-ink-100 text-ink-700 hover:border-ink-200 hover:bg-ink-50/60"
+                        ? "border-brand-300 bg-brand-50 text-brand-700 shadow-sm"
+                        : "border-ink-100 bg-white text-ink-700 hover:border-brand-200 hover:bg-brand-50/50 hover:text-brand-800"
                     }`}
                   >
-                    <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${typeDotClass[m.type]}`} />
+                    <span className={`h-2 w-2 shrink-0 rounded-full ${typeDotClass[m.type]}`} />
                     <span className="truncate">{m.city}</span>
                   </button>
                 </li>

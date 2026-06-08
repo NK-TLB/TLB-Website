@@ -20,7 +20,7 @@ function Portrait({ name, image }: { name: string; image?: string }) {
     return (
       <img
         src={image}
-        alt={`${name} — Founder, The Laundry Bag`}
+        alt={`${name}, Founder, The Laundry Bag`}
         loading="lazy"
         onError={() => setFailed(true)}
         className="h-full w-full object-cover"

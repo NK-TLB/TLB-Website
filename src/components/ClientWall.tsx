@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { clientLogos } from "../data/site";
 
-/** One logo tile: brand logo in grayscale that lifts to full colour on hover,
- * falling back to a clean wordmark if the asset is missing. */
+/** One logo tile: brand logo shown in full colour, falling back to a clean
+ * wordmark if the asset is missing. */
 function LogoTile({ name, logo }: { name: string; logo?: string }) {
   const [failed, setFailed] = useState(false);
   const showLogo = logo && !failed;
@@ -12,11 +12,11 @@ function LogoTile({ name, logo }: { name: string; logo?: string }) {
       {showLogo ? (
         <img
           src={logo}
-          alt={`${name} — a Laundry Bag client`}
+          alt={`${name}, a Laundry Bag client`}
           title={name}
           loading="lazy"
           onError={() => setFailed(true)}
-          className="max-h-12 max-w-[140px] object-contain opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 sm:max-h-14"
+          className="max-h-12 max-w-[140px] object-contain transition duration-300 group-hover:scale-105 sm:max-h-14"
         />
       ) : (
         <span className="text-center font-display text-base font-semibold tracking-wide text-ink-400 transition group-hover:text-brand-600">
@@ -29,7 +29,7 @@ function LogoTile({ name, logo }: { name: string; logo?: string }) {
 
 type Props = { className?: string };
 
-/** Upgraded client logo wall — a tidy, responsive grid of marquee-grade
+/** Upgraded client logo wall, a tidy, responsive grid of marquee-grade
  * brand logos. Pairs with the sector chip lists on the Clients page. */
 export default function ClientWall({ className = "" }: Props) {
   return (

@@ -139,7 +139,7 @@ export default function TemplateSwitcher() {
           </ul>
 
           <p className="px-2 pt-2 text-[0.65rem] leading-relaxed text-ink-400">
-            Every template shares our sky-blue brand palette — only the design
+            Every template shares our sky-blue brand palette, only the design
             (shape, type &amp; depth) changes. Your choice is saved on this device.
           </p>
         </div>

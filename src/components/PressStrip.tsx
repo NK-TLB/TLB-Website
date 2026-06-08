@@ -4,7 +4,7 @@ import ResponsiveImage from "./ResponsiveImage";
 import { pressFeature, pressClippings } from "../data/site";
 
 /**
- * Slim press teaser for the Clients page — highlights the government MoU with a
+ * Slim press teaser for the Clients page, highlights the government MoU with a
  * photo + top clipping, then sends visitors to the full /press page.
  */
 export default function PressTeaser() {

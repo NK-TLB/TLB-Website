@@ -5,12 +5,14 @@ import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import Marquee from "../components/Marquee";
 import IndiaMap from "../components/IndiaMap";
+import CountUp from "../components/CountUp";
 import {
   clientLogos,
   homeServices,
   howItWorks,
   site,
-  usps,
+  whyTlbFeatures,
+  whyTlbStats,
 } from "../data/site";
 
 export default function Home() {
@@ -19,7 +21,7 @@ export default function Home() {
       <SEO
         path="/"
         title="India's Leading Laundry Service Provider"
-        description="The Laundry Bag is India's Leading Laundry Service Provider — commercial laundry, dry-cleaning and linen-management programmes for luxury hotels, resorts, hospitals and medical centres across India. On-premise, off-site or linen-rental models from our Raipur HQ."
+        description="The Laundry Bag is India's Leading Laundry Service Provider, commercial laundry, dry-cleaning and linen-management programmes for luxury hotels, resorts, hospitals and medical centres across India. On-premise, off-site or linen-rental models from our Raipur HQ."
       />
 
       {/* ===================== HERO ===================== */}
@@ -29,7 +31,7 @@ export default function Home() {
           aria-hidden="true"
           className="pointer-events-none absolute -right-40 top-0 -z-10 h-[36rem] w-[36rem] rounded-full bg-ink-mesh blur-2xl"
         />
-        {/* Decorative floating bubbles — subtle laundry-day delight */}
+        {/* Decorative floating bubbles, subtle laundry-day delight */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <span className="absolute left-[8%] top-[22%] h-3 w-3 animate-float rounded-full bg-brand-300/50 [animation-delay:0s]" />
           <span className="absolute left-[18%] top-[64%] h-5 w-5 animate-float rounded-full bg-sky2-300/40 [animation-delay:1.2s]" />
@@ -39,14 +41,7 @@ export default function Home() {
         </div>
         <div className="container-page grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:py-28">
           <div className="lg:col-span-6">
-            <span className="inline-flex animate-fade-up items-center gap-2 rounded-full border border-brand-200/70 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-brand-700 shadow-soft backdrop-blur">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500/70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-600" />
-              </span>
-              India&apos;s Leading Laundry Service Provider · Since {site.founded}
-            </span>
-            <h1 className="h1 mt-6 animate-fade-up">
+            <h1 className="h1 animate-fade-up">
               The laundry &amp; linen partner
               <br />
               for{" "}
@@ -55,7 +50,7 @@ export default function Home() {
             <p className="lead mt-6 max-w-xl animate-fade-up">
               From leading hotel chains and major hospitals to luxury resorts
               and medical centres, we run cost-effective, consistent commercial
-              laundry and linen programmes for institutions of every size — on
+              laundry and linen programmes for institutions of every size, on
               your premises, off-site or on a managed linen-rental model. We
               never mix one client&apos;s linen with anyone else&apos;s.
             </p>
@@ -72,23 +67,37 @@ export default function Home() {
 
           {/* India coverage map */}
           <div className="lg:col-span-6">
-            <div className="relative">
+            <div className="group relative animate-fade-up">
+              {/* ambient brand glow */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -inset-4 -z-10 rounded-[2.5rem] bg-brand-gradient opacity-15 blur-3xl"
+                className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.12] blur-3xl"
               />
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-white/70 p-6 shadow-lift backdrop-blur-xl sm:p-8">
-                <div
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/40 bg-white/50 p-5 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.1)] backdrop-blur-2xl sm:p-7">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent" />
+                {/* soft brand wash behind the map */}
+                <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 -z-10 bg-hero-radial opacity-60"
+                  className="pointer-events-none absolute -bottom-24 left-1/2 h-60 w-72 -translate-x-1/2 rounded-full bg-brand-200/25 blur-3xl"
                 />
-                <p className="mb-1 text-center text-xs font-bold uppercase tracking-[0.2em] text-brand-500">
-                  Our footprint
-                </p>
-                <p className="mb-4 text-center font-display text-lg font-bold text-ink-900">
-                  Trusted across India
-                </p>
-                <IndiaMap variant="compact" />
+                <div className="relative mb-5 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500/60" />
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-600" />
+                    </span>
+                    <p className="font-display text-base font-bold tracking-tight text-ink-900">
+                      Trusted across India
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/60 bg-white/60 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-brand-700 shadow-sm backdrop-blur-md">
+                    <Icon name="pin" className="h-3.5 w-3.5" />
+                    18 cities
+                  </span>
+                </div>
+                <div className="relative">
+                  <IndiaMap variant="compact" />
+                </div>
               </div>
             </div>
           </div>
@@ -106,31 +115,16 @@ export default function Home() {
       </section>
 
       {/* ===================== OPERATIONAL MODELS ===================== */}
-      <section className="section">
+      <section className="section section-tint">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="What we do"
-            title="Operational Models"
-          />
-          <div className="mt-14 grid gap-6 md:grid-cols-3 lg:gap-8">
+          <SectionHeading title="What We Do" />
+          <div className="mt-12 grid gap-6 md:grid-cols-3 lg:gap-8">
             {homeServices.map((s, i) => (
               <Reveal key={s.title} delay={i * 100}>
                 <Link
                   to={s.href}
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-brand-100/70 bg-white p-8 shadow-soft transition duration-300 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-lift"
                 >
-                  {/* animated top accent */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-brand-gradient transition-transform duration-300 group-hover:scale-x-100"
-                  />
-                  {/* oversized watermark index */}
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-1 -top-3 select-none font-display text-[5.5rem] font-black leading-none text-brand-50 transition-colors duration-300 group-hover:text-brand-100"
-                  >
-                    {i + 1}
-                  </span>
                   <span className="relative inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/30">
                     <Icon name={s.icon} className="h-7 w-7" />
                   </span>
@@ -152,52 +146,86 @@ export default function Home() {
       </section>
 
       {/* ===================== WHY TLB ===================== */}
-      <section className="relative overflow-hidden bg-brand-950 py-20 text-white sm:py-24 lg:py-28">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-40"
-        />
+      <section className="section">
         <div className="container-page relative">
-          <SectionHeading
-            title="Why TLB"
-            invert
-          />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {usps.map((u, i) => (
-              <Reveal key={u.title} delay={i * 80}>
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-white/[0.02] p-6 backdrop-blur-sm transition duration-300 hover:border-brand-400/40 hover:from-white/[0.12]">
-                  {/* hover glow */}
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand-500/20 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
-                  />
-                  <span className="relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
-                    <Icon name={u.icon} className="h-6 w-6" />
-                  </span>
-                  <h3 className="relative mt-5 font-display text-base font-bold text-white">
-                    {u.title}
-                  </h3>
-                  <p className="relative mt-2 text-sm leading-relaxed text-white/65">{u.description}</p>
+          <SectionHeading title="Why Choose Us" />
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:auto-rows-fr">
+            {/* Feature tile, Girbau */}
+            <Reveal>
+              <article className="card card-hover group relative flex h-full flex-col overflow-hidden p-6 sm:p-8">
+                <span className="relative w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
+                  {whyTlbFeatures[0].badge}
+                </span>
+                <img
+                  src="/images/clients/girbau.png"
+                  alt="Girbau"
+                  width={413}
+                  height={90}
+                  className="relative mt-6 h-9 w-auto max-w-[160px] self-start object-contain"
+                  loading="lazy"
+                />
+                <h3 className="relative mt-5 font-display text-xl font-bold text-ink-900">
+                  {whyTlbFeatures[0].title}
+                </h3>
+                <p className="relative mt-2 text-sm leading-relaxed text-ink-600">
+                  {whyTlbFeatures[0].description}
+                </p>
+              </article>
+            </Reveal>
+
+            {/* Stat tiles, paired two-up */}
+            {[whyTlbStats.slice(0, 2), whyTlbStats.slice(2, 4)].map((pair, p) => (
+              <Reveal key={p} delay={(p + 1) * 90}>
+                <article className="card card-hover group relative flex h-full items-center overflow-hidden p-6 sm:p-8">
+                  <dl className="grid w-full grid-cols-2 items-center divide-x divide-ink-100">
+                    {pair.map((s) => (
+                      <div
+                        key={s.label}
+                        className="flex flex-col items-center px-5 text-center first:pl-0 last:pr-0"
+                      >
+                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+                          <Icon name={s.icon} className="h-5 w-5" />
+                        </span>
+                        <dd className="mt-4 font-display text-4xl font-extrabold leading-none text-brand-600 sm:text-5xl">
+                          <CountUp value={s.value} />
+                        </dd>
+                        <dt className="mt-2 text-sm font-semibold text-ink-600">
+                          {s.label}
+                        </dt>
+                      </div>
+                    ))}
+                  </dl>
                 </article>
               </Reveal>
             ))}
+
+            {/* Feature tile, equity-backed */}
+            <Reveal delay={3 * 90}>
+              <article className="card card-hover group relative flex h-full flex-col overflow-hidden p-6 sm:p-8">
+                <span className="w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
+                  {whyTlbFeatures[1].badge}
+                </span>
+                <span className="mt-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
+                  <Icon name={whyTlbFeatures[1].icon} className="h-6 w-6" />
+                </span>
+                <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
+                  {whyTlbFeatures[1].title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-600">
+                  {whyTlbFeatures[1].description}
+                </p>
+              </article>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ===================== HOW IT WORKS ===================== */}
-      <section className="bg-brand-50/40 py-20 sm:py-24 lg:py-28">
+      <section className="section section-tint">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="How we partner"
-            title="From first call to fully managed in 4 steps"
-          />
+          <SectionHeading title="How We Partner" />
           <ol className="relative mt-16 grid gap-y-12 gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
-            {/* connector line behind the step badges (lg only) */}
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-0 hidden h-0.5 bg-gradient-to-r from-brand-200 via-brand-400 to-brand-200 lg:block"
-            />
             {howItWorks.map((s, i) => (
               <Reveal key={s.step} delay={i * 100}>
                 <li className="group relative flex h-full flex-col items-center rounded-2xl bg-white px-6 pb-8 pt-10 text-center shadow-soft ring-1 ring-brand-100/60 transition duration-300 hover:-translate-y-1 hover:shadow-lift">
@@ -226,10 +254,7 @@ export default function Home() {
       {/* ===================== CONTACT ===================== */}
       <section className="section">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="Get in touch"
-            title="Contact us"
-          />
+          <SectionHeading title="Get In Touch" />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <a
               href={`tel:+91${site.phoneRaw}`}

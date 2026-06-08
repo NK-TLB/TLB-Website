@@ -1,7 +1,7 @@
 // Geographic markers for the India operations map (see IndiaMap.tsx).
 //
 // Derived from the city footprint in site.ts (`locations`, `extraCities`,
-// `clientGroups`). Coordinates are approximate city centroids — accurate
+// `clientGroups`). Coordinates are approximate city centroids, accurate
 // enough for a stylised national map and trivial to nudge later.
 
 export type MarkerType = "hq" | "hotel" | "hospital" | "retail" | "city";
@@ -41,7 +41,7 @@ export const mapMarkers: MapMarker[] = [
     type: "hospital",
     lat: 21.16,
     lng: 81.78,
-    note: "Balco Medical Center — hygienic, infection-safe linen processing.",
+    note: "Balco Medical Center, hygienic, infection-safe linen processing.",
     mapsQuery: "Balco Medical Center Naya Raipur",
   },
   {
@@ -233,7 +233,7 @@ export const mapMarkers: MapMarker[] = [
   },
 ];
 
-/** The headquarters marker — used as the origin for the connecting arcs. */
+/** The headquarters marker, used as the origin for the connecting arcs. */
 export const HQ_MARKER = mapMarkers.find((m) => m.type === "hq")!;
 
 export const markerTypeLabels: Record<MarkerType, string> = {
