@@ -131,7 +131,7 @@ export default function Leadership() {
                   </a>
                 )}
                 <a
-                  href="https://www.shouryainfraventure.com/about.html#shourya-jain"
+                  href="https://www.shouryainfraventure.com/about.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-xs font-semibold text-brand-800 shadow-sm transition hover:border-brand-400"

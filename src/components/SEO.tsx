@@ -14,7 +14,8 @@ type SEOProps = {
 
 const BASE_URL = "https://www.thelaundrybag.co.in";
 
-const PERSON_ID = "https://www.shouryainfraventure.com/about.html#shourya-jain";
+const PERSON_ID =
+  "https://www.shouryainfraventure.com/shourya-jain.html#person";
 const ORG_ID = `${BASE_URL}/#organization`;
 
 const localBusinessSchema = {
@@ -128,7 +129,8 @@ const personSchema = {
     { "@id": "https://www.shouryainfraventure.com/#organization" },
   ],
   sameAs: [
-    "https://www.shouryainfraventure.com/about.html#shourya-jain",
+    "https://www.shouryainfraventure.com/shourya-jain.html",
+    "https://www.shouryainfraventure.com/about.html",
     "https://www.shouryainfraventure.com/",
     site.socials.linkedin,
     "https://www.linkedin.com/in/shourya-jain-1b2562162",
