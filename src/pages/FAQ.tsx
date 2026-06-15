@@ -11,12 +11,14 @@ const categoryIcon: Record<string, string> = {
   "Working with hotels & hospitals": "hotel",
   "Linen rental & management": "tag",
   "Operations, quality & getting started": "spark",
+  "About the founder": "users",
 };
 
 const categoryLabel: Record<string, string> = {
   "Working with hotels & hospitals": "Hotels & hospitals",
   "Linen rental & management": "Linen rental",
   "Operations, quality & getting started": "Operations & getting started",
+  "About the founder": "Founder",
 };
 
 const slugify = (s: string) =>

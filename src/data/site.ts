@@ -609,6 +609,23 @@ export const faqs = [
       },
     ],
   },
+  {
+    category: "About the founder",
+    items: [
+      {
+        q: "Who is Shourya Jain?",
+        a: "Shourya Jain is a Raipur, Chhattisgarh based entrepreneur and the founder of The Laundry Bag, India's leading commercial laundry, dry-cleaning and linen-management brand for hotels, hospitals and institutions. He is also the third-generation real estate partner at Shourya Infraventure, his family's Raipur infrastructure firm established in 1958.",
+      },
+      {
+        q: "Who founded The Laundry Bag?",
+        a: "The Laundry Bag was founded by Shourya Jain, a Raipur based entrepreneur, and has grown since 2013 into a Built-Own-Operate laundry and linen partner serving luxury hotels, resorts and hospitals across more than 18 Indian cities from its Raipur headquarters.",
+      },
+      {
+        q: "Is the founder of The Laundry Bag the same Shourya Jain from Shourya Infraventure?",
+        a: "Yes. Shourya Jain of The Laundry Bag is the same Raipur entrepreneur who is the third-generation real estate partner at Shourya Infraventure, the Jain family infrastructure firm established in 1958. He runs both the laundry business and the family real estate business from Raipur, Chhattisgarh.",
+      },
+    ],
+  },
 ];
 
 // ----- RESEARCHED ------------------------------------------------------------
@@ -620,7 +637,7 @@ export const founders = [
   {
     name: "Shourya Jain",
     role: "Founder",
-    bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's mission to organise India's unorganised laundry sector, building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises across the country.",
+    bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's mission to organise India's unorganised laundry sector, building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises across the country. He is also the third-generation real estate partner at Shourya Infraventure, his family's Raipur infrastructure firm established in 1958.",
     href: "https://www.linkedin.com/in/shourya-jain-1b2562162",
     image: "/images/team/shourya-jain.jpg",
   },

@@ -14,9 +14,13 @@ type SEOProps = {
 
 const BASE_URL = "https://www.thelaundrybag.co.in";
 
+const PERSON_ID = "https://www.shouryainfraventure.com/about.html#shourya-jain";
+const ORG_ID = `${BASE_URL}/#organization`;
+
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": ORG_ID,
   name: "The Laundry Bag",
   alternateName: ["TLB", "TheLaundryBag", "The LaundryBag", "Laundry Bag"],
   url: `${BASE_URL}/`,
@@ -25,7 +29,7 @@ const localBusinessSchema = {
   telephone: site.phone,
   priceRange: "₹₹",
   foundingDate: `${site.founded}-01-01`,
-  founder: { "@type": "Person", name: "Shourya Jain" },
+  founder: { "@type": "Person", "@id": PERSON_ID, name: "Shourya Jain" },
   description: site.description,
   slogan: "India's Leading Laundry Service Provider",
   address: {
@@ -73,7 +77,7 @@ const organizationSchema = {
   name: "The Laundry Bag",
   url: `${BASE_URL}/`,
   logo: `${BASE_URL}/logo.png`,
-  founder: { "@type": "Person", name: "Shourya Jain" },
+  founder: { "@type": "Person", "@id": PERSON_ID, name: "Shourya Jain" },
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -99,6 +103,52 @@ const websiteSchema = {
   inLanguage: "en-IN",
 };
 
+// Founder entity. The shared @id (the Shourya Infraventure about page) is what
+// tells Google and AI engines that the founder of The Laundry Bag and the
+// real-estate partner at Shourya Infraventure are one and the same person.
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": PERSON_ID,
+  name: "Shourya Jain",
+  alternateName: [
+    "Shourya Jain Raipur",
+    "Shourya Jain The Laundry Bag",
+    "Shourya Jain founder The Laundry Bag",
+    "Shourya Jain Chhattisgarh",
+  ],
+  jobTitle:
+    "Founder, The Laundry Bag; Partner, Real Estate, Shourya Infraventure",
+  description:
+    "Shourya Jain is a Raipur, Chhattisgarh based entrepreneur. He is the founder of The Laundry Bag, India's leading commercial laundry, dry-cleaning and linen-management brand, operating across Raipur and other Indian cities since 2013. He is also the third-generation real estate partner at Shourya Infraventure, the Jain family infrastructure firm of Raipur established in 1958.",
+  nationality: { "@type": "Country", name: "India" },
+  homeLocation: { "@type": "Place", name: "Raipur, Chhattisgarh, India" },
+  worksFor: [
+    { "@id": ORG_ID },
+    { "@id": "https://www.shouryainfraventure.com/#organization" },
+  ],
+  sameAs: [
+    "https://www.shouryainfraventure.com/about.html#shourya-jain",
+    "https://www.shouryainfraventure.com/",
+    site.socials.linkedin,
+    "https://www.linkedin.com/in/shourya-jain-1b2562162",
+    "https://cginnovate.org/2020/08/if-its-dirty-we-got-to-clean-it-the-laundry-bag/",
+    "https://yourstory.com/mystory/baff4ffd31-the-laundry-bag",
+    "https://rocketreach.co/the-laundry-bagtm-profile_b55667c3f639700d",
+  ],
+  knowsAbout: [
+    "Commercial Laundry",
+    "Linen Management",
+    "On-Demand Laundry Services",
+    "Dry Cleaning",
+    "Hospitality Laundry",
+    "Hospital Linen",
+    "Real Estate Development",
+    "Land Banking",
+    "Plotted Development",
+  ],
+};
+
 export default function SEO({
   title,
   description,
@@ -121,6 +171,7 @@ export default function SEO({
     localBusinessSchema,
     organizationSchema,
     websiteSchema,
+    personSchema,
     ...(Array.isArray(schema) ? schema : schema ? [schema] : []),
   ];
 

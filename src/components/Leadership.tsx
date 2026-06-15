@@ -117,6 +117,29 @@ export default function Leadership() {
                   with anyone else&apos;s.
                 </blockquote>
               </figure>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                {lead.href && (
+                  <a
+                    href={lead.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-xs font-semibold text-brand-800 shadow-sm transition hover:border-brand-400"
+                  >
+                    <Icon name="users" className="h-3.5 w-3.5" />
+                    {lead.name} on LinkedIn
+                  </a>
+                )}
+                <a
+                  href="https://www.shouryainfraventure.com/about.html#shourya-jain"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-xs font-semibold text-brand-800 shadow-sm transition hover:border-brand-400"
+                >
+                  <Icon name="building" className="h-3.5 w-3.5" />
+                  Also at Shourya Infraventure
+                </a>
+              </div>
             </div>
           </div>
         </div>
