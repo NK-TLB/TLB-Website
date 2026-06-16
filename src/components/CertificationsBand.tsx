@@ -10,7 +10,7 @@ type Props = {
 
 /**
  * Certifications, standards & equipment trust band, a compact grid of the
- * credentials that matter to B2B buyers (ISO, Electrolux, PERC-free, IFI…).
+ * credentials that matter to B2B buyers (ISO, Girbau, PERC-free, IFI…).
  */
 export default function CertificationsBand({ invert = false, className = "" }: Props) {
   return (

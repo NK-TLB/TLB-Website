@@ -37,13 +37,14 @@ export default function About() {
     <>
       <SEO
         path="/about"
-        title="Our Story, founded by Shourya Jain"
+        title="Our Story"
         description="The Laundry Bag was founded in 2013 by Shourya Jain in Raipur, Chhattisgarh, today India's Leading Laundry Service Provider and a trusted commercial laundry & linen partner for leading hotels and hospitals across India."
       />
 
       <PageHero
-        eyebrow={`Since ${site.founded}`}
-        title="The story behind India's finest linen"
+        eyebrow="Our Story"
+        title="The Story Behind The Laundry Bag"
+        description={`Founded in ${site.founded} in Raipur, today India's leading laundry and linen partner for hotels and hospitals across the country.`}
         crumbs={[{ label: "Home", to: "/" }, { label: "Our Story" }]}
       />
 

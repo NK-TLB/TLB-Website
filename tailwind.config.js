@@ -145,6 +145,18 @@ export default {
           "70%": { opacity: "0" },
           "100%": { transform: "scale(2.4)", opacity: "0" },
         },
+        "success-pop": {
+          "0%": { opacity: "0", transform: "scale(0.7)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "success-circle": {
+          "0%": { strokeDashoffset: "1" },
+          "100%": { strokeDashoffset: "0" },
+        },
+        "success-check": {
+          "0%": { strokeDashoffset: "1" },
+          "100%": { strokeDashoffset: "0" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.7s cubic-bezier(0.16,1,0.3,1) both",
@@ -160,6 +172,12 @@ export default {
         marquee: "marquee 30s linear infinite",
         shimmer: "shimmer 2.5s linear infinite",
         "pulse-ring": "pulse-ring 2.4s cubic-bezier(0.16,1,0.3,1) infinite",
+        "success-pop":
+          "success-pop 0.55s cubic-bezier(0.16,1,0.3,1) both",
+        "success-circle":
+          "success-circle 0.65s cubic-bezier(0.16,1,0.3,1) 0.12s both",
+        "success-check":
+          "success-check 0.4s cubic-bezier(0.16,1,0.3,1) 0.52s both",
       },
     },
   },

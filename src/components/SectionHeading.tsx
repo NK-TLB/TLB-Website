@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import CenterOutLine from "./CenterOutLine";
 import Reveal from "./Reveal";
 
 type Props = {
@@ -48,11 +49,10 @@ export default function SectionHeading({
         {title}
       </h2>
       {showRule && (
-        <span
-          aria-hidden="true"
-          className={`mt-5 block h-1 w-14 rounded-full bg-brand-gradient ${
-            centered ? "mx-auto" : ""
-          }`}
+        <CenterOutLine
+          scrollLinked
+          invert={invert}
+          className={`mt-5 w-14 ${centered ? "mx-auto" : ""}`}
         />
       )}
       {description && (

@@ -63,13 +63,14 @@ export default function Clients() {
     <>
       <SEO
         path="/clients"
-        title="Clients, hotels, resorts & hospitals we serve"
+        title="Clients"
         description="The Laundry Bag serves leading hotels and resorts (Grand Hyatt, Taj Exotica, JW Marriott, Hilton, Novotel, Hyatt) and major hospitals (Tata Medical Center, Balco Medical Center, Lata Mangeshkar Hospital) across India."
       />
 
       <PageHero
-        eyebrow="Our clients"
+        eyebrow="Clients"
         title="Who We Serve"
+        description="Five-star hotels, luxury resorts and major hospitals trust The Laundry Bag with their linen every day."
         crumbs={[{ label: "Home", to: "/" }, { label: "Clients" }]}
       />
 

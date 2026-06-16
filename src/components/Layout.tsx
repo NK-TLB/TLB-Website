@@ -53,7 +53,12 @@ export default function Layout() {
 
       <Navbar />
       <main id="main" className="flex-1">
-        <Outlet />
+        <div
+          key={pathname}
+          className="motion-safe:animate-[fade-in_0.22s_ease-out_both]"
+        >
+          <Outlet />
+        </div>
       </main>
       <Footer />
       <FloatingCTA />

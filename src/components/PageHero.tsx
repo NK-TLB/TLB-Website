@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import CenterOutLine from "./CenterOutLine";
 
 type Crumb = { label: string; to?: string };
 
@@ -10,6 +11,10 @@ type Props = {
   crumbs?: Crumb[];
   /** Giant faint background word derived from eyebrow (default: false) */
   showWatermark?: boolean;
+  /** Optional icon or illustration above the title (e.g. success checkmark). */
+  icon?: ReactNode;
+  /** Underline beneath the title — static bar, animated center-out rule, or none. */
+  rule?: "static" | "center-out" | "none";
 };
 
 /** Floating soap bubbles, an on-brand laundry motif that drifts gently behind
@@ -49,6 +54,8 @@ export default function PageHero({
   description,
   children,
   showWatermark = false,
+  icon,
+  rule = "static",
 }: Props) {
   return (
     <section className="relative overflow-hidden">
@@ -89,12 +96,9 @@ export default function PageHero({
 
       <div className="container-page relative py-20 sm:py-24 lg:py-28">
         <div className="mx-auto max-w-3xl text-center [perspective:1400px]">
-          <div className="page-hero-card animate-hero-enter">
+          <div className="page-hero-card">
             {eyebrow && (
-              <span
-                className="inline-flex animate-fade-up items-center gap-2 rounded-full border border-brand-200/80 bg-white/70 px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-brand-700 shadow-sm backdrop-blur"
-                style={{ animationDelay: "0.15s" }}
-              >
+              <span className="inline-flex items-center gap-2 rounded-full border border-brand-200/80 bg-white/70 px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-brand-700 shadow-sm backdrop-blur">
                 <span aria-hidden="true" className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500/50" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-600" />
@@ -103,41 +107,37 @@ export default function PageHero({
               </span>
             )}
 
-            <h1
-              className="h1 mt-6 animate-fade-up"
-              style={{ animationDelay: "0.25s" }}
-            >
-              {title}
-            </h1>
+            {icon && <div className="mt-8 flex justify-center">{icon}</div>}
 
-            <span
-              aria-hidden="true"
-              className="mx-auto mt-6 block h-1.5 w-20 rounded-full bg-brand-gradient animate-fade-up"
-              style={{ animationDelay: "0.35s" }}
-            />
+            <h1 className={`h1 ${icon ? "mt-5" : "mt-6"}`}>{title}</h1>
+
+            {rule === "center-out" ? (
+              <CenterOutLine
+                fullWidth
+                showDot
+                className="mx-auto mt-6 max-w-sm sm:max-w-md"
+                delayMs={650}
+                durationMs={750}
+              />
+            ) : rule === "static" ? (
+              <span
+                aria-hidden="true"
+                className="mx-auto mt-6 block h-1.5 w-20 rounded-full bg-brand-gradient"
+              />
+            ) : null}
 
             {description && (
-              <p
-                className="lead mx-auto mt-6 max-w-2xl animate-fade-up text-ink-600"
-                style={{ animationDelay: "0.45s" }}
-              >
+              <p className="lead mx-auto mt-6 max-w-2xl text-ink-600">
                 {description}
               </p>
             )}
 
-            {children && (
-              <div
-                className="mt-8 animate-fade-up"
-                style={{ animationDelay: "0.55s" }}
-              >
-                {children}
-              </div>
-            )}
+            {children && <div className="mt-8">{children}</div>}
           </div>
         </div>
       </div>
 
-      {/* Modern hero bottom separator — all inner pages using PageHero */}
+      {/* Static hero bottom separator */}
       <span
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-[6%] bottom-0 z-10 h-px bg-gradient-to-r from-transparent via-brand-300/80 to-transparent sm:inset-x-[10%]"

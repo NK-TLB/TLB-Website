@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Icon from "./Icon";
 import { navLinks, site } from "../data/site";
 import Logo from "./Logo";
 
+function navLinkActive(pathname: string, to: string) {
+  if (to === "/") return pathname === "/";
+  return pathname === to || pathname.startsWith(`${to}/`);
+}
+
 function HeaderSeparator({ progress }: { progress: number }) {
   const active = progress > 0.4;
-  const complete = progress >= 99.8;
+  const half = progress / 2;
 
   return (
     <div
@@ -22,57 +27,58 @@ function HeaderSeparator({ progress }: { progress: number }) {
         }`}
       />
 
-      {/* Resting centre mark — visible before scroll */}
-      <span
-        className={`absolute bottom-0 left-1/2 z-[2] flex -translate-x-1/2 translate-y-1/2 items-center gap-1.5 transition-all duration-700 motion-reduce:transition-none ${
-          active ? "scale-90 opacity-0" : "opacity-100"
-        }`}
-      >
-        <span className="h-px w-10 bg-gradient-to-r from-transparent to-brand-400/70 sm:w-12" />
+      {/* Scroll lines — expand from centre outward; dot stays fixed above */}
+      <div className="absolute inset-x-0 bottom-0 z-[1]">
+        {/* Track */}
+        <span
+          className={`absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-brand-100/10 via-brand-100/35 to-brand-100/10 transition-opacity duration-500 ${
+            active ? "opacity-100" : "opacity-0"
+          }`}
+        />
+
+        {/* Glow beneath active portions */}
+        <span
+          className="absolute bottom-0 h-3 bg-gradient-to-l from-brand-400/25 via-brand-400/10 to-transparent blur-md transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          style={{ right: "50%", width: `${half}%` }}
+        />
+        <span
+          className="absolute bottom-0 left-1/2 h-3 bg-gradient-to-r from-brand-400/25 via-brand-400/10 to-transparent blur-md transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          style={{ width: `${half}%` }}
+        />
+
+        {/* Fill — left and right halves from centre */}
+        <span
+          className="absolute bottom-0 h-[2px] rounded-l-full bg-brand-gradient transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          style={{ right: "50%", width: `${half}%` }}
+        />
+        <span
+          className="absolute bottom-0 left-1/2 h-[2px] rounded-r-full bg-brand-gradient transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          style={{ width: `${half}%` }}
+        />
+
+        {/* Specular highlights */}
+        <span
+          className="absolute bottom-[1px] h-px rounded-l-full bg-gradient-to-l from-white/50 via-white/15 to-transparent transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          style={{
+            right: "50%",
+            width: `${Math.max(0, half - 0.25)}%`,
+          }}
+        />
+        <span
+          className="absolute bottom-[1px] left-1/2 h-px rounded-r-full bg-gradient-to-r from-white/50 via-white/15 to-transparent transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          style={{
+            width: `${Math.max(0, half - 0.25)}%`,
+          }}
+        />
+      </div>
+
+      {/* Fixed centre dot — never moves or fades */}
+      <span className="absolute bottom-0 left-1/2 z-[3] -translate-x-1/2 translate-y-1/2">
         <span className="relative flex h-1.5 w-1.5 items-center justify-center">
           <span className="absolute inset-0 rounded-full bg-brand-400/25 blur-[2px]" />
           <span className="relative h-1.5 w-1.5 rounded-full bg-brand-gradient ring-[3px] ring-brand-50/90" />
         </span>
-        <span className="h-px w-10 bg-gradient-to-l from-transparent to-brand-400/70 sm:w-12" />
       </span>
-
-      {/* Scroll progress */}
-      <div
-        className={`absolute inset-x-0 bottom-0 transition-opacity duration-500 ${
-          active ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        {/* Track */}
-        <span className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-brand-100/10 via-brand-100/35 to-brand-100/10" />
-
-        {/* Glow beneath active portion */}
-        <span
-          className="absolute bottom-0 left-0 h-3 bg-gradient-to-r from-brand-400/25 via-brand-400/10 to-transparent blur-md transition-[width] duration-100 ease-out motion-reduce:transition-none"
-          style={{ width: `${progress}%` }}
-        />
-
-        {/* Fill */}
-        <span
-          className="absolute bottom-0 left-0 h-[2px] origin-left rounded-r-full bg-brand-gradient transition-[width] duration-100 ease-out motion-reduce:transition-none"
-          style={{ width: `${progress}%` }}
-        />
-
-        {/* Specular highlight */}
-        <span
-          className="absolute bottom-[1px] left-0 h-px rounded-r-full bg-gradient-to-r from-white/50 via-white/15 to-transparent transition-[width] duration-100 ease-out motion-reduce:transition-none"
-          style={{ width: `${Math.max(0, progress - 0.5)}%` }}
-        />
-
-        {/* Leading tip — soft luminescence, hidden at completion */}
-        {active && !complete && (
-          <span
-            className="absolute bottom-0 z-[1] -translate-x-1/2 translate-y-1/2"
-            style={{ left: `${progress}%` }}
-          >
-            <span className="block h-2 w-2 rounded-full bg-brand-300/90 shadow-[0_0_10px_2px_rgb(var(--brand-400)/0.45)] ring-2 ring-brand-50/95" />
-          </span>
-        )}
-      </div>
 
       {/* Container-aligned inner hairline on large screens */}
       <span className="absolute inset-x-0 bottom-0 mx-auto hidden h-px max-w-7xl bg-gradient-to-r from-transparent via-brand-200/25 to-transparent lg:block lg:px-10" />
@@ -83,9 +89,40 @@ function HeaderSeparator({ progress }: { progress: number }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [navIndicator, setNavIndicator] = useState({ left: 0, width: 0 });
+  const navRef = useRef<HTMLDivElement>(null);
+  const navLinkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const { pathname } = useLocation();
   const closeMenu = () => setOpen(false);
   const scrolled = scrollProgress > 0.5;
+  const activeNavIndex = navLinks.findIndex((link) =>
+    navLinkActive(pathname, link.to),
+  );
+
+  useEffect(() => {
+    const nav = navRef.current;
+    const link = navLinkRefs.current[activeNavIndex];
+    if (!nav || !link || activeNavIndex < 0) {
+      setNavIndicator({ left: 0, width: 0 });
+      return;
+    }
+
+    const update = () => {
+      const navRect = nav.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      setNavIndicator({
+        left: linkRect.left - navRect.left,
+        width: linkRect.width,
+      });
+    };
+
+    const frame = requestAnimationFrame(update);
+    window.addEventListener("resize", update);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", update);
+    };
+  }, [activeNavIndex, pathname]);
 
   useEffect(() => {
     let frame = 0;
@@ -242,23 +279,40 @@ export default function Navbar() {
             <Logo className="h-[3.25rem] w-auto transition duration-300 group-hover:scale-[1.01] sm:h-14 lg:h-[3.75rem]" />
           </Link>
 
-          <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex xl:gap-2">
-            {navLinks.map((link) => (
+          <nav className="hidden flex-1 items-center justify-center lg:flex">
+            <div
+              ref={navRef}
+              className="relative flex items-center gap-0.5 rounded-full border border-brand-100/70 bg-white/45 p-1.5 shadow-[inset_0_1px_0_rgb(255_255_255/0.7),0_1px_2px_rgb(var(--shadow-rgb)/0.06)] backdrop-blur-md xl:gap-1"
+            >
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 h-[calc(100%-12px)] -translate-y-1/2 rounded-full bg-white shadow-[0_6px_18px_-8px_rgb(var(--shadow-rgb)/0.32)] ring-1 ring-brand-100/70 transition-all duration-300 ease-out motion-reduce:transition-none"
+              style={{
+                left: navIndicator.left,
+                width: navIndicator.width,
+                opacity: navIndicator.width > 0 ? 1 : 0,
+              }}
+            />
+            {navLinks.map((link, i) => (
               <NavLink
                 key={link.to}
+                ref={(el) => {
+                  navLinkRefs.current[i] = el;
+                }}
                 to={link.to}
                 end={link.to === "/"}
                 className={({ isActive }) =>
-                  `whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition xl:px-5 ${
+                  `relative z-[1] whitespace-nowrap rounded-full px-3.5 py-2 text-[0.8125rem] font-semibold tracking-[0.005em] transition-colors duration-200 xl:px-4 ${
                     isActive
-                      ? "bg-brand-50 text-brand-700"
-                      : "text-ink-700 hover:bg-ink-50 hover:text-ink-900"
+                      ? "text-brand-800"
+                      : "text-ink-600 hover:text-brand-700"
                   }`
                 }
               >
                 {link.label}
               </NavLink>
             ))}
+            </div>
           </nav>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">

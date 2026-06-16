@@ -191,15 +191,16 @@ export default function Press() {
       <SEO
         path="/press"
         type="article"
-        title="Press & Recognition, Government MoU & coverage"
+        title="Press"
         description="The Laundry Bag in the news: an MoU with the Chhattisgarh State Skill Development Authority (CSSDA), signed at Chhattisgarh Skill Tech in the presence of Hon'ble CM Shri Vishnu Deo Sai, plus founder Shourya Jain's meeting with the late Shri Ratan Tata and coverage in The Hitavada, Patrika and more."
         image={`${pressFeature.image.base}-1600.jpg`}
         schema={[newsArticleSchema, videoSchema, ...imageSchemas]}
       />
 
       <PageHero
-        eyebrow="Press & Recognition"
-        title="Milestones, media & national recognition"
+        eyebrow="Press"
+        title="Press & Recognition"
+        description="Milestones, media coverage and national recognition for The Laundry Bag."
         crumbs={[{ label: "Home", to: "/" }, { label: "Press" }]}
       />
 

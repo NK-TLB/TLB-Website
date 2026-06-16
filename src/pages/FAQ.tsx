@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
 import PageHero from "../components/PageHero";
@@ -28,7 +28,9 @@ const slugify = (s: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
-const totalQuestions = faqs.reduce((n, g) => n + g.items.length, 0);
+/** Hidden from FAQ UI — data kept in `faqs` for schema / future use. */
+const HIDDEN_FAQ_CATEGORIES = new Set(["About the founder"]);
+const visibleFaqs = faqs.filter((g) => !HIDDEN_FAQ_CATEGORIES.has(g.category));
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -41,13 +43,6 @@ const faqSchema = {
     })),
   ),
 };
-
-function groupIndexFromHash(): number {
-  const hash = window.location.hash.slice(1);
-  if (!hash) return 0;
-  const idx = faqs.findIndex((g) => slugify(g.category) === hash);
-  return idx >= 0 ? idx : 0;
-}
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -67,40 +62,21 @@ function Chevron({ open }: { open: boolean }) {
 }
 
 export default function FAQ() {
-  const [activeGroup, setActiveGroup] = useState(0);
-  const [openKey, setOpenKey] = useState<string | null>("0-0");
-
-  useEffect(() => {
-    const syncFromHash = () => {
-      const idx = groupIndexFromHash();
-      setActiveGroup(idx);
-      setOpenKey(`${idx}-0`);
-    };
-    syncFromHash();
-    window.addEventListener("hashchange", syncFromHash);
-    return () => window.removeEventListener("hashchange", syncFromHash);
-  }, []);
-
-  const selectGroup = (gi: number) => {
-    setActiveGroup(gi);
-    setOpenKey(`${gi}-0`);
-    window.history.replaceState(null, "", `#${slugify(faqs[gi].category)}`);
-  };
-
-  const group = faqs[activeGroup];
+  const [openKey, setOpenKey] = useState<string | null>(null);
 
   return (
     <>
       <SEO
         path="/faq"
-        title="Frequently Asked Questions"
+        title="FAQ"
         description="Answers about working with hotels and hospitals, on-premise vs off-site laundry, linen rental & management, infection-safe processing, turnaround times and getting started with The Laundry Bag."
         schema={faqSchema}
       />
 
       <PageHero
-        eyebrow="Help centre"
-        title="Frequently asked questions"
+        eyebrow="FAQ"
+        title="Frequently Asked Questions"
+        description="Answers on working with us, our laundry models, quality standards and getting started."
         crumbs={[{ label: "Home", to: "/" }, { label: "FAQ" }]}
       />
 
@@ -109,141 +85,49 @@ export default function FAQ() {
           <SectionHeading
             eyebrow="Browse by topic"
             title="Find the answer you need"
-            description="Select a topic, then open any question below."
+            description="Each topic has its own section below — open any question to read the answer."
             align="left"
             showRule={false}
           />
 
-          <Reveal className="mt-10">
-            <article className="relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 bg-brand-gradient opacity-90"
-              />
-              <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white">
-                <span aria-hidden="true" className="block h-1.5 bg-brand-gradient" />
+          <div className="mt-10 space-y-8">
+            {visibleFaqs.map((g, gi) => (
+              <Reveal key={g.category} delay={gi * 60}>
+                <article
+                  id={slugify(g.category)}
+                  className="relative scroll-mt-28 overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-brand-gradient opacity-90"
+                  />
+                  <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white">
+                    <span
+                      aria-hidden="true"
+                      className="block h-1.5 bg-brand-gradient"
+                    />
 
-                {/* Mobile topic pills */}
-                <div className="border-b border-brand-100/70 bg-gradient-to-r from-brand-50/50 to-white p-4 lg:hidden">
-                  <nav
-                    aria-label="FAQ topics"
-                    className="flex gap-2 overflow-x-auto pb-0.5"
-                    role="tablist"
-                  >
-                    {faqs.map((g, gi) => {
-                      const isActive = activeGroup === gi;
-                      return (
-                        <button
-                          key={g.category}
-                          type="button"
-                          role="tab"
-                          aria-selected={isActive}
-                          onClick={() => selectGroup(gi)}
-                          className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-semibold transition duration-200 ${
-                            isActive
-                              ? "border-brand-300 bg-brand-gradient text-white shadow-sm"
-                              : "border-brand-100 bg-white text-ink-700 hover:border-brand-200"
-                          }`}
-                        >
-                          <Icon
-                            name={categoryIcon[g.category] ?? "spark"}
-                            className="h-3.5 w-3.5"
-                          />
+                    <div className="flex items-start gap-4 border-b border-brand-100/60 px-5 py-4 sm:px-7 sm:py-5">
+                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-sm ring-1 ring-white/20">
+                        <Icon
+                          name={categoryIcon[g.category] ?? "spark"}
+                          className="h-5 w-5"
+                        />
+                      </span>
+                      <div className="min-w-0">
+                        <h2 className="font-display text-lg font-bold tracking-tight text-ink-900 sm:text-xl">
                           {categoryLabel[g.category] ?? g.category}
-                        </button>
-                      );
-                    })}
-                  </nav>
-                </div>
-
-                <div className="grid lg:grid-cols-[15rem_minmax(0,1fr)]">
-                  {/* Desktop sidebar */}
-                  <aside className="hidden border-r border-brand-100/70 bg-gradient-to-b from-brand-50/40 to-white p-5 lg:block">
-                    <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600">
-                      Topics
-                    </p>
-                    <nav
-                      aria-label="FAQ topics"
-                      className="mt-4 space-y-1"
-                      role="tablist"
-                    >
-                      {faqs.map((g, gi) => {
-                        const isActive = activeGroup === gi;
-                        return (
-                          <button
-                            key={g.category}
-                            type="button"
-                            role="tab"
-                            aria-selected={isActive}
-                            aria-controls={`faq-panel-${gi}`}
-                            id={`faq-tab-${gi}`}
-                            onClick={() => selectGroup(gi)}
-                            className={`relative flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition duration-200 ${
-                              isActive
-                                ? "bg-white shadow-soft ring-1 ring-brand-100/80"
-                                : "hover:bg-white/80"
-                            }`}
-                          >
-                            {isActive && (
-                              <span
-                                aria-hidden="true"
-                                className="absolute inset-y-2 left-0 w-1 rounded-full bg-brand-gradient"
-                              />
-                            )}
-                            <span
-                              className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition duration-200 ${
-                                isActive
-                                  ? "bg-brand-gradient text-white shadow-sm"
-                                  : "bg-brand-50 text-brand-600 ring-1 ring-brand-100"
-                              }`}
-                            >
-                              <Icon
-                                name={categoryIcon[g.category] ?? "spark"}
-                                className="h-4 w-4"
-                              />
-                            </span>
-                            <span className="min-w-0">
-                              <span
-                                className={`block text-sm font-semibold leading-snug ${
-                                  isActive ? "text-brand-800" : "text-ink-800"
-                                }`}
-                              >
-                                {categoryLabel[g.category] ?? g.category}
-                              </span>
-                              <span className="mt-0.5 block text-[0.68rem] text-ink-500">
-                                {g.items.length} questions
-                              </span>
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </nav>
-
-                    <p className="mt-6 border-t border-brand-100/70 pt-4 text-xs leading-relaxed text-ink-500">
-                      {totalQuestions} answers across {faqs.length} topics
-                    </p>
-                  </aside>
-
-                  {/* Accordion panel */}
-                  <div
-                    id={slugify(group.category)}
-                    role="tabpanel"
-                    aria-labelledby={`faq-tab-${activeGroup}`}
-                    className="min-w-0 scroll-mt-28"
-                  >
-                    <div className="border-b border-brand-100/60 px-5 py-4 sm:px-7 lg:py-5">
-                      <h2 className="font-display text-lg font-bold tracking-tight text-ink-900 sm:text-xl">
-                        {categoryLabel[group.category] ?? group.category}
-                      </h2>
-                      <p className="mt-1 text-sm text-ink-500 lg:hidden">
-                        {group.items.length}{" "}
-                        {group.items.length === 1 ? "question" : "questions"}
-                      </p>
+                        </h2>
+                        <p className="mt-1 text-sm text-ink-500">
+                          {g.items.length}{" "}
+                          {g.items.length === 1 ? "question" : "questions"}
+                        </p>
+                      </div>
                     </div>
 
                     <div className="space-y-2 p-4 sm:p-5 sm:pt-4">
-                      {group.items.map((item, ii) => {
-                        const key = `${activeGroup}-${ii}`;
+                      {g.items.map((item, ii) => {
+                        const key = `${gi}-${ii}`;
                         const isOpen = openKey === key;
                         return (
                           <div
@@ -308,13 +192,13 @@ export default function FAQ() {
                       })}
                     </div>
                   </div>
-                </div>
-              </div>
-            </article>
-          </Reveal>
+                </article>
+              </Reveal>
+            ))}
+          </div>
 
           <Reveal delay={80}>
-            <div className="relative mt-10 overflow-hidden rounded-[2rem] bg-ink-950 shadow-lift">
+            <div className="relative mt-10 overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-900 to-brand-950 shadow-lift">
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-25"

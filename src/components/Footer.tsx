@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import type { ReactNode } from "react";
 import { site } from "../data/site";
 import Logo from "./Logo";
 import Icon from "./Icon";
@@ -13,6 +14,70 @@ const companyLinks = [
   { to: "/contact", label: "Contact" },
   { to: "/privacy-policy", label: "Privacy Policy" },
 ];
+
+function FooterHoverLink({
+  to,
+  children,
+  className = "",
+}: {
+  to: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      to={to}
+      className={`group relative inline-flex items-center gap-2.5 text-white/65 transition hover:text-white ${className}`}
+    >
+      <span className="text-brand-400/70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-brand-300">
+        <svg
+          viewBox="0 0 24 24"
+          className="h-3 w-3"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.75"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M9 6l6 6-6 6" />
+        </svg>
+      </span>
+      <span className="relative">
+        {children}
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-0.5 left-1/2 h-px w-0 -translate-x-1/2 bg-brand-300/90 transition-[width] duration-300 group-hover:w-full motion-reduce:transition-none"
+        />
+      </span>
+    </Link>
+  );
+}
+
+function FooterHoverAnchor({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <a
+      href={href}
+      className={`group relative inline-block text-white/65 transition hover:text-white ${className}`}
+    >
+      <span className="relative">
+        {children}
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-0.5 left-1/2 h-px w-0 -translate-x-1/2 bg-brand-300/90 transition-[width] duration-300 group-hover:w-full motion-reduce:transition-none"
+        />
+      </span>
+    </a>
+  );
+}
 
 export default function Footer() {
   return (
@@ -59,26 +124,7 @@ export default function Footer() {
           <ul className="mt-5 space-y-3 text-sm">
             {companyLinks.map((l) => (
               <li key={l.to}>
-                <Link
-                  to={l.to}
-                  className="group inline-flex items-center gap-2.5 text-white/65 transition hover:text-white"
-                >
-                  <span className="text-brand-400/70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-brand-300">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-3 w-3"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M9 6l6 6-6 6" />
-                    </svg>
-                  </span>
-                  {l.label}
-                </Link>
+                <FooterHoverLink to={l.to}>{l.label}</FooterHoverLink>
               </li>
             ))}
           </ul>
@@ -106,23 +152,17 @@ export default function Footer() {
                 <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-200 ring-1 ring-white/10">
                   <Icon name="phone" className="h-4 w-4" />
                 </span>
-                <a
-                  className="text-white/65 transition hover:text-white"
-                  href={`tel:${site.phone}`}
-                >
+                <FooterHoverAnchor href={`tel:${site.phone}`}>
                   {site.phoneDisplay}
-                </a>
+                </FooterHoverAnchor>
               </li>
               <li className="flex items-center gap-3">
                 <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-200 ring-1 ring-white/10">
                   <Icon name="mail" className="h-4 w-4" />
                 </span>
-                <a
-                  className="text-white/65 transition hover:text-white"
-                  href={`mailto:${site.emails.hr}`}
-                >
+                <FooterHoverAnchor href={`mailto:${site.emails.hr}`}>
                   {site.emails.hr}
-                </a>
+                </FooterHoverAnchor>
               </li>
               <li className="flex items-center gap-3">
                 <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-200 ring-1 ring-white/10">

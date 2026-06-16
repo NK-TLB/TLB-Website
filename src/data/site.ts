@@ -597,7 +597,7 @@ export const faqs = [
       },
       {
         q: "What equipment and detergents do you use?",
-        a: "We are loyal Electrolux users and use Lagoon Advanced Care for delicate and dry-clean-only items. Our process is PERC-free, uses all-natural detergents and saves roughly 5,000 litres of water a day. The Laundry Bag is an ISO-certified company.",
+        a: "Our laundries are engineered with Girbau, the Spanish engineering leader trusted by the world's top operations, and we use Lagoon Advanced Care for delicate and dry-clean-only items. Our process is PERC-free, uses all-natural detergents and saves roughly 5,000 litres of water a day. The Laundry Bag is an ISO-certified company.",
       },
       {
         q: "Which cities do you operate in?",
@@ -817,8 +817,8 @@ export const certifications = [
     icon: "shield",
   },
   {
-    title: "Electrolux Equipment",
-    description: "Loyal Electrolux users, best-in-class washers, dryers and finishing lines.",
+    title: "Girbau Equipment",
+    description: "Engineered with Girbau, Spain, best-in-class washers, dryers and finishing lines.",
     icon: "washer",
   },
   {

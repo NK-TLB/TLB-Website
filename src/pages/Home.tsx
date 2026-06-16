@@ -41,20 +41,20 @@ export default function Home() {
         </div>
         <div className="container-page grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:py-28">
           <div className="lg:col-span-6">
-            <h1 className="h1 animate-fade-up">
+            <h1 className="h1">
               The laundry &amp; linen partner
               <br />
               for{" "}
               <span className="text-gradient">luxury hotels and hospitals</span>.
             </h1>
-            <p className="lead mt-6 max-w-xl animate-fade-up">
+            <p className="lead mt-6 max-w-xl">
               From leading hotel chains and major hospitals to luxury resorts
               and medical centres, we run cost-effective, consistent commercial
               laundry and linen programmes for institutions of every size, on
               your premises, off-site or on a managed linen-rental model. We
               never mix one client&apos;s linen with anyone else&apos;s.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3 animate-fade-up">
+            <div className="mt-8 flex flex-wrap gap-3">
               <a href={`tel:+91${site.phoneRaw}`} className="btn-primary">
                 <Icon name="phone" className="h-4 w-4" />
                 {site.phoneDisplay}
@@ -67,7 +67,7 @@ export default function Home() {
 
           {/* India coverage map */}
           <div className="lg:col-span-6">
-            <div className="group relative animate-fade-up">
+            <div className="group relative">
               {/* ambient brand glow */}
               <div
                 aria-hidden="true"
@@ -225,22 +225,39 @@ export default function Home() {
       <section className="section section-tint">
         <div className="container-page">
           <SectionHeading title="How We Partner" />
-          <ol className="relative mt-16 grid gap-y-12 gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
+
+          {/* Desktop — numbered progress connector aligned to the cards */}
+          <div
+            aria-hidden="true"
+            className="relative mt-14 hidden lg:block"
+          >
+            <div className="grid grid-cols-4 gap-x-6">
+              <span className="pointer-events-none absolute inset-x-[12.5%] top-6 h-[3px] -translate-y-1/2 rounded-full bg-brand-100/90" />
+              <span className="pointer-events-none absolute inset-x-[12.5%] top-6 h-[3px] -translate-y-1/2 rounded-full bg-gradient-to-r from-brand-500 via-brand-400 to-brand-300" />
+              <span className="pointer-events-none absolute inset-x-[12.5%] top-[calc(1.5rem-1px)] h-px -translate-y-1/2 rounded-full bg-gradient-to-r from-white/70 via-white/25 to-transparent" />
+              {howItWorks.map((s, i) => (
+                <div key={s.step} className="relative z-10 flex justify-center">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient font-display text-lg font-extrabold text-white shadow-lift ring-[6px] ring-[rgb(var(--page-bg))]">
+                    {i + 1}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <ol className="relative mt-10 grid gap-y-12 gap-x-6 sm:mt-12 sm:grid-cols-2 lg:mt-8 lg:grid-cols-4">
             {howItWorks.map((s, i) => (
               <Reveal key={s.step} delay={i * 100}>
-                <li className="group relative flex h-full flex-col items-center rounded-2xl bg-white px-6 pb-8 pt-10 text-center shadow-soft ring-1 ring-brand-100/60 transition duration-300 hover:-translate-y-1 hover:shadow-lift">
-                  <span className="absolute -top-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient font-display text-lg font-extrabold text-white shadow-lift ring-4 ring-[rgb(var(--page-bg))]">
+                <li className="group relative z-[1] flex h-full flex-col items-center rounded-2xl bg-white px-6 pb-8 pt-10 text-center shadow-soft ring-1 ring-brand-100/60 transition duration-300 hover:-translate-y-1 hover:shadow-lift lg:pt-8">
+                  <span className="absolute -top-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient font-display text-lg font-extrabold text-white shadow-lift ring-4 ring-[rgb(var(--page-bg))] sm:h-11 sm:w-11 sm:text-base lg:hidden">
                     {i + 1}
                   </span>
                   <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition duration-300 group-hover:bg-brand-100">
                     <Icon name={s.icon} className="h-6 w-6" />
                   </span>
-                  <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
-                    {s.step}
-                  </p>
-                  <p className="mt-2 font-display text-base font-bold leading-snug text-ink-900">
+                  <h3 className="mt-5 font-display text-base font-bold leading-snug text-ink-900">
                     {s.title}
-                  </p>
+                  </h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-600">
                     {s.text}
                   </p>

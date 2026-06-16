@@ -13,6 +13,40 @@ const encodeFormData = (data: Record<string, string>) =>
     .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(data[k])}`)
     .join("&");
 
+/** Delivers enquiry emails via FormSubmit (team inbox + submitter auto-reply). */
+const submitEnquiryEmail = async (data: Record<string, string>) => {
+  const res = await fetch(
+    `https://formsubmit.co/ajax/${encodeURIComponent(site.emails.contact)}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        message: data.message,
+        _subject: `Website enquiry from ${data.name}`,
+        _template: "table",
+        _captcha: "false",
+        _autoresponse: `Hi ${data.name},\n\nThank you for contacting The Laundry Bag. We've received your enquiry and will get back to you within one business day.\n\n— The Laundry Bag Team`,
+      }),
+    },
+  );
+
+  const result = (await res.json()) as { success?: boolean | string };
+  if (!res.ok || (result.success !== true && result.success !== "true")) {
+    throw new Error("Email delivery failed");
+  }
+};
+
+/** Keep a Netlify Forms record for the dashboard (best-effort, non-blocking). */
+const recordNetlifySubmission = (data: Record<string, string>) =>
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: encodeFormData({ "form-name": NETLIFY_FORM_NAME, ...data }),
+  }).catch((err) => console.warn("Netlify form backup failed:", err));
+
 const whatsappMessage =
   "Hi The Laundry Bag, I'd like to know more about your laundry & linen services.";
 const whatsappHref = `https://wa.me/91${site.phoneRaw}?text=${encodeURIComponent(
@@ -69,7 +103,10 @@ function ContactRow({
 }
 
 const inputClass =
-  "mt-2 w-full rounded-xl border border-brand-100/80 bg-white px-4 py-3 text-sm text-ink-900 shadow-sm transition placeholder:text-ink-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100";
+  "w-full rounded-xl border border-brand-100/80 bg-white px-4 py-3 text-sm text-ink-900 shadow-sm transition-[border-color,background-color,box-shadow] duration-300 placeholder:text-ink-400 focus:border-brand-300 focus:outline-none focus:ring-0";
+
+const inputFocusedClass =
+  "border-brand-300 bg-brand-50/50 shadow-[inset_3px_0_0_0_rgb(var(--brand-500))]";
 
 export default function Contact() {
   const navigate = useNavigate();
@@ -86,15 +123,12 @@ export default function Contact() {
     ) as Record<string, string>;
 
     try {
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encodeFormData({ "form-name": NETLIFY_FORM_NAME, ...data }),
-      });
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      await submitEnquiryEmail(data);
+      void recordNetlifySubmission(data);
       form.reset();
       navigate("/contact/thank-you");
-    } catch {
+    } catch (err) {
+      console.error("Contact form submission failed:", err);
       setStatus("error");
     }
   };
@@ -103,13 +137,14 @@ export default function Contact() {
     <>
       <SEO
         path="/contact"
-        title="Contact Us"
+        title="Contact"
         description={`Call ${site.phoneDisplay}. Visit our corporate office at ${site.address.full}. Open ${site.hours}.`}
       />
 
       <PageHero
         eyebrow="Contact"
-        title="Connect with our Team"
+        title="Get In Touch"
+        description="Tell us about your property and we'll recommend the right laundry or linen model for you."
         crumbs={[{ label: "Home", to: "/" }, { label: "Contact" }]}
       />
 
@@ -258,22 +293,7 @@ export default function Contact() {
                         type="email"
                         placeholder="you@example.com"
                       />
-                      <div>
-                        <label
-                          htmlFor="message"
-                          className="text-sm font-semibold text-ink-800"
-                        >
-                          Message
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          rows={5}
-                          required
-                          placeholder="Property type, location, and estimated linen volumes."
-                          className={inputClass}
-                        />
-                      </div>
+                      <MessageField />
 
                       <div className="rounded-2xl border border-brand-100/70 bg-gradient-to-r from-brand-50/50 via-white to-brand-50/30 p-5">
                         <button
@@ -381,9 +401,16 @@ function Field({
   type?: string;
   placeholder?: string;
 }) {
+  const [focused, setFocused] = useState(false);
+
   return (
     <div>
-      <label htmlFor={name} className="text-sm font-semibold text-ink-800">
+      <label
+        htmlFor={name}
+        className={`text-sm font-semibold transition-colors duration-300 ${
+          focused ? "text-brand-700" : "text-ink-800"
+        }`}
+      >
         {label}
       </label>
       <input
@@ -392,8 +419,37 @@ function Field({
         type={type}
         required
         placeholder={placeholder}
-        className={inputClass}
+        className={`mt-2 ${inputClass} ${focused ? inputFocusedClass : ""}`}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
       />
     </div>
+  );
+}
+
+function MessageField() {
+  const [focused, setFocused] = useState(false);
+
+  return (
+    <>
+      <label
+        htmlFor="message"
+        className={`text-sm font-semibold transition-colors duration-300 ${
+          focused ? "text-brand-700" : "text-ink-800"
+        }`}
+      >
+        Message
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        rows={5}
+        required
+        placeholder="Property type, location, and estimated linen volumes."
+        className={`mt-2 ${inputClass} ${focused ? inputFocusedClass : ""}`}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+      />
+    </>
   );
 }

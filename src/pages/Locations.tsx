@@ -12,13 +12,14 @@ export default function Locations() {
     <>
       <SEO
         path="/locations"
-        title="Locations, Raipur HQ · hotels & hospitals across India"
+        title="Locations"
         description="The Laundry Bag is headquartered in Raipur with a central processing unit, and runs commercial laundry & linen programmes for hotels and hospitals across Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune and 18 cities."
       />
 
       <PageHero
         eyebrow="Locations"
         title="Where We Operate"
+        description="From our Raipur headquarters, we run laundry and linen programmes for hotels and hospitals across 18 cities in India."
         crumbs={[{ label: "Home", to: "/" }, { label: "Locations" }]}
       />
 

@@ -1,6 +1,7 @@
 import PageHero from "../components/PageHero";
 import Icon from "../components/Icon";
 import SEO from "../components/SEO";
+import SuccessCheckmark from "../components/SuccessCheckmark";
 import { site } from "../data/site";
 
 const whatsappMessage =
@@ -14,13 +15,15 @@ export default function ThankYou() {
     <>
       <SEO
         path="/contact/thank-you"
-        title="Thank you, we've received your enquiry"
+        title="Thank You"
         description="Thanks for contacting The Laundry Bag. We've received your enquiry and will get back to you within one business day."
       />
 
       <PageHero
-        eyebrow="Message received"
-        title="Thank you, we'll be in touch"
+        eyebrow="Message Received"
+        icon={<SuccessCheckmark />}
+        rule="center-out"
+        title="Thank You"
         description="Your enquiry has reached our team. We typically respond within one business day. A confirmation email is on its way to your inbox."
         crumbs={[
           { label: "Home", to: "/" },
