@@ -14,35 +14,7 @@ const encodeFormData = (data: Record<string, string>) =>
     .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(data[k])}`)
     .join("&");
 
-/** Delivers enquiry emails via FormSubmit (team inbox + submitter auto-reply). */
-const submitEnquiryEmail = async (data: Record<string, string>) => {
-  const res = await fetch(
-    `https://formsubmit.co/ajax/${encodeURIComponent(site.emails.contact)}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        message: data.message,
-        _subject: `Website enquiry from ${data.name}`,
-        _template: "table",
-        _captcha: "false",
-        _autoresponse: `Hi ${data.name},\n\nThank you for contacting The Laundry Bag. We've received your enquiry and will get back to you within one business day.\n\n— The Laundry Bag Team`,
-      }),
-    },
-  );
-
-  const result = (await res.json()) as { success?: boolean | string; message?: string };
-  const ok = result.success === true || result.success === "true";
-  if (!ok) {
-    console.warn("FormSubmit email skipped:", result.message ?? "unknown error");
-  }
-  return ok;
-};
-
-/** Primary path — Netlify Forms stores the submission for the dashboard. */
+/** Netlify Forms stores the submission and sends the team notification email. */
 const submitNetlifyForm = async (data: Record<string, string>) => {
   const res = await fetch("/", {
     method: "POST",
@@ -123,7 +95,6 @@ export default function Contact() {
 
     try {
       await submitNetlifyForm(data);
-      void submitEnquiryEmail(data);
       form.reset();
       navigate("/contact/thank-you");
     } catch (err) {
@@ -263,6 +234,12 @@ export default function Contact() {
                     className="p-6 sm:p-8 lg:p-10"
                   >
                     <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+                    <input
+                      type="hidden"
+                      name="subject"
+                      data-remove-prefix
+                      value="New Enquiry - The Laundry Bag"
+                    />
                     <p className="hidden">
                       <label>
                         Don&apos;t fill this out if you&apos;re human:{" "}

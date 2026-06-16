@@ -210,6 +210,7 @@
       Field names must match the React form in src/pages/Contact.tsx.
     -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="subject" data-remove-prefix value="New Enquiry - The Laundry Bag" />
       <input type="text" name="bot-field" />
       <input type="text" name="name" />
       <input type="tel" name="phone" />
