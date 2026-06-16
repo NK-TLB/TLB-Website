@@ -59,10 +59,10 @@ export default function TeamMemberCard({ member }: Props) {
       <div className="accent-box-2xl-inner flex h-full flex-col overflow-hidden p-0">
         <Portrait member={member} />
         <div className="flex flex-1 flex-col p-5 sm:p-6">
-          <span className="inline-flex w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-brand-700">
+          <span className="eyebrow w-fit">
             {member.department}
           </span>
-          <h3 className="mt-4 font-display text-xl font-bold tracking-tight text-ink-900">
+          <h3 className="h3 mt-4">
             {member.name}
           </h3>
           <p className="mt-1 text-sm font-semibold text-brand-700">{member.role}</p>
@@ -72,7 +72,7 @@ export default function TeamMemberCard({ member }: Props) {
               {member.email && (
                 <a
                   href={`mailto:${member.email}`}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-white px-3 py-1.5 text-xs font-semibold text-brand-800 shadow-sm transition hover:border-brand-400"
+                  className="btn-outline btn-xs"
                 >
                   <Icon name="mail" className="h-3.5 w-3.5" />
                   Email
@@ -83,7 +83,7 @@ export default function TeamMemberCard({ member }: Props) {
                   href={member.linkedIn}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-white px-3 py-1.5 text-xs font-semibold text-brand-800 shadow-sm transition hover:border-brand-400"
+                  className="btn-outline btn-xs"
                 >
                   <Icon name="users" className="h-3.5 w-3.5" />
                   LinkedIn

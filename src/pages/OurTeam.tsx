@@ -39,7 +39,7 @@ export default function OurTeam() {
             <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
               <Icon name="users" className="h-6 w-6" />
             </span>
-            <h2 className="mt-5 font-display text-2xl font-bold text-ink-900 sm:text-3xl">
+            <h2 className="h2 mt-5">
               Join our head office team
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-ink-600 sm:text-base">
@@ -48,9 +48,9 @@ export default function OurTeam() {
               general enquiry through contact.
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              <a href={`mailto:${site.emails.hr}`} className="btn-primary">
+              <a href={`mailto:${site.emails.careers}`} className="btn-primary">
                 <Icon name="mail" className="h-4 w-4" />
-                {site.emails.hr}
+                {site.emails.careers}
               </a>
               <Link to="/contact" className="btn-secondary">
                 Contact us

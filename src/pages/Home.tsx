@@ -36,10 +36,10 @@ export default function Home() {
         {/* Decorative floating bubbles, subtle laundry-day delight */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <span className="absolute left-[8%] top-[22%] h-3 w-3 animate-float rounded-full bg-brand-300/50 [animation-delay:0s]" />
-          <span className="absolute left-[18%] top-[64%] h-5 w-5 animate-float rounded-full bg-sky2-300/40 [animation-delay:1.2s]" />
+          <span className="absolute left-[18%] top-[64%] h-5 w-5 animate-float rounded-full bg-brand-300/40 [animation-delay:1.2s]" />
           <span className="absolute right-[26%] top-[30%] h-4 w-4 animate-float rounded-full bg-accent-300/40 [animation-delay:0.6s]" />
           <span className="absolute right-[12%] top-[58%] h-6 w-6 animate-float rounded-full bg-brand-200/50 [animation-delay:2s]" />
-          <span className="absolute left-[46%] top-[12%] h-2.5 w-2.5 animate-float rounded-full bg-sky2-300/50 [animation-delay:1.6s]" />
+          <span className="absolute left-[46%] top-[12%] h-2.5 w-2.5 animate-float rounded-full bg-brand-300/50 [animation-delay:1.6s]" />
         </div>
         <div className="container-page grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:py-28">
           <Reveal className="lg:col-span-6">
@@ -65,8 +65,8 @@ export default function Home() {
                 aria-hidden="true"
                 className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.12] blur-3xl"
               />
-              <div className="accent-border relative overflow-hidden rounded-[2rem] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.1)]">
-                <div className="relative overflow-hidden rounded-[calc(2rem-1px)] bg-white/50 p-5 backdrop-blur-2xl sm:p-7">
+              <div className="accent-border relative overflow-hidden rounded-4xl shadow-[0_8px_32px_-12px_rgba(0,0,0,0.1)]">
+                <div className="relative overflow-hidden rounded-[calc(var(--radius-4xl)-1px)] bg-white/50 p-5 backdrop-blur-2xl sm:p-7">
                   <span aria-hidden="true" className="accent-hairline" />
                   <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent" />
                 {/* soft brand wash behind the map */}
@@ -84,7 +84,7 @@ export default function Home() {
                       Trusted across India
                     </p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/60 bg-white/60 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-brand-700 shadow-sm backdrop-blur-md">
+                  <span className="eyebrow-glass-light">
                     <Icon name="pin" className="h-3.5 w-3.5" />
                     18 cities
                   </span>
@@ -104,7 +104,7 @@ export default function Home() {
           <span aria-hidden="true" className="section-separator top-0" />
           <span aria-hidden="true" className="section-separator bottom-0" />
           <div className="container-page py-8">
-            <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.2em] text-brand-700">
+            <p className="eyebrow-plain mb-4 text-center">
               Trusted by India&apos;s leading hotels &amp; hospitals
             </p>
             <Marquee items={clientLogos} durationSeconds={46} />
@@ -128,7 +128,7 @@ export default function Home() {
                     <span className="relative inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/30">
                       <Icon name={s.icon} className="h-7 w-7" />
                     </span>
-                    <h3 className="relative mt-7 font-display text-xl font-extrabold tracking-tight text-ink-900">
+                    <h3 className="h3 relative mt-7">
                       {s.title}
                     </h3>
                     <p className="relative mt-3 flex-1 text-sm leading-relaxed text-ink-600">
@@ -152,10 +152,10 @@ export default function Home() {
             <Reveal>
               <article className="card card-hover group relative h-full">
                 <div className="card-inner flex h-full flex-col p-6 sm:p-8">
-                <span className="w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
+                <span className="eyebrow w-fit">
                   {whyTlbFeatures[1].badge}
                 </span>
-                <h3 className="mt-6 font-display text-xl font-bold text-ink-900">
+                <h3 className="h3 mt-6">
                   {whyTlbFeatures[1].title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-600">
@@ -169,7 +169,7 @@ export default function Home() {
             <Reveal delay={90}>
               <article className="card card-hover group relative h-full">
                 <div className="card-inner flex h-full flex-col p-6 sm:p-8">
-                <span className="relative w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
+                <span className="eyebrow relative w-fit">
                   {whyTlbFeatures[0].badge}
                 </span>
                 <img
@@ -180,7 +180,7 @@ export default function Home() {
                   className="relative mt-6 h-9 w-auto max-w-[160px] self-start object-contain"
                   loading="lazy"
                 />
-                <h3 className="relative mt-5 font-display text-xl font-bold text-ink-900">
+                <h3 className="h3 relative mt-5">
                   {whyTlbFeatures[0].title}
                 </h3>
                 <p className="relative mt-2 text-sm leading-relaxed text-ink-600">
@@ -195,7 +195,7 @@ export default function Home() {
               <Reveal key={group.badge} delay={(p + 2) * 90}>
                 <article className="card card-hover group relative h-full">
                   <div className="card-inner flex h-full flex-col p-6 sm:p-8">
-                  <span className="relative w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
+                  <span className="eyebrow relative w-fit">
                     {group.badge}
                   </span>
                   <dl className="relative mt-6 grid w-full flex-1 grid-cols-2 items-center">
@@ -272,7 +272,7 @@ export default function Home() {
                   <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition duration-300 group-hover:bg-brand-100">
                     <Icon name={s.icon} className="h-6 w-6" />
                   </span>
-                  <h3 className="mt-5 font-display text-base font-bold leading-snug text-ink-900">
+                  <h3 className="h3-sm mt-5">
                     {s.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-600">
@@ -298,10 +298,10 @@ export default function Home() {
                 secondary: site.hours,
               },
               {
-                href: `mailto:${site.emails.contact}`,
+                href: `mailto:${site.emails.enquiries}`,
                 icon: "mail" as const,
                 title: "Email us",
-                primary: site.emails.contact,
+                primary: site.emails.enquiries,
                 secondary: "We reply within one business day.",
                 primaryClassName: "break-all",
               },
@@ -324,7 +324,7 @@ export default function Home() {
                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
                       <Icon name={item.icon} className="h-6 w-6" />
                     </span>
-                    <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                    <h3 className="h3 mt-5">
                       {item.title}
                     </h3>
                     <p

@@ -39,7 +39,7 @@ export default function ThankYou() {
             href={whatsappHref}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#1ebe5b]"
+            className="btn-whatsapp"
           >
             <Icon name="whatsapp" className="h-4 w-4" />
             Chat on WhatsApp

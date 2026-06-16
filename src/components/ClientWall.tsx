@@ -39,9 +39,9 @@ type Props = { className?: string };
 export default function ClientWall({ className = "" }: Props) {
   return (
     <article
-      className={`accent-border relative overflow-hidden rounded-[2rem] shadow-lift ${className}`}
+      className={`frame-4xl ${className}`}
     >
-      <div className="relative overflow-hidden rounded-[calc(2rem-1px)] bg-gradient-to-br from-white via-brand-50/20 to-white p-5 sm:p-6 lg:p-8">
+      <div className="relative overflow-hidden rounded-[calc(var(--radius-4xl)-1px)] bg-gradient-to-br from-white via-brand-50/20 to-white p-5 sm:p-6 lg:p-8">
         <span aria-hidden="true" className="accent-hairline" />
         <span
           aria-hidden="true"

@@ -28,7 +28,7 @@ function ClientPartnerList({
     <div className="accent-box-2xl mt-6 overflow-hidden">
       <div className="accent-box-2xl-inner overflow-hidden">
       <div className="flex items-center justify-between border-b border-brand-100/70 bg-gradient-to-r from-brand-50/50 to-white px-4 py-3 sm:px-5">
-        <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-brand-700">
+        <p className="eyebrow-label">
           Partner properties
         </p>
         <span className="rounded-full bg-white px-2.5 py-0.5 text-xs font-bold text-brand-700 ring-1 ring-brand-100">
@@ -91,8 +91,8 @@ export default function Clients() {
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {clientGroups.map((g, i) => (
               <Reveal key={g.sector} delay={i * 70}>
-                <article className="accent-border group relative h-full overflow-hidden rounded-[2rem] shadow-lift">
-                  <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(2rem-1px)] bg-white">
+                <article className="frame-4xl group relative h-full">
+                  <div className="frame-4xl-inner flex h-full flex-col">
                     <span aria-hidden="true" className="accent-hairline" />
 
                     <div className="p-6 sm:p-8">
@@ -104,7 +104,7 @@ export default function Clients() {
                           />
                         </span>
                         <div>
-                          <h3 className="font-display text-xl font-bold text-ink-900 sm:text-2xl">
+                          <h3 className="h3">
                             {g.sector}
                           </h3>
                           <p className="mt-0.5 text-sm font-semibold text-brand-700">

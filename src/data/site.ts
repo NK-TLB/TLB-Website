@@ -21,14 +21,36 @@ export const site = {
     "The Laundry Bag, India's Leading Laundry Service Provider. Professional commercial laundry, dry-cleaning and linen-management programmes for luxury hotels, resorts, hospitals and medical centres across India. Headquartered in Raipur with a central processing unit and fully-managed on-premise laundries. Founded by Shourya Jain. Trusted since 2013.",
   founded: 2013,
 
+  // Two distinct contact paths:
+  //   enquiries → clients who want us to work for them (Head of Projects)
+  //   careers   → people who want to work for us (Head of HR)
   emails: {
-    hr: "hr@thelaundrybag.co.in",
+    enquiries: "prakhar@thelaundrybag.co.in",
+    careers: "hr@thelaundrybag.co.in",
+    // Legacy aliases (kept so older references keep resolving correctly).
     contact: "prakhar@thelaundrybag.co.in",
+    hr: "hr@thelaundrybag.co.in",
   },
   phone: "+91 80859 90015",
   phoneDisplay: "(+91) 8085990015",
   phoneRaw: "8085990015",
   hours: "9:00 AM – 9:00 PM",
+
+  // Who to talk to, by intent.
+  contacts: {
+    enquiries: {
+      role: "Head of Projects",
+      blurb: "For hotels, hospitals and businesses who want us to work for them.",
+      email: "prakhar@thelaundrybag.co.in",
+      phoneDisplay: "(+91) 8085990015",
+      phoneRaw: "8085990015",
+    },
+    careers: {
+      role: "Head of HR",
+      blurb: "For people looking for a job who want to work with us.",
+      email: "hr@thelaundrybag.co.in",
+    },
+  },
 
   address: {
     street: "Shankar Nagar, TV Tower Road",
@@ -40,25 +62,32 @@ export const site = {
     full: "Shankar Nagar, TV Tower Road, Raipur, Chhattisgarh, India - 492007",
     mapsHref:
       "https://www.google.com/maps/search/?api=1&query=The+Laundry+Bag+Shankar+Nagar+TV+Tower+Road+Raipur",
+    mapsEmbedHref:
+      "https://maps.google.com/maps?q=21.24957,81.6602156&hl=en&z=14&ie=UTF8&iwloc=&output=embed",
     geo: { lat: 21.24957, lng: 81.6602156 },
   },
 
+  // 18-city footprint (Raipur and Naya Raipur counted as one metro).
+  // Keep in sync with the operations map (src/data/mapMarkers.ts).
   cities: [
     "Raipur",
+    "Durg",
+    "Nagpur",
     "Goa",
     "Mumbai",
+    "Pune",
     "Chennai",
     "Kolkata",
     "Hyderabad",
-    "Pune",
     "Bengaluru",
     "Ahmedabad",
     "Jaipur",
     "Lucknow",
     "Chandigarh",
     "Dehradun",
-    "Nagpur",
-    "Durg",
+    "Bodhgaya",
+    "Ranchi",
+    "Tirupati",
   ],
 
   socials: {
@@ -598,7 +627,7 @@ export const faqs = [
       },
       {
         q: "Which cities do you operate in?",
-        a: "We are headquartered in Raipur, Chhattisgarh and run programmes for hotels and hospitals across 18 cities including Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune, Bengaluru, Ahmedabad, Jaipur, Lucknow, Chandigarh, Dehradun, Nagpur and Durg.",
+        a: "We are headquartered in Raipur, Chhattisgarh and run programmes for hotels and hospitals across 18 cities including Goa, Mumbai, Pune, Chennai, Kolkata, Hyderabad, Bengaluru, Ahmedabad, Jaipur, Lucknow, Chandigarh, Dehradun, Nagpur, Durg, Bodhgaya, Ranchi and Tirupati.",
       },
       {
         q: "How do we get started or request a proposal?",
@@ -927,50 +956,6 @@ export const featuredClients = [
   "Lata Mangeshkar Hospital, Nagpur",
   "DKS Hospital, Raipur",
   "SIMS Hospital, Durg",
-];
-
-// Certifications, standards & equipment trust band.
-export const certifications = [
-  {
-    title: "ISO-Certified",
-    description: "An ISO-certified laundry operation with standardised, audited processes.",
-    icon: "shield",
-  },
-  {
-    title: "Girbau Equipment",
-    description: "Engineered with Girbau, Spain, best-in-class washers, dryers and finishing lines.",
-    icon: "washer",
-  },
-  {
-    title: "Lagoon Advanced Care",
-    description: "Professional wet-cleaning for delicate and dry-clean-only textiles.",
-    icon: "sparkle",
-  },
-  {
-    title: "PERC-Free & Eco",
-    description: "PERC-free cleaning, all-natural detergents, ~5,000 litres of water saved daily.",
-    icon: "leaf",
-  },
-  {
-    title: "IFI Fair-Claims",
-    description: "Damages handled per the International Fabricare Fair Claims Guide.",
-    icon: "check",
-  },
-  {
-    title: "Never-Mix Promise",
-    description: "Every client's linen is processed, tracked and stored separately.",
-    icon: "star",
-  },
-];
-
-// Ratings / reputation (JustDial), review before publishing.
-export const ratings = [
-  {
-    source: "JustDial",
-    score: "3.3",
-    scale: "5",
-    detail: "Based on 167 customer ratings",
-  },
 ];
 
 // SEO, non-visible keyword list (meta tags + JSON-LD).

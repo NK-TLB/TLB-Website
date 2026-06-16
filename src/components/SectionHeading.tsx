@@ -29,10 +29,8 @@ export default function SectionHeading({
     <>
       {title && (
         <h2
-          className={`font-display font-extrabold text-ink-900 text-balance ${centered ? "mx-auto" : ""} ${
-            prominent
-              ? "max-w-4xl text-[1.65rem] leading-snug sm:text-3xl lg:text-[2.35rem]"
-              : "h2 max-w-3xl"
+          className={`text-balance ${centered ? "mx-auto" : ""} ${
+            prominent ? "h2-statement" : "h2 max-w-3xl"
           } ${invert ? "text-white" : ""}`}
         >
           {title}

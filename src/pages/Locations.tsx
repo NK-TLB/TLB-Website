@@ -14,7 +14,7 @@ export default function Locations() {
       <SEO
         path="/locations"
         title="Locations"
-        description="The Laundry Bag is headquartered in Raipur with a central processing unit, and runs commercial laundry & linen programmes for hotels and hospitals across Goa, Mumbai, Chennai, Kolkata, Hyderabad, Pune and 18 cities."
+        description="The Laundry Bag is headquartered in Raipur with a central processing unit, and runs commercial laundry & linen programmes for hotels and hospitals across 18 cities including Goa, Mumbai, Pune, Chennai, Kolkata and Hyderabad."
       />
 
       <PageHero
@@ -30,8 +30,8 @@ export default function Locations() {
             aria-hidden="true"
             className="pointer-events-none absolute -inset-4 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.09] blur-3xl"
           />
-          <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
-            <div className="accent-border-2rem-inner relative overflow-hidden p-6 sm:p-8 lg:p-10">
+          <article className="frame-4xl">
+            <div className="frame-4xl-inner relative overflow-hidden p-6 sm:p-8 lg:p-10">
               <span aria-hidden="true" className="accent-hairline" />
               <span
                 aria-hidden="true"
@@ -58,8 +58,8 @@ export default function Locations() {
             showRule={false}
           />
 
-          <article className="accent-border group relative mt-10 overflow-hidden rounded-[2rem] shadow-lift">
-              <div className="accent-border-2rem-inner">
+          <article className="frame-4xl group relative mt-10">
+              <div className="frame-4xl-inner">
                 <span aria-hidden="true" className="accent-hairline" />
                 <div className="grid lg:grid-cols-2">
                   <div className="p-8 sm:p-10 lg:p-12">
@@ -110,7 +110,7 @@ export default function Locations() {
                             <Icon name={item.icon} className="h-5 w-5" />
                           </span>
                           <div>
-                            <span className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600">
+                            <span className="eyebrow-label">
                               {item.label}
                             </span>
                             <div className="mt-1 text-sm">{item.content}</div>
@@ -139,13 +139,14 @@ export default function Locations() {
                     </Reveal>
                   </div>
 
-                  <Reveal delay={120} className="relative min-h-[18rem] bg-ink-50 lg:min-h-full">
+                  <Reveal delay={120} className="relative min-h-[20rem] bg-ink-50 sm:min-h-[22rem] lg:min-h-full">
                     <iframe
                       title="The Laundry Bag · Raipur location map"
-                      src={`https://maps.google.com/maps?q=${site.address.geo.lat},${site.address.geo.lng}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                      src={site.address.mapsEmbedHref}
                       className="absolute inset-0 h-full w-full border-0"
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
                     />
                   </Reveal>
                 </div>

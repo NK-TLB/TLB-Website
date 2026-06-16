@@ -85,9 +85,9 @@ export default function FAQ() {
               <Reveal key={g.category} delay={gi * 60}>
                 <article
                   id={slugify(g.category)}
-                  className="accent-border relative scroll-mt-28 overflow-hidden rounded-[2rem] shadow-lift"
+                  className="frame-4xl relative scroll-mt-28"
                 >
-                  <div className="accent-border-2rem-inner">
+                  <div className="frame-4xl-inner">
                     <span aria-hidden="true" className="accent-hairline" />
 
                     <div className="flex items-start gap-4 border-b border-brand-100/60 px-5 py-4 sm:px-7 sm:py-5">
@@ -98,7 +98,7 @@ export default function FAQ() {
                         />
                       </span>
                       <div className="min-w-0">
-                        <h2 className="font-display text-lg font-bold tracking-tight text-ink-900 sm:text-xl">
+                        <h2 className="h3">
                           {categoryLabel[g.category] ?? g.category}
                         </h2>
                         <p className="mt-1 text-sm text-ink-500">
@@ -182,7 +182,7 @@ export default function FAQ() {
           </div>
 
           <Reveal delay={80}>
-            <div className="relative mt-10 overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-900 to-brand-950 shadow-lift">
+            <div className="relative mt-10 overflow-hidden rounded-4xl bg-gradient-to-br from-brand-900 to-brand-950 shadow-lift">
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-25"
@@ -201,7 +201,7 @@ export default function FAQ() {
                   <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-brand-300 backdrop-blur-md">
                     <Icon name="mail" className="h-5 w-5" />
                   </span>
-                  <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-white">
+                  <h3 className="h3 h3-invert mt-4">
                     Speak with our team
                   </h3>
                   <p className="mt-2 max-w-md text-sm leading-relaxed text-white/70 sm:text-base">
@@ -220,7 +220,7 @@ export default function FAQ() {
                   </Link>
                   <a
                     href={`tel:+91${site.phoneRaw}`}
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
+                    className="btn-glass-dark justify-center whitespace-nowrap"
                   >
                     <Icon name="phone" className="h-4 w-4" />
                     {site.phoneDisplay}

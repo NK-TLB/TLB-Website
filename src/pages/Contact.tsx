@@ -5,6 +5,7 @@ import Icon from "../components/Icon";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import PageSection from "../components/PageSection";
+import PremiumFrame from "../components/PremiumFrame";
 import { site } from "../data/site";
 
 const NETLIFY_FORM_NAME = "contact";
@@ -30,21 +31,6 @@ const whatsappHref = `https://wa.me/91${site.phoneRaw}?text=${encodeURIComponent
   whatsappMessage,
 )}`;
 
-function PremiumFrame({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  return (
-    <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
-      <div className="accent-border-2rem-inner">
-        <span aria-hidden="true" className="accent-hairline" />
-        {children}
-      </div>
-    </article>
-  );
-}
-
 function ContactRow({
   icon,
   label,
@@ -62,7 +48,7 @@ function ContactRow({
           <Icon name={icon} className="h-5 w-5" />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600">
+          <p className="eyebrow-label">
             {label}
           </p>
           <div className="mt-2">{children}</div>
@@ -137,11 +123,11 @@ export default function Contact() {
                     />
 
                     <div className="relative">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white/85 backdrop-blur-md">
+                      <span className="eyebrow-glass">
                         <Icon name="clock" className="h-3.5 w-3.5 text-brand-300" />
                         {site.hours}
                       </span>
-                      <p className="mt-4 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-300">
+                      <p className="eyebrow-accent mt-4">
                         Call or WhatsApp
                       </p>
                       <a
@@ -153,7 +139,7 @@ export default function Contact() {
                       <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
                         <a
                           href={`tel:+91${site.phoneRaw}`}
-                          className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 shadow-lift transition hover:-translate-y-0.5"
+                          className="btn-light btn-compact flex-1"
                         >
                           <Icon name="phone" className="h-4 w-4 text-brand-600" />
                           Call now
@@ -162,7 +148,7 @@ export default function Contact() {
                           href={whatsappHref}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white shadow-lift transition hover:-translate-y-0.5 hover:bg-[#1ebe5b]"
+                          className="btn-whatsapp btn-compact flex-1 shadow-lift"
                         >
                           <Icon name="whatsapp" className="h-4 w-4" />
                           WhatsApp
@@ -194,24 +180,40 @@ export default function Contact() {
                     </Reveal>
 
                     <Reveal delay={120}>
-                    <ContactRow icon="mail" label="Email">
-                      <div className="space-y-3">
+                    <ContactRow icon="mail" label="Who to contact">
+                      <div className="space-y-4">
                         <div>
-                          <p className="text-xs font-medium text-ink-500">Enquiries</p>
+                          <p className="text-xs font-medium text-ink-500">
+                            New business · {site.contacts.enquiries.role}
+                          </p>
+                          <p className="mt-0.5 text-xs leading-relaxed text-ink-500">
+                            {site.contacts.enquiries.blurb}
+                          </p>
                           <a
-                            href={`mailto:${site.emails.contact}`}
-                            className="mt-0.5 block break-all text-sm font-semibold text-brand-700 transition hover:text-brand-800"
+                            href={`mailto:${site.contacts.enquiries.email}`}
+                            className="mt-1.5 block break-all text-sm font-semibold text-brand-700 transition hover:text-brand-800"
                           >
-                            {site.emails.contact}
+                            {site.contacts.enquiries.email}
+                          </a>
+                          <a
+                            href={`tel:+91${site.contacts.enquiries.phoneRaw}`}
+                            className="mt-1 block text-sm font-semibold text-brand-700 transition hover:text-brand-800"
+                          >
+                            {site.contacts.enquiries.phoneDisplay}
                           </a>
                         </div>
-                        <div>
-                          <p className="text-xs font-medium text-ink-500">Careers</p>
+                        <div className="border-t border-brand-100/70 pt-4">
+                          <p className="text-xs font-medium text-ink-500">
+                            Careers · {site.contacts.careers.role}
+                          </p>
+                          <p className="mt-0.5 text-xs leading-relaxed text-ink-500">
+                            {site.contacts.careers.blurb}
+                          </p>
                           <a
-                            href={`mailto:${site.emails.hr}`}
-                            className="mt-0.5 block break-all text-sm font-semibold text-brand-700 transition hover:text-brand-800"
+                            href={`mailto:${site.contacts.careers.email}`}
+                            className="mt-1.5 block break-all text-sm font-semibold text-brand-700 transition hover:text-brand-800"
                           >
-                            {site.emails.hr}
+                            {site.contacts.careers.email}
                           </a>
                         </div>
                       </div>
@@ -252,7 +254,7 @@ export default function Contact() {
                         <Icon name="mail" className="h-5 w-5" />
                       </span>
                       <div>
-                        <h2 className="font-display text-xl font-bold tracking-tight text-ink-900 sm:text-2xl">
+                        <h2 className="h3">
                           Send an enquiry
                         </h2>
                         <p className="mt-1.5 text-sm leading-relaxed text-ink-600">
@@ -302,7 +304,7 @@ export default function Contact() {
                           <div className="mt-3 flex flex-col gap-2 sm:flex-row">
                             <a
                               href={`tel:+91${site.phoneRaw}`}
-                              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-4 py-2 text-sm font-semibold text-white"
+                              className="btn-primary btn-compact-sm"
                             >
                               <Icon name="phone" className="h-4 w-4" />
                               Call {site.phoneDisplay}
@@ -311,7 +313,7 @@ export default function Contact() {
                               href={whatsappHref}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-sm font-semibold text-white"
+                              className="btn-whatsapp btn-compact-sm"
                             >
                               <Icon name="whatsapp" className="h-4 w-4" />
                               WhatsApp us
@@ -332,14 +334,14 @@ export default function Contact() {
               <div className="relative overflow-hidden">
                 <iframe
                   title="The Laundry Bag, Raipur location"
-                  src={`https://www.google.com/maps?q=${site.address.geo.lat},${site.address.geo.lng}&z=14&output=embed`}
+                  src={site.address.mapsEmbedHref}
                   width="100%"
                   height="360"
                   style={{ border: 0 }}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
-                  className="block w-full grayscale-[20%] contrast-[1.02] transition duration-500 hover:grayscale-0"
+                  className="block h-[360px] min-h-[360px] w-full"
                 />
                 <div className="flex flex-wrap items-center justify-between gap-3 border-t border-brand-100/70 bg-gradient-to-r from-brand-50/50 via-white to-brand-50/30 px-6 py-4 sm:px-8">
                   <div className="flex items-center gap-3">
@@ -358,7 +360,7 @@ export default function Contact() {
                     href={site.address.mapsHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-brand-200/80 bg-white px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
+                    className="btn-outline btn-compact-sm"
                   >
                     Get directions
                     <Icon name="arrow" className="h-4 w-4" />

@@ -38,7 +38,7 @@ export default function WhyChooseUsGrid() {
                   </span>
                 </div>
 
-                <h3 className="relative mt-6 font-display text-xl font-bold text-ink-900">
+                <h3 className="h3 relative mt-6">
                   {item.title}
                 </h3>
                 <p className="relative mt-3 text-sm leading-relaxed text-ink-600">

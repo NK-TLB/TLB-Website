@@ -111,7 +111,7 @@ export default function Footer() {
           </p>
           <Link
             to="/contact"
-            className="group mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand-800 shadow-soft transition hover:bg-brand-50"
+            className="btn-light btn-compact group mt-7"
           >
             Contact Us
             <Icon
@@ -123,7 +123,7 @@ export default function Footer() {
 
         {/* Company */}
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
+          <h4 className="eyebrow-label-dark">
             Company
           </h4>
           <ul className="mt-5 space-y-3 text-sm">
@@ -137,7 +137,7 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
+          <h4 className="eyebrow-label-dark">
             Get in touch
           </h4>
           <address className="not-italic">
@@ -165,8 +165,8 @@ export default function Footer() {
                 <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-200 ring-1 ring-white/10">
                   <Icon name="mail" className="h-4 w-4" />
                 </span>
-                <FooterHoverAnchor href={`mailto:${site.emails.hr}`}>
-                  {site.emails.hr}
+                <FooterHoverAnchor href={`mailto:${site.emails.enquiries}`}>
+                  {site.emails.enquiries}
                 </FooterHoverAnchor>
               </li>
               <li className="flex items-center gap-3">

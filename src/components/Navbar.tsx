@@ -222,13 +222,13 @@ export default function Navbar() {
           />
 
           <div className="flex items-center justify-between border-b border-brand-100/60 px-4 py-3">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
+            <span className="eyebrow-plain">
               Menu
             </span>
             <button
               type="button"
               onClick={closeMenu}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 text-brand-700 ring-1 ring-brand-200/70 transition hover:bg-brand-gradient hover:text-white hover:ring-transparent focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 text-brand-700 ring-1 ring-brand-200/70 transition hover:bg-brand-gradient hover:text-white hover:ring-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
               aria-label="Close menu"
             >
               <svg
@@ -352,7 +352,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 lg:hidden ${
+              className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 lg:hidden ${
                 open
                   ? "bg-brand-gradient text-white shadow-soft"
                   : "border border-brand-100/80 bg-white/80 text-ink-700 shadow-sm ring-1 ring-brand-50/80 hover:border-brand-200 hover:bg-white"

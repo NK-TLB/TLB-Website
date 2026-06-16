@@ -40,9 +40,15 @@
   /* Accent, teal */
   --accent-50: 232 251 249;
   --accent-100: 201 243 238;
+  --accent-200: 136 230 221;
+  --accent-300: 103 223 213;
   --accent-400: 70 216 204;
   --accent-500: 44 193 180;
   --accent-600: 28 161 151;
+
+  /* WhatsApp brand green (official badge colour) */
+  --whatsapp: 37 211 102;
+  --whatsapp-dark: 30 190 91;
 
   /* Ink, cool slate-blue neutrals */
   --ink-50: 244 247 249;
@@ -369,9 +375,84 @@ body {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-ink-700 transition hover:bg-ink-50 hover:text-ink-900;
   }
 
+  /* Compact padding — pair with btn-primary, btn-secondary, etc. */
+  .btn-compact {
+    @apply px-4 py-2.5 text-sm;
+  }
+
+  .btn-compact-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  /* White pill on dark panels (e.g. Contact phone card) */
+  .btn-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink-900 shadow-lift transition duration-300 hover:-translate-y-0.5 hover:bg-brand-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900;
+  }
+
+  /* Frosted outline on dark backgrounds */
+  .btn-glass-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900;
+  }
+
+  /* Outline pill — secondary actions (Get directions, etc.) */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand-200/80 bg-white px-6 py-3 text-sm font-semibold text-brand-700 shadow-sm transition duration-300 hover:border-brand-300 hover:text-brand-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2;
+  }
+
+  .btn-outline.btn-xs {
+    @apply gap-1.5 px-3 py-1.5 text-xs;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-soft transition duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    background-color: rgb(var(--whatsapp));
+  }
+
+  .btn-whatsapp:hover {
+    background-color: rgb(var(--whatsapp-dark));
+  }
+
+  .btn-whatsapp:focus-visible {
+    --tw-ring-color: rgb(var(--whatsapp));
+  }
+
   /* ---- Eyebrows / chips ------------------------------------------------ */
   .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-brand-700;
+    @apply inline-flex w-fit items-center gap-2 rounded-full border border-brand-100 bg-brand-50/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-brand-700;
+  }
+
+  /* Text-only field / section label (no pill) */
+  .eyebrow-label {
+    @apply text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600;
+  }
+
+  /* Section label on dark surfaces (e.g. footer column headings) */
+  .eyebrow-label-dark {
+    @apply text-xs font-bold uppercase tracking-[0.2em] text-white/45;
+  }
+
+  /* Plain uppercase line — no border (trust bars, marquee captions) */
+  .eyebrow-plain {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-brand-700;
+  }
+
+  /* Accent label on dark panels */
+  .eyebrow-accent {
+    @apply text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-300;
+  }
+
+  /* Frosted pill on dark backgrounds */
+  .eyebrow-glass {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/90 shadow-sm backdrop-blur-md;
+  }
+
+  /* Frosted pill on light / map overlays */
+  .eyebrow-glass-light {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/60 bg-white/60 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-brand-700 shadow-sm backdrop-blur-md;
+  }
+
+  .eyebrow-neutral {
+    @apply border-brand-100 bg-white font-semibold text-ink-600 shadow-sm;
   }
 
   .chip {
@@ -394,10 +475,29 @@ body {
     text-transform: var(--heading-transform);
   }
 
+  /* Statement-style section title — balanced for longer lines, sits between
+     .h3 and .h2 in scale (used by SectionHeading `prominent`). */
+  .h2-statement {
+    @apply max-w-4xl font-display text-[1.65rem] font-extrabold leading-snug text-ink-900 sm:text-3xl lg:text-[2.35rem];
+    letter-spacing: var(--heading-tracking);
+    text-transform: var(--heading-transform);
+  }
+
   .h3 {
     @apply font-display text-xl font-bold leading-snug text-ink-900 sm:text-2xl;
     letter-spacing: var(--heading-tracking);
     text-transform: var(--heading-transform);
+  }
+
+  /* Compact card titles — same weight/tracking as .h3, smaller scale */
+  .h3-sm {
+    @apply font-display text-base font-bold leading-snug text-ink-900 sm:text-lg;
+    letter-spacing: var(--heading-tracking);
+    text-transform: var(--heading-transform);
+  }
+
+  .h3-invert {
+    @apply text-white;
   }
 
   .lead {
@@ -618,8 +718,13 @@ body {
     @apply relative overflow-hidden rounded-[calc(1.5rem-1px)] bg-white;
   }
 
-  .accent-border-2rem-inner {
-    @apply relative overflow-hidden rounded-[calc(2rem-1px)] bg-white;
+  .accent-border-2rem-inner,
+  .frame-4xl-inner {
+    @apply relative overflow-hidden rounded-[calc(var(--radius-4xl)-1px)] bg-white;
+  }
+
+  .frame-4xl {
+    @apply accent-border relative overflow-hidden rounded-4xl shadow-lift;
   }
 
   .glass {

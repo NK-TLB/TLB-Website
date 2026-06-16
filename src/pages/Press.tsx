@@ -5,6 +5,7 @@ import SectionHeading from "../components/SectionHeading";
 import Reveal from "../components/Reveal";
 import PageSection from "../components/PageSection";
 import Icon from "../components/Icon";
+import PremiumFrame from "../components/PremiumFrame";
 import ResponsiveImage from "../components/ResponsiveImage";
 import VideoFeature from "../components/VideoFeature";
 import Lightbox, { type LightboxItem } from "../components/Lightbox";
@@ -75,17 +76,6 @@ const clippingItems: LightboxItem[] = pressClippings.map((c) => ({
   caption: `${c.outlet}, ${c.title}`,
 }));
 
-function PremiumFrame({ children }: { children: ReactNode }) {
-  return (
-    <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
-      <div className="accent-border-2rem-inner">
-        <span aria-hidden="true" className="accent-hairline" />
-        {children}
-      </div>
-    </article>
-  );
-}
-
 function MetaPill({
   icon,
   children,
@@ -95,16 +85,15 @@ function MetaPill({
   children: ReactNode;
   tone?: "brand" | "neutral" | "dark";
 }) {
+  const toneClass =
+    tone === "dark"
+      ? "eyebrow-glass"
+      : tone === "neutral"
+        ? "eyebrow eyebrow-neutral"
+        : "eyebrow";
+
   return (
-    <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold shadow-sm ${
-        tone === "dark"
-          ? "border-white/15 bg-white/10 text-white/90 backdrop-blur-md"
-          : tone === "brand"
-            ? "border-brand-200/80 bg-brand-50/80 text-brand-700"
-            : "border-brand-100 bg-white text-ink-600"
-      }`}
-    >
+    <span className={toneClass}>
       <Icon name={icon} className="h-3.5 w-3.5" />
       {children}
     </span>
@@ -156,7 +145,7 @@ function FactCards({
         <Reveal key={f.label} delay={i * 50}>
         <div className="accent-box-2xl card-hover hover:-translate-y-0.5 hover:shadow-soft">
           <div className="accent-box-2xl-inner p-4">
-          <dt className="flex items-center gap-2 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-brand-600">
+          <dt className="eyebrow-label flex items-center gap-2">
             <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100/80">
               <Icon name={icons[i] ?? "star"} className="h-3.5 w-3.5" />
             </span>
@@ -221,7 +210,7 @@ export default function Press() {
                         className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-25"
                       />
 
-                      <span className="absolute left-5 top-5 z-20 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white/90 shadow-sm backdrop-blur-md">
+                      <span className="eyebrow-glass absolute left-5 top-5 z-20">
                         <Icon name="pin" className="h-3.5 w-3.5 text-brand-300" />
                         {ratanTata.kicker}
                       </span>
@@ -253,7 +242,7 @@ export default function Press() {
                   </div>
 
                   <div>
-                    <h3 className="font-display text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
+                    <h3 className="h2">
                       {ratanTata.title}
                     </h3>
                     <p className="mt-4 text-base leading-relaxed text-ink-700 sm:text-[1.05rem]">
@@ -313,9 +302,9 @@ export default function Press() {
                 </div>
                 </Reveal>
 
-                <Reveal delay={80}>
-                <figure className="relative min-h-[20rem] border-t border-brand-100/60 lg:min-h-full lg:border-l lg:border-t-0">
-                  <div className="relative flex h-full w-full flex-col overflow-hidden bg-ink-950">
+                <Reveal delay={80} className="h-full min-h-[20rem]">
+                <figure className="relative h-full min-h-[20rem] border-t border-brand-100/60 lg:min-h-[28rem] lg:border-l lg:border-t-0">
+                  <div className="absolute inset-0 overflow-hidden bg-ink-950">
                     <img
                       src={`${pressFeature.image.base}-1600.jpg`}
                       alt=""
@@ -331,11 +320,11 @@ export default function Press() {
                       image={pressFeature.image}
                       priority
                       sizes="(min-width: 1024px) 50vw, 100vw"
-                      className="absolute inset-0 z-10 block h-full w-full"
+                      className="absolute inset-0 z-10 block h-full w-full [&_img]:h-full [&_img]:w-full [&_img]:object-cover"
                       imgClassName="h-full w-full object-cover"
                     />
                     <figcaption className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-ink-950/90 to-transparent px-5 py-4 text-xs font-medium text-white/85 sm:px-6">
-                      <span className="font-bold uppercase tracking-[0.14em] text-brand-300">
+                      <span className="eyebrow-accent">
                         {pressFeature.outlet}
                       </span>
                       <span className="mx-2 text-white/40">·</span>
@@ -350,10 +339,10 @@ export default function Press() {
                 <Reveal delay={120}>
                 <div className="flex flex-col gap-5 border-b border-brand-100/70 p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
                   <div>
-                    <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600">
+                    <p className="eyebrow-label">
                       Watch the ceremony
                     </p>
-                    <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-ink-900 sm:text-2xl">
+                    <h3 className="h3 mt-2">
                       The MoU, on stage
                     </h3>
                   </div>
@@ -373,10 +362,10 @@ export default function Press() {
 
                 <Reveal delay={160}>
                 <div className="p-6 sm:p-8 lg:p-10">
-                  <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600">
+                  <p className="eyebrow-label">
                     In the papers
                   </p>
-                  <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-ink-900 sm:text-2xl">
+                  <h3 className="h3 mt-2">
                     Press coverage
                   </h3>
                   <div className="mt-5 grid gap-4 sm:grid-cols-2">
