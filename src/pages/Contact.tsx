@@ -4,6 +4,7 @@ import PageHero from "../components/PageHero";
 import Icon from "../components/Icon";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
+import PageSection from "../components/PageSection";
 import { site } from "../data/site";
 
 const NETLIFY_FORM_NAME = "contact";
@@ -140,17 +141,15 @@ export default function Contact() {
       />
 
       <PageHero
-        eyebrow="Contact"
         title="Get In Touch"
         description="Tell us about your property and we'll recommend the right laundry or linen model for you."
         crumbs={[{ label: "Home", to: "/" }, { label: "Contact" }]}
       />
 
-      <section className="section">
-        <div className="container-page">
-          <Reveal>
-            <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
-              <aside className="space-y-4 lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
+      <PageSection reveal={false}>
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+              <Reveal className="lg:col-span-5">
+              <aside className="space-y-4 lg:sticky lg:top-28 lg:self-start">
                 <PremiumFrame>
                   <div className="relative overflow-hidden bg-ink-950 px-6 py-8 sm:px-8">
                     <span
@@ -202,6 +201,7 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-4 p-5 sm:p-6">
+                    <Reveal delay={60}>
                     <ContactRow icon="pin" label="Office address">
                       <p className="text-sm font-semibold leading-relaxed text-ink-900">
                         {site.address.street}
@@ -220,7 +220,9 @@ export default function Contact() {
                         <Icon name="arrow" className="h-4 w-4" />
                       </a>
                     </ContactRow>
+                    </Reveal>
 
+                    <Reveal delay={120}>
                     <ContactRow icon="mail" label="Email">
                       <div className="space-y-3">
                         <div>
@@ -243,11 +245,14 @@ export default function Contact() {
                         </div>
                       </div>
                     </ContactRow>
+                    </Reveal>
                   </div>
                 </PremiumFrame>
               </aside>
+              </Reveal>
 
-              <div className="lg:col-span-7">
+              <Reveal className="lg:col-span-7" delay={80}>
+              <div>
                 <PremiumFrame>
                   <form
                     name={NETLIFY_FORM_NAME}
@@ -341,10 +346,11 @@ export default function Contact() {
                   </form>
                 </PremiumFrame>
               </div>
+              </Reveal>
             </div>
-          </Reveal>
 
-          <Reveal className="mt-10" delay={80}>
+          <Reveal className="mt-10" delay={140}>
+          <div>
             <PremiumFrame>
               <div className="relative overflow-hidden">
                 <iframe
@@ -383,9 +389,9 @@ export default function Contact() {
                 </div>
               </div>
             </PremiumFrame>
+          </div>
           </Reveal>
-        </div>
-      </section>
+      </PageSection>
     </>
   );
 }

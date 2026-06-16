@@ -3,6 +3,7 @@ import SEO from "../components/SEO";
 import PageHero from "../components/PageHero";
 import SectionHeading from "../components/SectionHeading";
 import Reveal from "../components/Reveal";
+import PageSection from "../components/PageSection";
 import Icon from "../components/Icon";
 import ResponsiveImage from "../components/ResponsiveImage";
 import VideoFeature from "../components/VideoFeature";
@@ -152,10 +153,8 @@ function FactCards({
   return (
     <dl className={`grid gap-3 ${colClass}`}>
       {facts.map((f, i) => (
-        <div
-          key={f.label}
-          className="accent-box-2xl card-hover hover:-translate-y-0.5 hover:shadow-soft"
-        >
+        <Reveal key={f.label} delay={i * 50}>
+        <div className="accent-box-2xl card-hover hover:-translate-y-0.5 hover:shadow-soft">
           <div className="accent-box-2xl-inner p-4">
           <dt className="flex items-center gap-2 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-brand-600">
             <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100/80">
@@ -166,6 +165,7 @@ function FactCards({
           <dd className="mt-3 text-sm font-semibold leading-snug text-ink-800">{f.value}</dd>
           </div>
         </div>
+        </Reveal>
       ))}
     </dl>
   );
@@ -188,25 +188,15 @@ export default function Press() {
       />
 
       <PageHero
-        eyebrow="Press"
         title="Press & Recognition"
         description="Milestones, media coverage and national recognition for The Laundry Bag."
         crumbs={[{ label: "Home", to: "/" }, { label: "Press" }]}
       />
 
-      {/* Ratan Tata milestone */}
-      <section className="section">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow={ratanTata.eyebrow}
-            title="An honour we will always cherish"
-            align="left"
-            showRule={false}
-          />
-
-          <Reveal className="mt-10">
-            <PremiumFrame>
+      <PageSection reveal={false}>
+          <PremiumFrame>
               <div className="grid items-stretch lg:grid-cols-2">
+                <Reveal>
                 <figure className="relative min-h-[28rem] border-b border-brand-100/60 lg:min-h-[36rem] lg:border-b-0 lg:border-r">
                   <button
                     type="button"
@@ -251,7 +241,9 @@ export default function Press() {
                     </figcaption>
                   </button>
                 </figure>
+                </Reveal>
 
+                <Reveal delay={80}>
                 <div className="flex flex-col justify-center gap-6 p-8 sm:p-10 lg:p-12">
                   <div className="flex flex-wrap items-center gap-2">
                     <MetaPill icon="star">Healthcare milestone</MetaPill>
@@ -280,8 +272,10 @@ export default function Press() {
                     ))}
                   </div>
                 </div>
+                </Reveal>
               </div>
 
+              <Reveal delay={120}>
               <div className="border-t border-brand-100/70 bg-gradient-to-r from-brand-50/30 via-white to-brand-50/30 px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
                 <MemorialQuote>{ratanTata.pullQuote}</MemorialQuote>
                 <div className="mt-6">
@@ -291,24 +285,21 @@ export default function Press() {
                   />
                 </div>
               </div>
+              </Reveal>
             </PremiumFrame>
-          </Reveal>
-        </div>
-      </section>
+      </PageSection>
 
-      {/* CSSDA MoU — agreement, ceremony & press coverage */}
-      <section className="section-tint section">
-        <div className="container-page">
+      <PageSection className="section-tint section" reveal={false}>
           <SectionHeading
-            eyebrow={pressFeature.kicker}
             title={pressFeature.title}
             align="left"
             showRule={false}
           />
 
-          <Reveal className="mt-10">
+            <div className="mt-10">
             <PremiumFrame>
               <div className="grid items-stretch lg:grid-cols-2">
+                <Reveal>
                 <div className="flex flex-col justify-center gap-7 p-8 sm:p-10 lg:p-12">
                   <p className="text-lg leading-relaxed text-ink-700 sm:text-xl">
                     {pressFeature.dek}
@@ -320,7 +311,9 @@ export default function Press() {
                     columns={2}
                   />
                 </div>
+                </Reveal>
 
+                <Reveal delay={80}>
                 <figure className="relative min-h-[20rem] border-t border-brand-100/60 lg:min-h-full lg:border-l lg:border-t-0">
                   <div className="relative flex h-full w-full flex-col overflow-hidden bg-ink-950">
                     <img
@@ -350,9 +343,11 @@ export default function Press() {
                     </figcaption>
                   </div>
                 </figure>
+                </Reveal>
               </div>
 
               <div className="grid items-stretch border-t border-brand-100/70 lg:grid-cols-2">
+                <Reveal delay={120}>
                 <div className="flex flex-col gap-5 border-b border-brand-100/70 p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
                   <div>
                     <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600">
@@ -374,7 +369,9 @@ export default function Press() {
                     Captioned in English &amp; हिन्दी. Loads only when you press play.
                   </p>
                 </div>
+                </Reveal>
 
+                <Reveal delay={160}>
                 <div className="p-6 sm:p-8 lg:p-10">
                   <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-brand-600">
                     In the papers
@@ -384,8 +381,8 @@ export default function Press() {
                   </h3>
                   <div className="mt-5 grid gap-4 sm:grid-cols-2">
                     {pressClippings.map((c, i) => (
+                      <Reveal key={c.image.base} delay={i * 50}>
                       <button
-                        key={c.image.base}
                         type="button"
                         onClick={() => setBox({ items: clippingItems, index: i })}
                         className="group block h-full w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
@@ -413,14 +410,15 @@ export default function Press() {
                           </div>
                         </article>
                       </button>
+                      </Reveal>
                     ))}
                   </div>
                 </div>
+                </Reveal>
               </div>
             </PremiumFrame>
-          </Reveal>
-        </div>
-      </section>
+            </div>
+      </PageSection>
 
       {box && (
         <Lightbox

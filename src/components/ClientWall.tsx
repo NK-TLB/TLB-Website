@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Reveal from "./Reveal";
 import { clientLogos } from "../data/site";
 
 /** One logo tile: brand logo in full colour with a premium glass tile treatment. */
@@ -51,8 +52,10 @@ export default function ClientWall({ className = "" }: Props) {
           className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-accent-200/20 blur-3xl"
         />
         <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-          {clientLogos.map((c) => (
-            <LogoTile key={c.name} name={c.name} logo={c.logo} />
+          {clientLogos.map((c, i) => (
+            <Reveal key={c.name} delay={i * 40}>
+              <LogoTile name={c.name} logo={c.logo} />
+            </Reveal>
           ))}
         </div>
       </div>

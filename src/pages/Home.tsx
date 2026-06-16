@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
+import PageSection from "../components/PageSection";
 import SectionHeading from "../components/SectionHeading";
 import Marquee from "../components/Marquee";
 import IndiaMap from "../components/IndiaMap";
@@ -41,7 +42,7 @@ export default function Home() {
           <span className="absolute left-[46%] top-[12%] h-2.5 w-2.5 animate-float rounded-full bg-sky2-300/50 [animation-delay:1.6s]" />
         </div>
         <div className="container-page grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:py-28">
-          <div className="lg:col-span-6">
+          <Reveal className="lg:col-span-6">
             <h1 className="h1">
               The laundry &amp; linen partner
               <br />
@@ -54,10 +55,10 @@ export default function Home() {
               laundry and linen programmes for institutions of every size, on
               your premises, off-site or on a managed linen-rental model.
             </p>
-          </div>
+          </Reveal>
 
           {/* India coverage map */}
-          <div className="lg:col-span-6">
+          <Reveal className="lg:col-span-6" delay={80}>
             <div className="group relative">
               {/* ambient brand glow */}
               <div
@@ -94,11 +95,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Trust bar */}
-        <div className="relative bg-white/70 backdrop-blur">
+        <Reveal>
+          <div className="relative bg-white/70 backdrop-blur">
           <span aria-hidden="true" className="section-separator top-0" />
           <span aria-hidden="true" className="section-separator bottom-0" />
           <div className="container-page py-8">
@@ -108,12 +110,12 @@ export default function Home() {
             <Marquee items={clientLogos} durationSeconds={46} />
           </div>
         </div>
+        </Reveal>
       </section>
 
       {/* ===================== OPERATIONAL MODELS ===================== */}
-      <section className="section section-tint">
-        <div className="container-page">
-          <SectionHeading eyebrow="Services" title="What We Do" />
+      <PageSection className="section section-tint" reveal={false}>
+          <SectionHeading title="What We Do" />
           <div className="mt-12 grid gap-6 md:grid-cols-3 lg:gap-8">
             {homeServices.map((s, i) => (
               <Reveal key={s.title} delay={i * 100}>
@@ -137,15 +139,13 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
+      </PageSection>
 
       <WhyChooseUsGrid />
 
       {/* ===================== WHY TLB ===================== */}
-      <section className="section section-tint">
-        <div className="container-page relative">
-          <SectionHeading eyebrow="Why us" title="Our Strength" />
+      <PageSection className="section section-tint" reveal={false}>
+          <SectionHeading title="Our Strength" />
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:auto-rows-fr">
             {/* Feature tile, equity-backed */}
@@ -225,13 +225,11 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
+      </PageSection>
 
       {/* ===================== HOW IT WORKS ===================== */}
-      <section className="section">
-        <div className="container-page">
-          <SectionHeading eyebrow="Our process" title="How We Partner" />
+      <PageSection reveal={false}>
+          <SectionHeading title="How We Partner" />
 
           {/* Desktop — numbered progress connector aligned to the cards */}
           <div
@@ -285,71 +283,66 @@ export default function Home() {
               </Reveal>
             ))}
           </ol>
-        </div>
-      </section>
+      </PageSection>
 
       {/* ===================== CONTACT ===================== */}
-      <section className="section section-tint">
-        <div className="container-page">
-          <SectionHeading eyebrow="Contact" title="Get In Touch" />
+      <PageSection className="section section-tint" reveal={false}>
+          <SectionHeading title="Get In Touch" />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <a
-              href={`tel:+91${site.phoneRaw}`}
-              className="card card-hover group h-full"
-            >
-              <div className="card-inner flex h-full flex-col p-6">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
-                <Icon name="phone" className="h-6 w-6" />
-              </span>
-              <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
-                Call us
-              </h3>
-              <p className="mt-2 text-base font-semibold text-brand-600">
-                {site.phoneDisplay}
-              </p>
-              <p className="mt-1 text-sm text-ink-500">{site.hours}</p>
-              </div>
-            </a>
-
-            <a
-              href={`mailto:${site.emails.contact}`}
-              className="card card-hover group h-full"
-            >
-              <div className="card-inner flex h-full flex-col p-6">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
-                <Icon name="mail" className="h-6 w-6" />
-              </span>
-              <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
-                Email us
-              </h3>
-              <p className="mt-2 break-all text-base font-semibold text-brand-600">
-                {site.emails.contact}
-              </p>
-              <p className="mt-1 text-sm text-ink-500">We reply within one business day.</p>
-              </div>
-            </a>
-
-            <a
-              href={site.address.mapsHref}
-              target="_blank"
-              rel="noreferrer"
-              className="card card-hover group h-full"
-            >
-              <div className="card-inner flex h-full flex-col p-6">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
-                <Icon name="pin" className="h-6 w-6" />
-              </span>
-              <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
-                Visit us
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-600">
-                {site.address.full}
-              </p>
-              </div>
-            </a>
+            {[
+              {
+                href: `tel:+91${site.phoneRaw}`,
+                icon: "phone" as const,
+                title: "Call us",
+                primary: site.phoneDisplay,
+                secondary: site.hours,
+              },
+              {
+                href: `mailto:${site.emails.contact}`,
+                icon: "mail" as const,
+                title: "Email us",
+                primary: site.emails.contact,
+                secondary: "We reply within one business day.",
+                primaryClassName: "break-all",
+              },
+              {
+                href: site.address.mapsHref,
+                icon: "pin" as const,
+                title: "Visit us",
+                primary: site.address.full,
+                external: true,
+              },
+            ].map((item, i) => (
+              <Reveal key={item.title} delay={i * 80}>
+                <a
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
+                  className="card card-hover group block h-full"
+                >
+                  <div className="card-inner flex h-full flex-col p-6">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
+                      <Icon name={item.icon} className="h-6 w-6" />
+                    </span>
+                    <h3 className="mt-5 font-display text-lg font-bold text-ink-900">
+                      {item.title}
+                    </h3>
+                    <p
+                      className={`mt-2 text-base font-semibold text-brand-600 ${item.primaryClassName ?? ""}`}
+                    >
+                      {item.primary}
+                    </p>
+                    {item.secondary && (
+                      <p className="mt-1 text-sm text-ink-500">
+                        {item.secondary}
+                      </p>
+                    )}
+                  </div>
+                </a>
+              </Reveal>
+            ))}
           </div>
-        </div>
-      </section>
+      </PageSection>
     </>
   );
 }

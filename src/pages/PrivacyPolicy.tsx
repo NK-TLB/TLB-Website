@@ -1,5 +1,7 @@
 import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
+import Reveal from "../components/Reveal";
+import PageSection from "../components/PageSection";
 import { site } from "../data/site";
 
 const clauses = [
@@ -58,16 +60,15 @@ export default function PrivacyPolicy() {
       />
 
       <PageHero
-        eyebrow="Legal"
         title="Privacy Policy"
         description={`Please read these terms carefully. By using ${site.name}'s services you agree to the policies below.`}
         crumbs={[{ label: "Home", to: "/" }, { label: "Privacy Policy" }]}
       />
 
-      <section className="section">
-        <div className="container-page max-w-3xl">
-          {clauses.map((c, i) => (
-            <div key={c.title} className={i > 0 ? "mt-10" : ""}>
+      <PageSection containerClassName="container-page max-w-3xl" reveal={false}>
+        {clauses.map((c, i) => (
+          <Reveal key={c.title} delay={i * 50}>
+            <div className={i > 0 ? "mt-10" : ""}>
               <h2 className="font-display text-2xl font-bold text-ink-900">{c.title}</h2>
               {c.body.map((p, pi) => (
                 <p key={pi} className="mt-3 leading-relaxed text-ink-700">
@@ -75,9 +76,9 @@ export default function PrivacyPolicy() {
                 </p>
               ))}
             </div>
-          ))}
-        </div>
-      </section>
+          </Reveal>
+        ))}
+      </PageSection>
     </>
   );
 }

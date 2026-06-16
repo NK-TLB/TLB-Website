@@ -20,7 +20,6 @@ export default function ThankYou() {
       />
 
       <PageHero
-        eyebrow="Message Received"
         icon={<SuccessCheckmark />}
         rule="center-out"
         title="Thank You"

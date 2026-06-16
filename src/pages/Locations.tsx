@@ -3,6 +3,7 @@ import PageHero from "../components/PageHero";
 import Icon from "../components/Icon";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
+import PageSection from "../components/PageSection";
 import SectionHeading from "../components/SectionHeading";
 import IndiaMap from "../components/IndiaMap";
 import { site } from "../data/site";
@@ -17,55 +18,47 @@ export default function Locations() {
       />
 
       <PageHero
-        eyebrow="Locations"
         title="Where We Operate"
         description="From our Raipur headquarters, we run laundry and linen programmes for hotels and hospitals across 18 cities in India."
         crumbs={[{ label: "Home", to: "/" }, { label: "Locations" }]}
       />
 
-      {/* India operations map */}
-      <section className="section">
-        <div className="container-page">
-          <Reveal>
-            <div className="group relative">
-              <div
+      <PageSection reveal={false}>
+        <Reveal>
+        <div className="group relative">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-4 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.09] blur-3xl"
+          />
+          <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
+            <div className="accent-border-2rem-inner relative overflow-hidden p-6 sm:p-8 lg:p-10">
+              <span aria-hidden="true" className="accent-hairline" />
+              <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -inset-4 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.09] blur-3xl"
+                className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-100/25 blur-3xl"
               />
-              <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
-                <div className="accent-border-2rem-inner relative overflow-hidden p-6 sm:p-8 lg:p-10">
-                  <span aria-hidden="true" className="accent-hairline" />
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-100/25 blur-3xl"
-                  />
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -bottom-32 left-1/4 h-64 w-64 rounded-full bg-accent-400/10 blur-3xl"
-                  />
-                  <div className="relative">
-                    <IndiaMap variant="full" />
-                  </div>
-                </div>
-              </article>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-32 left-1/4 h-64 w-64 rounded-full bg-accent-400/10 blur-3xl"
+              />
+              <div className="relative">
+                <IndiaMap variant="full" />
+              </div>
             </div>
-          </Reveal>
+          </article>
         </div>
-      </section>
+        </Reveal>
+      </PageSection>
 
-      {/* Head Office */}
-      <section className="section-tint section">
-        <div className="container-page">
+      <PageSection className="section-tint section" reveal={false}>
           <SectionHeading
             align="left"
-            eyebrow="Head Office · Raipur"
             title="Our Raipur headquarters"
             description="Visit or reach our head office for partnerships, site visits and general enquiries."
             showRule={false}
           />
 
-          <Reveal className="mt-10">
-            <article className="accent-border group relative overflow-hidden rounded-[2rem] shadow-lift">
+          <article className="accent-border group relative mt-10 overflow-hidden rounded-[2rem] shadow-lift">
               <div className="accent-border-2rem-inner">
                 <span aria-hidden="true" className="accent-hairline" />
                 <div className="grid lg:grid-cols-2">
@@ -108,11 +101,9 @@ export default function Locations() {
                             </span>
                           ),
                         },
-                      ].map((item) => (
-                        <li
-                          key={item.label}
-                          className="accent-border rounded-2xl transition duration-300 hover:-translate-y-0.5 hover:shadow-soft"
-                        >
+                      ].map((item, i) => (
+                        <Reveal key={item.label} delay={i * 60}>
+                        <li className="accent-border rounded-2xl transition duration-300 hover:-translate-y-0.5 hover:shadow-soft">
                           <div className="surface-inset flex items-start gap-4 rounded-[calc(1rem-1px)] p-4">
                             <span aria-hidden="true" className="accent-hairline" />
                           <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
@@ -126,9 +117,11 @@ export default function Locations() {
                           </div>
                           </div>
                         </li>
+                        </Reveal>
                       ))}
                     </ul>
 
+                    <Reveal delay={200}>
                     <div className="mt-8 flex flex-wrap gap-3">
                       <a
                         href={site.address.mapsHref}
@@ -143,9 +136,10 @@ export default function Locations() {
                         Talk to our team
                       </Link>
                     </div>
+                    </Reveal>
                   </div>
 
-                  <div className="relative min-h-[18rem] bg-ink-50 lg:min-h-full">
+                  <Reveal delay={120} className="relative min-h-[18rem] bg-ink-50 lg:min-h-full">
                     <iframe
                       title="The Laundry Bag · Raipur location map"
                       src={`https://maps.google.com/maps?q=${site.address.geo.lat},${site.address.geo.lng}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
@@ -153,13 +147,11 @@ export default function Locations() {
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
                     />
-                  </div>
+                  </Reveal>
                 </div>
               </div>
             </article>
-          </Reveal>
-        </div>
-      </section>
+      </PageSection>
     </>
   );
 }

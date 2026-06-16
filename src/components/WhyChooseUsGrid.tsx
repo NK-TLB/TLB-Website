@@ -1,14 +1,13 @@
 import Icon from "./Icon";
 import Reveal from "./Reveal";
+import PageSection from "./PageSection";
 import SectionHeading from "./SectionHeading";
 import { whyChooseUs } from "../data/site";
 
 export default function WhyChooseUsGrid() {
   return (
-    <section className="section">
-      <div className="container-page">
+    <PageSection reveal={false}>
         <SectionHeading
-          eyebrow="Why choose us"
           title="Because Quick can't Clean and Super lost it's shine."
           prominent
         />
@@ -50,7 +49,6 @@ export default function WhyChooseUsGrid() {
             </Reveal>
           ))}
         </div>
-      </div>
-    </section>
+    </PageSection>
   );
 }

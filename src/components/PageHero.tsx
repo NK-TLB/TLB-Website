@@ -1,16 +1,14 @@
 import type { ReactNode } from "react";
 import CenterOutLine from "./CenterOutLine";
+import Reveal from "./Reveal";
 
 type Crumb = { label: string; to?: string };
 
 type Props = {
-  eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
   crumbs?: Crumb[];
-  /** Giant faint background word derived from eyebrow (default: false) */
-  showWatermark?: boolean;
   /** Optional icon or illustration above the title (e.g. success checkmark). */
   icon?: ReactNode;
   /** Underline beneath the title — static bar, animated center-out rule, or none. */
@@ -49,11 +47,9 @@ function Bubbles() {
 }
 
 export default function PageHero({
-  eyebrow,
   title,
   description,
   children,
-  showWatermark = false,
   icon,
   rule = "static",
 }: Props) {
@@ -80,15 +76,6 @@ export default function PageHero({
 
       <Bubbles />
 
-      {eyebrow && showWatermark && (
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-display text-[clamp(3rem,13vw,9rem)] font-extrabold uppercase leading-none tracking-tighter text-brand-500/[0.07]"
-        >
-          {eyebrow}
-        </span>
-      )}
-
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-28 bg-gradient-to-t from-[rgb(var(--page-bg))] to-transparent"
@@ -96,44 +83,36 @@ export default function PageHero({
 
       <div className="container-page relative py-20 sm:py-24 lg:py-28">
         <div className="mx-auto max-w-3xl text-center [perspective:1400px]">
-          <div className="page-hero-card">
-            {eyebrow && (
-              <span className="inline-flex items-center gap-2 rounded-full border border-brand-200/80 bg-white/70 px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-brand-800 shadow-sm backdrop-blur">
-                <span aria-hidden="true" className="relative flex h-2 w-2">
-                  <span className="absolute -inset-0.5 rounded-full bg-brand-500/30 blur-[2px]" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-800 ring-2 ring-brand-300/80" />
-                </span>
-                {eyebrow}
-              </span>
-            )}
+          <Reveal>
+            <div className="page-hero-card">
+              {icon && <div className="flex justify-center">{icon}</div>}
 
-            {icon && <div className="mt-8 flex justify-center">{icon}</div>}
+              <h1 className={`h1 ${icon ? "mt-5" : ""}`}>{title}</h1>
 
-            <h1 className={`h1 ${icon ? "mt-5" : "mt-6"}`}>{title}</h1>
+              {rule === "center-out" ? (
+                <CenterOutLine
+                  fullWidth
+                  showDot
+                  className="mx-auto mt-6 max-w-sm sm:max-w-md"
+                  delayMs={650}
+                  durationMs={750}
+                />
+              ) : rule === "static" ? (
+                <span
+                  aria-hidden="true"
+                  className="mx-auto mt-6 block h-[2px] w-20 rounded-full accent-line-h"
+                />
+              ) : null}
 
-            {rule === "center-out" ? (
-              <CenterOutLine
-                fullWidth
-                showDot
-                className="mx-auto mt-6 max-w-sm sm:max-w-md"
-                delayMs={650}
-                durationMs={750}
-              />
-            ) : rule === "static" ? (
-              <span
-                aria-hidden="true"
-                className="mx-auto mt-6 block h-[2px] w-20 rounded-full accent-line-h"
-              />
-            ) : null}
+              {description && (
+                <p className="lead mx-auto mt-6 max-w-2xl text-ink-600">
+                  {description}
+                </p>
+              )}
 
-            {description && (
-              <p className="lead mx-auto mt-6 max-w-2xl text-ink-600">
-                {description}
-              </p>
-            )}
-
-            {children && <div className="mt-8">{children}</div>}
-          </div>
+              {children && <div className="mt-8">{children}</div>}
+            </div>
+          </Reveal>
         </div>
       </div>
 

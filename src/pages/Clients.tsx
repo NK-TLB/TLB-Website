@@ -2,6 +2,7 @@ import Icon from "../components/Icon";
 import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
+import PageSection from "../components/PageSection";
 import SectionHeading from "../components/SectionHeading";
 import ClientWall from "../components/ClientWall";
 import { clientGroups } from "../data/site";
@@ -36,8 +37,9 @@ function ClientPartnerList({
       </div>
 
       <ul className="grid gap-2.5 p-3 sm:grid-cols-2 sm:p-4">
-        {items.map((item) => (
-          <li key={item}>
+        {items.map((item, i) => (
+          <Reveal key={item} delay={i * 35}>
+          <li>
             <div className="accent-box-xl card-hover group h-full hover:-translate-y-0.5">
               <div className="accent-box-xl-inner flex h-full items-start gap-2.5 bg-gradient-to-br from-white to-brand-50/25 px-3 py-3">
               <span
@@ -50,6 +52,7 @@ function ClientPartnerList({
               </div>
             </div>
           </li>
+          </Reveal>
         ))}
       </ul>
       </div>
@@ -67,31 +70,21 @@ export default function Clients() {
       />
 
       <PageHero
-        eyebrow="Clients"
         title="Who We Serve"
         description="Five-star hotels, luxury resorts and major hospitals trust The Laundry Bag with their linen every day."
         crumbs={[{ label: "Home", to: "/" }, { label: "Clients" }]}
       />
 
-      {/* Logo wall */}
-      <section className="section">
-        <div className="container-page">
+      <PageSection reveal={false}>
           <SectionHeading
-            eyebrow="Brands that trust us"
             title="A wall of logos we're proud of"
             description="Five-star hotels, luxury resorts and major medical centres rely on The Laundry Bag for their linen and laundry."
           />
-          <Reveal className="mt-12">
-            <ClientWall />
-          </Reveal>
-        </div>
-      </section>
+          <ClientWall className="mt-12" />
+      </PageSection>
 
-      {/* Client groups */}
-      <section className="section-tint section">
-        <div className="container-page">
+      <PageSection className="section-tint section" reveal={false}>
           <SectionHeading
-            eyebrow="By sector"
             title="The hotels & hospitals that count on us daily"
             description="Across hospitality and healthcare, India's most demanding properties trust us with the linen their guests and patients touch every day."
           />
@@ -127,8 +120,7 @@ export default function Clients() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
+      </PageSection>
     </>
   );
 }

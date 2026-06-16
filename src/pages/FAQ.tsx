@@ -4,7 +4,7 @@ import Icon from "../components/Icon";
 import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
-import SectionHeading from "../components/SectionHeading";
+import PageSection from "../components/PageSection";
 import { faqs, site } from "../data/site";
 
 const categoryIcon: Record<string, string> = {
@@ -74,23 +74,13 @@ export default function FAQ() {
       />
 
       <PageHero
-        eyebrow="FAQ"
         title="Frequently Asked Questions"
         description="Answers on working with us, our laundry models, quality standards and getting started."
         crumbs={[{ label: "Home", to: "/" }, { label: "FAQ" }]}
       />
 
-      <section className="section-tint section">
-        <div className="container-page max-w-5xl">
-          <SectionHeading
-            eyebrow="Browse by topic"
-            title="Find the answer you need"
-            description="Each topic has its own section below — open any question to read the answer."
-            align="left"
-            showRule={false}
-          />
-
-          <div className="mt-10 space-y-8">
+      <PageSection className="section-tint section" containerClassName="container-page max-w-5xl" reveal={false}>
+          <div className="space-y-8">
             {visibleFaqs.map((g, gi) => (
               <Reveal key={g.category} delay={gi * 60}>
                 <article
@@ -123,10 +113,8 @@ export default function FAQ() {
                         const key = `${gi}-${ii}`;
                         const isOpen = openKey === key;
                         return (
-                          <div
-                            key={key}
-                            className="accent-box-2xl overflow-hidden transition duration-300 hover:-translate-y-0.5 hover:shadow-soft"
-                          >
+                          <Reveal key={key} delay={ii * 35}>
+                          <div className="accent-box-2xl overflow-hidden transition duration-300 hover:-translate-y-0.5 hover:shadow-soft">
                             <div
                               className={`accent-box-2xl-inner overflow-hidden ${
                                 isOpen ? "bg-brand-50/30" : ""
@@ -183,6 +171,7 @@ export default function FAQ() {
                             </div>
                             </div>
                           </div>
+                          </Reveal>
                         );
                       })}
                     </div>
@@ -240,8 +229,7 @@ export default function FAQ() {
               </div>
             </div>
           </Reveal>
-        </div>
-      </section>
+      </PageSection>
     </>
   );
 }
