@@ -24,7 +24,7 @@ export default function ThankYou() {
         icon={<SuccessCheckmark />}
         rule="center-out"
         title="Thank You"
-        description="Your enquiry has reached our team. We typically respond within one business day. A confirmation email is on its way to your inbox."
+        description="Your enquiry has reached our team. We typically respond within one business day."
         crumbs={[
           { label: "Home", to: "/" },
           { label: "Contact", to: "/contact" },

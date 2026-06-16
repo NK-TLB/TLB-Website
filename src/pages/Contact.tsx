@@ -33,19 +33,23 @@ const submitEnquiryEmail = async (data: Record<string, string>) => {
     },
   );
 
-  const result = (await res.json()) as { success?: boolean | string };
-  if (!res.ok || (result.success !== true && result.success !== "true")) {
-    throw new Error("Email delivery failed");
+  const result = (await res.json()) as { success?: boolean | string; message?: string };
+  const ok = result.success === true || result.success === "true";
+  if (!ok) {
+    console.warn("FormSubmit email skipped:", result.message ?? "unknown error");
   }
+  return ok;
 };
 
-/** Keep a Netlify Forms record for the dashboard (best-effort, non-blocking). */
-const recordNetlifySubmission = (data: Record<string, string>) =>
-  fetch("/", {
+/** Primary path — Netlify Forms stores the submission for the dashboard. */
+const submitNetlifyForm = async (data: Record<string, string>) => {
+  const res = await fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: encodeFormData({ "form-name": NETLIFY_FORM_NAME, ...data }),
-  }).catch((err) => console.warn("Netlify form backup failed:", err));
+  });
+  if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+};
 
 const whatsappMessage =
   "Hi The Laundry Bag, I'd like to know more about your laundry & linen services.";
@@ -123,8 +127,8 @@ export default function Contact() {
     ) as Record<string, string>;
 
     try {
-      await submitEnquiryEmail(data);
-      void recordNetlifySubmission(data);
+      await submitNetlifyForm(data);
+      void submitEnquiryEmail(data);
       form.reset();
       navigate("/contact/thank-you");
     } catch (err) {
