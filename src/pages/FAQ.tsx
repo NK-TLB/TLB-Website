@@ -95,17 +95,10 @@ export default function FAQ() {
               <Reveal key={g.category} delay={gi * 60}>
                 <article
                   id={slugify(g.category)}
-                  className="relative scroll-mt-28 overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift"
+                  className="accent-border relative scroll-mt-28 overflow-hidden rounded-[2rem] shadow-lift"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-brand-gradient opacity-90"
-                  />
-                  <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white">
-                    <span
-                      aria-hidden="true"
-                      className="block h-1.5 bg-brand-gradient"
-                    />
+                  <div className="accent-border-2rem-inner">
+                    <span aria-hidden="true" className="accent-hairline" />
 
                     <div className="flex items-start gap-4 border-b border-brand-100/60 px-5 py-4 sm:px-7 sm:py-5">
                       <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-sm ring-1 ring-white/20">
@@ -132,12 +125,13 @@ export default function FAQ() {
                         return (
                           <div
                             key={key}
-                            className={`overflow-hidden rounded-2xl border transition duration-300 ${
-                              isOpen
-                                ? "border-brand-200/80 bg-brand-50/30 shadow-sm"
-                                : "border-brand-100/70 bg-white hover:border-brand-200/80"
-                            }`}
+                            className="accent-box-2xl overflow-hidden transition duration-300 hover:-translate-y-0.5 hover:shadow-soft"
                           >
+                            <div
+                              className={`accent-box-2xl-inner overflow-hidden ${
+                                isOpen ? "bg-brand-50/30" : ""
+                              }`}
+                            >
                             <button
                               type="button"
                               onClick={() => setOpenKey(isOpen ? null : key)}
@@ -186,6 +180,7 @@ export default function FAQ() {
                                   {item.a}
                                 </p>
                               </div>
+                            </div>
                             </div>
                           </div>
                         );

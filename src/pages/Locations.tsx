@@ -26,18 +26,10 @@ export default function Locations() {
       {/* India operations map */}
       <section className="section">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="Across India"
-            title="Everywhere you need us"
-            description="From our Raipur headquarters, our laundry and linen programmes reach leading hotels, resorts and hospitals across 18 cities. Hover or tap a city to explore our network."
-          />
-          <Reveal className="mt-12">
-            <article className="relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 bg-brand-gradient opacity-90"
-              />
-              <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white p-6 sm:p-8 lg:p-8">
+          <Reveal>
+            <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
+              <div className="accent-border-2rem-inner p-6 sm:p-8 lg:p-8">
+                <span aria-hidden="true" className="accent-hairline" />
                 <IndiaMap variant="full" />
               </div>
             </article>
@@ -57,12 +49,9 @@ export default function Locations() {
           />
 
           <Reveal className="mt-10">
-            <article className="group relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 bg-brand-gradient opacity-90"
-              />
-              <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white">
+            <article className="accent-border group relative overflow-hidden rounded-[2rem] shadow-lift">
+              <div className="accent-border-2rem-inner">
+                <span aria-hidden="true" className="accent-hairline" />
                 <div className="grid lg:grid-cols-2">
                   <div className="p-8 sm:p-10 lg:p-12">
                     <ul className="space-y-5">
@@ -106,8 +95,10 @@ export default function Locations() {
                       ].map((item) => (
                         <li
                           key={item.label}
-                          className="flex items-start gap-4 rounded-2xl border border-brand-100/80 bg-brand-50/40 p-4 transition duration-300 hover:border-brand-200 hover:bg-brand-50/70"
+                          className="accent-border rounded-2xl transition duration-300 hover:-translate-y-0.5 hover:shadow-soft"
                         >
+                          <div className="flex items-start gap-4 rounded-[calc(1rem-1px)] bg-brand-50/40 p-4 transition duration-300 hover:bg-brand-50/70">
+                            <span aria-hidden="true" className="accent-hairline" />
                           <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
                             <Icon name={item.icon} className="h-5 w-5" />
                           </span>
@@ -116,6 +107,7 @@ export default function Locations() {
                               {item.label}
                             </span>
                             <div className="mt-1 text-sm">{item.content}</div>
+                          </div>
                           </div>
                         </li>
                       ))}

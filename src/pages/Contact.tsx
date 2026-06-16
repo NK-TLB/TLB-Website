@@ -59,21 +59,13 @@ const whatsappHref = `https://wa.me/91${site.phoneRaw}?text=${encodeURIComponent
 
 function PremiumFrame({
   children,
-  accent = "brand",
 }: {
   children: ReactNode;
-  accent?: "brand" | "ink";
 }) {
-  const bar =
-    accent === "ink"
-      ? "bg-gradient-to-r from-ink-800 via-brand-600 to-accent-500"
-      : "bg-brand-gradient";
-
   return (
-    <article className="relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
-      <span aria-hidden="true" className="absolute inset-0 bg-brand-gradient opacity-90" />
-      <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white">
-        <span aria-hidden="true" className={`block h-1.5 ${bar}`} />
+    <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
+      <div className="accent-border-2rem-inner">
+        <span aria-hidden="true" className="accent-hairline" />
         {children}
       </div>
     </article>
@@ -90,7 +82,8 @@ function ContactRow({
   children: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-brand-100/70 bg-gradient-to-br from-brand-50/40 via-white to-white p-5 shadow-sm ring-1 ring-brand-50/80">
+    <div className="accent-box-2xl shadow-sm">
+      <div className="accent-box-2xl-inner bg-gradient-to-br from-brand-50/40 via-white to-white p-5">
       <div className="flex gap-4">
         <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-sm ring-1 ring-white/20">
           <Icon name={icon} className="h-5 w-5" />
@@ -101,6 +94,7 @@ function ContactRow({
           </p>
           <div className="mt-2">{children}</div>
         </div>
+      </div>
       </div>
     </div>
   );
@@ -157,7 +151,7 @@ export default function Contact() {
           <Reveal>
             <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
               <aside className="space-y-4 lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
-                <PremiumFrame accent="ink">
+                <PremiumFrame>
                   <div className="relative overflow-hidden bg-ink-950 px-6 py-8 sm:px-8">
                     <span
                       aria-hidden="true"
@@ -299,7 +293,8 @@ export default function Contact() {
                       />
                       <MessageField />
 
-                      <div className="rounded-2xl border border-brand-100/70 bg-gradient-to-r from-brand-50/50 via-white to-brand-50/30 p-5">
+                      <div className="accent-box-2xl">
+                        <div className="accent-box-2xl-inner bg-gradient-to-r from-brand-50/50 via-white to-brand-50/30 p-5">
                         <button
                           type="submit"
                           className="btn-primary w-full justify-center"
@@ -313,6 +308,7 @@ export default function Contact() {
                         <p className="mt-3 text-center text-xs leading-relaxed text-ink-500">
                           By submitting, you agree to be contacted about your enquiry.
                         </p>
+                        </div>
                       </div>
 
                       {status === "error" && (

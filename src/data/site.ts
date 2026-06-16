@@ -249,6 +249,7 @@ export const pressFeatures = [
 export const navLinks = [
   { to: "/", label: "Home" },
   { to: "/about", label: "Our Story" },
+  { to: "/our-team", label: "Our Team" },
   { to: "/locations", label: "Locations" },
   { to: "/clients", label: "Clients" },
   { to: "/press", label: "Press" },
@@ -642,6 +643,71 @@ export const founders = [
     image: "/images/team/shourya-jain.jpg",
   },
 ];
+
+/** Head Office team — edit names, roles and bios here; photos go in /public/images/team/ */
+export type TeamMember = {
+  id: string;
+  name: string;
+  role: string;
+  department: string;
+  bio: string;
+  email?: string;
+  image?: string;
+  linkedIn?: string;
+};
+
+export const headOfficeTeam = {
+  location: "Raipur, Chhattisgarh",
+  intro:
+    "Our Raipur head office brings together leadership, operations, commercial and support functions that steer The Laundry Bag's network across India.",
+  members: [
+    {
+      id: "shourya-jain",
+      name: "Shourya Jain",
+      role: "Founder & Managing Director",
+      department: "Leadership",
+      bio: "Sets company strategy and leads expansion across hospitality and healthcare laundry programmes nationwide.",
+      image: "/images/team/shourya-jain.jpg",
+      linkedIn: "https://www.linkedin.com/in/shourya-jain-1b2562162",
+    },
+    {
+      id: "neeti-jain",
+      name: "Neeti Jain",
+      role: "Partner",
+      department: "Leadership",
+      bio: "Co-leads strategic partnerships, corporate initiatives and key institutional relationships from head office.",
+    },
+    {
+      id: "prakhar",
+      name: "Prakhar",
+      role: "Client Relations",
+      department: "Commercial",
+      bio: "First point of contact for new enquiries, site visits and ongoing client coordination.",
+      email: site.emails.contact,
+    },
+    {
+      id: "operations-lead",
+      name: "Add name",
+      role: "Head of Operations",
+      department: "Operations",
+      bio: "Leads processing quality, standard operating procedures and on-site team deployment across client accounts.",
+    },
+    {
+      id: "finance-admin",
+      name: "Add name",
+      role: "Finance & Administration",
+      department: "Support",
+      bio: "Handles billing, vendor coordination and head-office administration for the Raipur headquarters.",
+    },
+    {
+      id: "hr-lead",
+      name: "Add name",
+      role: "Human Resources",
+      department: "Support",
+      bio: "Drives recruitment, training programmes and people operations across operational units.",
+    },
+  ] satisfies TeamMember[],
+};
 
 // Company facts for the "Our Story" / about section.
 export const companyFacts = [

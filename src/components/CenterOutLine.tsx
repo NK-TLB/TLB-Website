@@ -117,7 +117,7 @@ export default function CenterOutLine({
   const halfWidthValue = fullWidth ? "50%" : halfWidth;
   const lineHeight = fullWidth ? "h-[2px]" : "h-1";
   const dotRing =
-    dotRingClassName ?? (invert ? "ring-white/20" : "ring-brand-50/90");
+    dotRingClassName ?? (invert ? "ring-white/20" : "ring-brand-300/80");
 
   return (
     <div
@@ -125,8 +125,16 @@ export default function CenterOutLine({
       aria-hidden="true"
       className={`relative ${fullWidth ? "w-full" : ""} ${lineHeight} ${className}`}
     >
+      {/* Footer-style sky-blue ambient glow at centre */}
+      {showDot && (
+        <span
+          className="pointer-events-none absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/25 blur-md"
+          aria-hidden="true"
+        />
+      )}
+
       <span
-        className={`absolute top-1/2 right-1/2 ${lineHeight} rounded-l-full bg-brand-gradient motion-reduce:transition-none ${transition}`}
+        className={`absolute top-1/2 right-1/2 ${lineHeight} rounded-l-full accent-line-h-l motion-reduce:transition-none ${transition}`}
         style={{
           width: halfWidthValue,
           transformOrigin: "right center",
@@ -135,7 +143,7 @@ export default function CenterOutLine({
         }}
       />
       <span
-        className={`absolute top-1/2 left-1/2 ${lineHeight} rounded-r-full bg-brand-gradient motion-reduce:transition-none ${transition}`}
+        className={`absolute top-1/2 left-1/2 ${lineHeight} rounded-r-full accent-line-h-r motion-reduce:transition-none ${transition}`}
         style={{
           width: halfWidthValue,
           transformOrigin: "left center",
@@ -144,12 +152,18 @@ export default function CenterOutLine({
         }}
       />
 
+      {/* Footer-style centre hairline — brand-400/70 */}
+      <span
+        className="pointer-events-none absolute left-1/2 top-1/2 h-px w-full max-w-[2.5rem] -translate-x-1/2 -translate-y-1/2 accent-line-hairline-h motion-reduce:transition-none"
+        style={{ opacity: scale }}
+      />
+
       {showDot && (
         <span className="absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2">
           <span className="relative flex h-1.5 w-1.5 items-center justify-center">
-            <span className="absolute inset-0 rounded-full bg-brand-400/25 blur-[2px]" />
+            <span className="absolute -inset-1 rounded-full bg-brand-500/30 blur-[3px]" />
             <span
-              className={`relative h-1.5 w-1.5 rounded-full bg-brand-gradient ring-[3px] ${dotRing}`}
+              className={`relative h-1.5 w-1.5 rounded-full bg-brand-800 ring-[3px] ${dotRing}`}
             />
           </span>
         </span>

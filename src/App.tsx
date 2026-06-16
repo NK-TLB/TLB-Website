@@ -7,6 +7,7 @@ import Clients from "./pages/Clients";
 import Press from "./pages/Press";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
+import OurTeam from "./pages/OurTeam";
 import ThankYou from "./pages/ThankYou";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
@@ -19,6 +20,9 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/who-we-are" element={<About />} />
         <Route path="/our-story" element={<About />} />
+        <Route path="/our-team" element={<OurTeam />} />
+        <Route path="/team" element={<Navigate to="/our-team" replace />} />
+        <Route path="/our-teams" element={<Navigate to="/our-team" replace />} />
         <Route path="/locations" element={<Locations />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/clients-and-press" element={<Navigate to="/clients" replace />} />

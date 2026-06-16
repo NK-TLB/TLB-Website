@@ -74,25 +74,11 @@ const clippingItems: LightboxItem[] = pressClippings.map((c) => ({
   caption: `${c.outlet}, ${c.title}`,
 }));
 
-function PremiumFrame({
-  children,
-  accent = "brand",
-}: {
-  children: ReactNode;
-  accent?: "brand" | "prestige" | "ink";
-}) {
-  const accentBar =
-    accent === "prestige"
-      ? "bg-gradient-to-r from-ink-700 via-brand-500 to-accent-500"
-      : accent === "ink"
-        ? "bg-gradient-to-r from-ink-800 via-ink-700 to-brand-600"
-        : "bg-brand-gradient";
-
+function PremiumFrame({ children }: { children: ReactNode }) {
   return (
-    <article className="relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
-      <span aria-hidden="true" className="absolute inset-0 bg-brand-gradient opacity-90" />
-      <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white">
-        <span aria-hidden="true" className={`block h-1.5 ${accentBar}`} />
+    <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
+      <div className="accent-border-2rem-inner">
+        <span aria-hidden="true" className="accent-hairline" />
         {children}
       </div>
     </article>
@@ -126,7 +112,8 @@ function MetaPill({
 
 function MemorialQuote({ children }: { children: ReactNode }) {
   return (
-    <figure className="relative overflow-hidden rounded-2xl border border-brand-100/60 bg-gradient-to-br from-ink-950/[0.03] via-brand-50/50 to-white p-6 sm:p-8">
+    <figure className="accent-box-2xl">
+      <div className="accent-box-2xl-inner relative bg-gradient-to-br from-ink-950/[0.03] via-brand-50/50 to-white p-6 sm:p-8">
       <span
         aria-hidden="true"
         className="absolute bottom-0 left-0 top-0 w-1 bg-gradient-to-b from-ink-700 via-brand-500 to-accent-400"
@@ -140,6 +127,7 @@ function MemorialQuote({ children }: { children: ReactNode }) {
         <blockquote className="font-display text-xl font-semibold leading-snug text-ink-900 sm:text-2xl">
           {children}
         </blockquote>
+      </div>
       </div>
     </figure>
   );
@@ -166,8 +154,9 @@ function FactCards({
       {facts.map((f, i) => (
         <div
           key={f.label}
-          className="rounded-2xl border border-brand-100/70 bg-white p-4 shadow-sm ring-1 ring-brand-50/80 transition duration-200 hover:border-brand-200 hover:shadow-soft"
+          className="accent-box-2xl card-hover hover:-translate-y-0.5 hover:shadow-soft"
         >
+          <div className="accent-box-2xl-inner p-4">
           <dt className="flex items-center gap-2 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-brand-600">
             <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100/80">
               <Icon name={icons[i] ?? "star"} className="h-3.5 w-3.5" />
@@ -175,6 +164,7 @@ function FactCards({
             {f.label}
           </dt>
           <dd className="mt-3 text-sm font-semibold leading-snug text-ink-800">{f.value}</dd>
+          </div>
         </div>
       ))}
     </dl>
@@ -215,7 +205,7 @@ export default function Press() {
           />
 
           <Reveal className="mt-10">
-            <PremiumFrame accent="prestige">
+            <PremiumFrame>
               <div className="grid items-stretch lg:grid-cols-2">
                 <figure className="relative min-h-[28rem] border-b border-brand-100/60 lg:min-h-[36rem] lg:border-b-0 lg:border-r">
                   <button
@@ -400,7 +390,8 @@ export default function Press() {
                         onClick={() => setBox({ items: clippingItems, index: i })}
                         className="group block h-full w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
                       >
-                        <article className="flex h-full flex-col overflow-hidden rounded-xl border border-brand-100/70 bg-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-soft">
+                        <article className="accent-box-xl card-hover flex h-full flex-col overflow-hidden hover:-translate-y-0.5 hover:shadow-soft">
+                          <div className="accent-box-xl-inner flex h-full flex-col overflow-hidden">
                           <div className="relative overflow-hidden bg-ink-50/50">
                             <ResponsiveImage
                               image={c.image}
@@ -418,6 +409,7 @@ export default function Press() {
                           <div className="border-t border-brand-100/70 px-4 py-3">
                             <p className="font-display text-sm font-bold text-ink-900">{c.outlet}</p>
                             <p className="mt-0.5 text-[0.7rem] text-ink-500">{c.edition}</p>
+                          </div>
                           </div>
                         </article>
                       </button>

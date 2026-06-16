@@ -98,10 +98,10 @@ export default function PageHero({
         <div className="mx-auto max-w-3xl text-center [perspective:1400px]">
           <div className="page-hero-card">
             {eyebrow && (
-              <span className="inline-flex items-center gap-2 rounded-full border border-brand-200/80 bg-white/70 px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-brand-700 shadow-sm backdrop-blur">
+              <span className="inline-flex items-center gap-2 rounded-full border border-brand-200/80 bg-white/70 px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-brand-800 shadow-sm backdrop-blur">
                 <span aria-hidden="true" className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500/50" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-600" />
+                  <span className="absolute -inset-0.5 rounded-full bg-brand-500/30 blur-[2px]" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-800 ring-2 ring-brand-300/80" />
                 </span>
                 {eyebrow}
               </span>
@@ -122,7 +122,7 @@ export default function PageHero({
             ) : rule === "static" ? (
               <span
                 aria-hidden="true"
-                className="mx-auto mt-6 block h-1.5 w-20 rounded-full bg-brand-gradient"
+                className="mx-auto mt-6 block h-[2px] w-20 rounded-full accent-line-h"
               />
             ) : null}
 
@@ -140,11 +140,11 @@ export default function PageHero({
       {/* Static hero bottom separator */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-[6%] bottom-0 z-10 h-px bg-gradient-to-r from-transparent via-brand-300/80 to-transparent sm:inset-x-[10%]"
+        className="pointer-events-none absolute inset-x-[6%] bottom-0 z-10 h-[2px] accent-line-h sm:inset-x-[10%]"
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-[18%] bottom-0 z-10 h-px bg-gradient-to-r from-transparent via-brand-500/45 to-transparent blur-[1px] sm:inset-x-[22%]"
+        className="pointer-events-none absolute inset-x-[6%] bottom-0 z-10 h-px accent-line-hairline-h sm:inset-x-[10%]"
       />
       <span
         aria-hidden="true"

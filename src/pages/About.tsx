@@ -54,17 +54,18 @@ export default function About() {
           <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {companyFacts.map((f, i) => (
               <Reveal key={f.label} delay={i * 70}>
-                <div className="group relative flex h-full flex-col items-center overflow-hidden rounded-3xl border border-brand-200/60 bg-white px-6 py-8 text-center shadow-soft transition duration-300 hover:-translate-y-1 hover:border-brand-400/80 hover:shadow-lift sm:px-7 sm:py-9">
+                <div className="card card-hover group relative h-full">
+                  <div className="card-inner flex h-full flex-col items-center px-6 py-8 text-center sm:px-7 sm:py-9">
                   <span
                     aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-1 bg-brand-gradient opacity-90"
+                    className="absolute inset-x-0 top-0 h-[2px] accent-line-h opacity-90"
                   />
                   <span
                     aria-hidden="true"
                     className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-100/45 blur-2xl transition duration-300 group-hover:bg-brand-200/55"
                   />
 
-                  <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-brand-100 transition duration-300 group-hover:bg-brand-gradient group-hover:text-white group-hover:ring-transparent group-hover:shadow-soft">
+                  <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-brand-100 transition duration-300 group-hover:bg-brand-800 group-hover:text-white group-hover:ring-transparent group-hover:shadow-soft">
                     <Icon name={factIcon[f.label] ?? "spark"} className="h-5 w-5" />
                   </span>
 
@@ -74,6 +75,7 @@ export default function About() {
                   <dt className="relative mt-3 text-xs font-bold uppercase tracking-[0.18em] text-ink-500">
                     {f.label}
                   </dt>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -131,12 +133,9 @@ export default function About() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="group relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 rounded-[2rem] bg-brand-gradient opacity-90"
-              />
-              <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] bg-ink-100">
+            <div className="accent-border group relative overflow-hidden rounded-[2rem] shadow-lift">
+              <div className="relative overflow-hidden rounded-[calc(2rem-1px)] bg-ink-100">
+                <span aria-hidden="true" className="accent-hairline" />
                 <img
                   src="/images/res_laundry.jpg"
                   alt="The Laundry Bag processing facility"

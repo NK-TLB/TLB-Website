@@ -73,8 +73,10 @@ export default function Home() {
                 aria-hidden="true"
                 className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.12] blur-3xl"
               />
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/40 bg-white/50 p-5 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.1)] backdrop-blur-2xl sm:p-7">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent" />
+              <div className="accent-border relative overflow-hidden rounded-[2rem] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.1)]">
+                <div className="relative overflow-hidden rounded-[calc(2rem-1px)] bg-white/50 p-5 backdrop-blur-2xl sm:p-7">
+                  <span aria-hidden="true" className="accent-hairline" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent" />
                 {/* soft brand wash behind the map */}
                 <span
                   aria-hidden="true"
@@ -98,15 +100,18 @@ export default function Home() {
                 <div className="relative">
                   <IndiaMap variant="compact" />
                 </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Trust bar */}
-        <div className="border-y border-ink-100 bg-white/70 backdrop-blur">
+        <div className="relative bg-white/70 backdrop-blur">
+          <span aria-hidden="true" className="section-separator top-0" />
+          <span aria-hidden="true" className="section-separator bottom-0" />
           <div className="container-page py-8">
-            <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.2em] text-ink-400">
+            <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.2em] text-brand-700">
               Trusted by India&apos;s leading hotels &amp; hospitals
             </p>
             <Marquee items={clientLogos} durationSeconds={46} />
@@ -123,21 +128,24 @@ export default function Home() {
               <Reveal key={s.title} delay={i * 100}>
                 <Link
                   to={s.href}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-brand-100/70 bg-white p-8 shadow-soft transition duration-300 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-lift"
+                  className="group accent-border relative block h-full overflow-hidden rounded-3xl shadow-soft transition duration-300 hover:-translate-y-1.5 hover:shadow-lift"
                 >
-                  <span className="relative inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/30">
-                    <Icon name={s.icon} className="h-7 w-7" />
-                  </span>
-                  <h3 className="relative mt-7 font-display text-xl font-extrabold tracking-tight text-ink-900">
-                    {s.title}
-                  </h3>
-                  <p className="relative mt-3 flex-1 text-sm leading-relaxed text-ink-600">
-                    {s.description}
-                  </p>
-                  <span className="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition group-hover:text-brand-700">
-                    Learn more
-                    <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
-                  </span>
+                  <div className="accent-border-3xl-inner relative flex h-full flex-col p-8">
+                    <span aria-hidden="true" className="accent-hairline" />
+                    <span className="relative inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/30">
+                      <Icon name={s.icon} className="h-7 w-7" />
+                    </span>
+                    <h3 className="relative mt-7 font-display text-xl font-extrabold tracking-tight text-ink-900">
+                      {s.title}
+                    </h3>
+                    <p className="relative mt-3 flex-1 text-sm leading-relaxed text-ink-600">
+                      {s.description}
+                    </p>
+                    <span className="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition group-hover:text-brand-700">
+                      Learn more
+                      <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
+                    </span>
+                  </div>
                 </Link>
               </Reveal>
             ))}
@@ -153,7 +161,8 @@ export default function Home() {
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:auto-rows-fr">
             {/* Feature tile, Girbau */}
             <Reveal>
-              <article className="card card-hover group relative flex h-full flex-col overflow-hidden p-6 sm:p-8">
+              <article className="card card-hover group relative h-full">
+                <div className="card-inner flex h-full flex-col p-6 sm:p-8">
                 <span className="relative w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
                   {whyTlbFeatures[0].badge}
                 </span>
@@ -171,13 +180,15 @@ export default function Home() {
                 <p className="relative mt-2 text-sm leading-relaxed text-ink-600">
                   {whyTlbFeatures[0].description}
                 </p>
+                </div>
               </article>
             </Reveal>
 
             {/* Stat tiles, paired two-up */}
             {[whyTlbStats.slice(0, 2), whyTlbStats.slice(2, 4)].map((pair, p) => (
               <Reveal key={p} delay={(p + 1) * 90}>
-                <article className="card card-hover group relative flex h-full items-center overflow-hidden p-6 sm:p-8">
+                <article className="card card-hover group relative h-full">
+                  <div className="card-inner flex h-full items-center p-6 sm:p-8">
                   <dl className="grid w-full grid-cols-2 items-center divide-x divide-ink-100">
                     {pair.map((s) => (
                       <div
@@ -196,13 +207,15 @@ export default function Home() {
                       </div>
                     ))}
                   </dl>
+                  </div>
                 </article>
               </Reveal>
             ))}
 
             {/* Feature tile, equity-backed */}
             <Reveal delay={3 * 90}>
-              <article className="card card-hover group relative flex h-full flex-col overflow-hidden p-6 sm:p-8">
+              <article className="card card-hover group relative h-full">
+                <div className="card-inner flex h-full flex-col p-6 sm:p-8">
                 <span className="w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
                   {whyTlbFeatures[1].badge}
                 </span>
@@ -215,6 +228,7 @@ export default function Home() {
                 <p className="mt-2 text-sm leading-relaxed text-ink-600">
                   {whyTlbFeatures[1].description}
                 </p>
+                </div>
               </article>
             </Reveal>
           </div>
@@ -232,13 +246,18 @@ export default function Home() {
             className="relative mt-14 hidden lg:block"
           >
             <div className="grid grid-cols-4 gap-x-6">
-              <span className="pointer-events-none absolute inset-x-[12.5%] top-6 h-[3px] -translate-y-1/2 rounded-full bg-brand-100/90" />
-              <span className="pointer-events-none absolute inset-x-[12.5%] top-6 h-[3px] -translate-y-1/2 rounded-full bg-gradient-to-r from-brand-500 via-brand-400 to-brand-300" />
-              <span className="pointer-events-none absolute inset-x-[12.5%] top-[calc(1.5rem-1px)] h-px -translate-y-1/2 rounded-full bg-gradient-to-r from-white/70 via-white/25 to-transparent" />
+              <span className="pointer-events-none absolute inset-x-[12.5%] top-6 h-[2px] -translate-y-1/2 rounded-full accent-line-h" />
+              <span className="pointer-events-none absolute inset-x-[12.5%] top-6 h-px -translate-y-1/2 rounded-full accent-line-hairline-h" />
               {howItWorks.map((s, i) => (
                 <div key={s.step} className="relative z-10 flex justify-center">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient font-display text-lg font-extrabold text-white shadow-lift ring-[6px] ring-[rgb(var(--page-bg))]">
-                    {i + 1}
+                  <span className="relative flex h-12 w-12 items-center justify-center rounded-full font-display text-lg font-extrabold text-white shadow-lift ring-[6px] ring-[rgb(var(--page-bg))]">
+                    <span
+                      aria-hidden="true"
+                      className="absolute -inset-1 rounded-full bg-brand-500/25 blur-sm"
+                    />
+                    <span className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-brand-400 via-brand-800 to-brand-600">
+                      {i + 1}
+                    </span>
                   </span>
                 </div>
               ))}
@@ -248,9 +267,16 @@ export default function Home() {
           <ol className="relative mt-10 grid gap-y-12 gap-x-6 sm:mt-12 sm:grid-cols-2 lg:mt-8 lg:grid-cols-4">
             {howItWorks.map((s, i) => (
               <Reveal key={s.step} delay={i * 100}>
-                <li className="group relative z-[1] flex h-full flex-col items-center rounded-2xl bg-white px-6 pb-8 pt-10 text-center shadow-soft ring-1 ring-brand-100/60 transition duration-300 hover:-translate-y-1 hover:shadow-lift lg:pt-8">
-                  <span className="absolute -top-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient font-display text-lg font-extrabold text-white shadow-lift ring-4 ring-[rgb(var(--page-bg))] sm:h-11 sm:w-11 sm:text-base lg:hidden">
-                    {i + 1}
+                <li className="accent-box-2xl card-hover group relative z-[1] h-full hover:-translate-y-1">
+                  <div className="accent-box-2xl-inner flex h-full flex-col items-center px-6 pb-8 pt-10 text-center lg:pt-8">
+                  <span className="absolute -top-6 inline-flex h-12 w-12 items-center justify-center rounded-full font-display text-lg font-extrabold text-white shadow-lift ring-4 ring-[rgb(var(--page-bg))] sm:h-11 sm:w-11 sm:text-base lg:hidden">
+                    <span
+                      aria-hidden="true"
+                      className="absolute -inset-1 rounded-full bg-brand-500/25 blur-sm"
+                    />
+                    <span className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-brand-400 via-brand-800 to-brand-600">
+                      {i + 1}
+                    </span>
                   </span>
                   <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition duration-300 group-hover:bg-brand-100">
                     <Icon name={s.icon} className="h-6 w-6" />
@@ -261,6 +287,7 @@ export default function Home() {
                   <p className="mt-2 text-sm leading-relaxed text-ink-600">
                     {s.text}
                   </p>
+                  </div>
                 </li>
               </Reveal>
             ))}
@@ -275,8 +302,9 @@ export default function Home() {
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <a
               href={`tel:+91${site.phoneRaw}`}
-              className="card card-hover group flex h-full flex-col"
+              className="card card-hover group h-full"
             >
+              <div className="card-inner flex h-full flex-col p-6">
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
                 <Icon name="phone" className="h-6 w-6" />
               </span>
@@ -287,12 +315,14 @@ export default function Home() {
                 {site.phoneDisplay}
               </p>
               <p className="mt-1 text-sm text-ink-500">{site.hours}</p>
+              </div>
             </a>
 
             <a
               href={`mailto:${site.emails.contact}`}
-              className="card card-hover group flex h-full flex-col"
+              className="card card-hover group h-full"
             >
+              <div className="card-inner flex h-full flex-col p-6">
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
                 <Icon name="mail" className="h-6 w-6" />
               </span>
@@ -303,14 +333,16 @@ export default function Home() {
                 {site.emails.contact}
               </p>
               <p className="mt-1 text-sm text-ink-500">We reply within one business day.</p>
+              </div>
             </a>
 
             <a
               href={site.address.mapsHref}
               target="_blank"
               rel="noreferrer"
-              className="card card-hover group flex h-full flex-col"
+              className="card card-hover group h-full"
             >
+              <div className="card-inner flex h-full flex-col p-6">
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
                 <Icon name="pin" className="h-6 w-6" />
               </span>
@@ -320,6 +352,7 @@ export default function Home() {
               <p className="mt-2 text-sm leading-relaxed text-ink-600">
                 {site.address.full}
               </p>
+              </div>
             </a>
           </div>
         </div>

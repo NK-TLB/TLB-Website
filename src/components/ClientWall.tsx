@@ -7,11 +7,8 @@ function LogoTile({ name, logo }: { name: string; logo?: string }) {
   const showLogo = logo && !failed;
 
   return (
-    <div className="group relative flex h-24 items-center justify-center overflow-hidden rounded-2xl border border-brand-100/70 bg-white p-4 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-brand-300/70 hover:shadow-lift sm:h-28">
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-brand-gradient opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-      />
+    <div className="accent-box-2xl card-hover group relative flex h-24 items-center justify-center overflow-hidden sm:h-28">
+      <div className="accent-box-2xl-inner flex h-full w-full items-center justify-center p-4">
       <span
         aria-hidden="true"
         className="pointer-events-none absolute -right-6 -top-6 h-16 w-16 rounded-full bg-brand-100/50 blur-2xl opacity-0 transition duration-300 group-hover:opacity-100"
@@ -30,6 +27,7 @@ function LogoTile({ name, logo }: { name: string; logo?: string }) {
           {name}
         </span>
       )}
+      </div>
     </div>
   );
 }
@@ -40,13 +38,10 @@ type Props = { className?: string };
 export default function ClientWall({ className = "" }: Props) {
   return (
     <article
-      className={`relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift ${className}`}
+      className={`accent-border relative overflow-hidden rounded-[2rem] shadow-lift ${className}`}
     >
-      <span
-        aria-hidden="true"
-        className="absolute inset-0 bg-brand-gradient opacity-90"
-      />
-      <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-gradient-to-br from-white via-brand-50/20 to-white p-5 sm:p-6 lg:p-8">
+      <div className="relative overflow-hidden rounded-[calc(2rem-1px)] bg-gradient-to-br from-white via-brand-50/20 to-white p-5 sm:p-6 lg:p-8">
+        <span aria-hidden="true" className="accent-hairline" />
         <span
           aria-hidden="true"
           className="pointer-events-none absolute -right-20 top-0 h-56 w-56 rounded-full bg-brand-200/25 blur-3xl"

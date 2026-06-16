@@ -7,6 +7,7 @@ import Icon from "./Icon";
 const companyLinks = [
   { to: "/", label: "Home" },
   { to: "/about", label: "Our Story" },
+  { to: "/our-team", label: "Our Team" },
   { to: "/locations", label: "Locations" },
   { to: "/clients", label: "Clients" },
   { to: "/press", label: "Press" },
@@ -84,7 +85,11 @@ export default function Footer() {
     <footer className="relative mt-10 overflow-hidden bg-brand-950 text-white/70">
       <span
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/70 to-transparent"
+        className="absolute inset-x-0 top-0 h-[2px] accent-line-h"
+      />
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px accent-line-hairline-h"
       />
       <div
         aria-hidden="true"
@@ -178,7 +183,7 @@ export default function Footer() {
       <div className="relative border-t border-white/10">
         <span
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/40 to-transparent"
+          className="absolute inset-x-0 top-0 h-[2px] accent-line-h opacity-40"
         />
         <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/45 sm:flex-row">
           <p className="tracking-wide">

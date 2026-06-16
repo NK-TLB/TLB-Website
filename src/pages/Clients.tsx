@@ -11,11 +11,6 @@ const sectorIcon: Record<string, string> = {
   Healthcare: "shield",
 };
 
-const sectorAccent: Record<string, string> = {
-  Hospitality: "from-brand-400/80 via-brand-500 to-brand-600",
-  Healthcare: "from-accent-400/80 via-accent-500 to-accent-600",
-};
-
 const sectorDot: Record<string, string> = {
   Hospitality: "bg-brand-500",
   Healthcare: "bg-accent-500",
@@ -29,7 +24,8 @@ function ClientPartnerList({
   items: string[];
 }) {
   return (
-    <div className="mt-6 overflow-hidden rounded-2xl border border-brand-100/70 bg-white shadow-sm ring-1 ring-brand-50/80">
+    <div className="accent-box-2xl mt-6 overflow-hidden">
+      <div className="accent-box-2xl-inner overflow-hidden">
       <div className="flex items-center justify-between border-b border-brand-100/70 bg-gradient-to-r from-brand-50/50 to-white px-4 py-3 sm:px-5">
         <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-brand-700">
           Partner properties
@@ -42,7 +38,8 @@ function ClientPartnerList({
       <ul className="grid gap-2.5 p-3 sm:grid-cols-2 sm:p-4">
         {items.map((item) => (
           <li key={item}>
-            <div className="group flex h-full items-start gap-2.5 rounded-xl border border-brand-100/60 bg-gradient-to-br from-white to-brand-50/25 px-3 py-3 transition duration-200 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-soft">
+            <div className="accent-box-xl card-hover group h-full hover:-translate-y-0.5">
+              <div className="accent-box-xl-inner flex h-full items-start gap-2.5 bg-gradient-to-br from-white to-brand-50/25 px-3 py-3">
               <span
                 aria-hidden="true"
                 className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${sectorDot[sector] ?? "bg-brand-500"} ring-2 ring-white shadow-sm`}
@@ -50,10 +47,12 @@ function ClientPartnerList({
               <span className="min-w-0 text-sm font-semibold leading-snug text-ink-800 transition duration-200 group-hover:text-brand-800">
                 {item}
               </span>
+              </div>
             </div>
           </li>
         ))}
       </ul>
+      </div>
     </div>
   );
 }
@@ -99,16 +98,9 @@ export default function Clients() {
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {clientGroups.map((g, i) => (
               <Reveal key={g.sector} delay={i * 70}>
-                <article className="group relative h-full overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-brand-gradient opacity-90"
-                  />
-                  <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white">
-                    <span
-                      aria-hidden="true"
-                      className={`block h-1.5 bg-gradient-to-r ${sectorAccent[g.sector] ?? "from-brand-400 to-brand-600"}`}
-                    />
+                <article className="accent-border group relative h-full overflow-hidden rounded-[2rem] shadow-lift">
+                  <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(2rem-1px)] bg-white">
+                    <span aria-hidden="true" className="accent-hairline" />
 
                     <div className="p-6 sm:p-8">
                       <div className="flex items-center gap-4">

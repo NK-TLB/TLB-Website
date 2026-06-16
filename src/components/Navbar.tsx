@@ -22,38 +22,44 @@ function HeaderSeparator({ progress }: { progress: number }) {
       {/* Full-width baseline — always visible, fades at edges */}
       <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-ink-900/[0.07] to-transparent" />
       <span
-        className={`absolute inset-x-[4%] bottom-0 h-px bg-gradient-to-r from-transparent via-brand-300/55 to-transparent transition-opacity duration-700 sm:inset-x-[8%] ${
-          active ? "opacity-30" : "opacity-100"
+        className={`absolute inset-x-[4%] bottom-0 h-px accent-line-hairline-h transition-opacity duration-700 sm:inset-x-[8%] ${
+          active ? "opacity-35" : "opacity-100"
         }`}
       />
 
       {/* Scroll lines — expand from centre outward; dot stays fixed above */}
       <div className="absolute inset-x-0 bottom-0 z-[1]">
-        {/* Track */}
+        {/* Track — sky-blue tint when scrolling (footer brand-500 glow) */}
         <span
-          className={`absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-brand-100/10 via-brand-100/35 to-brand-100/10 transition-opacity duration-500 ${
+          className={`absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-brand-500/5 via-brand-500/20 to-brand-500/5 transition-opacity duration-500 ${
             active ? "opacity-100" : "opacity-0"
           }`}
         />
 
-        {/* Glow beneath active portions */}
+        {/* Glow beneath active portions — footer ambient (brand-500 + accent) */}
         <span
-          className="absolute bottom-0 h-3 bg-gradient-to-l from-brand-400/25 via-brand-400/10 to-transparent blur-md transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          className="absolute bottom-0 h-4 bg-gradient-to-l from-brand-500/30 via-brand-400/15 to-transparent blur-md transition-[width] duration-100 ease-out motion-reduce:transition-none"
           style={{ right: "50%", width: `${half}%` }}
         />
         <span
-          className="absolute bottom-0 left-1/2 h-3 bg-gradient-to-r from-brand-400/25 via-brand-400/10 to-transparent blur-md transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          className="absolute bottom-0 left-1/2 h-4 bg-gradient-to-r from-accent-500/20 via-brand-400/10 to-transparent blur-md transition-[width] duration-100 ease-out motion-reduce:transition-none"
           style={{ width: `${half}%` }}
         />
 
-        {/* Fill — left and right halves from centre */}
+        {/* Fill — dark at centre, lighter toward the tips */}
         <span
-          className="absolute bottom-0 h-[2px] rounded-l-full bg-brand-gradient transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          className="absolute bottom-0 h-[2px] rounded-l-full accent-line-h-l transition-[width] duration-100 ease-out motion-reduce:transition-none"
           style={{ right: "50%", width: `${half}%` }}
         />
         <span
-          className="absolute bottom-0 left-1/2 h-[2px] rounded-r-full bg-brand-gradient transition-[width] duration-100 ease-out motion-reduce:transition-none"
+          className="absolute bottom-0 left-1/2 h-[2px] rounded-r-full accent-line-h-r transition-[width] duration-100 ease-out motion-reduce:transition-none"
           style={{ width: `${half}%` }}
+        />
+
+        {/* Footer-style centre hairline highlight */}
+        <span
+          className="absolute bottom-[1px] left-1/2 h-px w-8 max-w-[40%] -translate-x-1/2 accent-line-hairline-h transition-opacity duration-100 motion-reduce:transition-none"
+          style={{ opacity: half > 2 ? 1 : 0 }}
         />
 
         {/* Specular highlights */}
@@ -75,13 +81,13 @@ function HeaderSeparator({ progress }: { progress: number }) {
       {/* Fixed centre dot — never moves or fades */}
       <span className="absolute bottom-0 left-1/2 z-[3] -translate-x-1/2 translate-y-1/2">
         <span className="relative flex h-1.5 w-1.5 items-center justify-center">
-          <span className="absolute inset-0 rounded-full bg-brand-400/25 blur-[2px]" />
-          <span className="relative h-1.5 w-1.5 rounded-full bg-brand-gradient ring-[3px] ring-brand-50/90" />
+          <span className="absolute -inset-1 rounded-full bg-brand-500/30 blur-[3px]" />
+          <span className="relative h-1.5 w-1.5 rounded-full bg-brand-800 ring-[3px] ring-brand-300/80" />
         </span>
       </span>
 
       {/* Container-aligned inner hairline on large screens */}
-      <span className="absolute inset-x-0 bottom-0 mx-auto hidden h-px max-w-7xl bg-gradient-to-r from-transparent via-brand-200/25 to-transparent lg:block lg:px-10" />
+      <span className="absolute inset-x-0 bottom-0 mx-auto hidden h-px max-w-7xl bg-gradient-to-r from-transparent via-brand-400/40 to-transparent lg:block lg:px-10" />
     </div>
   );
 }

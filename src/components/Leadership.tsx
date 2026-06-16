@@ -47,8 +47,8 @@ function Portrait({ name, image }: { name: string; image?: string }) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-ink-mesh opacity-25"
       />
-      <div className="relative flex h-32 w-32 items-center justify-center rounded-full bg-brand-gradient p-[3px] shadow-lift ring-4 ring-white/80 sm:h-36 sm:w-36">
-        <span className="flex h-full w-full items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
+      <div className="accent-border relative flex h-32 w-32 items-center justify-center rounded-full shadow-lift ring-4 ring-white/80 sm:h-36 sm:w-36">
+        <span className="flex h-[calc(100%-2px)] w-[calc(100%-2px)] items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
           <span className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             {initials(name)}
           </span>
@@ -65,12 +65,9 @@ export default function Leadership() {
 
   return (
     <div className="mx-auto mt-12 max-w-5xl">
-      <article className="group relative overflow-hidden rounded-[2rem] p-[1.5px] shadow-lift">
-        <span
-          aria-hidden="true"
-          className="absolute inset-0 bg-brand-gradient opacity-90"
-        />
-        <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/70 bg-white">
+      <article className="accent-border group relative overflow-hidden rounded-[2rem] shadow-lift">
+        <div className="accent-border-2rem-inner">
+          <span aria-hidden="true" className="accent-hairline" />
           <div className="grid items-stretch md:grid-cols-12">
             <div className="md:col-span-5">
               <Portrait name={lead.name} image={lead.image} />

@@ -297,19 +297,20 @@ export default function IndiaMap({
   return (
     <div className={`grid items-start gap-8 lg:grid-cols-2 lg:gap-10 ${className}`}>
       <div className="flex min-w-0 flex-col gap-5">
-        <div className="relative overflow-hidden rounded-3xl border border-brand-100/60 bg-gradient-to-br from-brand-50/60 via-white to-brand-50/20 p-5 shadow-soft sm:p-6">
+        <div className="accent-border rounded-3xl shadow-soft">
+          <div className="relative overflow-hidden rounded-[calc(1.5rem-1px)] bg-gradient-to-br from-brand-50/60 via-white to-brand-50/20 p-5 sm:p-6">
+            <span aria-hidden="true" className="accent-hairline" />
           <span
             aria-hidden="true"
             className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-200/30 blur-3xl"
           />
           <div className="relative">{map}</div>
+          </div>
         </div>
 
-        <div className="overflow-hidden rounded-3xl border border-brand-100/70 bg-gradient-to-br from-white via-brand-50/30 to-white shadow-soft">
-          <span
-            aria-hidden="true"
-            className="block h-1 bg-brand-gradient"
-          />
+        <div className="accent-border overflow-hidden rounded-3xl shadow-soft">
+          <div className="overflow-hidden rounded-[calc(1.5rem-1px)] bg-gradient-to-br from-white via-brand-50/30 to-white">
+            <span aria-hidden="true" className="accent-hairline" />
           <dl className="grid grid-cols-3 divide-x divide-brand-100/70">
             {[
               { value: "18", label: "Cities", icon: "pin" },
@@ -334,11 +335,14 @@ export default function IndiaMap({
               </div>
             ))}
           </dl>
+          </div>
         </div>
       </div>
 
       <div className="flex min-w-0 flex-col">
-        <div className="flex flex-1 flex-col rounded-3xl border border-brand-100/60 bg-brand-50/25 p-5 sm:p-6">
+        <div className="accent-border flex flex-1 flex-col rounded-3xl">
+          <div className="flex flex-1 flex-col rounded-[calc(1.5rem-1px)] bg-brand-50/25 p-5 sm:p-6">
+            <span aria-hidden="true" className="accent-hairline" />
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
               Cities we serve
@@ -357,19 +361,26 @@ export default function IndiaMap({
                     onFocus={() => setActive(m.id)}
                     onBlur={() => setActive(null)}
                     onClick={() => setSelectedId(m.id)}
-                    className={`flex w-full items-center gap-2 rounded-2xl border px-3 py-2.5 text-left text-sm font-semibold transition duration-200 ${
-                      isOn
-                        ? "border-brand-300 bg-white text-brand-700 shadow-soft"
-                        : "border-brand-100/80 bg-white/90 text-ink-700 hover:border-brand-200 hover:bg-white hover:text-brand-800 hover:shadow-sm"
+                    className={`accent-box-xl w-full text-left transition duration-200 hover:-translate-y-0.5 ${
+                      isOn ? "shadow-soft" : "hover:shadow-sm"
                     }`}
                   >
+                    <span
+                      className={`accent-box-xl-inner flex w-full items-center gap-2 px-3 py-2.5 text-sm font-semibold ${
+                        isOn
+                          ? "bg-white text-brand-700"
+                          : "bg-white/90 text-ink-700 group-hover:bg-white hover:text-brand-800"
+                      }`}
+                    >
                     <span className={`h-2 w-2 shrink-0 rounded-full ${typeDotClass[m.type]}`} />
                     <span className="truncate">{m.city}</span>
+                    </span>
                   </button>
                 </li>
               );
             })}
           </ul>
+          </div>
         </div>
       </div>
     </div>

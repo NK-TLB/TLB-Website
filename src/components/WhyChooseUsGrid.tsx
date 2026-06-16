@@ -17,9 +17,10 @@ export default function WhyChooseUsGrid() {
           {whyChooseUs.map((item, i) => (
             <Reveal key={item.title} delay={i * 60}>
               <article className="card card-hover group relative h-full overflow-hidden">
+                <div className="card-inner p-6 sm:p-8">
                 <span
                   aria-hidden="true"
-                  className="absolute inset-x-0 top-0 h-1 bg-brand-gradient opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="absolute inset-x-0 top-0 h-[2px] accent-line-h opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 />
                 <span
                   aria-hidden="true"
@@ -44,6 +45,7 @@ export default function WhyChooseUsGrid() {
                 <p className="relative mt-3 text-sm leading-relaxed text-ink-600">
                   {item.description}
                 </p>
+                </div>
               </article>
             </Reveal>
           ))}
