@@ -5,12 +5,12 @@ import { whyChooseUs } from "../data/site";
 
 export default function WhyChooseUsGrid() {
   return (
-    <section className="section-tint section">
+    <section className="section">
       <div className="container-page">
         <SectionHeading
           eyebrow="Why choose us"
-          title="Built on values that stick"
-          description="Six principles that guide every load we process — from water savings and ISO-certified hygiene to the technology and turnaround your property depends on."
+          title="Because Quick can't Clean and Super lost it's shine."
+          prominent
         />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

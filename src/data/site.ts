@@ -28,7 +28,7 @@ export const site = {
   phone: "+91 80859 90015",
   phoneDisplay: "(+91) 8085990015",
   phoneRaw: "8085990015",
-  hours: "9:00 AM – 9:00 PM · Mon–Sun",
+  hours: "9:00 AM – 9:00 PM",
 
   address: {
     street: "Shankar Nagar, TV Tower Road",
@@ -248,10 +248,9 @@ export const pressFeatures = [
 // PRIMARY, navigation. Grouped for the new mega/standard nav.
 export const navLinks = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "Our Story" },
+  { to: "/about", label: "Our Journey" },
   { to: "/our-team", label: "Our Team" },
   { to: "/locations", label: "Locations" },
-  { to: "/clients", label: "Clients" },
   { to: "/press", label: "Press" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
@@ -259,7 +258,7 @@ export const navLinks = [
 
 export const homeServices = [
   {
-    title: "Consultation",
+    title: "Equipment Sales",
     description:
       "We study your existing linen flow, volumes and costs, then design the most efficient laundry setup for your property.",
     icon: "hotel",
@@ -267,7 +266,7 @@ export const homeServices = [
     href: "/contact",
   },
   {
-    title: "Optimisation",
+    title: "Build Own Operate",
     description:
       "We fine-tune your current operation, upgrading processes, equipment and standards to cut costs and lift quality.",
     icon: "shield",
@@ -377,39 +376,36 @@ export const operationalModels = [
 
 export const whyChooseUs = [
   {
-    title: "Eco Friendly",
+    title: "Zero Capex",
     description:
-      "We believe in water conservation and we save approximately 5,000 Litres of water per day!",
+      "We offer models where the entire capital expenditure on equipment is in our scope.",
     icon: "leaf",
   },
   {
-    title: "Cost-Competitive",
-    description:
-      "Our built-own-operate and linen-rental models cut your capital, labour, water and replacement costs, predictable per-kg and per-piece pricing sized to your occupancy.",
+    title: "Cost-Effective",
+    description: "We offer huge operational savings on a year on year basis.",
     icon: "tag",
   },
   {
-    title: "Technology",
-    description:
-      "Laundry is all about combination of technology, detergent and water. We at TLB are loyal ELECTROLUX users.",
+    title: "Best in Class Equipment",
+    description: "We offer best in-class imported equipment from Girbau.",
     icon: "spark",
   },
   {
     title: "Quality",
     description:
-      "We use the best in class products, to assure that your favourite clothes are always there for you to wear.",
+      "We use the best in-class chemicals & enzymes which enhance linen quality & life.",
     icon: "shield",
   },
   {
-    title: "Fast Turnaround",
-    description:
-      "Soiled and stained linen is processed and finished in a clean, hygienic environment, typically within 24 hours, so your rooms, wards and floors are never short of stock.",
+    title: "Standardisation",
+    description: "We have standard processes which help to optimise operations.",
     icon: "truck",
   },
   {
-    title: "A Class Apart",
+    title: "Sustainability",
     description:
-      "We are an ISO-certified company which aims at providing all water-based cleaning solutions; all our technology guarantees no hazardous emissions that could affect the environment.",
+      "We use the lowest per kg water, 100% electric fired equipment, free from Boiler.",
     icon: "star",
   },
 ];
@@ -664,47 +660,67 @@ export const headOfficeTeam = {
     {
       id: "shourya-jain",
       name: "Shourya Jain",
-      role: "Founder & Managing Director",
+      role: "Investor & Founder",
       department: "Leadership",
-      bio: "Sets company strategy and leads expansion across hospitality and healthcare laundry programmes nationwide.",
+      bio: "Founded The Laundry Bag in 2013 and continues to back its growth, setting the company's direction across hospitality and healthcare laundry programmes nationwide.",
       image: "/images/team/shourya-jain.jpg",
       linkedIn: "https://www.linkedin.com/in/shourya-jain-1b2562162",
     },
     {
-      id: "neeti-jain",
-      name: "Neeti Jain",
-      role: "Partner",
+      id: "prakkhar-singh",
+      name: "Prakkhar Singh",
+      role: "Head of Projects",
+      department: "Projects",
+      bio: "Plans and delivers new site setups and client rollouts, taking each project from initial scoping through to a fully running operation.",
+    },
+    {
+      id: "nirmal-kumar",
+      name: "Nirmal Kumar",
+      role: "Head of Technical",
+      department: "Technical",
+      bio: "Oversees plant machinery, maintenance and technical standards so every laundry unit runs reliably, day after day.",
+    },
+    {
+      id: "deep-titermare",
+      name: "Deep Titermare",
+      role: "Add designation",
       department: "Leadership",
-      bio: "Co-leads strategic partnerships, corporate initiatives and key institutional relationships from head office.",
+      bio: "Add a short bio describing this person's role and responsibilities at The Laundry Bag.",
     },
     {
-      id: "prakhar",
-      name: "Prakhar",
-      role: "Client Relations",
-      department: "Commercial",
-      bio: "First point of contact for new enquiries, site visits and ongoing client coordination.",
-      email: site.emails.contact,
-    },
-    {
-      id: "operations-lead",
-      name: "Add name",
-      role: "Head of Operations",
+      id: "akash-singh-baghel",
+      name: "Akash Singh Baghel",
+      role: "Deputy Head of Operations",
       department: "Operations",
-      bio: "Leads processing quality, standard operating procedures and on-site team deployment across client accounts.",
+      bio: "Supports day-to-day operations across client accounts, keeping processing quality, turnaround and on-site teams on track.",
     },
     {
-      id: "finance-admin",
-      name: "Add name",
-      role: "Finance & Administration",
-      department: "Support",
-      bio: "Handles billing, vendor coordination and head-office administration for the Raipur headquarters.",
+      id: "vivek-devnani",
+      name: "Vivek Devnani",
+      role: "Head of Finance",
+      department: "Finance",
+      bio: "Leads finance, billing and budgeting, keeping the company's commercial and financial planning on a firm footing.",
     },
     {
-      id: "hr-lead",
-      name: "Add name",
-      role: "Human Resources",
-      department: "Support",
-      bio: "Drives recruitment, training programmes and people operations across operational units.",
+      id: "vishwashree-pandey",
+      name: "Vishwashree Pandey",
+      role: "Head of HR",
+      department: "People",
+      bio: "Leads recruitment, training and people operations, building the teams that run our units across India.",
+    },
+    {
+      id: "naman-kunhappan",
+      name: "Naman Kunhappan",
+      role: "Head of AI & Technology",
+      department: "Technology",
+      bio: "Builds the software, data and AI tools that help us track quality, turnaround and performance across the network.",
+    },
+    {
+      id: "gaurav-joshi",
+      name: "Gaurav Joshi",
+      role: "Head of Engineering",
+      department: "Engineering",
+      bio: "Leads engineering and systems work that keeps our plants and technology running, from infrastructure to process improvements.",
     },
   ] satisfies TeamMember[],
 };
@@ -718,31 +734,64 @@ export const companyFacts = [
 ];
 
 // Brand story timeline (compiled from press + the legacy site).
+export type TimelineEntry = {
+  year: string;
+  title: string;
+  text?: string;
+  textBold?: boolean;
+};
+
 export const timeline = [
   {
-    year: "2013",
-    title: "The idea is born",
-    text: "Shourya Jain sets out to organise India's unorganised laundry sector, one of the first Indian companies to run a managed laundromat model where soiled, stained laundry is finished in a clean, hygienic environment within 24 hours.",
-  },
-  {
     year: "2014",
-    title: "The Laundry Bag™ launches",
-    text: "The brand formally launches in Raipur, built on a simple promise: we never mix one client's linen with anyone else's, processed with professional, state-of-the-art equipment and continuous personal care.",
+    title: "The Laundry Bag™ sets up its first on campus laundromatte at Symbiosis, Pune",
+    text: "",
   },
   {
-    year: "B2B expansion",
-    title: "Hotels & hospitals",
-    text: "The Laundry Bag scales into hospitality and healthcare, running laundry and linen programmes for leading hotel chains (Hyatt, Marriott, Hilton, Taj, Novotel) and major hospitals (Tata Medical Center, Balco Medical Center, Lata Mangeshkar Hospital) across India.",
+    year: "2015",
+    title:
+      "The Laundry Bag™ starts its On-Demand Laundry & Delicate Garment Care facility in Raipur with a focus to cater to the emerging retail market",
+    text: "",
   },
   {
-    year: "Scale-up",
-    title: "Central processing unit",
-    text: "A central processing unit comes online in Raipur (Chhattisgarh), supported by a managed logistics network that keeps service consistent across the cities we serve.",
+    year: "2016",
+    title: "The Laundry Bag™ starts commercial laundry operations in Delhi on a hub and spoke model.",
+    text: "",
   },
   {
-    year: "Today",
-    title: "Built-Own-Operate platform",
-    text: "The Laundry Bag operates as a linen partner on a Built-Own-Operate platform for hotels, hospitals and enterprises across the country, present in 18 cities with 30+ operational units.",
+    year: "2017",
+    title: "The Laundry Bag™ sets up its first Build own operate Laundry for a Hotel",
+    text: "",
+  },
+  {
+    year: "2018",
+    title: "The Laundry Bag™ scales up operations by starting 5 new Hotel & Hospital projects on Build - Own - Operate Model",
+    text: "",
+  },
+  {
+    year: "2019",
+    title: "The Laundry Bag™ signs a major deal with Girbau for purchase and distribution of Laundry Equipment",
+    text: "",
+  },
+  {
+    year: "2020",
+    title: "The Laundry Bag™ begins consolidation of operations during covid",
+    text: "",
+  },
+  {
+    year: "2021",
+    title: "The Laundry Bag™ starts Optimisation models to help reduce operating costs for major Hotel Chains across India",
+    text: "",
+  },
+  {
+    year: "2022 - 2025",
+    title: "The Laundry Bag™ sets up multiple units across India on Build - Own - Operate & Hy-brid Models to become a leader in its segment with 30+ projects in 18 cities",
+    text: "",
+  },
+  {
+    year: "2026",
+    title: "The Laundry Bag™ is setting up a full scale linen manufacturing unit & a 3 MW solar power plant to further scale operations through various innovative models while aiming at generating 100% of the consumed power across India through sustainable means.",
+    text: "",
   },
 ];
 
@@ -777,9 +826,14 @@ export const usps = [
 // "Why TLB", quantitative proof points, animated as a stat band.
 export const whyTlbStats = [
   { value: "12+", label: "Years of expertise", icon: "clock" },
-  { value: "500+", label: "Trained engineers", icon: "users" },
+  { value: "500+", label: "Skilled employees", icon: "users" },
   { value: "18", label: "Cities", icon: "pin" },
   { value: "30+", label: "Operational units", icon: "factory" },
+];
+
+export const whyTlbStatGroups = [
+  { badge: "Network & scale", stats: whyTlbStats.slice(2, 4) },
+  { badge: "People & experience", stats: whyTlbStats.slice(0, 2) },
 ];
 
 // "Why TLB", qualitative trust tiles shown alongside the stat band.
@@ -793,7 +847,7 @@ export const whyTlbFeatures = [
   },
   {
     badge: "Third-generation business",
-    title: "Stable, equity-backed heritage",
+    title: "Equity backed. Built on Values.",
     description:
       "A largely equity-funded, third-generation enterprise, financially solid and built for the long term. The partner you choose today is the partner you keep.",
     icon: "shield",

@@ -6,7 +6,7 @@ import Icon from "./Icon";
 
 const companyLinks = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "Our Story" },
+  { to: "/about", label: "Our Journey" },
   { to: "/our-team", label: "Our Team" },
   { to: "/locations", label: "Locations" },
   { to: "/clients", label: "Clients" },

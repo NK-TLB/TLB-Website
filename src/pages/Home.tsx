@@ -6,13 +6,14 @@ import SectionHeading from "../components/SectionHeading";
 import Marquee from "../components/Marquee";
 import IndiaMap from "../components/IndiaMap";
 import CountUp from "../components/CountUp";
+import WhyChooseUsGrid from "../components/WhyChooseUsGrid";
 import {
   clientLogos,
   homeServices,
   howItWorks,
   site,
   whyTlbFeatures,
-  whyTlbStats,
+  whyTlbStatGroups,
 } from "../data/site";
 
 export default function Home() {
@@ -51,18 +52,8 @@ export default function Home() {
               From leading hotel chains and major hospitals to luxury resorts
               and medical centres, we run cost-effective, consistent commercial
               laundry and linen programmes for institutions of every size, on
-              your premises, off-site or on a managed linen-rental model. We
-              never mix one client&apos;s linen with anyone else&apos;s.
+              your premises, off-site or on a managed linen-rental model.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={`tel:+91${site.phoneRaw}`} className="btn-primary">
-                <Icon name="phone" className="h-4 w-4" />
-                {site.phoneDisplay}
-              </a>
-              <Link to="/contact" className="btn-secondary">
-                Request a quote
-              </Link>
-            </div>
           </div>
 
           {/* India coverage map */}
@@ -122,7 +113,7 @@ export default function Home() {
       {/* ===================== OPERATIONAL MODELS ===================== */}
       <section className="section section-tint">
         <div className="container-page">
-          <SectionHeading title="What We Do" />
+          <SectionHeading eyebrow="Services" title="What We Do" />
           <div className="mt-12 grid gap-6 md:grid-cols-3 lg:gap-8">
             {homeServices.map((s, i) => (
               <Reveal key={s.title} delay={i * 100}>
@@ -141,10 +132,6 @@ export default function Home() {
                     <p className="relative mt-3 flex-1 text-sm leading-relaxed text-ink-600">
                       {s.description}
                     </p>
-                    <span className="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition group-hover:text-brand-700">
-                      Learn more
-                      <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
-                    </span>
                   </div>
                 </Link>
               </Reveal>
@@ -153,14 +140,33 @@ export default function Home() {
         </div>
       </section>
 
+      <WhyChooseUsGrid />
+
       {/* ===================== WHY TLB ===================== */}
-      <section className="section">
+      <section className="section section-tint">
         <div className="container-page relative">
-          <SectionHeading title="Why Choose Us" />
+          <SectionHeading eyebrow="Why us" title="Our Strength" />
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:auto-rows-fr">
-            {/* Feature tile, Girbau */}
+            {/* Feature tile, equity-backed */}
             <Reveal>
+              <article className="card card-hover group relative h-full">
+                <div className="card-inner flex h-full flex-col p-6 sm:p-8">
+                <span className="w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
+                  {whyTlbFeatures[1].badge}
+                </span>
+                <h3 className="mt-6 font-display text-xl font-bold text-ink-900">
+                  {whyTlbFeatures[1].title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-600">
+                  {whyTlbFeatures[1].description}
+                </p>
+                </div>
+              </article>
+            </Reveal>
+
+            {/* Feature tile, Girbau */}
+            <Reveal delay={90}>
               <article className="card card-hover group relative h-full">
                 <div className="card-inner flex h-full flex-col p-6 sm:p-8">
                 <span className="relative w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
@@ -185,12 +191,19 @@ export default function Home() {
             </Reveal>
 
             {/* Stat tiles, paired two-up */}
-            {[whyTlbStats.slice(0, 2), whyTlbStats.slice(2, 4)].map((pair, p) => (
-              <Reveal key={p} delay={(p + 1) * 90}>
+            {whyTlbStatGroups.map((group, p) => (
+              <Reveal key={group.badge} delay={(p + 2) * 90}>
                 <article className="card card-hover group relative h-full">
-                  <div className="card-inner flex h-full items-center p-6 sm:p-8">
-                  <dl className="grid w-full grid-cols-2 items-center divide-x divide-ink-100">
-                    {pair.map((s) => (
+                  <div className="card-inner flex h-full flex-col p-6 sm:p-8">
+                  <span className="relative w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
+                    {group.badge}
+                  </span>
+                  <dl className="relative mt-6 grid w-full flex-1 grid-cols-2 items-center">
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute bottom-2 left-1/2 top-2 z-[1] w-px -translate-x-1/2 rounded-full accent-line-v"
+                    />
+                    {group.stats.map((s) => (
                       <div
                         key={s.label}
                         className="flex flex-col items-center px-5 text-center first:pl-0 last:pr-0"
@@ -211,34 +224,14 @@ export default function Home() {
                 </article>
               </Reveal>
             ))}
-
-            {/* Feature tile, equity-backed */}
-            <Reveal delay={3 * 90}>
-              <article className="card card-hover group relative h-full">
-                <div className="card-inner flex h-full flex-col p-6 sm:p-8">
-                <span className="w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
-                  {whyTlbFeatures[1].badge}
-                </span>
-                <span className="mt-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
-                  <Icon name={whyTlbFeatures[1].icon} className="h-6 w-6" />
-                </span>
-                <h3 className="mt-5 font-display text-xl font-bold text-ink-900">
-                  {whyTlbFeatures[1].title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-600">
-                  {whyTlbFeatures[1].description}
-                </p>
-                </div>
-              </article>
-            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ===================== HOW IT WORKS ===================== */}
-      <section className="section section-tint">
+      <section className="section">
         <div className="container-page">
-          <SectionHeading title="How We Partner" />
+          <SectionHeading eyebrow="Our process" title="How We Partner" />
 
           {/* Desktop — numbered progress connector aligned to the cards */}
           <div
@@ -296,9 +289,9 @@ export default function Home() {
       </section>
 
       {/* ===================== CONTACT ===================== */}
-      <section className="section">
+      <section className="section section-tint">
         <div className="container-page">
-          <SectionHeading title="Get In Touch" />
+          <SectionHeading eyebrow="Contact" title="Get In Touch" />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <a
               href={`tel:+91${site.phoneRaw}`}

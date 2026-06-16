@@ -104,9 +104,11 @@ export default function Timeline() {
                       <h3 className="font-display text-xl font-bold text-ink-900 sm:text-[1.35rem]">
                         {t.title}
                       </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-ink-600">
-                        {t.text}
-                      </p>
+                      {t.text && (
+                        <p className="mt-3 text-sm leading-relaxed text-ink-600">
+                          {t.text}
+                        </p>
+                      )}
                     </div>
                     </div>
                   </article>

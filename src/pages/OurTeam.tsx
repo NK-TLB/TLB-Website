@@ -3,7 +3,6 @@ import Icon from "../components/Icon";
 import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
-import SectionHeading from "../components/SectionHeading";
 import TeamMemberCard from "../components/TeamMemberCard";
 import { headOfficeTeam, site } from "../data/site";
 
@@ -17,23 +16,15 @@ export default function OurTeam() {
       />
 
       <PageHero
-        eyebrow="Our team"
-        title="Head office leadership & support"
-        description={`Based at our Raipur headquarters, this team coordinates programmes for hotels and hospitals across ${site.cities.length}+ cities.`}
+        eyebrow="Our Team"
+        title="Pillars of our organisation"
+        description={headOfficeTeam.intro}
         crumbs={[{ label: "Home", to: "/" }, { label: "Our Team" }]}
       />
 
       <section className="section">
         <div className="container-page">
-          <SectionHeading
-            align="left"
-            eyebrow={`Head office · ${headOfficeTeam.location}`}
-            title="The people at the centre of our network"
-            description={headOfficeTeam.intro}
-            showRule={false}
-          />
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {headOfficeTeam.members.map((member, i) => (
               <Reveal key={member.id} delay={i * 60}>
                 <TeamMemberCard member={member} />

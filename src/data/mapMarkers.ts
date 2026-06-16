@@ -233,6 +233,17 @@ export const mapMarkers: MapMarker[] = [
   },
 ];
 
+/** Raipur and Naya Raipur share one metro in footprint totals. */
+const cityGroupById: Record<string, string> = {
+  raipur: "raipur",
+  "naya-raipur": "raipur",
+};
+
+/** Distinct cities for network counts (grouped metros count once). */
+export function uniqueCityCount(markers: MapMarker[] = mapMarkers): number {
+  return new Set(markers.map((m) => cityGroupById[m.id] ?? m.id)).size;
+}
+
 /** The headquarters marker, used as the origin for the connecting arcs. */
 export const HQ_MARKER = mapMarkers.find((m) => m.type === "hq")!;
 

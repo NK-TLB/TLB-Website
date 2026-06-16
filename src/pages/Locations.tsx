@@ -27,12 +27,28 @@ export default function Locations() {
       <section className="section">
         <div className="container-page">
           <Reveal>
-            <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
-              <div className="accent-border-2rem-inner p-6 sm:p-8 lg:p-8">
-                <span aria-hidden="true" className="accent-hairline" />
-                <IndiaMap variant="full" />
-              </div>
-            </article>
+            <div className="group relative">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-4 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.09] blur-3xl"
+              />
+              <article className="accent-border relative overflow-hidden rounded-[2rem] shadow-lift">
+                <div className="accent-border-2rem-inner relative overflow-hidden p-6 sm:p-8 lg:p-10">
+                  <span aria-hidden="true" className="accent-hairline" />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-100/25 blur-3xl"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -bottom-32 left-1/4 h-64 w-64 rounded-full bg-accent-400/10 blur-3xl"
+                  />
+                  <div className="relative">
+                    <IndiaMap variant="full" />
+                  </div>
+                </div>
+              </article>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -97,7 +113,7 @@ export default function Locations() {
                           key={item.label}
                           className="accent-border rounded-2xl transition duration-300 hover:-translate-y-0.5 hover:shadow-soft"
                         >
-                          <div className="flex items-start gap-4 rounded-[calc(1rem-1px)] bg-brand-50/40 p-4 transition duration-300 hover:bg-brand-50/70">
+                          <div className="surface-inset flex items-start gap-4 rounded-[calc(1rem-1px)] p-4">
                             <span aria-hidden="true" className="accent-hairline" />
                           <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-soft ring-1 ring-white/20">
                             <Icon name={item.icon} className="h-5 w-5" />

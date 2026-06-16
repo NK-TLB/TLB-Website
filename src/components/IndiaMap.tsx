@@ -4,6 +4,7 @@ import Icon from "./Icon";
 import {
   HQ_MARKER,
   mapMarkers,
+  uniqueCityCount,
   type MapMarker,
   type MarkerType,
 } from "../data/mapMarkers";
@@ -87,10 +88,16 @@ export default function IndiaMap({
   const counts = useMemo(() => {
     const hotels = mapMarkers.filter((m) => m.type === "hotel").length;
     const hospitals = mapMarkers.filter((m) => m.type === "hospital").length;
-    return { cities: mapMarkers.length, hotels, hospitals };
+    return { cities: uniqueCityCount(), hotels, hospitals };
   }, []);
 
   const currentId = active ?? selectedId;
+
+  const statItems = [
+    { value: String(counts.cities), label: "Cities", icon: "pin" as const },
+    { value: "30+", label: "Units", icon: "factory" as const },
+    { value: `${counts.hospitals}+`, label: "Hospitals", icon: "shield" as const },
+  ];
 
   // Draw the arcs in once the map scrolls into view.
   useEffect(() => {
@@ -262,18 +269,19 @@ export default function IndiaMap({
   );
 
   const legend = (
-    <ul className="flex flex-wrap items-center gap-3">
+    <ul className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
       {[
         { className: "bg-gradient-to-br from-ink-700 to-ink-950", label: "Head Office", size: "h-3 w-3" },
         { className: "bg-gradient-to-br from-brand-300 to-brand-600", label: "Hotels & resorts", size: "h-2.5 w-2.5" },
         { className: "bg-gradient-to-br from-accent-400 to-accent-600", label: "Hospitals", size: "h-2.5 w-2.5" },
       ].map((item) => (
-        <li
-          key={item.label}
-          className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50/60 px-3 py-1.5 text-xs font-semibold text-ink-700"
-        >
-          <span className={`rounded-full ring-2 ring-white ${item.size} ${item.className}`} />
-          {item.label}
+        <li key={item.label}>
+          <div className="accent-chip">
+            <span className="accent-chip-inner inline-flex items-center gap-2 text-xs font-semibold text-ink-700">
+              <span className={`rounded-full ring-2 ring-white ${item.size} ${item.className}`} />
+              {item.label}
+            </span>
+          </div>
         </li>
       ))}
     </ul>
@@ -295,91 +303,93 @@ export default function IndiaMap({
   }
 
   return (
-    <div className={`grid items-start gap-8 lg:grid-cols-2 lg:gap-10 ${className}`}>
-      <div className="flex min-w-0 flex-col gap-5">
-        <div className="accent-border rounded-3xl shadow-soft">
-          <div className="relative overflow-hidden rounded-[calc(1.5rem-1px)] bg-gradient-to-br from-brand-50/60 via-white to-brand-50/20 p-5 sm:p-6">
-            <span aria-hidden="true" className="accent-hairline" />
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-200/30 blur-3xl"
-          />
-          <div className="relative">{map}</div>
+    <div className={`flex flex-col gap-8 lg:gap-10 ${className}`}>
+      <div className="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
+        {/* Map + stats */}
+        <div className="flex min-w-0 flex-col gap-4">
+          <div className="accent-border rounded-3xl shadow-soft">
+            <div className="surface-map-well relative overflow-hidden rounded-[calc(1.5rem-1px)] p-5 sm:p-6">
+              <span aria-hidden="true" className="accent-hairline" />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-16 left-1/2 h-48 w-56 -translate-x-1/2 rounded-full bg-brand-100/25 blur-3xl"
+              />
+              <div className="relative">{map}</div>
+            </div>
           </div>
-        </div>
 
-        <div className="accent-border overflow-hidden rounded-3xl shadow-soft">
-          <div className="overflow-hidden rounded-[calc(1.5rem-1px)] bg-gradient-to-br from-white via-brand-50/30 to-white">
-            <span aria-hidden="true" className="accent-hairline" />
-          <dl className="grid grid-cols-3 divide-x divide-brand-100/70">
-            {[
-              { value: "18", label: "Cities", icon: "pin" },
-              { value: "30+", label: "Operational units", icon: "factory" },
-              { value: `${counts.hospitals}+`, label: "Hospitals", icon: "shield" },
-            ].map((s) => (
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            {statItems.map((s) => (
               <div
                 key={s.label}
-                className="group relative px-3 py-5 text-center transition duration-300 hover:bg-brand-50/50 sm:px-4"
+                className="accent-box-2xl group transition duration-300 hover:-translate-y-0.5 hover:shadow-soft"
               >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-4 -top-4 h-16 w-16 rounded-full bg-brand-100/40 blur-2xl opacity-0 transition duration-300 group-hover:opacity-100"
-                />
-                <dt className="relative flex items-center justify-center gap-1.5 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-brand-600">
-                  <Icon name={s.icon} className="h-3.5 w-3.5 opacity-80" />
-                  {s.label}
-                </dt>
-                <dd className="relative mt-2 font-display text-2xl font-extrabold leading-none text-ink-900 sm:text-[1.75rem]">
-                  {s.value}
-                </dd>
+                <div className="accent-box-2xl-inner bg-gradient-to-br from-white to-[rgb(var(--page-bg))] px-2.5 py-3 text-center sm:px-3">
+                  <p className="flex items-center justify-center gap-1 text-[0.58rem] font-bold uppercase tracking-[0.1em] text-ink-500 sm:text-[0.62rem]">
+                    <Icon name={s.icon} className="h-3 w-3 opacity-70" />
+                    <span className="truncate">{s.label}</span>
+                  </p>
+                  <p className="mt-1.5 font-display text-xl font-extrabold leading-none text-brand-600 sm:text-2xl">
+                    {s.value}
+                  </p>
+                </div>
               </div>
             ))}
-          </dl>
           </div>
         </div>
-      </div>
 
-      <div className="flex min-w-0 flex-col">
-        <div className="accent-border flex flex-1 flex-col rounded-3xl">
-          <div className="flex flex-1 flex-col rounded-[calc(1.5rem-1px)] bg-brand-50/25 p-5 sm:p-6">
+        {/* City list */}
+        <div className="accent-border flex min-h-0 min-w-0 flex-col overflow-hidden rounded-2xl shadow-sm">
+          <div className="relative flex min-h-[min(28rem,62vh)] flex-1 flex-col overflow-hidden rounded-[calc(1rem-1px)] bg-gradient-to-b from-[rgb(var(--page-bg))] to-white lg:min-h-0">
             <span aria-hidden="true" className="accent-hairline" />
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
-              Cities we serve
-            </p>
-            {legend}
-          </div>
-          <ul className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-            {mapMarkers.map((m) => {
-              const isOn = currentId === m.id;
-              return (
-                <li key={m.id}>
-                  <button
-                    type="button"
-                    onMouseEnter={() => setActive(m.id)}
-                    onMouseLeave={() => setActive(null)}
-                    onFocus={() => setActive(m.id)}
-                    onBlur={() => setActive(null)}
-                    onClick={() => setSelectedId(m.id)}
-                    className={`accent-box-xl w-full text-left transition duration-200 hover:-translate-y-0.5 ${
-                      isOn ? "shadow-soft" : "hover:shadow-sm"
-                    }`}
-                  >
-                    <span
-                      className={`accent-box-xl-inner flex w-full items-center gap-2 px-3 py-2.5 text-sm font-semibold ${
-                        isOn
-                          ? "bg-white text-brand-700"
-                          : "bg-white/90 text-ink-700 group-hover:bg-white hover:text-brand-800"
+            <div className="px-4 pt-4 pb-1 sm:px-5 sm:pt-5 sm:pb-1.5">
+              <div className="relative px-5 py-3">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-px accent-line-h"
+                />
+                <div className="relative">{legend}</div>
+              </div>
+            </div>
+
+            <ul className="grid flex-1 grid-cols-2 gap-1.5 overflow-y-auto px-3 pb-3 pt-1 [scrollbar-gutter:stable] sm:gap-2 sm:px-4 sm:pb-4 sm:pt-1.5 xl:grid-cols-3">
+              {mapMarkers.map((m) => {
+                const isOn = currentId === m.id;
+                return (
+                  <li key={m.id}>
+                    <div
+                      className={`accent-box-xl-thin h-full transition duration-200 ${
+                        isOn ? "shadow-sm" : "hover:-translate-y-px hover:shadow-sm"
                       }`}
                     >
-                    <span className={`h-2 w-2 shrink-0 rounded-full ${typeDotClass[m.type]}`} />
-                    <span className="truncate">{m.city}</span>
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+                      <button
+                        type="button"
+                        onMouseEnter={() => setActive(m.id)}
+                        onMouseLeave={() => setActive(null)}
+                        onFocus={() => setActive(m.id)}
+                        onBlur={() => setActive(null)}
+                        onClick={() => setSelectedId(m.id)}
+                        className={`accent-box-xl-thin-inner flex w-full items-center gap-2 px-3 py-2.5 text-left text-sm font-semibold transition duration-200 ${
+                          isOn
+                            ? "bg-gradient-to-br from-brand-50/70 via-white to-white text-brand-800"
+                            : "bg-gradient-to-br from-white to-[rgb(var(--page-bg))] text-ink-700 hover:from-white hover:to-brand-50/25 hover:text-brand-800"
+                        }`}
+                      >
+                        <span
+                          className={`h-2 w-2 shrink-0 rounded-full ring-2 ring-white ${typeDotClass[m.type]}`}
+                        />
+                        <span className="truncate">{m.city}</span>
+                        {m.type === "hq" && (
+                          <span className="ml-auto shrink-0 rounded bg-ink-900 px-1.5 py-0.5 text-[0.55rem] font-bold uppercase tracking-wider text-white">
+                            HQ
+                          </span>
+                        )}
+                      </button>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </div>

@@ -113,20 +113,39 @@ export default function Navbar() {
       return;
     }
 
+    let frame = 0;
     const update = () => {
-      const navRect = nav.getBoundingClientRect();
-      const linkRect = link.getBoundingClientRect();
+      // offsetLeft/offsetWidth measure from the nav's padding box (the same
+      // containing block our absolute indicator uses), so this avoids the
+      // 1px border-width skew you get with getBoundingClientRect math.
       setNavIndicator({
-        left: linkRect.left - navRect.left,
-        width: linkRect.width,
+        left: link.offsetLeft,
+        width: link.offsetWidth,
       });
     };
 
-    const frame = requestAnimationFrame(update);
-    window.addEventListener("resize", update);
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+
+    schedule();
+    window.addEventListener("resize", schedule);
+
+    const ro =
+      typeof ResizeObserver !== "undefined" ? new ResizeObserver(schedule) : null;
+    ro?.observe(nav);
+    ro?.observe(link);
+
+    // Web fonts can finish loading after first paint; re-measure once they do.
+    if (typeof document !== "undefined" && document.fonts?.ready) {
+      document.fonts.ready.then(schedule).catch(() => {});
+    }
+
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("resize", schedule);
+      ro?.disconnect();
     };
   }, [activeNavIndex, pathname]);
 
@@ -285,14 +304,14 @@ export default function Navbar() {
             <Logo className="h-[3.25rem] w-auto transition duration-300 group-hover:scale-[1.01] sm:h-14 lg:h-[3.75rem]" />
           </Link>
 
-          <nav className="hidden flex-1 items-center justify-center lg:flex">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center lg:flex">
             <div
               ref={navRef}
-              className="relative flex items-center gap-0.5 rounded-full border border-brand-100/70 bg-white/45 p-1.5 shadow-[inset_0_1px_0_rgb(255_255_255/0.7),0_1px_2px_rgb(var(--shadow-rgb)/0.06)] backdrop-blur-md xl:gap-1"
+              className="relative flex min-w-0 items-center gap-0.5 rounded-full border border-brand-100/70 bg-white/45 p-1.5 shadow-[inset_0_1px_0_rgb(255_255_255/0.7),0_1px_2px_rgb(var(--shadow-rgb)/0.06)] backdrop-blur-md xl:gap-1"
             >
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute top-1/2 h-[calc(100%-12px)] -translate-y-1/2 rounded-full bg-white shadow-[0_6px_18px_-8px_rgb(var(--shadow-rgb)/0.32)] ring-1 ring-brand-100/70 transition-all duration-300 ease-out motion-reduce:transition-none"
+              className="pointer-events-none absolute inset-y-1.5 rounded-full bg-white shadow-[0_2px_8px_-2px_rgb(var(--shadow-rgb)/0.22)] ring-1 ring-brand-100/70 transition-all duration-300 ease-out motion-reduce:transition-none"
               style={{
                 left: navIndicator.left,
                 width: navIndicator.width,
@@ -308,7 +327,7 @@ export default function Navbar() {
                 to={link.to}
                 end={link.to === "/"}
                 className={({ isActive }) =>
-                  `relative z-[1] whitespace-nowrap rounded-full px-3.5 py-2 text-[0.8125rem] font-semibold tracking-[0.005em] transition-colors duration-200 xl:px-4 ${
+                  `relative z-[1] whitespace-nowrap rounded-full px-3 py-2 text-[0.8125rem] font-semibold tracking-[0.005em] transition-colors duration-200 xl:px-4 ${
                     isActive
                       ? "text-brand-800"
                       : "text-ink-600 hover:text-brand-700"
