@@ -137,6 +137,7 @@ const personSchema = {
     site.socials.linkedin,
     "https://www.linkedin.com/in/shourya-jain-raipur",
     "https://www.wikidata.org/wiki/Q140263424",
+    "https://www.crunchbase.com/person/shourya-jain-0b60",
   ],
   knowsAbout: [
     "Commercial Laundry",
