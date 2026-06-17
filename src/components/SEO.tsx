@@ -68,6 +68,7 @@ const localBusinessSchema = {
     site.socials.twitter,
     site.socials.instagram,
     site.socials.linkedin,
+    "https://www.crunchbase.com/organization/the-laundry-bag-tm",
   ],
   keywords: seoKeywords.join(", "),
 };
@@ -93,6 +94,7 @@ const organizationSchema = {
     site.socials.twitter,
     site.socials.instagram,
     site.socials.linkedin,
+    "https://www.crunchbase.com/organization/the-laundry-bag-tm",
   ],
 };
 
