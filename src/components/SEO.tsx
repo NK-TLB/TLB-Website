@@ -133,7 +133,7 @@ const personSchema = {
     "https://www.shouryainfraventure.com/about.html",
     "https://www.shouryainfraventure.com/",
     site.socials.linkedin,
-    "https://www.linkedin.com/in/shourya-jain-1b2562162",
+    "https://www.linkedin.com/in/shourya-jain-raipur",
     "https://cginnovate.org/2020/08/if-its-dirty-we-got-to-clean-it-the-laundry-bag/",
     "https://yourstory.com/mystory/baff4ffd31-the-laundry-bag",
     "https://rocketreach.co/the-laundry-bagtm-profile_b55667c3f639700d",

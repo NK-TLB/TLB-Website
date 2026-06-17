@@ -664,7 +664,7 @@ export const founders = [
     name: "Shourya Jain",
     role: "Founder",
     bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's mission to organise India's unorganised laundry sector, building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises across the country. He is also the third-generation real estate partner at Shourya Infraventure, his family's Raipur infrastructure firm established in 1958.",
-    href: "https://www.linkedin.com/in/shourya-jain-1b2562162",
+    href: "https://www.linkedin.com/in/shourya-jain-raipur",
     image: "/images/team/shourya-jain.jpg",
   },
 ];
@@ -684,7 +684,7 @@ export type TeamMember = {
 export const headOfficeTeam = {
   location: "Raipur, Chhattisgarh",
   intro:
-    "Our Raipur head office brings together leadership, operations, commercial and support functions that steer The Laundry Bag's network across India.",
+    "The Laundry Bag™ is built on core values of integrity and honesty. We have a very strong and experienced team of young and talented individuals who handle their respective vertical with the customers expectations in mind.",
   members: [
     {
       id: "shourya-jain",
@@ -693,28 +693,28 @@ export const headOfficeTeam = {
       department: "Leadership",
       bio: "Founded The Laundry Bag in 2013 and continues to back its growth, setting the company's direction across hospitality and healthcare laundry programmes nationwide.",
       image: "/images/team/shourya-jain.jpg",
-      linkedIn: "https://www.linkedin.com/in/shourya-jain-1b2562162",
+      linkedIn: "https://www.linkedin.com/in/shourya-jain-raipur",
     },
     {
-      id: "prakkhar-singh",
-      name: "Prakkhar Singh",
+      id: "prakhar-singh",
+      name: "Prakhar Singh",
       role: "Head of Projects",
       department: "Projects",
-      bio: "Plans and delivers new site setups and client rollouts, taking each project from initial scoping through to a fully running operation.",
+      bio: "Almost 10 years into the company, heads new business development, project design, pre operations and commissioning of all projects across India.",
     },
     {
       id: "nirmal-kumar",
       name: "Nirmal Kumar",
-      role: "Head of Technical",
-      department: "Technical",
+      role: "Deputy Head of Projects",
+      department: "Projects",
       bio: "Oversees plant machinery, maintenance and technical standards so every laundry unit runs reliably, day after day.",
     },
     {
       id: "deep-titermare",
       name: "Deep Titermare",
-      role: "Add designation",
-      department: "Leadership",
-      bio: "Add a short bio describing this person's role and responsibilities at The Laundry Bag.",
+      role: "Head of Operations",
+      department: "Operations",
+      bio: "Leads day-to-day operations across client accounts and on-site teams, ensuring processing quality, turnaround and service delivery across the network.",
     },
     {
       id: "akash-singh-baghel",
