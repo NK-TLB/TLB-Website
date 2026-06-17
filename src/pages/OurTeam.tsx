@@ -18,7 +18,14 @@ export default function OurTeam() {
 
       <PageHero
         title="Pillars of our organisation"
-        description={headOfficeTeam.intro}
+        description={
+          <>
+            <strong className="font-semibold text-ink-900">
+              The Laundry Bag™
+            </strong>
+            {headOfficeTeam.intro.slice("The Laundry Bag™".length)}
+          </>
+        }
         crumbs={[{ label: "Home", to: "/" }, { label: "Our Team" }]}
       />
 

@@ -40,14 +40,14 @@ export const site = {
   contacts: {
     enquiries: {
       role: "Head of Projects",
-      blurb: "For hotels, hospitals and businesses who want us to work for them.",
+      blurb: "For hotels, hospitals and businesses that want to work with us.",
       email: "prakhar@thelaundrybag.co.in",
       phoneDisplay: "(+91) 8085990015",
       phoneRaw: "8085990015",
     },
     careers: {
       role: "Head of HR",
-      blurb: "For people looking for a job who want to work with us.",
+      blurb: "For people looking to join our organisation.",
       email: "hr@thelaundrybag.co.in",
     },
   },
@@ -691,7 +691,7 @@ export const headOfficeTeam = {
       name: "Shourya Jain",
       role: "Investor & Founder",
       department: "Leadership",
-      bio: "Founded The Laundry Bag in 2013 and continues to back its growth, setting the company's direction across hospitality and healthcare laundry programmes nationwide.",
+      bio: "Founder and Investor in The Laundry Bag™. Key responsible for strategy, growth plans, vision allignment, backward-forward integration to suit the requirements of evolving markets and requirements.",
       image: "/images/team/shourya-jain.jpg",
       linkedIn: "https://www.linkedin.com/in/shourya-jain-raipur",
     },
@@ -707,7 +707,7 @@ export const headOfficeTeam = {
       name: "Nirmal Kumar",
       role: "Deputy Head of Projects",
       department: "Projects",
-      bio: "Oversees plant machinery, maintenance and technical standards so every laundry unit runs reliably, day after day.",
+      bio: "Almost 9 years into the company, oversees new installations, low sides, equipment and technology innovation along side product development and management.",
     },
     {
       id: "deep-titermare",
