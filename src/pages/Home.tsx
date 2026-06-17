@@ -22,7 +22,6 @@ export default function Home() {
     <>
       <SEO
         path="/"
-        title="India's Leading Laundry Service Provider"
         description="The Laundry Bag is India's Leading Laundry Service Provider, commercial laundry, dry-cleaning and linen-management programmes for luxury hotels, resorts, hospitals and medical centres across India. On-premise, off-site or linen-rental models from our Raipur HQ."
       />
 

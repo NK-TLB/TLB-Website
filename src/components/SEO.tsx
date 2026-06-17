@@ -119,7 +119,7 @@ const personSchema = {
     "Shourya Jain Chhattisgarh",
   ],
   jobTitle:
-    "Founder, The Laundry Bag; Partner, Real Estate, Shourya Infraventure",
+    "Founder, The Laundry Bag; Partner, Shourya Infraventure",
   description:
     "Shourya Jain is a Raipur, Chhattisgarh based entrepreneur. He is the founder of The Laundry Bag, India's leading commercial laundry, dry-cleaning and linen-management brand, operating across Raipur and other Indian cities since 2013. He is also the third-generation real estate partner at Shourya Infraventure, the Jain family infrastructure firm of Raipur established in 1958.",
   nationality: { "@type": "Country", name: "India" },
