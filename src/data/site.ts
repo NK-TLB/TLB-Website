@@ -53,13 +53,13 @@ export const site = {
   },
 
   address: {
-    street: "Shankar Nagar, TV Tower Road",
+    street: "Kusum Complex, Near Jain Mandir, T.V. Tower Road, Shankar Nagar",
     city: "Raipur",
     region: "Chhattisgarh",
     postalCode: "492007",
     country: "India",
     countryCode: "IN",
-    full: "Shankar Nagar, TV Tower Road, Raipur, Chhattisgarh, India - 492007",
+    full: "Kusum Complex, Near Jain Mandir, T.V. Tower Road, Shankar Nagar, Raipur, Chhattisgarh, India - 492007",
     mapsHref:
       "https://www.google.com/maps/search/?api=1&query=The+Laundry+Bag+Shankar+Nagar+TV+Tower+Road+Raipur",
     mapsEmbedHref:
