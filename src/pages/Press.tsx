@@ -14,6 +14,8 @@ import { pressFeature, pressClippings, ratanTata } from "../data/site";
 const BASE_URL = "https://www.thelaundrybag.co.in";
 const abs = (p: string) => `${BASE_URL}${p}`;
 const PUBLISHED = "2025-12-25";
+// Full ISO 8601 with IST offset; Google requires a timezone on VideoObject.uploadDate.
+const PUBLISHED_DT = "2025-12-25T11:00:00+05:30";
 
 const newsArticleSchema = {
   "@context": "https://schema.org",
@@ -43,7 +45,7 @@ const videoSchema = {
   name: "The Laundry Bag × CSSDA, MoU ceremony at Chhattisgarh Skill Tech",
   description: pressFeature.video.summary,
   thumbnailUrl: [abs(pressFeature.video.poster)],
-  uploadDate: PUBLISHED,
+  uploadDate: PUBLISHED_DT,
   duration: "PT43S",
   contentUrl: abs(pressFeature.video.mp4),
   inLanguage: "hi",
@@ -61,6 +63,10 @@ const imageSchemas = [
     contentUrl: abs(`${ratanTata.image.base}-1200.jpg`),
     caption: ratanTata.image.alt,
     creditText: "The Laundry Bag",
+    creator: { "@type": "Organization", name: "The Laundry Bag", url: BASE_URL },
+    copyrightNotice: "© The Laundry Bag",
+    license: abs("/privacy-policy"),
+    acquireLicensePage: abs("/contact"),
   },
 ];
 
