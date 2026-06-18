@@ -226,6 +226,12 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/commercial"
+  to = "/clients"
+  status = 301
+  force = true
+
 # SPA fallback — every non-asset URL serves index.html so React Router can handle it
 [[redirects]]
   from = "/*"

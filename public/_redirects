@@ -2,32 +2,33 @@
 # Kept here so legacy Google-indexed links keep working with a 301.
 /index.php                                                                  /                       301!
 /index.php/pages/frequently-asked-questions                                 /faq                    301!
-/index.php/pages/commercial-laundry-for-institutions-and-businesses         /commercial             301!
-/index.php/pages/laundry-and-dry-cleaning-for-residents-and-businesses      /commercial             301!
-/index.php/pages/laundry-and-dry-cleaning-for-residents-and-students        /commercial             301!
-/index.php/pages/what-we-do                                                 /commercial             301!
+/index.php/pages/commercial-laundry-for-institutions-and-businesses         /clients                301!
+/index.php/pages/laundry-and-dry-cleaning-for-residents-and-businesses      /clients                301!
+/index.php/pages/laundry-and-dry-cleaning-for-residents-and-students        /clients                301!
+/index.php/pages/what-we-do                                                 /clients                301!
 /index.php/pages/who-we-are                                                 /about                  301!
 /index.php/pages/contact-us                                                 /contact                301!
 /index.php/pages/privacy-policy                                             /privacy-policy         301!
 /index.php/pages/delete-my-account                                          /contact                301!
 /pages/frequently-asked-questions                                           /faq                    301!
-/pages/commercial-laundry-for-institutions-and-businesses                   /commercial             301!
-/pages/laundry-and-dry-cleaning-for-residents-and-students                  /commercial             301!
-/pages/what-we-do                                                           /commercial             301!
+/pages/commercial-laundry-for-institutions-and-businesses                   /clients                301!
+/pages/laundry-and-dry-cleaning-for-residents-and-students                  /clients                301!
+/pages/what-we-do                                                           /clients                301!
 /pages/who-we-are                                                           /about                  301!
 /pages/contact-us                                                           /contact                301!
 /pages/privacy-policy                                                       /privacy-policy         301!
 /pages/delete-my-account                                                    /contact                301!
 
-# Legacy B2C route now folds into the B2B services page
-/services                                                                   /commercial             301!
-/what-we-do                                                                 /commercial             301!
+# Legacy B2C route now folds into the clients page
+/services                                                                   /clients                301!
+/what-we-do                                                                 /clients                301!
+/commercial                                                                 /clients                301!
 
 # /home/* tree from the legacy CI install
 /home/index.php/pages/frequently-asked-questions                            /faq                    301!
-/home/index.php/pages/commercial-laundry-for-institutions-and-businesses    /commercial             301!
-/home/index.php/pages/laundry-and-dry-cleaning-for-residents-and-students   /commercial             301!
-/home/index.php/pages/what-we-do                                            /commercial             301!
+/home/index.php/pages/commercial-laundry-for-institutions-and-businesses    /clients                301!
+/home/index.php/pages/laundry-and-dry-cleaning-for-residents-and-students   /clients                301!
+/home/index.php/pages/what-we-do                                            /clients                301!
 /home/index.php/pages/who-we-are                                            /about                  301!
 /home/index.php/pages/contact-us                                            /contact                301!
 /home/index.php/pages/privacy-policy                                        /privacy-policy         301!
