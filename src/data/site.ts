@@ -18,7 +18,7 @@ export const site = {
   promise: "Wash · Dry · Finish",
   motto: "India's Leading Laundry Service Provider",
   description:
-    "The Laundry Bag, India's Leading Laundry Service Provider. Professional commercial laundry, dry-cleaning and linen-management programmes for luxury hotels, resorts, hospitals and medical centres across India. Headquartered in Raipur with a central processing unit and fully-managed on-premise laundries. Founded by Shourya Jain. Trusted since 2013.",
+    "The Laundry Bag is one of India's leading commercial laundry, dry cleaning and linen management brands, founded by Shourya Jain in Raipur, Chhattisgarh in 2013. From our Raipur headquarters and central processing unit we run on-premise laundry units, off-site processing and linen rental programmes for luxury hotels, resorts, hospitals and institutions across more than 18 Indian cities.",
   founded: 2013,
 
   // Two distinct contact paths:
