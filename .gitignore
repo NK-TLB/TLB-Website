@@ -34,7 +34,3 @@ scripts/*.wav
 
 # Local Netlify folder
 .netlify
-
-# GFPGAN weights
-gfpgan/
-
