@@ -473,100 +473,6 @@ export const testimonials = [
   },
 ];
 
-export const commercialFeatures = [
-  {
-    title: "Linen & Laundry",
-    description:
-      "We collect, sort, pre-treat, wash, dry and finish your linen to specification, guest-room linen, towels, F&B, uniforms and patient linen, returned on a managed schedule.",
-    image: "/images/img_02.jpg",
-  },
-  {
-    title: "Dry Cleaning Services",
-    description:
-      "We use Lagoon Advanced Care for Dry-Clean-Only tags. Fast, easy and green cleaning solutions for professional textile care.",
-    image: "/images/img_03.jpg",
-  },
-  {
-    title: "Upholstery & Carpet Cleaning",
-    description:
-      "To keep your investment safe, we recommend professional deep cleaning your carpet every few months, and we are best at doing that.",
-    image: "/images/img_04.jpg",
-  },
-];
-
-export const commercialSubFeatures = [
-  {
-    title: "Sheets & Towels",
-    description:
-      "Our linen program covers a range of products appropriate for use in businesses of all types and sizes. From the bedding for a 100-bed hospital to the hand towels at a local coffee shop.",
-  },
-  {
-    title: "Janitorial Supplies",
-    description:
-      "We offer a flat weekly rental price for items which includes our sustainable laundering and delivery service. We are also available to launder items you may already own.",
-  },
-  {
-    title: "Entryway and Floor Mats",
-    description:
-      "We offer standard or customizable floor and entryway mats for a professional, clean appearance at your business that also increase safety and comfort for staff and customers.",
-  },
-  {
-    title: "Linen Rentals",
-    description:
-      "Save investments on all the linen you purchase for your business, just order from us according to your occupancy and we'll handle the rest.",
-  },
-  {
-    title: "All Under One Roof",
-    description:
-      "From Sofa, Carpets to Upholstery, we have it all under control for you.",
-  },
-];
-
-export const locations = [
-  {
-    city: "Raipur",
-    state: "Chhattisgarh",
-    role: "Headquarters · Central Processing Unit",
-    image: "/images/raipur-location.png",
-    description:
-      "Our headquarters and central processing unit at Shankar Nagar, equipped with state-of-the-art machinery. From here we run fully-managed on-premise units and linen programmes for Hyatt Raipur, DKS Hospital and Balco Medical Center, Naya Raipur, supported by a managed logistics network.",
-  },
-  {
-    city: "Goa",
-    state: "Goa",
-    role: "Luxury hospitality",
-    image: "/images/goa-location-new.png",
-    description:
-      "We manage linen for Goa's marquee hospitality, including Grand Hyatt Goa and Taj Exotica Goa, delivering five-star washing, finishing and linen-rental programmes for resorts and the guests they host.",
-  },
-  {
-    city: "Across India",
-    state: "18 cities",
-    role: "Hotels & Hospitals",
-    image: "/images/pune-location.png",
-    description:
-      "From Hilton Mumbai, JW Marriott Chandigarh and Novotel Chennai to Tata Medical Center Kolkata and Lata Mangeshkar Hospital Nagpur, our teams run laundry and linen programmes for leading hotels and hospitals nationwide.",
-  },
-];
-
-export const extraCities = [
-  { city: "Mumbai", note: "Linen & laundry for Hilton, Mumbai." },
-  { city: "Chennai", note: "Hyatt Regency and Novotel, Chennai." },
-  { city: "Kolkata", note: "Hyatt Regency and Tata Medical Center, Kolkata." },
-  { city: "Hyderabad", note: "Hyatt, Hyderabad." },
-  { city: "Bengaluru", note: "Hyatt Centric, Bangalore." },
-  { city: "Ahmedabad", note: "Hyatt Regency and Hyatt, Vastrapur." },
-  { city: "Jaipur", note: "Hyatt Place, Jaipur." },
-  { city: "Lucknow", note: "Hyatt Regency, Lucknow." },
-  { city: "Dehradun", note: "Hyatt Regency, Dehradun." },
-  { city: "Chandigarh", note: "JW Marriott, Chandigarh." },
-  { city: "Bodhgaya", note: "Hyatt Place, Bodhgaya." },
-  { city: "Pune", note: "Hyatt, Pune." },
-  { city: "Nagpur", note: "Lata Mangeshkar Hospital, Nagpur." },
-  { city: "Durg", note: "SIMS Hospital, Durg." },
-  { city: "Ranchi & Tirupati", note: "Tata Trust supported hospitals." },
-];
-
 export const faqs = [
   {
     category: "Working with hotels & hospitals",
@@ -1111,6 +1017,5 @@ export const seoKeywords = [
   "Shourya Jain Raipur Chhattisgarh",
 ];
 
-// Convenience aliases for back-compat.
-export const commercial = commercialFeatures;
+// Convenience alias for back-compat.
 export const stats = counters;

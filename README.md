@@ -24,16 +24,12 @@ npm run lint    # eslint
 
 ```
 public/            # static assets (logo, favicons, images, robots, sitemap, _redirects)
-  logo.png         # primary brand logo (used in UI, social, JSON-LD)
-  og-image.png     # 1200×630 social share image (Open Graph / Twitter)
-  favicon.svg      # scalable favicon (washer mark from the logo)
-  favicon.ico      # multi-size .ico (16/32/48) for browsers & Google
-  favicon-16/32/48/192/512.png, apple-touch-icon.png
-  icon-192/512-maskable.png  # maskable PWA icons
-  site.webmanifest # PWA manifest (icons, theme, name)
+docs/              # internal planning notes (not served by the site)
+media/             # press photo originals (input for npm run media:press)
+scripts/           # build helpers (press media pipeline, IndexNow ping, team frame tool)
 src/
   components/      # Layout, Navbar, Footer, Logo, Icon, SEO, PageHero, …
-  pages/           # Home, Commercial, Locations, About, Clients, FAQ, Contact, …
+  pages/           # Home, Locations, About, Clients, FAQ, Contact, …
   data/site.ts     # single source of truth for all content + SEO keywords
 ```
 

@@ -1,8 +1,6 @@
 // Geographic markers for the India operations map (see IndiaMap.tsx).
-//
-// Derived from the city footprint in site.ts (`locations`, `extraCities`,
-// `clientGroups`). Coordinates are approximate city centroids, accurate
-// enough for a stylised national map and trivial to nudge later.
+// Coordinates are approximate city centroids, accurate enough for a stylised
+// national map and trivial to nudge later.
 
 export type MarkerType = "hq" | "hotel" | "hospital" | "retail" | "city";
 
