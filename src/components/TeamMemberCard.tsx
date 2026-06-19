@@ -53,6 +53,9 @@ function Portrait({
             backgroundRepeat: "no-repeat",
             backgroundSize: `auto ${frame.scale}%`,
             backgroundPosition: `${frame.x}% ${frame.y}%`,
+            // Luminate-style filter: slightly brighter, more contrast, slightly warmer/more saturated
+            // Skip for Vivek Devnani as requested
+            filter: member.id === "vivek-devnani" ? "none" : "brightness(1.08) contrast(1.08) saturate(1.1) sepia(0.05)",
           }}
           className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"
         />

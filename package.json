@@ -7,10 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "postbuild": "node scripts/indexnow-ping.mjs",
     "lint": "eslint .",
-    "preview": "vite preview --port 3000",
-    "media:press": "node scripts/process-press-media.mjs"
+    "preview": "vite preview --port 3000"
   },
   "dependencies": {
     "react": "^19.2.6",
