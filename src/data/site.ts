@@ -692,7 +692,6 @@ export const headOfficeTeam = {
       role: "Investor & Founder",
       department: "Leadership",
       bio: "Founder and Investor in The Laundry Bag™. Key responsible for strategy, growth plans, vision allignment, backward-forward integration to suit the requirements of evolving markets and requirements.",
-      image: "/images/team/shourya-jain.jpg",
       linkedIn: "https://www.linkedin.com/in/shourya-jain-raipur",
     },
     {
@@ -701,6 +700,7 @@ export const headOfficeTeam = {
       role: "Head of Projects",
       department: "Projects",
       bio: "Almost 10 years into the company, heads new business development, project design, pre operations and commissioning of all projects across India.",
+      image: "/images/team/prakhar-singh.png",
     },
     {
       id: "nirmal-kumar",
@@ -708,6 +708,7 @@ export const headOfficeTeam = {
       role: "Deputy Head of Projects",
       department: "Projects",
       bio: "Almost 9 years into the company, oversees new installations, low sides, equipment and technology innovation along side product development and management.",
+      image: "/images/team/nirmal-kumar.png",
     },
     {
       id: "deep-titermare",
@@ -715,6 +716,7 @@ export const headOfficeTeam = {
       role: "Head of Operations",
       department: "Operations",
       bio: "Leads day-to-day operations across client accounts and on-site teams, ensuring processing quality, turnaround and service delivery across the network.",
+      image: "/images/team/deep-titermare.png",
     },
     {
       id: "akash-singh-baghel",
@@ -722,6 +724,7 @@ export const headOfficeTeam = {
       role: "Deputy Head of Operations",
       department: "Operations",
       bio: "Supports day-to-day operations across client accounts, keeping processing quality, turnaround and on-site teams on track.",
+      image: "/images/team/akash-singh-baghel.png",
     },
     {
       id: "vivek-devnani",
@@ -729,6 +732,7 @@ export const headOfficeTeam = {
       role: "Head of Finance",
       department: "Finance",
       bio: "Leads finance, billing and budgeting, keeping the company's commercial and financial planning on a firm footing.",
+      image: "/images/team/vivek-devnani.png",
     },
     {
       id: "vishwashree-pandey",
@@ -736,6 +740,7 @@ export const headOfficeTeam = {
       role: "Head of HR",
       department: "People",
       bio: "Leads recruitment, training and people operations, building the teams that run our units across India.",
+      image: "/images/team/vishwashree-pandey.jpeg",
     },
     {
       id: "naman-kunhappan",
@@ -743,6 +748,7 @@ export const headOfficeTeam = {
       role: "Head of AI & Technology",
       department: "Technology",
       bio: "Builds the software, data and AI tools that help us track quality, turnaround and performance across the network.",
+      image: "/images/team/naman-kunhappan.png",
     },
     {
       id: "gaurav-joshi",
