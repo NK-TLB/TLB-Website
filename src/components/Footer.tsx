@@ -13,7 +13,6 @@ const companyLinks = [
   { to: "/press", label: "Press" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
-  { to: "/privacy-policy", label: "Privacy Policy" },
 ];
 
 function FooterHoverLink({

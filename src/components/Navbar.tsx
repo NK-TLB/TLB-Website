@@ -214,15 +214,15 @@ export default function Navbar() {
         <nav
           id="mobile-nav"
           aria-label="Mobile navigation"
-          className="fixed inset-x-4 top-[calc(4.5rem+0.75rem)] z-[101] animate-menu-slide-down overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-b from-white/98 to-brand-50/95 shadow-[0_24px_60px_-20px_rgb(var(--shadow-rgb)/0.35)] backdrop-blur-2xl lg:hidden"
+          className="fixed inset-x-4 top-[calc(4.5rem+0.75rem)] z-[101] animate-menu-slide-down overflow-hidden rounded-3xl border border-brand-100/80 bg-white shadow-[0_24px_60px_-20px_rgb(var(--shadow-rgb)/0.35)] lg:hidden"
         >
           <span
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-brand-gradient"
           />
 
-          <div className="flex items-center justify-between border-b border-brand-100/60 px-4 py-3">
-            <span className="eyebrow-plain">
+          <div className="flex items-center justify-between border-b border-brand-100/60 bg-white px-4 py-3">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-ink-900">
               Menu
             </span>
             <button
@@ -246,7 +246,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          <ul className="flex max-h-[min(26rem,calc(100dvh-9rem))] flex-col gap-1 overflow-y-auto p-2">
+          <ul className="flex max-h-[min(26rem,calc(100dvh-9rem))] flex-col gap-1 overflow-y-auto bg-white p-2">
             {navLinks.map((link) => (
               <li key={link.to}>
                 <NavLink
@@ -257,14 +257,14 @@ export default function Navbar() {
                     `flex items-center justify-between rounded-2xl px-4 py-3.5 text-[0.95rem] font-semibold transition duration-200 ${
                       isActive
                         ? "bg-brand-gradient text-white shadow-soft"
-                        : "text-ink-700 hover:bg-white/90 hover:text-brand-700"
+                        : "text-ink-900 hover:bg-brand-50 hover:text-ink-900"
                     }`
                   }
                 >
                   {link.label}
                   <svg
                     viewBox="0 0 24 24"
-                    className="h-4 w-4 opacity-60"
+                    className="h-4 w-4 shrink-0"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"

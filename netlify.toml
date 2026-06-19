@@ -51,7 +51,7 @@
 
 [[redirects]]
   from = "/home/index.php/pages/privacy-policy"
-  to = "/privacy-policy"
+  to = "/"
   status = 301
   force = true
 
@@ -118,7 +118,7 @@
 
 [[redirects]]
   from = "/index.php/pages/privacy-policy"
-  to = "/privacy-policy"
+  to = "/"
   status = 301
   force = true
 
@@ -179,13 +179,19 @@
 
 [[redirects]]
   from = "/pages/privacy-policy"
-  to = "/privacy-policy"
+  to = "/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pages/delete-my-account"
   to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/"
   status = 301
   force = true
 

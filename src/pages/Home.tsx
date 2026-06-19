@@ -254,12 +254,12 @@ export default function Home() {
             </div>
           </div>
 
-          <ol className="relative mt-10 grid gap-y-12 gap-x-6 sm:mt-12 sm:grid-cols-2 lg:mt-8 lg:grid-cols-4">
+          <ol className="relative mt-10 grid gap-y-8 gap-x-6 max-lg:pt-2 sm:mt-12 sm:grid-cols-2 sm:gap-y-12 lg:mt-8 lg:grid-cols-4 lg:gap-y-12">
             {howItWorks.map((s, i) => (
-              <Reveal key={s.step} delay={i * 100}>
-                <li className="accent-box-2xl card-hover group relative z-[1] h-full hover:-translate-y-1">
-                  <div className="accent-box-2xl-inner flex h-full flex-col items-center px-6 pb-8 pt-10 text-center lg:pt-8">
-                  <span className="absolute -top-6 inline-flex h-12 w-12 items-center justify-center rounded-full font-display text-lg font-extrabold text-white shadow-lift ring-4 ring-[rgb(var(--page-bg))] sm:h-11 sm:w-11 sm:text-base lg:hidden">
+              <Reveal key={s.step} delay={i * 100} className="contents">
+                <li className="accent-box-2xl card-hover group relative z-[1] hover:-translate-y-1 max-lg:h-auto lg:h-full">
+                  <div className="accent-box-2xl-inner flex h-full flex-col items-center px-6 pb-8 pt-8 text-center max-lg:pt-6 lg:pt-8">
+                  <span className="relative z-10 mx-auto mb-4 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-lg font-extrabold text-white shadow-lift ring-4 ring-[rgb(var(--page-bg))] sm:h-11 sm:w-11 sm:text-base lg:absolute lg:-top-6 lg:mb-0 lg:hidden">
                     <span
                       aria-hidden="true"
                       className="absolute -inset-1 rounded-full bg-brand-500/25 blur-sm"

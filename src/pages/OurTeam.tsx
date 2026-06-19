@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Icon from "../components/Icon";
 import PageHero from "../components/PageHero";
 import SEO from "../components/SEO";
@@ -8,6 +8,9 @@ import TeamMemberCard from "../components/TeamMemberCard";
 import { headOfficeTeam, site } from "../data/site";
 
 export default function OurTeam() {
+  const [searchParams] = useSearchParams();
+  const frameEditMode = import.meta.env.DEV && searchParams.has("frame");
+
   return (
     <>
       <SEO
@@ -30,10 +33,21 @@ export default function OurTeam() {
       />
 
       <PageSection reveal={false}>
+        {frameEditMode && (
+          <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+            <strong className="font-semibold">Portrait frame editor</strong> — adjust each
+            card below, then copy the snippet into{" "}
+            <code className="rounded bg-white/80 px-1.5 py-0.5 text-xs">portraitFrame</code> in{" "}
+            <code className="rounded bg-white/80 px-1.5 py-0.5 text-xs">src/data/site.ts</code>.
+            Remove <code className="rounded bg-white/80 px-1.5 py-0.5 text-xs">?frame</code> from
+            the URL when done.
+          </div>
+        )}
+
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {headOfficeTeam.members.map((member, i) => (
             <Reveal key={member.id} delay={i * 60}>
-              <TeamMemberCard member={member} />
+              <TeamMemberCard member={member} frameEditMode={frameEditMode} />
             </Reveal>
           ))}
         </div>

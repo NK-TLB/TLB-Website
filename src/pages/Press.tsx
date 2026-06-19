@@ -65,7 +65,7 @@ const imageSchemas = [
     creditText: "The Laundry Bag",
     creator: { "@type": "Organization", name: "The Laundry Bag", url: BASE_URL },
     copyrightNotice: "© The Laundry Bag",
-    license: abs("/privacy-policy"),
+    license: abs("/contact"),
     acquireLicensePage: abs("/contact"),
   },
 ];

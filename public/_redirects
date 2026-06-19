@@ -8,7 +8,7 @@
 /index.php/pages/what-we-do                                                 /clients                301!
 /index.php/pages/who-we-are                                                 /about                  301!
 /index.php/pages/contact-us                                                 /contact                301!
-/index.php/pages/privacy-policy                                             /privacy-policy         301!
+/index.php/pages/privacy-policy                                             /                       301!
 /index.php/pages/delete-my-account                                          /contact                301!
 /pages/frequently-asked-questions                                           /faq                    301!
 /pages/commercial-laundry-for-institutions-and-businesses                   /clients                301!
@@ -16,7 +16,7 @@
 /pages/what-we-do                                                           /clients                301!
 /pages/who-we-are                                                           /about                  301!
 /pages/contact-us                                                           /contact                301!
-/pages/privacy-policy                                                       /privacy-policy         301!
+/pages/privacy-policy                                                       /                       301!
 /pages/delete-my-account                                                    /contact                301!
 
 # Legacy B2C route now folds into the clients page
@@ -31,7 +31,7 @@
 /home/index.php/pages/what-we-do                                            /clients                301!
 /home/index.php/pages/who-we-are                                            /about                  301!
 /home/index.php/pages/contact-us                                            /contact                301!
-/home/index.php/pages/privacy-policy                                        /privacy-policy         301!
+/home/index.php/pages/privacy-policy                                        /                       301!
 /home/index.php/pages/delete-my-account                                     /contact                301!
 /home/index.php/pages/*                                                     /                       301!
 /home/index.php                                                             /                       301!
@@ -42,6 +42,7 @@
 /appdownload                                                                /contact                301!
 /appdownload/*                                                              /contact                301!
 /delete-my-account                                                          /contact                301!
+/privacy-policy                                                             /                       301!
 
 # SPA fallback
 /*                                                                          /index.html             200

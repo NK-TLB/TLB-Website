@@ -9,7 +9,6 @@ import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import OurTeam from "./pages/OurTeam";
 import ThankYou from "./pages/ThankYou";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -33,7 +32,6 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/contact/thank-you" element={<ThankYou />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

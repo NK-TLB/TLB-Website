@@ -670,6 +670,29 @@ export const founders = [
 ];
 
 /** Head Office team — edit names, roles and bios here; photos go in /public/images/team/ */
+export type PortraitFrame = {
+  /** Horizontal focal point (0–100). 50 = centered. Lower shifts crop left. */
+  x?: number;
+  /** Vertical focal point (0–100). 50 = centered. Lower = show more of the top. */
+  y?: number;
+  /** Zoom: image height as % of the card. 100 = exact vertical fill; higher zooms in. */
+  scale?: number;
+};
+
+export const defaultPortraitFrame = {
+  x: 50,
+  y: 50,
+  scale: 100,
+} satisfies Required<PortraitFrame>;
+
+export function resolvePortraitFrame(frame?: PortraitFrame) {
+  return {
+    x: frame?.x ?? defaultPortraitFrame.x,
+    y: frame?.y ?? defaultPortraitFrame.y,
+    scale: frame?.scale ?? defaultPortraitFrame.scale,
+  };
+}
+
 export type TeamMember = {
   id: string;
   name: string;
@@ -678,6 +701,8 @@ export type TeamMember = {
   bio: string;
   email?: string;
   image?: string;
+  /** Manual crop / zoom for the Our Team portrait card. */
+  portraitFrame?: PortraitFrame;
   linkedIn?: string;
 };
 
@@ -701,6 +726,7 @@ export const headOfficeTeam = {
       department: "Projects",
       bio: "Almost 10 years into the company, heads new business development, project design, pre operations and commissioning of all projects across India.",
       image: "/images/team/prakhar-singh.png",
+      portraitFrame: { x: 54, y: 34, scale: 106 },
     },
     {
       id: "nirmal-kumar",
@@ -709,6 +735,7 @@ export const headOfficeTeam = {
       department: "Projects",
       bio: "Almost 9 years into the company, oversees new installations, low sides, equipment and technology innovation along side product development and management.",
       image: "/images/team/nirmal-kumar.png",
+      portraitFrame: { x: 52, y: 0, scale: 106 },
     },
     {
       id: "deep-titermare",
@@ -717,6 +744,7 @@ export const headOfficeTeam = {
       department: "Operations",
       bio: "Leads day-to-day operations across client accounts and on-site teams, ensuring processing quality, turnaround and service delivery across the network.",
       image: "/images/team/deep-titermare.png",
+      portraitFrame: { x: 51, y: 0, scale: 106 },
     },
     {
       id: "akash-singh-baghel",
@@ -725,6 +753,7 @@ export const headOfficeTeam = {
       department: "Operations",
       bio: "Supports day-to-day operations across client accounts, keeping processing quality, turnaround and on-site teams on track.",
       image: "/images/team/akash-singh-baghel.png",
+      portraitFrame: { x: 56, y: 0, scale: 106 },
     },
     {
       id: "vivek-devnani",
@@ -733,6 +762,7 @@ export const headOfficeTeam = {
       department: "Finance",
       bio: "Leads finance, billing and budgeting, keeping the company's commercial and financial planning on a firm footing.",
       image: "/images/team/vivek-devnani.png",
+      portraitFrame: { x: 52, y: 6, scale: 106 },
     },
     {
       id: "vishwashree-pandey",
@@ -741,6 +771,7 @@ export const headOfficeTeam = {
       department: "People",
       bio: "Leads recruitment, training and people operations, building the teams that run our units across India.",
       image: "/images/team/vishwashree-pandey.jpeg",
+      portraitFrame: { x: 50, y: 55, scale: 106 },
     },
     {
       id: "naman-kunhappan",
@@ -749,6 +780,7 @@ export const headOfficeTeam = {
       department: "Technology",
       bio: "Builds the software, data and AI tools that help us track quality, turnaround and performance across the network.",
       image: "/images/team/naman-kunhappan.png",
+      portraitFrame: { x: 54, y: 0, scale: 106 },
     },
     {
       id: "gaurav-joshi",
