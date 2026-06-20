@@ -32,5 +32,12 @@ export function cleanupPrerenderedHtml(html) {
   keepLast($, 'meta[name="twitter:title"]');
   keepLast($, 'meta[name="twitter:description"]');
 
+  // Puppeteer runs the async-font onload handler, which flips rel to
+  // "stylesheet" in the snapshot and re-introduces render-blocking. Restore the
+  // non-blocking preload pattern for the statically served HTML.
+  $('link[as="style"][onload]').each((_, el) => {
+    $(el).attr("rel", "preload");
+  });
+
   return $.html();
 }
