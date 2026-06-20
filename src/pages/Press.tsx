@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useCallback, useState, type ReactNode } from "react";
 import SEO from "../components/SEO";
 import PageHero from "../components/PageHero";
 import SectionHeading from "../components/SectionHeading";
@@ -9,7 +9,7 @@ import PremiumFrame from "../components/PremiumFrame";
 import ResponsiveImage from "../components/ResponsiveImage";
 import VideoFeature from "../components/VideoFeature";
 import Lightbox, { type LightboxItem } from "../components/Lightbox";
-import { pressFeature, pressClippings, ratanTata } from "../data/site";
+import { pressFeature, pressClippings, ratanTata, tmcInauguration } from "../data/site";
 
 const BASE_URL = "https://www.thelaundrybag.co.in";
 const abs = (p: string) => `${BASE_URL}${p}`;
@@ -56,19 +56,28 @@ const videoSchema = {
   },
 };
 
+const imageObject = (image: (typeof ratanTata)["image"], caption: string) => ({
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  contentUrl: abs(`${image.base}-${Math.max(...image.widths)}.jpg`),
+  caption,
+  width: image.width,
+  height: image.height,
+  creditText: "The Laundry Bag",
+  creator: { "@type": "Organization", name: "The Laundry Bag", url: BASE_URL },
+  copyrightNotice: "© The Laundry Bag",
+  license: abs("/contact"),
+  acquireLicensePage: abs("/contact"),
+});
+
 const imageSchemas = [
-  {
-    "@context": "https://schema.org",
-    "@type": "ImageObject",
-    contentUrl: abs(`${ratanTata.image.base}-1200.jpg`),
-    caption: ratanTata.image.alt,
-    creditText: "The Laundry Bag",
-    creator: { "@type": "Organization", name: "The Laundry Bag", url: BASE_URL },
-    copyrightNotice: "© The Laundry Bag",
-    license: abs("/contact"),
-    acquireLicensePage: abs("/contact"),
-  },
+  imageObject(ratanTata.image, ratanTata.image.alt),
+  ...tmcInauguration.photos.map((p) => imageObject(p.image, p.caption)),
 ];
+
+const tmcItems: LightboxItem[] = tmcInauguration.photos.map((p) => ({
+  image: p.image,
+}));
 
 const ratanItem: LightboxItem = {
   image: ratanTata.image,
@@ -170,6 +179,17 @@ export default function Press() {
   const [box, setBox] = useState<{ items: LightboxItem[]; index: number } | null>(
     null,
   );
+  const [tmcSlide, setTmcSlide] = useState(0);
+  const tmcCount = tmcInauguration.photos.length;
+  const tmcPrev = useCallback(
+    () => setTmcSlide((i) => (i - 1 + tmcCount) % tmcCount),
+    [tmcCount],
+  );
+  const tmcNext = useCallback(
+    () => setTmcSlide((i) => (i + 1) % tmcCount),
+    [tmcCount],
+  );
+  const activeTmcPhoto = tmcInauguration.photos[tmcSlide];
 
   return (
     <>
@@ -225,7 +245,7 @@ export default function Press() {
                         image={ratanTata.image}
                         sizes="(min-width: 1024px) 50vw, 92vw"
                         className="absolute inset-0 z-10 block h-full w-full"
-                        imgClassName="h-full w-full object-contain transition duration-500 group-hover/photo:scale-[1.01]"
+                        imgClassName="h-full w-full object-cover object-center transition duration-500 group-hover/photo:scale-[1.02]"
                       />
 
                       <span className="pointer-events-none absolute inset-0 z-10 bg-ink-950/0 transition duration-300 group-hover/photo:bg-ink-950/15 group-focus-visible/photo:bg-ink-950/15" />
@@ -272,12 +292,83 @@ export default function Press() {
 
               <Reveal delay={120}>
               <div className="border-t border-brand-100/70 bg-gradient-to-r from-brand-50/30 via-white to-brand-50/30 px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
-                <MemorialQuote>{ratanTata.pullQuote}</MemorialQuote>
-                <div className="mt-6">
-                  <FactCards
-                    facts={ratanTata.facts}
-                    icons={["pin", "calendar", "shield"]}
-                  />
+                <FactCards
+                  facts={ratanTata.facts}
+                  icons={["pin", "calendar"]}
+                  columns={2}
+                />
+
+                <div className="mt-10">
+                  <div
+                    className="relative overflow-hidden rounded-2xl ring-1 ring-brand-100/80"
+                    role="region"
+                    aria-roledescription="carousel"
+                    aria-label="Tata Medical Center inauguration photos"
+                  >
+                    <div className="relative overflow-hidden">
+                      <button
+                        type="button"
+                        onClick={() => setBox({ items: tmcItems, index: tmcSlide })}
+                        className="group relative block h-72 w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-400 sm:h-96 lg:h-[28rem]"
+                        aria-label={`View photo ${tmcSlide + 1} of ${tmcCount} full-screen`}
+                      >
+                        <ResponsiveImage
+                          key={activeTmcPhoto.image.base}
+                          image={activeTmcPhoto.image}
+                          sizes="100vw"
+                          className="block h-full w-full"
+                          imgClassName="h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.02]"
+                        />
+                      </button>
+
+                      {tmcCount > 1 && (
+                        <>
+                          <button
+                            type="button"
+                            onClick={tmcPrev}
+                            aria-label="Previous photo"
+                            className="absolute left-3 top-1/2 z-20 inline-flex h-10 w-10 -translate-y-1/2 rotate-180 items-center justify-center rounded-full border border-white/25 bg-ink-950/55 text-white backdrop-blur-sm transition hover:bg-ink-950/75 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:left-4 sm:h-11 sm:w-11"
+                          >
+                            <Icon name="arrow" className="h-5 w-5" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={tmcNext}
+                            aria-label="Next photo"
+                            className="absolute right-3 top-1/2 z-20 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-ink-950/55 text-white backdrop-blur-sm transition hover:bg-ink-950/75 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:right-4 sm:h-11 sm:w-11"
+                          >
+                            <Icon name="arrow" className="h-5 w-5" />
+                          </button>
+                          <span className="absolute right-4 top-4 z-20 rounded-full bg-ink-950/55 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur-sm">
+                            {tmcSlide + 1} / {tmcCount}
+                          </span>
+                        </>
+                      )}
+                    </div>
+
+                    {tmcCount > 1 && (
+                      <div className="flex items-center justify-center gap-2 border-t border-brand-100/70 bg-white px-4 py-4">
+                        {tmcInauguration.photos.map((p, i) => (
+                          <button
+                            key={p.image.base}
+                            type="button"
+                            onClick={() => setTmcSlide(i)}
+                            aria-label={`Go to photo ${i + 1}`}
+                            aria-current={i === tmcSlide ? "true" : undefined}
+                            className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 ${
+                              i === tmcSlide
+                                ? "w-8 bg-brand-600"
+                                : "w-2 bg-brand-200 hover:bg-brand-400"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <MemorialQuote>{ratanTata.pullQuote}</MemorialQuote>
                 </div>
               </div>
               </Reveal>

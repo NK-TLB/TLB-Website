@@ -238,7 +238,6 @@ export const ratanTata = {
   facts: [
     { label: "Where", value: "Tata Medical Center, Kolkata" },
     { label: "Occasion", value: "Inauguration of the new laundry unit" },
-    { label: "Sector", value: "Healthcare linen & hygiene" },
   ],
   image: {
     base: "/images/press/shourya-ratan-tata",
@@ -247,6 +246,79 @@ export const ratanTata = {
     height: 900,
     alt: "The Laundry Bag founder Shourya Jain with the late Shri Ratan Tata at Tata Medical Center, Kolkata, during the inauguration of the hospital\u2019s new laundry unit.",
   } as PressImage,
+};
+
+// Photographs from the day The Laundry Bag commissioned its dedicated on-premise
+// laundry unit at Tata Medical Center. These pair with the Ratan Tata milestone
+// above and strengthen image search for "hospital laundry" and "Shourya Jain".
+export const tmcInauguration: {
+  eyebrow: string;
+  kicker: string;
+  title: string;
+  lead: string;
+  body: string[];
+  facts: { label: string; value: string }[];
+  photos: { image: PressImage; caption: string }[];
+} = {
+  eyebrow: "More from inauguration day",
+  kicker: "Tata Medical Center · 2019",
+  title: "Inside the hospital laundry unit at Tata Medical Center",
+  lead: "On the same visit, founder Shourya Jain and the hospital\u2019s senior team commissioned a complete on-premise laundry inside Tata Medical Center, built and run by The Laundry Bag so that patient linen is processed safely without ever leaving the campus.",
+  body: [
+    "The hospital chose an on-premise model so that bed sheets, surgical drapes, patient gowns and staff uniforms are washed, thermally disinfected and finished inside the building. The Laundry Bag installed industrial washer-extractors, dryers and finishing equipment, set the wash programmes and trained the in-house team to run the unit every day.",
+    "Senior doctors and hospital administrators opened the unit with a short ribbon-cutting and walked the floor to see the machines in action. For The Laundry Bag, the day confirmed that its never-mix, infection-aware way of handling linen has a place in one of the country\u2019s most respected cancer hospitals.",
+  ],
+  facts: [
+    { label: "Setup", value: "On-premise hospital laundry unit" },
+    { label: "Built for", value: "Infection-safe patient linen" },
+    { label: "Run by", value: "Trained, in-house laundry team" },
+  ],
+  photos: [
+    {
+      caption:
+        "Senior hospital doctors inaugurate the new on-premise laundry unit built by The Laundry Bag at Tata Medical Center.",
+      image: {
+        base: "/images/press/tmc-inauguration-cut",
+        widths: [640, 1024, 1600],
+        width: 1600,
+        height: 800,
+        alt: "Ribbon-cutting to inaugurate the on-premise hospital laundry unit set up by The Laundry Bag at Tata Medical Center, with founder Shourya Jain and senior doctors present.",
+      } as PressImage,
+    },
+    {
+      caption:
+        "Founder Shourya Jain with hospital officials at the ribbon-cutting for the Tata Medical Center laundry unit.",
+      image: {
+        base: "/images/press/tmc-inauguration-ribbon",
+        widths: [640, 1024, 1600],
+        width: 1600,
+        height: 800,
+        alt: "The Laundry Bag founder Shourya Jain with senior hospital officials at the opening of the new on-premise laundry unit at Tata Medical Center.",
+      } as PressImage,
+    },
+    {
+      caption:
+        "A senior physician starts a wash cycle on an industrial washer-extractor installed by The Laundry Bag, with founder Shourya Jain looking on.",
+      image: {
+        base: "/images/press/tmc-machine-controls",
+        widths: [640, 1024, 1600],
+        width: 1600,
+        height: 1043,
+        alt: "A senior doctor sets the wash programme on an industrial washer-extractor installed by The Laundry Bag at the Tata Medical Center laundry unit, watched by founder Shourya Jain.",
+      } as PressImage,
+    },
+    {
+      caption:
+        "The Laundry Bag team with hospital management and the trained laundry staff on inauguration day at Tata Medical Center.",
+      image: {
+        base: "/images/press/tmc-team",
+        widths: [640, 1024, 1600],
+        width: 1600,
+        height: 793,
+        alt: "The Laundry Bag team with Tata Medical Center management and the trained, uniformed laundry staff at the on-premise hospital laundry unit on inauguration day.",
+      } as PressImage,
+    },
+  ],
 };
 
 // "As featured in", online press features. Links are real and verified.
@@ -622,8 +694,9 @@ export const headOfficeTeam = {
       name: "Shourya Jain",
       role: "Investor & Founder",
       department: "Leadership",
-      bio: "Founder and Investor in The Laundry Bag™. Key responsible for strategy, growth plans, vision allignment, backward-forward integration to suit the requirements of evolving markets and requirements.",
+      bio: "Founder and investor in The Laundry Bag™. Leads strategy, growth and the commercial laundry network serving hotels, hospitals and institutions across India.",
       image: "/images/team/shourya-jain.png",
+      portraitFrame: { x: 50, y: 9, scale: 150 },
       linkedIn: "https://www.linkedin.com/in/shourya-jain-raipur",
     },
     {
@@ -634,33 +707,6 @@ export const headOfficeTeam = {
       bio: "Almost 10 years into the company, heads new business development, project design, pre operations and commissioning of all projects across India.",
       image: "/images/team/prakhar-singh.png",
       portraitFrame: { x: 54, y: 34, scale: 106 },
-    },
-    {
-      id: "nirmal-kumar",
-      name: "Nirmal Kumar",
-      role: "Deputy Head of Projects",
-      department: "Projects",
-      bio: "Almost 9 years into the company, oversees new installations, low sides, equipment and technology innovation along side product development and management.",
-      image: "/images/team/nirmal-kumar.png",
-      portraitFrame: { x: 52, y: 0, scale: 106 },
-    },
-    {
-      id: "deep-titermare",
-      name: "Deep Titermare",
-      role: "Head of Operations",
-      department: "Operations",
-      bio: "Leads day-to-day operations across client accounts and on-site teams, ensuring processing quality, turnaround and service delivery across the network.",
-      image: "/images/team/deep-titermare.png",
-      portraitFrame: { x: 51, y: 0, scale: 106 },
-    },
-    {
-      id: "akash-singh-baghel",
-      name: "Akash Singh Baghel",
-      role: "Deputy Head of Operations",
-      department: "Operations",
-      bio: "Supports day-to-day operations across client accounts, keeping processing quality, turnaround and on-site teams on track.",
-      image: "/images/team/akash-singh-baghel.png",
-      portraitFrame: { x: 56, y: 0, scale: 106 },
     },
     {
       id: "vivek-devnani",
@@ -688,6 +734,33 @@ export const headOfficeTeam = {
       bio: "Builds the software, data and AI tools that help us track quality, turnaround and performance across the network.",
       image: "/images/team/naman-kunhappan.png",
       portraitFrame: { x: 54, y: 0, scale: 106 },
+    },
+    {
+      id: "nirmal-kumar",
+      name: "Nirmal Kumar",
+      role: "Deputy Head of Projects",
+      department: "Projects",
+      bio: "Almost 9 years into the company, oversees new installations, low sides, equipment and technology innovation along side product development and management.",
+      image: "/images/team/nirmal-kumar.png",
+      portraitFrame: { x: 52, y: 0, scale: 106 },
+    },
+    {
+      id: "akash-singh-baghel",
+      name: "Akash Singh Baghel",
+      role: "Deputy Head of Operations",
+      department: "Operations",
+      bio: "Supports day-to-day operations across client accounts, keeping processing quality, turnaround and on-site teams on track.",
+      image: "/images/team/akash-singh-baghel.png",
+      portraitFrame: { x: 56, y: 0, scale: 106 },
+    },
+    {
+      id: "deep-titermare",
+      name: "Deep Titermare",
+      role: "Head of Operations",
+      department: "Operations",
+      bio: "Leads day-to-day operations across client accounts and on-site teams, ensuring processing quality, turnaround and service delivery across the network.",
+      image: "/images/team/deep-titermare.png",
+      portraitFrame: { x: 51, y: 0, scale: 106 },
     },
     {
       id: "gaurav-joshi",

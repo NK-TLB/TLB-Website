@@ -10,6 +10,7 @@ import { headOfficeTeam, site } from "../data/site";
 export default function OurTeam() {
   const [searchParams] = useSearchParams();
   const frameEditMode = import.meta.env.DEV && searchParams.has("frame");
+  const members = headOfficeTeam.members;
 
   return (
     <>
@@ -45,7 +46,7 @@ export default function OurTeam() {
         )}
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {headOfficeTeam.members.map((member, i) => (
+          {members.map((member, i) => (
             <Reveal key={member.id} delay={i * 60}>
               <TeamMemberCard member={member} frameEditMode={frameEditMode} />
             </Reveal>
