@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  # Puppeteer downloads Chromium during npm install for post-build prerender.
+  # Sparticuz Chromium is used for post-build prerender on Netlify (see scripts/prerender.mjs).
   PUPPETEER_CACHE_DIR = "/opt/buildhome/.cache/puppeteer"
 
 [dev]

@@ -8,6 +8,7 @@ import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import { dirname, extname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
+import puppeteerCore from "puppeteer-core";
 import { PRERENDER_ROUTES } from "./prerender-routes.mjs";
 import { cleanupPrerenderedHtml } from "./cleanup-prerendered-html.mjs";
 
@@ -15,6 +16,38 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const DIST = join(__dirname, "..", "dist");
 const PORT = 4173;
 const BASE = `http://127.0.0.1:${PORT}`;
+
+const CHROME_ARGS = [
+  "--no-sandbox",
+  "--disable-setuid-sandbox",
+  "--disable-dev-shm-usage",
+  "--disable-gpu",
+];
+
+/** Netlify/CI images lack Puppeteer's bundled Chrome; use Sparticuz Chromium there. */
+async function launchBrowser() {
+  if (process.env.NETLIFY === "true" || process.env.CI) {
+    const chromium = (await import("@sparticuz/chromium")).default;
+    chromium.setGraphicsMode = false;
+
+    const executablePath = await chromium.executablePath();
+
+    return puppeteerCore.launch({
+      args: [...chromium.args, ...CHROME_ARGS],
+      defaultViewport: chromium.defaultViewport,
+      executablePath,
+      headless: chromium.headless,
+    });
+  }
+
+  const executablePath = await puppeteer.executablePath();
+
+  return puppeteer.launch({
+    headless: true,
+    args: CHROME_ARGS,
+    executablePath,
+  });
+}
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -111,10 +144,7 @@ async function prerender() {
   const server = await startServer();
 
   console.log("Launching headless browser…");
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
-  });
+  const browser = await launchBrowser();
 
   try {
     const page = await browser.newPage();

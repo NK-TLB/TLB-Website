@@ -694,7 +694,7 @@ export const headOfficeTeam = {
       role: "Investor & Founder",
       department: "Leadership",
       bio: "Founder and investor in The Laundry Bag™. Leads strategy, growth and the commercial laundry network serving hotels, hospitals and institutions across India.",
-      image: "/images/team/shourya-jain-placeholder.png",
+      image: "/images/team/shourya-jain.png",
       portraitFrame: { x: 50, y: 9, scale: 150 },
       linkedIn: "https://www.linkedin.com/in/shourya-jain-raipur",
     },
