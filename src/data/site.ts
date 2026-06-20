@@ -34,7 +34,6 @@ export const site = {
   phone: "+91 80859 90015",
   phoneDisplay: "(+91) 8085990015",
   phoneRaw: "8085990015",
-  hours: "9:00 AM – 9:00 PM",
 
   // Who to talk to, by intent.
   contacts: {
@@ -47,7 +46,7 @@ export const site = {
     },
     careers: {
       role: "Head of HR",
-      blurb: "For people looking to join our organisation.",
+      blurb: "Be part of something great. Join our team.",
       email: "hr@thelaundrybag.co.in",
     },
   },
@@ -61,10 +60,10 @@ export const site = {
     countryCode: "IN",
     full: "Kusum Complex, Near Jain Mandir, T.V. Tower Road, Shankar Nagar, Raipur, Chhattisgarh, India - 492007",
     mapsHref:
-      "https://www.google.com/maps/search/?api=1&query=The+Laundry+Bag+Shankar+Nagar+TV+Tower+Road+Raipur",
+      "https://www.google.com/maps/place/The+Laundry+Bag/@21.2544216,81.6651412,17z/data=!3m1!4b1!4m6!3m5!1s0x3a28dd6c3fdf682f:0x99a173c5e3360ce1!8m2!3d21.2544216!4d81.6651412!16s%2Fg%2F11bzq3bm95",
     mapsEmbedHref:
-      "https://maps.google.com/maps?q=21.24957,81.6602156&hl=en&z=14&ie=UTF8&iwloc=&output=embed",
-    geo: { lat: 21.24957, lng: 81.6602156 },
+      "https://maps.google.com/maps?q=The+Laundry+Bag&ll=21.2544216,81.6651412&z=17&hl=en&output=embed",
+    geo: { lat: 21.2544216, lng: 81.6651412 },
   },
 
   // 18-city footprint (Raipur and Naya Raipur counted as one metro).
@@ -695,7 +694,7 @@ export const headOfficeTeam = {
       role: "Investor & Founder",
       department: "Leadership",
       bio: "Founder and investor in The Laundry Bag™. Leads strategy, growth and the commercial laundry network serving hotels, hospitals and institutions across India.",
-      image: "/images/team/shourya-jain.png",
+      image: "/images/team/shourya-jain-placeholder.png",
       portraitFrame: { x: 50, y: 9, scale: 150 },
       linkedIn: "https://www.linkedin.com/in/shourya-jain-raipur",
     },

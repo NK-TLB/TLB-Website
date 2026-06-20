@@ -26,10 +26,10 @@ export const mapMarkers: MapMarker[] = [
     state: "Chhattisgarh",
     role: "Headquarters · Central Processing Unit",
     type: "hq",
-    lat: 21.2514,
-    lng: 81.6296,
+    lat: 21.2544216,
+    lng: 81.6651412,
     note: "Our HQ and central processing unit, plus fully-managed on-premise programmes for Hyatt Raipur and DKS Hospital.",
-    mapsQuery: "The Laundry Bag Shankar Nagar TV Tower Road Raipur",
+    mapsQuery: "The Laundry Bag Kusum Complex Shankar Nagar Raipur",
   },
   {
     id: "naya-raipur",

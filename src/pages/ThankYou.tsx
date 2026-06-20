@@ -16,14 +16,14 @@ export default function ThankYou() {
       <SEO
         path="/contact/thank-you"
         title="Thank You"
-        description="Thanks for contacting The Laundry Bag. We've received your enquiry and will get back to you within one business day."
+        description="Thanks for your new business enquiry. Our Head of Projects team has received it and will get back to you within one business day."
       />
 
       <PageHero
         icon={<SuccessCheckmark />}
         rule="center-out"
         title="Thank You"
-        description="Your enquiry has reached our team. We typically respond within one business day."
+        description="Your new business enquiry has reached our Head of Projects team. We typically respond within one business day."
         crumbs={[
           { label: "Home", to: "/" },
           { label: "Contact", to: "/contact" },

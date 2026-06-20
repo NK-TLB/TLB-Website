@@ -60,9 +60,10 @@
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 21.24957,
-          "longitude": 81.6602156
+          "latitude": 21.2544216,
+          "longitude": 81.6651412
         },
+        "hasMap": "https://www.google.com/maps/place/The+Laundry+Bag/@21.2544216,81.6651412,17z/data=!3m1!4b1!4m6!3m5!1s0x3a28dd6c3fdf682f:0x99a173c5e3360ce1!8m2!3d21.2544216!4d81.6651412!16s%2Fg%2F11bzq3bm95",
         "areaServed": [
           { "@type": "City", "name": "Raipur" },
           { "@type": "City", "name": "Goa" },
@@ -79,14 +80,6 @@
           { "@type": "City", "name": "Dehradun" },
           { "@type": "City", "name": "Nagpur" },
           { "@type": "City", "name": "Durg" }
-        ],
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-            "opens": "09:00",
-            "closes": "21:00"
-          }
         ],
         "sameAs": [
           "https://www.facebook.com/inthelaundrybag/",
@@ -165,7 +158,9 @@
       Field names must match the React form in src/pages/Contact.tsx.
     -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-      <input type="hidden" name="subject" data-remove-prefix value="New Enquiry - The Laundry Bag" />
+      <input type="hidden" name="subject" data-remove-prefix value="New Business Enquiry - The Laundry Bag" />
+      <input type="hidden" name="enquiry-type" value="new-business" />
+      <input type="hidden" name="recipient" value="prakhar@thelaundrybag.co.in" />
       <input type="text" name="bot-field" />
       <input type="text" name="name" />
       <input type="tel" name="phone" />

@@ -46,23 +46,8 @@ const localBusinessSchema = {
     latitude: site.address.geo.lat,
     longitude: site.address.geo.lng,
   },
+  hasMap: site.address.mapsHref,
   areaServed: site.cities.map((c) => ({ "@type": "City", name: c })),
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-      opens: "09:00",
-      closes: "21:00",
-    },
-  ],
   sameAs: [
     site.socials.facebook,
     site.socials.twitter,

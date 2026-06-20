@@ -294,7 +294,7 @@ export default function Home() {
                 icon: "phone" as const,
                 title: "Call us",
                 primary: site.phoneDisplay,
-                secondary: site.hours,
+                secondary: "Commercial laundry & linen enquiries.",
               },
               {
                 href: `mailto:${site.emails.enquiries}`,

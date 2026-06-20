@@ -92,15 +92,6 @@ export default function Locations() {
                             </a>
                           ),
                         },
-                        {
-                          icon: "clock",
-                          label: "Hours",
-                          content: (
-                            <span className="font-semibold text-ink-900">
-                              {site.hours}
-                            </span>
-                          ),
-                        },
                       ].map((item, i) => (
                         <Reveal key={item.label} delay={i * 60}>
                         <li className="accent-border rounded-2xl transition duration-300 hover:-translate-y-0.5 hover:shadow-soft">

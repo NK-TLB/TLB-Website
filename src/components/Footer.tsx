@@ -168,12 +168,6 @@ export default function Footer() {
                   {site.emails.enquiries}
                 </FooterHoverAnchor>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-200 ring-1 ring-white/10">
-                  <Icon name="clock" className="h-4 w-4" />
-                </span>
-                <span className="text-white/55">{site.hours}</span>
-              </li>
             </ul>
           </address>
         </div>
