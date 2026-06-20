@@ -4,6 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # Puppeteer downloads Chromium during npm install for post-build prerender.
+  PUPPETEER_CACHE_DIR = "/opt/buildhome/.cache/puppeteer"
 
 [dev]
   targetPort = 3000
