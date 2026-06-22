@@ -21,7 +21,10 @@ function Portrait({ name, image }: { name: string; image?: string }) {
         <img
           src={image}
           alt={`${name}, Founder, The Laundry Bag`}
+          width={640}
+          height={800}
           loading="lazy"
+          decoding="async"
           onError={() => setFailed(true)}
           className="h-full w-full object-cover object-center transition duration-500 hover:scale-[1.03]"
         />
@@ -92,21 +95,21 @@ export default function Leadership() {
                 {lead.bio}
               </p>
 
-              <dl className="mt-6 flex flex-wrap gap-2">
+              <ul className="mt-6 flex flex-wrap gap-2">
                 {[
                   { label: "Based in", value: "Raipur, Chhattisgarh" },
                   { label: "Since", value: String(site.founded) },
                   { label: "Network", value: "18 cities" },
                 ].map((item) => (
-                  <div
+                  <li
                     key={item.label}
                     className="rounded-full border border-brand-100 bg-brand-50/60 px-3.5 py-1.5 text-xs font-semibold text-brand-800"
                   >
-                    <span className="text-brand-600/80">{item.label} · </span>
+                    <span className="text-brand-700">{item.label} · </span>
                     {item.value}
-                  </div>
+                  </li>
                 ))}
-              </dl>
+              </ul>
 
               <figure className="mt-6 border-l-2 border-brand-300 pl-4">
                 <blockquote className="font-display text-base font-semibold leading-snug text-ink-800">

@@ -35,7 +35,10 @@ function LogoCell({
           src={logo}
           alt={name}
           title={name}
+          width={150}
+          height={44}
           loading="lazy"
+          decoding="async"
           onError={() => setFailed(true)}
           className={`max-h-11 max-w-[150px] h-auto w-auto object-contain transition duration-300 hover:scale-105 ${imgClass ?? ""}`}
         />

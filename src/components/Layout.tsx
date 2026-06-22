@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -57,7 +57,9 @@ export default function Layout() {
           key={pathname}
           className="motion-safe:animate-[fade-in_0.22s_ease-out_both]"
         >
-          <Outlet />
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
         </div>
       </main>
       <Footer />

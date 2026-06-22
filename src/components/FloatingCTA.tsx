@@ -13,7 +13,7 @@ export default function FloatingCTA() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="btn-whatsapp group fixed bottom-5 right-5 z-40 py-3 pl-3 pr-3 shadow-lift transition hover:pr-5 focus-visible:ring-offset-2 print:hidden sm:bottom-6 sm:right-6"
+      className="btn-whatsapp group fixed bottom-5 right-5 z-40 min-h-11 min-w-11 p-3 shadow-lift transition hover:pr-5 focus-visible:ring-offset-2 print:hidden sm:bottom-6 sm:right-6"
     >
       <Icon name="whatsapp" className="h-6 w-6" />
       <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-semibold opacity-0 transition-all duration-300 group-hover:max-w-[10rem] group-hover:opacity-100">

@@ -279,6 +279,51 @@ body {
   background-color: rgb(var(--page-bg));
 }
 
+/* Brand-blue scrollbars — Firefox + Chrome 121+ (scrollbar-color) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--brand-500)) rgb(var(--brand-100));
+}
+
+/* WebKit — Chrome, Safari, Edge, Opera */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(var(--brand-100));
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--brand-400)),
+    rgb(var(--brand-600))
+  );
+  border: 2px solid rgb(var(--brand-100));
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--brand-500)),
+    rgb(var(--brand-700))
+  );
+}
+
+*::-webkit-scrollbar-corner {
+  background: rgb(var(--brand-100));
+}
+
+@layer utilities {
+  .animate-float {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+}
+
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
@@ -400,7 +445,7 @@ body {
   }
 
   .btn-outline.btn-xs {
-    @apply gap-1.5 px-3 py-1.5 text-xs;
+    @apply min-h-11 gap-1.5 px-3.5 py-2 text-xs;
   }
 
   .btn-whatsapp {
@@ -428,7 +473,7 @@ body {
 
   /* Section label on dark surfaces (e.g. footer column headings) */
   .eyebrow-label-dark {
-    @apply text-xs font-bold uppercase tracking-[0.2em] text-white/45;
+    @apply text-xs font-bold uppercase tracking-[0.2em] text-white/60;
   }
 
   /* Plain uppercase line — no border (trust bars, marquee captions) */

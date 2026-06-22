@@ -19,7 +19,10 @@ function LogoTile({ name, logo }: { name: string; logo?: string }) {
           src={logo}
           alt={`${name}, a Laundry Bag client`}
           title={name}
+          width={140}
+          height={56}
           loading="lazy"
+          decoding="async"
           onError={() => setFailed(true)}
           className="relative max-h-12 max-w-[140px] object-contain transition duration-300 group-hover:scale-105 sm:max-h-14"
         />

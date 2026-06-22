@@ -53,6 +53,23 @@ function netlifyFormDevPlugin(): Plugin {
 // The Laundry Bag — production marketing site (Vite + React 19 + Tailwind).
 export default defineConfig({
   plugins: [react(), netlifyFormDevPlugin()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules/react-dom") || id.includes("node_modules/react/")) {
+            return "vendor";
+          }
+          if (id.includes("node_modules/react-router")) {
+            return "vendor";
+          }
+          if (id.includes("node_modules/react-helmet-async")) {
+            return "helmet";
+          }
+        },
+      },
+    },
+  },
   server: {
     port: 3000,
     strictPort: true,

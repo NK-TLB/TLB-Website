@@ -60,8 +60,12 @@ export default function TimelineModern() {
           const isLast = i === lastIndex;
 
           return (
-            <Reveal key={t.title} delay={i * 65}>
-              <li className="relative md:grid md:grid-cols-2 md:items-center md:gap-14 lg:gap-20">
+            <Reveal
+              as="li"
+              key={t.title}
+              delay={i * 65}
+              className="relative md:grid md:grid-cols-2 md:items-center md:gap-14 lg:gap-20"
+            >
                 {/* Year node on spine */}
                 <div className="absolute left-5 top-7 z-20 -translate-x-1/2 md:left-1/2 md:top-8">
                   <span
@@ -147,7 +151,6 @@ export default function TimelineModern() {
                     </div>
                   </article>
                 </div>
-              </li>
             </Reveal>
           );
         })}

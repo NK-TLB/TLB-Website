@@ -157,18 +157,21 @@ function FactCards({
   return (
     <dl className={`grid gap-3 ${colClass}`}>
       {facts.map((f, i) => (
-        <Reveal key={f.label} delay={i * 50}>
-        <div className="accent-box-2xl card-hover hover:-translate-y-0.5 hover:shadow-soft">
+        <Reveal
+          as="div"
+          key={f.label}
+          delay={i * 50}
+          className="accent-box-2xl card-hover hover:-translate-y-0.5 hover:shadow-sm"
+        >
           <div className="accent-box-2xl-inner p-4">
-          <dt className="eyebrow-label flex items-center gap-2">
-            <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100/80">
-              <Icon name={icons[i] ?? "star"} className="h-3.5 w-3.5" />
-            </span>
-            {f.label}
-          </dt>
-          <dd className="mt-3 text-sm font-semibold leading-snug text-ink-800">{f.value}</dd>
+            <dt className="eyebrow-label flex items-center gap-2">
+              <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100/80">
+                <Icon name={icons[i] ?? "star"} className="h-3.5 w-3.5" />
+              </span>
+              {f.label}
+            </dt>
+            <dd className="mt-3 text-sm font-semibold leading-snug text-ink-800">{f.value}</dd>
           </div>
-        </div>
         </Reveal>
       ))}
     </dl>

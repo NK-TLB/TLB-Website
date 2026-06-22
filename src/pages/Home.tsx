@@ -203,20 +203,23 @@ export default function Home() {
                       className="pointer-events-none absolute bottom-2 left-1/2 top-2 z-[1] w-px -translate-x-1/2 rounded-full accent-line-v"
                     />
                     {group.stats.map((s) => (
-                      <div
+                      <Reveal
+                        as="div"
                         key={s.label}
                         className="flex flex-col items-center px-5 text-center first:pl-0 last:pr-0"
                       >
                         <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
                           <Icon name={s.icon} className="h-5 w-5" />
                         </span>
-                        <dd className="mt-4 font-display text-4xl font-extrabold leading-none text-brand-600 sm:text-5xl">
-                          <CountUp value={s.value} />
-                        </dd>
-                        <dt className="mt-2 text-sm font-semibold text-ink-600">
-                          {s.label}
-                        </dt>
-                      </div>
+                        <div className="mt-4 flex flex-col-reverse items-center">
+                          <dt className="mt-2 text-sm font-semibold text-ink-600">
+                            {s.label}
+                          </dt>
+                          <dd className="font-display text-4xl font-extrabold leading-none text-brand-600 sm:text-5xl">
+                            <CountUp value={s.value} />
+                          </dd>
+                        </div>
+                      </Reveal>
                     ))}
                   </dl>
                   </div>
@@ -256,8 +259,12 @@ export default function Home() {
 
           <ol className="relative mt-10 grid gap-y-8 gap-x-6 max-lg:pt-2 sm:mt-12 sm:grid-cols-2 sm:gap-y-12 lg:mt-8 lg:grid-cols-4 lg:gap-y-12">
             {howItWorks.map((s, i) => (
-              <Reveal key={s.step} delay={i * 100} className="contents">
-                <li className="accent-box-2xl card-hover group relative z-[1] hover:-translate-y-1 max-lg:h-auto lg:h-full">
+              <Reveal
+                as="li"
+                key={s.step}
+                delay={i * 100}
+                className="accent-box-2xl card-hover group relative z-[1] hover:-translate-y-1 max-lg:h-auto lg:h-full"
+              >
                   <div className="accent-box-2xl-inner flex h-full flex-col items-center px-6 pb-8 pt-8 text-center max-lg:pt-6 lg:pt-8">
                   <span className="relative z-10 mx-auto mb-4 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-lg font-extrabold text-white shadow-lift ring-4 ring-[rgb(var(--page-bg))] sm:h-11 sm:w-11 sm:text-base lg:absolute lg:-top-6 lg:mb-0 lg:hidden">
                     <span
@@ -278,7 +285,6 @@ export default function Home() {
                     {s.text}
                   </p>
                   </div>
-                </li>
               </Reveal>
             ))}
           </ol>
