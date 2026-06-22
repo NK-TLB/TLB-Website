@@ -767,6 +767,8 @@ export const headOfficeTeam = {
       role: "Head of Engineering",
       department: "Engineering",
       bio: "Leads engineering and systems work that keeps our plants and technology running, from infrastructure to process improvements.",
+      image: "/images/team/gaurav-joshi.png",
+      portraitFrame: { x: 50, y: 0, scale: 106 },
     },
   ] satisfies TeamMember[],
 };
