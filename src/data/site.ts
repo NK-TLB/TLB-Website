@@ -48,6 +48,8 @@ export const site = {
       role: "Head of HR",
       blurb: "Be part of something great. Join our team.",
       email: "hr@thelaundrybag.co.in",
+      phoneDisplay: "(+91) 7241145513",
+      phoneRaw: "7241145513",
     },
   },
 

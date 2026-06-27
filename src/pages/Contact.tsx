@@ -36,12 +36,16 @@ function ContactPathCard({
   role,
   blurb,
   email,
+  phoneDisplay,
+  phoneRaw,
   accent = "brand",
 }: {
   badge: string;
   role: string;
   blurb: string;
   email: string;
+  phoneDisplay?: string;
+  phoneRaw?: string;
   accent?: "brand" | "accent";
 }) {
   const accentBar =
@@ -62,14 +66,26 @@ function ContactPathCard({
       <p className="mt-1.5 flex-1 text-xs leading-relaxed text-ink-600 sm:text-sm">
         {blurb}
       </p>
-      <a
-        href={`mailto:${email}`}
-        className="btn-outline btn-compact-sm mt-4 w-full justify-center gap-2"
-        title={email}
-      >
-        <Icon name="mail" className="h-3.5 w-3.5 shrink-0" />
-        <span className="truncate text-xs sm:text-sm">{email}</span>
-      </a>
+      <div className="mt-4 space-y-2">
+        <a
+          href={`mailto:${email}`}
+          className="btn-outline btn-compact-sm w-full justify-center gap-2"
+          title={email}
+        >
+          <Icon name="mail" className="h-3.5 w-3.5 shrink-0" />
+          <span className="truncate text-xs sm:text-sm">{email}</span>
+        </a>
+        {phoneDisplay && phoneRaw && (
+          <a
+            href={`tel:+91${phoneRaw}`}
+            className="btn-outline btn-compact-sm w-full justify-center gap-2"
+            title={phoneDisplay}
+          >
+            <Icon name="phone" className="h-3.5 w-3.5 shrink-0" />
+            <span className="truncate text-xs sm:text-sm">{phoneDisplay}</span>
+          </a>
+        )}
+      </div>
     </div>
   );
 }
@@ -201,12 +217,16 @@ export default function Contact() {
                           role={site.contacts.enquiries.role}
                           blurb={`${site.contacts.enquiries.blurb} Use the form to send a proposal request.`}
                           email={site.contacts.enquiries.email}
+                          phoneDisplay={site.contacts.enquiries.phoneDisplay}
+                          phoneRaw={site.contacts.enquiries.phoneRaw}
                         />
                         <ContactPathCard
                           badge="Careers"
                           role={site.contacts.careers.role}
                           blurb={`${site.contacts.careers.blurb} Email HR directly — the form is for new business only.`}
                           email={site.contacts.careers.email}
+                          phoneDisplay={site.contacts.careers.phoneDisplay}
+                          phoneRaw={site.contacts.careers.phoneRaw}
                           accent="accent"
                         />
                       </div>
