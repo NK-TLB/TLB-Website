@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 /**
  * Export Shourya Jain full-body portrait for TLB + Infraventure.
- * Source: assets/source/shourya-jain.jpeg (739×1600, no crop)
+ * Source: assets/source/shourya-jain-ai.png — GFPGAN v1.4 AI super-res
+ * master (2956×6400, same crop/composition as original 739×1600 photo).
+ * Web tiers are DOWNSCALED from this AI master, so they stay genuinely sharp.
  */
 import { mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -9,11 +11,11 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const SRC = join(__dirname, "..", "assets", "source", "shourya-jain.jpeg");
+const SRC = join(__dirname, "..", "assets", "source", "shourya-jain-ai.png");
 const TLB_OUT = join(__dirname, "..", "public", "images", "team");
 const INFRA_OUT = join(__dirname, "..", "..", "shourya infraventure", "assets");
 
-const SOURCE_HEIGHT = 1600;
+const SOURCE_HEIGHT = 6400;
 
 const variants = [
   { name: "shourya-jain.jpg", height: 3840, quality: 98, sharpen: true },
@@ -37,8 +39,8 @@ function resizeVariant(pipeline, v) {
     kernel: sharp.kernel.lanczos3,
   });
 
-  if (v.sharpen && v.height > SOURCE_HEIGHT) {
-    img = img.sharpen({ sigma: 0.9, m1: 1.05, m2: 0.55, x1: 2, y2: 10, y3: 20 });
+  if (v.sharpen) {
+    img = img.sharpen({ sigma: 0.6, m1: 0.8, m2: 0.4, x1: 2, y2: 10, y3: 18 });
   }
 
   return img;
