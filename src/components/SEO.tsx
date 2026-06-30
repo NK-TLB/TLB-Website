@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { seoKeywords, site } from "../data/site";
+import { seoKeywords, site, shouryaJainPortrait } from "../data/site";
 
 type SEOProps = {
   title?: string;
@@ -111,7 +111,16 @@ const personSchema = {
     "Shourya Jain is a Raipur, Chhattisgarh based entrepreneur. He is the founder of The Laundry Bag, India's leading commercial laundry, dry-cleaning and linen-management brand, operating across Raipur and other Indian cities since 2013. He is also the third-generation real estate partner at Shourya Infraventure, the Jain family infrastructure firm of Raipur established in 1958.",
   disambiguatingDescription:
     "Raipur, Chhattisgarh based entrepreneur, founder of The Laundry Bag and partner at Shourya Infraventure. This is a distinct person from other individuals named Shourya Jain or Shaurya Jain in technology, academia and other fields.",
-  image: "https://www.thelaundrybag.co.in/images/team/shourya-jain.jpg",
+  image: {
+    "@type": "ImageObject",
+    "@id": `${shouryaJainPortrait.url}#image`,
+    url: shouryaJainPortrait.url,
+    contentUrl: shouryaJainPortrait.url,
+    width: shouryaJainPortrait.width,
+    height: shouryaJainPortrait.height,
+    caption: shouryaJainPortrait.alt,
+    encodingFormat: "image/jpeg",
+  },
   nationality: { "@type": "Country", name: "India" },
   homeLocation: { "@type": "Place", name: "Raipur, Chhattisgarh, India" },
   alumniOf: {
@@ -193,11 +202,21 @@ export default function SEO({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={fullDescription} />
       <meta property="og:image" content={imageUrl} />
+      {path === "/our-team" && (
+        <>
+          <meta property="og:image:alt" content={shouryaJainPortrait.alt} />
+          <meta property="og:image:width" content={String(shouryaJainPortrait.width)} />
+          <meta property="og:image:height" content={String(shouryaJainPortrait.height)} />
+        </>
+      )}
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={fullDescription} />
       <meta name="twitter:image" content={imageUrl} />
+      {path === "/our-team" && (
+        <meta name="twitter:image:alt" content={shouryaJainPortrait.alt} />
+      )}
 
       {schemaPayload.map((s, i) => (
         <script key={i} type="application/ld+json">

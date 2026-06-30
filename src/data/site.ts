@@ -638,13 +638,23 @@ export const faqs = [
 // cross-referenced with the owner's known details. Review before publishing.
 
 // Founder / leadership (LinkedIn, Startup Buzz, Letsmarkup).
+
+/** Canonical Shourya Jain portrait — used in schema, OG, and team cards. */
+export const shouryaJainPortrait = {
+  path: "/images/team/shourya-jain.jpg",
+  url: "https://www.thelaundrybag.co.in/images/team/shourya-jain.jpg",
+  width: 1774,
+  height: 3840,
+  alt: "Shourya Jain, founder of The Laundry Bag and partner at Shourya Infraventure, Raipur, Chhattisgarh",
+} as const;
+
 export const founders = [
   {
     name: "Shourya Jain",
     role: "Founder",
     bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's mission to organise India's unorganised laundry sector, building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises across the country. He is also the third-generation real estate partner at Shourya Infraventure, his family's Raipur infrastructure firm established in 1958.",
     href: "https://www.linkedin.com/in/shourya-jain-raipur",
-    image: "/images/team/shourya-jain.png",
+    image: shouryaJainPortrait.path,
   },
 ];
 
@@ -696,6 +706,8 @@ export const headOfficeTeam = {
       role: "Investor & Founder",
       department: "Leadership",
       bio: "Founder and investor in The Laundry Bag™. Leads strategy, growth and the commercial laundry network serving hotels, hospitals and institutions across India.",
+      image: shouryaJainPortrait.path,
+      portraitFrame: { x: 50, y: 10, scale: 118 },
       linkedIn: "https://www.linkedin.com/in/shourya-jain-raipur",
     },
     {

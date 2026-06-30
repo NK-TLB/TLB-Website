@@ -26,7 +26,9 @@ function Portrait({ name, image }: { name: string; image?: string }) {
           loading="lazy"
           decoding="async"
           onError={() => setFailed(true)}
-          className="h-full w-full object-cover object-center transition duration-500 hover:scale-[1.03]"
+          className={`h-full w-full object-cover transition duration-500 hover:scale-[1.03] ${
+            image?.includes("shourya-jain") ? "object-[50%_10%]" : "object-center"
+          }`}
         />
         <span
           aria-hidden="true"

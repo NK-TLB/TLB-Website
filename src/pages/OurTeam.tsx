@@ -5,7 +5,7 @@ import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
 import PageSection from "../components/PageSection";
 import TeamMemberCard from "../components/TeamMemberCard";
-import { headOfficeTeam, site } from "../data/site";
+import { headOfficeTeam, shouryaJainPortrait, site } from "../data/site";
 
 export default function OurTeam() {
   const [searchParams] = useSearchParams();
@@ -18,6 +18,13 @@ export default function OurTeam() {
         path="/our-team"
         title="Our Team"
         description={`Meet the head office team behind The Laundry Bag in ${headOfficeTeam.location} — leadership, operations, commercial and support functions steering our laundry network across India.`}
+        image={shouryaJainPortrait.path}
+        keywords={[
+          "Shourya Jain",
+          "Shourya Jain Raipur",
+          "The Laundry Bag team",
+          "The Laundry Bag founder",
+        ]}
       />
 
       <PageHero
