@@ -14,16 +14,19 @@ function initials(name: string) {
 function Portrait({
   name,
   image,
+  frame,
 }: {
   name: string;
   image?: string;
+  frame?: { x?: number; y?: number; scale?: number };
 }) {
   if (image) {
     return (
       <FramedPortrait
         src={image}
         alt={`${name}, Founder, The Laundry Bag`}
-        fit="contain"
+        fit="cover"
+        frame={frame ?? { x: 50, y: 50, scale: 100 }}
         filter="brightness(1.08) contrast(1.08) saturate(1.1) sepia(0.05)"
         wrapperClassName="h-full min-h-[18rem] md:min-h-full"
       />
@@ -69,7 +72,11 @@ export default function Leadership() {
           <span aria-hidden="true" className="accent-hairline" />
           <div className="grid items-stretch md:grid-cols-12">
             <div className="md:col-span-5">
-              <Portrait name={lead.name} image={portraitSrc} />
+              <Portrait
+                name={lead.name}
+                image={portraitSrc}
+                frame={lead.portraitFrame}
+              />
             </div>
 
             <div className="flex flex-col justify-center p-8 md:col-span-7 lg:p-10 xl:p-12">

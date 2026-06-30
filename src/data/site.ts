@@ -655,6 +655,7 @@ export const founders = [
     bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's mission to organise India's unorganised laundry sector, building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises across the country. He is also the third-generation real estate partner at Shourya Infraventure, his family's Raipur infrastructure firm established in 1958.",
     href: "https://www.linkedin.com/in/shourya-jain-raipur",
     image: shouryaJainPortrait.path,
+    portraitFrame: { x: 50, y: 50, scale: 100 },
   },
 ];
 
@@ -707,6 +708,7 @@ export const headOfficeTeam = {
       department: "Leadership",
       bio: "Founder and investor in The Laundry Bag™. Leads strategy, growth and the commercial laundry network serving hotels, hospitals and institutions across India.",
       image: shouryaJainPortrait.path,
+      portraitFrame: { x: 50, y: 50, scale: 100 },
       linkedIn: "https://www.linkedin.com/in/shourya-jain-raipur",
     },
     {

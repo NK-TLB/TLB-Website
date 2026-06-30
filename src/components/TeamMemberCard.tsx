@@ -46,8 +46,8 @@ function Portrait({
         <FramedPortrait
           src={member.image!}
           alt={`${member.name}, ${member.role}, The Laundry Bag`}
-          fit={member.id === "shourya-jain" ? "contain" : "cover"}
-          frame={member.id === "shourya-jain" ? undefined : frame}
+          fit="cover"
+          frame={frame}
           filter={
             member.id === "vivek-devnani"
               ? "none"
