@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Export Shourya Jain portrait for TLB + Infraventure.
- * Source: assets/source/shourya-jain.png (1536×1024 studio portrait)
+ * Export Shourya Jain full-body portrait for TLB + Infraventure.
+ * Source: assets/source/shourya-jain.jpeg (739×1600, no crop)
  */
 import { mkdir, unlink } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -9,49 +9,38 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const SRC = join(__dirname, "..", "assets", "source", "shourya-jain.png");
+const SRC = join(__dirname, "..", "assets", "source", "shourya-jain.jpeg");
 const TLB_OUT = join(__dirname, "..", "public", "images", "team");
 const INFRA_OUT = join(__dirname, "..", "..", "shourya infraventure", "assets");
 
-/** Width tiers — preserve native 3:2 aspect from the studio PNG. */
-const variants = [
-  { name: "shourya-jain.jpg", width: 1536, quality: 96 },
-  { name: "shourya-jain-1200.jpg", width: 1200, quality: 94 },
-  { name: "shourya-jain-800.jpg", width: 800, quality: 92 },
-  { name: "shourya-jain-600.jpg", width: 600, quality: 90 },
-];
+/** 2×1080 upscale — full frame, no side crop. */
+const MASTER_HEIGHT = 2160;
 
-const OBSOLETE = [
-  "shourya-jain-2400.jpg",
-  "shourya-jain-1600.jpg",
+const variants = [
+  { name: "shourya-jain.jpg", height: MASTER_HEIGHT, quality: 96 },
+  { name: "shourya-jain-1600.jpg", height: 1600, quality: 94 },
+  { name: "shourya-jain-1200.jpg", height: 1200, quality: 92 },
+  { name: "shourya-jain-800.jpg", height: 800, quality: 90 },
+  { name: "shourya-jain-600.jpg", height: 600, quality: 88 },
 ];
 
 async function sourcePipeline() {
   const meta = await sharp(SRC).metadata();
-  console.log(`Source: ${meta.width}×${meta.height} PNG (studio portrait)`);
+  console.log(`Source: ${meta.width}×${meta.height} JPEG (full body, no crop)`);
   return sharp(SRC).rotate();
 }
 
 async function exportSet(outDir, pipeline, alsoWebp = true) {
   await mkdir(outDir, { recursive: true });
 
-  for (const stale of OBSOLETE) {
-    try {
-      await unlink(join(outDir, stale));
-      console.log(`  removed stale ${stale}`);
-    } catch {
-      /* already gone */
-    }
-  }
-
   let masterWidth = 0;
   let masterHeight = 0;
 
   for (const v of variants) {
     const resized = pipeline.clone().resize({
-      width: v.width,
+      height: v.height,
       fit: "inside",
-      withoutEnlargement: true,
+      withoutEnlargement: false,
       kernel: sharp.kernel.lanczos3,
     });
 
