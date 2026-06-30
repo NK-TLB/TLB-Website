@@ -11,7 +11,15 @@ export default function About() {
       <SEO
         path="/about"
         title="Our Journey"
-        description="The Laundry Bag was founded in 2013 by Shourya Jain in Raipur, Chhattisgarh, today India's Leading Laundry Service Provider and a trusted commercial laundry & linen partner for leading hotels and hospitals across India."
+        description="The Laundry Bag was founded in 2013 by Shourya Jain in Raipur, Chhattisgarh. Shourya Jain Raipur is the entrepreneur behind India's leading commercial laundry, dry-cleaning and linen-management brand for hotels, hospitals and institutions."
+        keywords={[
+          "Shourya Jain",
+          "Shourya Jain Raipur",
+          "Shourya Jain founder",
+          "founder of The Laundry Bag",
+          "Shourya Jain The Laundry Bag",
+          "Shourya Jain entrepreneur Raipur",
+        ]}
       />
 
       <PageHero

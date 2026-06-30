@@ -17,13 +17,16 @@ export default function OurTeam() {
       <SEO
         path="/our-team"
         title="Our Team"
-        description={`Meet the head office team behind The Laundry Bag in ${headOfficeTeam.location} — leadership, operations, commercial and support functions steering our laundry network across India.`}
+        description={`Meet Shourya Jain and the head office team behind The Laundry Bag in ${headOfficeTeam.location}. Shourya Jain Raipur is the founder and investor; the team steers our commercial laundry network across India.`}
         image={shouryaJainPortrait.path}
         keywords={[
           "Shourya Jain",
           "Shourya Jain Raipur",
+          "Shourya Jain Raipur entrepreneur",
+          "Shourya Jain founder",
           "The Laundry Bag team",
           "The Laundry Bag founder",
+          "founder of The Laundry Bag",
         ]}
       />
 

@@ -1105,6 +1105,11 @@ export const seoKeywords = [
   "laundry bag Shourya Jain",
   "TLB Shourya Jain",
   "Shourya Jain Raipur Chhattisgarh",
+  "Shourya Jain entrepreneur Raipur",
+  "Shourya Jain Shourya Infraventure",
+  "who is Shourya Jain",
+  "Shourya Jain Raipur entrepreneur",
+  "Shourya Jain biography",
 ];
 
 // Convenience alias for back-compat.

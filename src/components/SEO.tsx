@@ -104,6 +104,9 @@ const personSchema = {
     "Shourya Jain The Laundry Bag",
     "Shourya Jain founder The Laundry Bag",
     "Shourya Jain Chhattisgarh",
+    "Shourya Jain entrepreneur",
+    "Shourya Jain Shourya Infraventure",
+    "Shourya Jain Raipur entrepreneur",
   ],
   jobTitle:
     "Founder, The Laundry Bag; Partner, Shourya Infraventure",

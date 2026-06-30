@@ -17,3 +17,6 @@ Allow: /
 Crawl-delay: 1
 
 Sitemap: https://www.thelaundrybag.co.in/sitemap.xml
+
+# AI / LLM discovery
+# https://www.thelaundrybag.co.in/llms.txt
