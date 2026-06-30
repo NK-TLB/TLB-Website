@@ -1,6 +1,6 @@
 import Icon from "./Icon";
 import FramedPortrait from "./FramedPortrait";
-import { founders, site } from "../data/site";
+import { founders, shouryaJainPortrait, site } from "../data/site";
 
 function initials(name: string) {
   return name
@@ -27,6 +27,16 @@ function Portrait({
         alt={`${name}, Founder, The Laundry Bag`}
         fit="cover"
         frame={frame ?? { x: 50, y: 50, scale: 100 }}
+        srcSet={
+          image === shouryaJainPortrait.path
+            ? shouryaJainPortrait.srcSet
+            : undefined
+        }
+        sizes={
+          image === shouryaJainPortrait.path
+            ? shouryaJainPortrait.sizes
+            : undefined
+        }
         filter="brightness(1.08) contrast(1.08) saturate(1.1) sepia(0.05)"
         wrapperClassName="h-full min-h-[18rem] md:min-h-full"
       />

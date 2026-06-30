@@ -4,6 +4,7 @@ import FramedPortrait from "./FramedPortrait";
 import {
   defaultPortraitFrame,
   resolvePortraitFrame,
+  shouryaJainPortrait,
   type PortraitFrame,
   type TeamMember,
 } from "../data/site";
@@ -48,6 +49,12 @@ function Portrait({
           alt={`${member.name}, ${member.role}, The Laundry Bag`}
           fit="cover"
           frame={frame}
+          srcSet={
+            member.id === "shourya-jain" ? shouryaJainPortrait.srcSet : undefined
+          }
+          sizes={
+            member.id === "shourya-jain" ? shouryaJainPortrait.sizes : undefined
+          }
           filter={
             member.id === "vivek-devnani"
               ? "none"

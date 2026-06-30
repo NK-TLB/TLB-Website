@@ -6,6 +6,8 @@ type Props = {
   frame?: PortraitFrame;
   filter?: string;
   wrapperClassName?: string;
+  srcSet?: string;
+  sizes?: string;
   /** cover = fill & crop (headshots). contain = full image, no crop (full-body portraits). */
   fit?: "cover" | "contain";
 };
@@ -16,6 +18,8 @@ export default function FramedPortrait({
   frame,
   filter,
   wrapperClassName = "",
+  srcSet,
+  sizes,
   fit = "cover",
 }: Props) {
   const resolved = resolvePortraitFrame(frame);
@@ -41,6 +45,8 @@ export default function FramedPortrait({
       >
         <img
           src={src}
+          srcSet={srcSet}
+          sizes={sizes}
           alt={alt}
           loading="lazy"
           decoding="async"

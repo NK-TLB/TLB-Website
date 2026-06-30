@@ -53,7 +53,7 @@ export default function Locations() {
       <PageSection className="section-tint section" reveal={false}>
           <SectionHeading
             align="left"
-            title="Our Raipur headquarters"
+            title="Our Raipur Headquarter"
             description="Visit or reach our head office for partnerships, site visits and general enquiries."
             showRule={false}
           />

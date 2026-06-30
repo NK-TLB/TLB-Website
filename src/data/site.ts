@@ -643,8 +643,11 @@ export const faqs = [
 export const shouryaJainPortrait = {
   path: "/images/team/shourya-jain.jpg",
   url: "https://www.thelaundrybag.co.in/images/team/shourya-jain.jpg",
-  width: 998,
-  height: 2160,
+  width: 1774,
+  height: 3840,
+  srcSet:
+    "/images/team/shourya-jain-1200.jpg 554w, /images/team/shourya-jain-1600.jpg 739w, /images/team/shourya-jain-2400.jpg 1106w, /images/team/shourya-jain.jpg 1774w",
+  sizes: "(max-width: 640px) 45vw, 470px",
   alt: "Shourya Jain, founder of The Laundry Bag and partner at Shourya Infraventure, Raipur, Chhattisgarh",
 } as const;
 
