@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "./Icon";
+import FramedPortrait from "./FramedPortrait";
 import {
   defaultPortraitFrame,
   resolvePortraitFrame,
@@ -40,24 +41,19 @@ function Portrait({
   const showImage = Boolean(member.image);
 
   if (showImage) {
-    // Background model: `backgroundSize: auto <scale>%` sets the image height to
-    // <scale>% of the card height (100 = exact vertical fill), and
-    // `backgroundPosition` pans the crop. x/y are 0–100 focal points.
     return (
-      <div className="relative aspect-[4/5] overflow-hidden bg-brand-50">
-        <div
-          role="img"
-          aria-label={`${member.name}, ${member.role}, The Laundry Bag`}
-          style={{
-            backgroundImage: `url("${member.image}")`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: `auto ${frame.scale}%`,
-            backgroundPosition: `${frame.x}% ${frame.y}%`,
-            // Luminate-style filter: slightly brighter, more contrast, slightly warmer/more saturated
-            // Skip for Vivek Devnani as requested
-            filter: member.id === "vivek-devnani" ? "none" : "brightness(1.08) contrast(1.08) saturate(1.1) sepia(0.05)",
-          }}
-          className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"
+      <div className="relative aspect-[4/5] overflow-hidden">
+        <FramedPortrait
+          src={member.image!}
+          alt={`${member.name}, ${member.role}, The Laundry Bag`}
+          fit={member.id === "shourya-jain" ? "contain" : "cover"}
+          frame={member.id === "shourya-jain" ? undefined : frame}
+          filter={
+            member.id === "vivek-devnani"
+              ? "none"
+              : "brightness(1.08) contrast(1.08) saturate(1.1) sepia(0.05)"
+          }
+          wrapperClassName="h-full w-full"
         />
         <span
           aria-hidden="true"

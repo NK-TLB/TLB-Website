@@ -1,5 +1,6 @@
 import Icon from "./Icon";
-import { founders, resolvePortraitFrame, site, shouryaJainPortrait } from "../data/site";
+import FramedPortrait from "./FramedPortrait";
+import { founders, site } from "../data/site";
 
 function initials(name: string) {
   return name
@@ -9,38 +10,23 @@ function initials(name: string) {
     .slice(0, 2);
 }
 
-/** Founder portrait — cropped background fill with manual frame tuning. */
+/** Founder portrait — cover-fill with optional frame tuning. */
 function Portrait({
   name,
   image,
-  frame,
 }: {
   name: string;
   image?: string;
-  frame?: { x?: number; y?: number; scale?: number };
 }) {
   if (image) {
-    const resolved = resolvePortraitFrame(frame);
     return (
-      <div className="relative h-full min-h-[18rem] overflow-hidden md:min-h-full">
-        <div
-          role="img"
-          aria-label={`${name}, Founder, The Laundry Bag`}
-          style={{
-            backgroundImage: `url("${image}")`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: `auto ${resolved.scale}%`,
-            backgroundPosition: `${resolved.x}% ${resolved.y}%`,
-            filter:
-              "brightness(1.08) contrast(1.08) saturate(1.1) sepia(0.05)",
-          }}
-          className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"
-        />
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-950/25 via-transparent to-transparent"
-        />
-      </div>
+      <FramedPortrait
+        src={image}
+        alt={`${name}, Founder, The Laundry Bag`}
+        fit="contain"
+        filter="brightness(1.08) contrast(1.08) saturate(1.1) sepia(0.05)"
+        wrapperClassName="h-full min-h-[18rem] md:min-h-full"
+      />
     );
   }
 
@@ -74,10 +60,7 @@ export default function Leadership() {
   const lead = founders[0];
   if (!lead) return null;
 
-  const portraitSrc =
-    lead.image === shouryaJainPortrait.path
-      ? shouryaJainPortrait.path
-      : lead.image;
+  const portraitSrc = lead.image;
 
   return (
     <div className="mx-auto mt-12 max-w-5xl">
@@ -86,11 +69,7 @@ export default function Leadership() {
           <span aria-hidden="true" className="accent-hairline" />
           <div className="grid items-stretch md:grid-cols-12">
             <div className="md:col-span-5">
-              <Portrait
-                name={lead.name}
-                image={portraitSrc}
-                frame={lead.portraitFrame}
-              />
+              <Portrait name={lead.name} image={portraitSrc} />
             </div>
 
             <div className="flex flex-col justify-center p-8 md:col-span-7 lg:p-10 xl:p-12">

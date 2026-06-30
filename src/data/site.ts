@@ -643,8 +643,8 @@ export const faqs = [
 export const shouryaJainPortrait = {
   path: "/images/team/shourya-jain.jpg",
   url: "https://www.thelaundrybag.co.in/images/team/shourya-jain.jpg",
-  width: 1277,
-  height: 3840,
+  width: 499,
+  height: 1080,
   alt: "Shourya Jain, founder of The Laundry Bag and partner at Shourya Infraventure, Raipur, Chhattisgarh",
 } as const;
 
@@ -655,7 +655,6 @@ export const founders = [
     bio: "Founder of The Laundry Bag™. Based in Raipur, Chhattisgarh, Shourya leads the company's mission to organise India's unorganised laundry sector, building one of India's leading laundry networks and a Built-Own-Operate linen platform for hotels, hospitals and enterprises across the country. He is also the third-generation real estate partner at Shourya Infraventure, his family's Raipur infrastructure firm established in 1958.",
     href: "https://www.linkedin.com/in/shourya-jain-raipur",
     image: shouryaJainPortrait.path,
-    portraitFrame: { x: 50, y: 11, scale: 142 },
   },
 ];
 
@@ -665,7 +664,7 @@ export type PortraitFrame = {
   x?: number;
   /** Vertical focal point (0–100). 50 = centered. Lower = show more of the top. */
   y?: number;
-  /** Zoom: image height as % of the card. 100 = exact vertical fill; higher zooms in. */
+  /** Uniform zoom on top of object-fit: cover. 100 = fill container; higher = tighter crop. */
   scale?: number;
 };
 
@@ -708,7 +707,6 @@ export const headOfficeTeam = {
       department: "Leadership",
       bio: "Founder and investor in The Laundry Bag™. Leads strategy, growth and the commercial laundry network serving hotels, hospitals and institutions across India.",
       image: shouryaJainPortrait.path,
-      portraitFrame: { x: 50, y: 11, scale: 138 },
       linkedIn: "https://www.linkedin.com/in/shourya-jain-raipur",
     },
     {
