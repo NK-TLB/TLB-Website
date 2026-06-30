@@ -1,6 +1,5 @@
-import { useState } from "react";
 import Icon from "./Icon";
-import { founders, site } from "../data/site";
+import { founders, resolvePortraitFrame, site, shouryaJainPortrait } from "../data/site";
 
 function initials(name: string) {
   return name
@@ -10,25 +9,32 @@ function initials(name: string) {
     .slice(0, 2);
 }
 
-/** Founder portrait — real photo when available, otherwise a premium monogram. */
-function Portrait({ name, image }: { name: string; image?: string }) {
-  const [failed, setFailed] = useState(false);
-  const showImage = image && !failed;
-
-  if (showImage) {
+/** Founder portrait — cropped background fill with manual frame tuning. */
+function Portrait({
+  name,
+  image,
+  frame,
+}: {
+  name: string;
+  image?: string;
+  frame?: { x?: number; y?: number; scale?: number };
+}) {
+  if (image) {
+    const resolved = resolvePortraitFrame(frame);
     return (
       <div className="relative h-full min-h-[18rem] overflow-hidden md:min-h-full">
-        <img
-          src={image}
-          alt={`${name}, Founder, The Laundry Bag`}
-          width={640}
-          height={800}
-          loading="lazy"
-          decoding="async"
-          onError={() => setFailed(true)}
-          className={`h-full w-full object-cover transition duration-500 hover:scale-[1.03] ${
-            image?.includes("shourya-jain") ? "object-[50%_10%]" : "object-center"
-          }`}
+        <div
+          role="img"
+          aria-label={`${name}, Founder, The Laundry Bag`}
+          style={{
+            backgroundImage: `url("${image}")`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: `auto ${resolved.scale}%`,
+            backgroundPosition: `${resolved.x}% ${resolved.y}%`,
+            filter:
+              "brightness(1.08) contrast(1.08) saturate(1.1) sepia(0.05)",
+          }}
+          className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"
         />
         <span
           aria-hidden="true"
@@ -68,6 +74,11 @@ export default function Leadership() {
   const lead = founders[0];
   if (!lead) return null;
 
+  const portraitSrc =
+    lead.image === shouryaJainPortrait.path
+      ? shouryaJainPortrait.path
+      : lead.image;
+
   return (
     <div className="mx-auto mt-12 max-w-5xl">
       <article className="frame-4xl group relative">
@@ -75,7 +86,11 @@ export default function Leadership() {
           <span aria-hidden="true" className="accent-hairline" />
           <div className="grid items-stretch md:grid-cols-12">
             <div className="md:col-span-5">
-              <Portrait name={lead.name} image={lead.image} />
+              <Portrait
+                name={lead.name}
+                image={portraitSrc}
+                frame={lead.portraitFrame}
+              />
             </div>
 
             <div className="flex flex-col justify-center p-8 md:col-span-7 lg:p-10 xl:p-12">
@@ -84,9 +99,7 @@ export default function Leadership() {
                 {lead.role}
               </span>
 
-              <h3 className="h2 mt-4">
-                {lead.name}
-              </h3>
+              <h3 className="h2 mt-4">{lead.name}</h3>
 
               <span
                 aria-hidden="true"
